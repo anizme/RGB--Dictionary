@@ -1,0 +1,505 @@
+Apple	Quả táo
+Banana	Quả chuối
+Car	Xe hơi
+Book	Sách
+Computer	Máy tính
+Sun	Mặt trời
+Moon	Mặt trăng
+Water	Nước
+Fire	Lửa
+Tree	Cây
+Flower	Hoa
+House	Nhà
+Table	Bàn
+Chair	Ghế
+Dog	Con chó
+Cat	Con mèo
+Fish	Cá
+Bird	Con chim
+Friend	Bạn bè
+Family	Gia đình
+Love	Tình yêu
+Egg	Quả trứng
+Chair	Ghế
+Table	Bàn
+Window	Cửa sổ
+Phone	Điện thoại
+Hat	Mũ
+Shirt	Áo sơ mi
+Shoes	Giày
+Bag	Túi
+Watch	Đồng hồ
+Music	Âm nhạc
+Movie	Phim
+Rain	Mưa
+Sunset	Hoàng hôn
+Ocean	Đại dương
+Mountain	Núi
+Dance	Nhảy múa
+Cook	Nấu ăn
+Travel	Du lịch
+Read	Đọc sách
+Egg	Quả trứng
+Chair	Ghế
+Table	Bàn
+Window	Cửa sổ
+Phone	Điện thoại
+Hat	Mũ
+Shirt	Áo sơ mi
+Shoes	Giày
+Bag	Túi
+Watch	Đồng hồ
+Music	Âm nhạc
+Movie	Phim
+Rain	Mưa
+Sunset	Hoàng hôn
+Ocean	Đại dương
+Mountain	Núi
+Dance	Nhảy múa
+Cook	Nấu ăn
+Travel	Du lịch
+Read	Đọc sách
+Write	Viết
+Game	Trò chơi
+Swim	Bơi
+Run	Chạy
+Bike	Đạp xe
+Train	Tàu hoả
+Airplane	Máy bay
+Ship	Tàu thủy
+Map	Bản đồ
+Money	Tiền
+Time	Thời gian
+Language	Ngôn ngữ
+Love	Tình yêu
+Friend	Bạn bè
+Family	Gia đình
+Food	Thực phẩm
+Drink	Đồ uống
+Fruit	Trái cây
+Vegetable	Rau củ
+Animal	Động vật
+Bird	Chim
+Fish	Cá
+Insect	Côn trùng
+Flower	Hoa
+Tree	Cây
+Color	Màu sắc
+Number	Số
+Letter	Chữ cái
+Star	Ngôi sao
+Moon	Mặt trăng
+Sun	Mặt trời
+Sky	Bầu trời
+Earth	Trái đất
+Guitar	Đàn guitar
+Train	Tàu hỏa
+Airport	Sân bay
+Chocolate	Sô cô la
+Coffee	Cà phê
+Dolphin	Cá heo
+Elephant	Voi
+Giraffe	Hươu cao cổ
+Ice cream	Kem
+Jacket	Áo khoác
+Kangaroo	Kangaroo
+Lion	Sư tử
+Monkey	Khỉ
+Nest	Tổ
+Orange	Cam
+Penguin	Chim cánh cụt
+Queen	Nữ hoàng
+Rabbit	Con thỏ
+Strawberry	Dâu tây
+Tiger	Hổ
+Umbrella	Ô
+Violin	Đàn viôlông
+Watermelon	Dưa hấu
+Xylophone	Xylophone
+Yak	Yak
+Zebra	Ngựa vằn
+Elephant	Con voi
+Giraffe	Hươu cao cổ
+Koala	Gấu túi Úc
+Octopus	Bạch tuộc
+Panda	Gấu trúc
+Peacock	Công
+Polar bear	Gấu Bắc Cực
+Raccoon	Gấu Mỹ
+Seahorse	Ngựa biển
+Squirrel	Sóc
+Turtle	Rùa
+Vulture	Kền kền
+Walrus	Hải cẩu ngà
+X-ray	Tia X
+Yak	Yak
+Zebra	Ngựa vằn
+Cactus	Cây xương rồng
+Dandelion	Cỏ bồ công anh
+Eucalyptus	Cây bạch dương
+Fern	Rau dại
+Geranium	Cây hoa phượng
+Hibiscus	Hoa dâm bụt
+Iris	Cẩm tú cầu
+Jasmine	Cây nhài
+Kale	Cải bắp
+Lavender	Cây oải hương
+Accomplish	Hoàn thành
+Benevolent	Nhân từ
+Cacophony	Tiếng ồn ào
+Diligent	Chăm chỉ
+Ephemeral	Ngắn ngủi
+Furtive	Rón rén
+Gregarious	Đồng loạt
+Hedonist	Người theo đuổi niềm vui
+Ineffable	Không thể diễn đạt bằng lời
+Jubilant	Hân hoan
+Kaleidoscope	Kính vạn hoa
+Lethargic	Mệt mỏi, uể oải
+Mellifluous	Âm thanh ngọt ngào
+Nefarious	Ác độc
+Obtuse	Cùn, đần độn
+Pernicious	Độc hại, gây hại
+Quixotic	Hão huyền
+Rambunctious	Hỗn loạn, náo nhiệt
+Sycophant	Người nịnh hót
+Trepidation	Sự run sợ
+Ubiquitous	Mọi nơi
+Vacillate	Lưỡng lự
+Whimsical	Kỳ quái
+Xenophobia	Sự ghét người nước ngoài
+Yielding	Nhượng bộ
+Zephyr	Gió nhẹ
+Acrimonious	Chua cay
+Bumptious	Tự phụ, kiêu căng
+Cacophonous	Tiếng ồn ào
+Dilapidated	Xập xệ
+Egregious	Nghiêm trọng
+Facetious	Tinh nghịch, hài hước
+Garrulous	Nói nhiều
+Hapless	Khốn khổ
+Inane	Vô nghĩa
+Juxtapose	Đặt cạnh nhau
+Kowtow	Cúi đầu, quỳ gối
+Lament	Than khóc
+Meticulous	Cẩn thận
+Nebulous	Mơ hồ, không rõ ràng
+Obfuscate	Làm mờ đi
+Pernicious	Độc hại
+Quixotic	Hão huyền
+Ravenous	Tham lam
+Sycophant	Người nịnh hót
+Trepidation	Sự run sợ
+Ubiquitous	Mọi nơi
+Voracious	Tham lam
+Whimsical	Kỳ quái
+Xenophobia	Sự ghét người nước ngoài
+Yawn	Ngáp
+Zest	Hương vị, sự hứng thú
+Abandon	Từ bỏ
+Abate	Giảm bớt
+Aberration	Sự lệch hướng
+Abhor	Ghét cay ghét đắng
+Abject	Thảm hại
+Abolish	Bãi bỏ
+Abound	Phong phú
+Abrasive	Chà xát
+Absolve	Tỏ ra vô tội
+Abstain	Từ chối
+Accolade	Khen ngợi
+Accost	Chào hỏi
+Accrue	Tích luỹ
+Acrimonious	Chua cay
+Adamant	Kiên định
+Adept	Thạo
+Admonish	Mắng mỏ
+Adorn	Trang hoàng
+Adulation	Sự tán tỉnh
+Aesthetic	Mỹ thuật
+Affable	Dễ gần gũi
+Affliction	Sự đau khổ
+Agile	Nhanh nhẹn
+Alacrity	Sự nhanh nhẹn
+Alleviate	Làm dịu bớt
+Allure	Quyến rũ
+Altruistic	Hướng ngoại
+Amass	Tích luỹ
+Ambiguous	Mơ hồ
+Ambivalence	Mâu thuẫn tâm lý
+Ameliorate	Cải thiện
+Amiable	Đáng yêu
+Amicable	Hòa thuận
+Ample	Rộng rãi
+Analogous	Tương tự
+Anarchy	Hỗn loạn
+Anecdote	Chuyện kể
+Animosity	Thù địch
+Annihilate	Tiêu diệt
+Anomaly	Không bình thường
+Antipathy	Ghét
+Apathy	Lãnh đạm
+Aplomb	Sự tự tin
+Apprehensive	Lo sợ
+Arbitrary	Tùy ý
+Arcane	Bí ẩn
+Archetype	Nguyên mẫu
+Articulate	Linh hoạt trong việc diễn đạt
+Asinine	Ngớ ngẩn
+Assuage	Dịu đi
+Austere	Khắc nghiệt
+Avarice	Tham lam
+Aversion	Sự ghét
+Baleful	Báo điềm xấu
+Banish	Đuổi đi
+Benevolent	Nhân từ
+Bereft	Mất mát
+Blatant	Rõ ràng
+Bolster	Hỗ trợ
+Brevity	Sự ngắn gọn
+Bucolic	Nông thôn
+Cacophony	Tiếng ồn
+Cajole	Ngọt ngào lừa
+Candor	Thành thực
+Capricious	Thất thường
+Carping	Hay phê phán
+Catalyst	Chất xúc tác
+Caustic	Cay nghiệt
+Censure	Lên án
+Chagrin	Thất vọng
+Charlatan	Người lừa đảo
+Chide	Mắng mỏ
+Choleric	Dễ cáu giận
+Churlish	Thô lỗ
+Circumspect	Thận trọng
+Clandestine	Bí mật
+Clairvoyant	Thấy trước
+Clemency	Lòng nhân từ
+Coalesce	Hợp nhất
+Cognizant	Nhận thức được
+Collusion	Âm mưu
+Complacent	Tự mãn
+Concede	Công nhận
+Conciliatory	Hòa giải
+Condescending	Coi thường
+Condone	Bỏ qua
+Confidant	Người tâm tình
+Confluence	Sự hợp nhất
+Conjecture	Sự phỏng đoán
+Conspicuous	Nổi bật
+Consummate	Hoàn hảo
+Contentious	Hay cãi vã
+Contrite	Ân hận
+Conundrum	Vấn đề khó giải
+Copious	Dồi dào
+Corpulent	Mập mạp
+Covet	Có tham vọng
+Cower	Co rúm lại
+Credence	Sự tin tưởng
+Credulous	Dễ tin
+Curtail	Cắt giảm
+Cynical	Chua chát
+Dearth	Sự thiếu hụt
+Debilitate	Làm yếu đi
+Debunk	Bác bỏ
+Decipher	Giải mã
+Decorum	Phép lịch sự
+Deference	Sự kính trọng
+Delineate	Mô tả
+Demure	Nhút nhát
+Denounce	Lên án
+Deride	Chế nhạo
+Derogatory	Mỉa mai
+Despondent	Buồn rầu
+Detrimental	Gây hại
+Deviate	Lạc hướng
+Dexterous	Khéo léo
+Diatribe	Chửi rủa
+Didactic	Mang tính giáo dục
+Diffident	Thụ động
+Dilettante	Một người am hiểu nông cạn
+Disparate	Khác biệt
+Dispel	Xua tan
+Disrepute	Sự tiêu tan danh tiếng
+Dissipate	Tiêu tan
+Divulge	Tiết lộ
+Docile	Ngoan ngoãn
+Dogmatic	Độc đoán
+Dubious	Nghi ngờ
+Duplicity	Sự lừa dối
+Ebullient	Hớn hở
+Eclectic	Sự hòa hợp
+Edify	Giáo dục
+Efficacious	Hiệu quả
+Egregious	Nghiêm trọng
+Eloquent	Hùng biện
+Elusive	Khó nắm bắt
+Emaciated	Suy nhược
+Eminent	Xuất sắc
+Empathy	Sự đồng cảm
+Enervate	Làm yếu đi
+Engender	Gây ra
+Enhance	Nâng cao
+Enigma	Bí ẩn
+Enrapture	Làm mê mẩn
+Enthrall	Mê hoặc
+Ephemeral	Ngắn ngủi
+Epiphany	Sự hiểu rõ bất ngờ
+Equanimity	Sự điềm tĩnh
+Erratic	Không ổn định
+Ethereal	Tinh khiết
+Euphoric	Hạnh phúc
+Evanescent	Sự tiêu tan
+Exacerbate	Làm trầm trọng thêm
+Exculpate	Tha thứ
+Exemplary	Gương mẫu
+Exonerate	Xóa tội
+Exorbitant	Cắt cổ
+Expedient	Thích hợp
+Exquisite	Tuyệt vời
+Extol	Khen ngợi
+Exuberant	Hừng hực
+Facetious	Tinh nghịch
+Facilitate	Làm cho dễ dàng
+Fathom	Hiểu rõ
+Feasible	Khả thi
+Fervent	Nồng nhiệt
+Fiasco	Thất bại
+Flabbergasted	Ngạc nhiên đến mức không biết nói gì
+Flagrant	Thái quá
+Flippant	Nói bất kính
+Furtive	Lén lút
+Garrulous	Nói nhiều
+Genial	Nhã nhặn
+Gesticulate	Gắt tay
+Glib	Nhanh nhẹn
+Gregarious	Hòa đồng
+Grotesque	Quái dị
+Guile	Sự gian trá
+Harangue	Diễn thuyết kháng chiến
+Haughty	Ngạo mạn
+Hedonist	Người theo đuổi niềm vui
+Heedless	Không để ý
+Heinous	Tàn ác
+Heretic	Người dị đoan
+Histrionic	Dở hơi
+Idyllic	Lý tưởng
+Imminent	Sắp xảy ra
+Immutable	Bất biến
+Impartial	Công bằng
+Implacable	Không thể làm lành
+Implicit	Ngụ ý
+Implore	Cầu xin
+Inane	Vô nghĩa
+Incisive	Sắc bén
+Inclement	Thời tiết khắc nghiệt
+Ineffable	Không thể diễn đạt
+Inexorable	Không thể ngăn cản
+Infamous	Tai tiếng
+Innocuous	Vô hại
+Insidious	Lén lút
+Insipid	Nhạt nhẽo
+Insolent	Hỗn xược
+Insurgent	Nổi loạn
+Intrepid	Dũng cảm
+Inundate	Tràn ngập
+Inure	Làm quen với
+Irreverent	Không tôn trọng
+Jocular	Hài hước
+Jubilant	Hân hoan
+Juxtapose	So sánh
+Kaleidoscope	Kính vạn hoa
+Laconic	Ngắn gọn
+Lament	Than thở
+Languid	Mệt mỏi
+Lethargic	Uể oải
+Loquacious	Nói nhiều
+Lucid	Rõ ràng
+Machiavellian	Kế sách
+Magnanimous	Nhân hậu
+Malevolent	Xấu xa
+Malleable	Dễ uốn nắn
+Maudlin	Rưng rưng
+Meticulous	Cẩn thận
+Misanthrope	Người ghét loài người
+Mollify	Làm dịu đi
+Monotonous	Nhàm chán
+Mundane	Hằn ngày
+Nebulous	Mơ hồ
+Nefarious	Ác độc
+Nemesis	Kẻ trả thù
+Nonchalant	Hờ hững
+Nostalgia	Hoài niệm
+Notorious	Nổi tiếng
+Novice	Người mới
+Nuance	Sắc thái
+Obdurate	Cứng đầu
+Obfuscate	Làm mờ đi
+Obliterate	Tiêu diệt
+Oblivious	Lãng quên
+Ominous	Có điềm báo xấu
+Onerous	Nặng nề
+Ostentatious	Phô trương
+Pacify	Làm yên lòng
+Palliate	Làm nhẹ bớt
+Pariah	Người bị tẩy chay
+Peculiar	Kỳ lạ
+Pedantic	Kiểu học đòi
+Penchant	Sở thích
+Pernicious	Độc hại
+Pertinent	Liên quan
+Pervasive	Lan tràn
+Petulant	Nóng nảy
+Placate	Làm yên lòng
+Plethora	Nhiều
+Plummet	Rơi thảm
+Ponder	Ngẫm nghĩ
+Ponderous	Nặng nề
+Pretentious	Phô trương
+Prudent	Thận trọng
+Pugnacious	Đáng gặp mặt
+Pulchritudinous	Xinh đẹp
+Quell	Dẹp tan
+Quixotic	Hão huyền
+Rancor	Thù hằn
+Rebuke	Mắng mỏ
+Recluse	Người sống cô lập
+Relegate	Đuổi ra khỏi
+Reproach	Chỉ trích
+Resilient	Bền bỉ
+Resplendent	Rực rỡ
+Reticent	Tự kiềm chế
+Revere	Tôn kính
+Rogue	Kẻ gian
+Sage	Nhà thông thái
+Salient	Nổi bật
+Sanguine	Lạc quan
+Sardonic	Cay độc
+Savvy	Thạo việc
+Scrupulous	Cẩn thận
+Scurrilous	Lời lẽ bậy bạ
+Serendipity	Tình cờ tốt lành
+Serene	Bình yên
+Serpentine	Uốn lưỡi
+Sycophant	Kẻ nịnh hót
+Tactile	Thích tiếp xúc
+Tantamount	Tương đương
+Tawdry	Rẻ rách
+Tenuous	Mong manh
+Trepidation	Sự run sợ
+Ubiquitous	Mọi nơi
+Unctuous	Dưới một cách giả dối
+Vacuous	Trống rỗng
+Vehement	Mạnh mẽ
+Venerate	Tôn trọng
+Verbose	Nói nhiều
+Vex	Làm phật ô
+Vicarious	Thuộc về người khác
+Voracious	Tham lam
+Wary	Cảnh giác
+Wistful	Tiếc nuối
+Xenophobia	Sự ghét người ngoại quốc
+Yield	Nhượng bộ
+Zany	Kỳ cục
+Zealot	Người nhiệt tình
+Zenith	Đỉnh điểm
+Zephyr	Gió nhẹ
