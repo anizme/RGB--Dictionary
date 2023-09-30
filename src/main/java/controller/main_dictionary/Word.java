@@ -1,4 +1,4 @@
-package controller.dictionary.main_dictionary;
+package controller.main_dictionary;
 
 public class Word {
     private String word_target;

@@ -1,15 +1,15 @@
-package controller.dictionary.main_dictionary;
+package controller.main_dictionary;
 
-import controller.algorithm.Sort;
-import controller.algorithm.Search;
-import controller.dictionary.game.Game1;
+import algorithm.Sort;
+import algorithm.Search;
+import controller.game.Game1;
 
 import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 
 public class DictionaryManagement {
-    private static final String dictionaries_txt = "src/main/Data/";
+    private static final String dictionaries_txt = "src/main/resources/data/";
     private Dictionary dictionary;
 
     public DictionaryManagement() {
@@ -76,7 +76,7 @@ public class DictionaryManagement {
 
     /**
      * Import a existing file in default data directory
-     * ./src/main/Data/...
+     * ./src/main/resources/data/...
      */
     public void dictionaryImportFromFile(String fileName) throws FileNotFoundException {
         dictionary = new Dictionary();

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffff0;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffff0;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HelloController">
    <children>
       <VBox prefHeight="600.0" prefWidth="70.0" style="-fx-background-color: #1965bf;">
          <children>
@@ -21,49 +21,49 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="70.0" style="-fx-background-color: #1965bf;" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchMenuClicked" prefHeight="45.0" prefWidth="70.0" style="-fx-background-color: #1965bf;" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/search.png" />
+                        <Image url="@../images/search.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="70.0" style="-fx-background-color: #1965bf;" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#addMenuClicked" prefHeight="45.0" prefWidth="70.0" style="-fx-background-color: #1965bf;" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/add.png" />
+                        <Image url="@../images/add.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="70.0" style="-fx-background-color: #1965bf;" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#gameMenuClicked" prefHeight="45.0" prefWidth="70.0" style="-fx-background-color: #1965bf;" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/games.png" />
+                        <Image url="@../images/games.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="70.0" style="-fx-background-color: #1965bf;" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#settingMenuClicked" prefHeight="45.0" prefWidth="70.0" style="-fx-background-color: #1965bf;" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/cog.png" />
+                        <Image url="@../images/cog.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
          </children>
       </VBox>
-      <ListView layoutX="99.0" layoutY="200.0" prefHeight="370.0" prefWidth="280.0" style="-fx-background-color: #ffff;" />
+      <ListView fx:id="viewListWord" layoutX="99.0" layoutY="200.0" prefHeight="370.0" prefWidth="280.0" style="-fx-background-color: #ffff;" />
       <HBox layoutX="99.0" layoutY="143.0" prefHeight="30.0" prefWidth="280.0">
          <children>
-            <TextField prefHeight="30.0" prefWidth="210.0" promptText="Enter word to search" style="-fx-background-color: #ffffff;" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0">
+            <TextField fx:id="tfSearchWord" onAction="#searchWord" prefHeight="30.0" prefWidth="210.0" promptText="Enter word to search" style="-fx-background-color: #ffffff;" />
+            <Button fx:id="btLookUp" mnemonicParsing="false" onAction="#lookUp" prefHeight="30.0" prefWidth="70.0">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/search.png" />
+                        <Image url="@../images/search.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -82,28 +82,28 @@
       <TextArea layoutX="430.0" layoutY="200.0" prefHeight="370.0" prefWidth="330.0" />
       <HBox layoutX="430.0" layoutY="130.0" prefHeight="50.0" prefWidth="330.0">
          <children>
-            <TextArea prefHeight="50.0" prefWidth="183.0" />
+            <TextArea fx:id="taPronounce" prefHeight="50.0" prefWidth="183.0" />
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="54.0">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/volume.png" />
+                        <Image url="@../images/volume.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="54.0">
+            <Button fx:id="btUpdate" mnemonicParsing="false" onAction="#update" prefHeight="54.0" prefWidth="54.0">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/edit.png" />
+                        <Image url="@../images/edit.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="54.0">
+            <Button fx:id="btRemove" mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="54.0">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/delete.png" />
+                        <Image url="@../images/delete.png" />
                      </image>
                   </ImageView>
                </graphic></Button>

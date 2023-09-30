@@ -1,7 +1,7 @@
-package controller.dictionary.game;
+package controller.game;
 
 
-import controller.dictionary.main_dictionary.Word;
+import controller.main_dictionary.Word;
 
 import java.util.ArrayList;
 import java.util.List;

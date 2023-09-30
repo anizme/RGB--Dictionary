@@ -3,6 +3,6 @@ module controller.dictionary {
     requires javafx.fxml;
 
 
-    opens controller.dictionary to javafx.fxml;
-    exports controller.dictionary;
+    opens controller to javafx.fxml;
+    exports controller;
 }
