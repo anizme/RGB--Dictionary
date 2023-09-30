@@ -135,9 +135,9 @@ public class DictionaryManagement {
         List<Word> listOfWords = dictionary.getListOfWords();
         Sort.sortDictionaryInAlphabeticalOrder(dictionary.getListOfWords());
         for (int i = 0; i < listOfWords.size(); i++) {
-            System.out.printf("%10d |", i);
-            System.out.printf("%30s |", listOfWords.get(i).getWord_target());
-            System.out.printf("%50s |", listOfWords.get(i).getWord_explain());
+            System.out.printf("| %-5d| ", i);
+            System.out.printf("%-30s| ", listOfWords.get(i).getWord_target());
+            System.out.printf("%-50s| ", listOfWords.get(i).getWord_explain());
             System.out.println();
         }
     }

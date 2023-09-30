@@ -1,4 +1,4 @@
-module controller.dictionaryrgb {
+module controller.dictionary {
     requires javafx.controls;
     requires javafx.fxml;
 

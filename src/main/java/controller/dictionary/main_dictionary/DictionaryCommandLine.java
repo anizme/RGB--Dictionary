@@ -104,9 +104,9 @@ public class DictionaryCommandLine {
 
     /* Show all words in the dictionary. */
     public static void showAllWords() {
-        System.out.printf("%10s |", "NO");
-        System.out.printf("%30s |", " ENGLISH");
-        System.out.printf("%50s |", " VIETNAMESE");
+        System.out.printf("| %-5s| ", "NO");
+        System.out.printf("%-30s| ", "ENGLISH");
+        System.out.printf("%-50s| ", "VIETNAMESE");
         System.out.println();
         dictionaryManagement.dictionaryDisplay();
     }
