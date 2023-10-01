@@ -1,4 +1,4 @@
-package controller.main_dictionary;
+package dictionary;
 
 import java.util.ArrayList;
 import java.util.List;

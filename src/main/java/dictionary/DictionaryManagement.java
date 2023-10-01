@@ -1,8 +1,8 @@
-package controller.main_dictionary;
+package dictionary;
 
-import algorithm.Sort;
-import algorithm.Search;
-import controller.game.Game1;
+import algorithms.Sort;
+import algorithms.Search;
+import games.Game1;
 
 import java.io.*;
 import java.util.List;

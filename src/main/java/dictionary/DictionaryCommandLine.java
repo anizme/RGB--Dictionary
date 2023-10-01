@@ -1,4 +1,4 @@
-package controller.main_dictionary;
+package dictionary;
 
 import java.util.HashMap;
 import java.util.Map;

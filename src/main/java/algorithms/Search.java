@@ -1,6 +1,6 @@
-package algorithm;
+package algorithms;
 
-import controller.main_dictionary.Word;
+import dictionary.Word;
 
 import java.util.List;
 
