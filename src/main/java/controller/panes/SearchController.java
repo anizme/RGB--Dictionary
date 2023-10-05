@@ -78,18 +78,18 @@ public class SearchController extends ActionController implements Initializable 
     @FXML
     void remove(ActionEvent event) {
         System.out.println("remove");
-        DetailAlert alert = new ConfirmationAlert("CONFIRM..."
+        DetailAlert confirmationAlert = new ConfirmationAlert("CONFIRM..."
                 , "Make sure you want to remove this word from the dictionary.");
-        if (alert.alertAction()) {
+        if (confirmationAlert.alertAction()) {
             boolean canRemove = dictionaryManagement.dictionaryRemove(tfSearchWord.getText());
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.INFORMATION, "Notification"
+                    , "Removed " + tfSearchWord.getText());
             if (canRemove) {
-                ((NoOptionAlert) alert).setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification"
-                        , "Removed " + tfSearchWord.getText());
                 alert.alertAction();
                 taMeaning.setText("");
                 tfSearchWord.clear();
             } else {
-                ((NoOptionAlert) alert).setAlertFullInfo(Alert.AlertType.ERROR, "Error..."
+                alert.setAlertFullInfo(Alert.AlertType.ERROR, "Error..."
                         , "Can not find the word " + tfSearchWord.getText());
                 alert.alertAction();
             }
