@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,50 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
    <children>
-      <AnchorPane fx:id="contentPane" layoutX="56.0" layoutY="45.0" prefHeight="555.0" prefWidth="875.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <VBox fx:id="navBar" layoutY="174.0" prefHeight="555.0" prefWidth="55.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="45.0">
-         <children>
-            <JFXButton fx:id="btSearch" alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="55.0" prefWidth="55.0" textAlignment="CENTER" textOverrun="CLIP">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/search.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btAdd" alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="55.0" prefWidth="55.0" textAlignment="CENTER" textOverrun="CLIP">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/add.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btGame" alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="55.0" prefWidth="55.0" textAlignment="CENTER" textOverrun="CLIP">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/game.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btSetting" alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="55.0" prefWidth="55.0" textAlignment="CENTER" textOverrun="CLIP">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/cog.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-         </children>
-      </VBox>
       <AnchorPane prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #010135;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="10.0" onAction="#menu" prefHeight="45.0" prefWidth="54.0" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="1.0">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="10.0" onAction="#menu" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -60,20 +20,64 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#exit" prefHeight="46.0" prefWidth="40.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         </children>
+      </AnchorPane>
+      <VBox layoutY="174.0" prefHeight="555.0" prefWidth="60.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <JFXButton fx:id="btSearch" alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
                <graphic>
-                  <ImageView fitHeight="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/cancel.png" />
+                        <Image url="@../images/search.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="btAdd" alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="btGame" alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/game.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="btSetting" alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cog.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
             </JFXButton>
          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="menuDetails" layoutX="55.0" layoutY="45.0" prefHeight="200.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="45.0">
+      </VBox>
+      <AnchorPane fx:id="contentPane" layoutX="56.0" layoutY="45.0" prefHeight="555.0" prefWidth="875.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
+      <AnchorPane fx:id="menuDetails" layoutX="55.0" layoutY="45.0" prefHeight="555.0" prefWidth="132.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="48.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f6f6f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+            <VBox prefHeight="554.0" prefWidth="104.0" style="-fx-background-color: #f6f6f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="55.0" prefWidth="150.0" text="Search" textAlignment="CENTER" />
                   <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="55.0" prefWidth="150.0" text="Add" textAlignment="CENTER" />

@@ -65,7 +65,9 @@ public class DictionaryCommandLine {
                     sc.nextLine();
                     String searchWord = sc.nextLine();
                     System.out.println("--> Searched List: ");
-                    dictionaryManagement.dictionarySearch(searchWord);
+                    for (String str : dictionaryManagement.dictionarySearch(searchWord)) {
+                        System.out.println(str);
+                    }
                     System.out.println("--------end--------");
                     break;
                 case 7: //game

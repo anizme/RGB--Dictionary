@@ -2,13 +2,13 @@ package controller.panes;
 
 import controller.ApplicationStart;
 import dictionary.DictionaryManagement;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import com.jfoenix.controls.JFXButton;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,8 +45,10 @@ public class ContainerController implements Initializable {
     private AnchorPane menuDetails;
 
     @FXML
+    private VBox navBar;
+
+    @FXML
     void add(ActionEvent event) {
-        System.out.println("add");
         menuDetails.setVisible(false);
         resetNavButton();
         showAddPane();
@@ -56,7 +58,6 @@ public class ContainerController implements Initializable {
 
     @FXML
     void game(ActionEvent event) {
-        System.out.println("game");
         menuDetails.setVisible(false);
         resetNavButton();
         showGamePane();
@@ -66,7 +67,6 @@ public class ContainerController implements Initializable {
 
     @FXML
     void search(ActionEvent event) {
-        System.out.println("search");
         menuDetails.setVisible(false);
         resetNavButton();
         showSearchPane();
@@ -76,7 +76,6 @@ public class ContainerController implements Initializable {
 
     @FXML
     void setting(ActionEvent event) {
-        System.out.println("setting");
         menuDetails.setVisible(false);
         resetNavButton();
         showSettingPane();
@@ -89,17 +88,11 @@ public class ContainerController implements Initializable {
         menuDetails.setVisible(true);
     }
 
-    @FXML
-    void exit(ActionEvent event) {
-        Platform.exit();
-    }
-
     private void setContentPane(AnchorPane contentPane) {
         this.contentPane.getChildren().setAll(contentPane);
     }
 
     private void resetNavButton() {
-        System.out.println("reset");
         btSearch.setStyle("-fx-background-color: #ffffff;");
         btAdd.setStyle("-fx-background-color: #ffffff;");
         btGame.setStyle("-fx-background-color: #ffffff;");
@@ -161,6 +154,6 @@ public class ContainerController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        search(null);
+        //search(null);
     }
 }

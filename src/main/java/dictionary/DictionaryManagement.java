@@ -5,6 +5,7 @@ import algorithms.Search;
 import games.Game1;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -103,7 +104,9 @@ public class DictionaryManagement {
     }
 
     /* Return words started with a given string. */
-    public void dictionarySearch(String searchWord) {
+    public List<String> dictionarySearch(String searchWord) {
+        List<String> searchWordsList = new ArrayList<>();
+        searchWordsList.clear();
         List<Word> listOfWords = dictionary.getListOfWords();
         Sort.sortDictionaryInAlphabeticalOrder(listOfWords);
         int pos = Search.findPositionOfFirstWordStartedWithAGivenString(searchWord, listOfWords);
@@ -113,11 +116,12 @@ public class DictionaryManagement {
             String word = listOfWords.get(pos).getWord_target().toLowerCase();
             while (word.length() >= searchWord.length()
                     && word.substring(0, searchWord.length()).equals(searchWord.toLowerCase())) {
-                System.out.println(listOfWords.get(pos).getWord_target());
+                searchWordsList.add(listOfWords.get(pos).getWord_target());
                 pos++;
                 word = listOfWords.get(pos).getWord_target().toLowerCase();
             }
         }
+        return searchWordsList;
     }
 
     /* Returns the meaning of the target word. */
@@ -173,12 +177,13 @@ public class DictionaryManagement {
     }
 
     /* Remove a word by target word. */
-    public void dictionaryRemove(String word_target) {
+    public boolean dictionaryRemove(String word_target) {
         int pos = Search.findPositionInWordListByString(word_target, dictionary.getListOfWords());
         if (pos == -1) {    //if there is no word_target in current dictionary
-            System.out.println("NO INFORMATION");
+            return false;
         } else {
             dictionary.getListOfWords().remove(pos);
+            return true;
         }
     }
 
