@@ -5,16 +5,16 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class DictionaryCommandLine {
-    private static final Map<Integer, String> menu = new HashMap<>();
+    /*private static final Map<Integer, String> menu = new HashMap<>();
     private static DictionaryManagement dictionaryManagement;
 
-    /* Get data for dictionary. */
+    *//* Get data for dictionary. *//*
     public static void dictionaryBasic() throws Exception {
         dictionaryManagement = new DictionaryManagement();
         dictionaryManagement.insertFromFile();
     }
 
-    /* Display menu and load action. */
+    *//* Display menu and load action. *//*
     public static void dictionaryAdvanced() throws Exception {
         setUpMenu();
         System.out.println("Welcome to My Application!");
@@ -90,7 +90,7 @@ public class DictionaryCommandLine {
         sc.close();
     }
 
-    /* Set up data for menu. */
+    *//* Set up data for menu. *//*
     public static void setUpMenu() {
         menu.put(0, "Exit");
         menu.put(1, "Add");
@@ -104,7 +104,7 @@ public class DictionaryCommandLine {
         menu.put(9, "Export to file");
     }
 
-    /* Show all words in the dictionary. */
+    *//* Show all words in the dictionary. *//*
     public static void showAllWords() {
         System.out.printf("| %-5s| ", "NO");
         System.out.printf("%-30s| ", "ENGLISH");
@@ -116,5 +116,5 @@ public class DictionaryCommandLine {
     public static void main(String[] args) throws Exception {
         dictionaryBasic();
         dictionaryAdvanced();
-    }
+    }*/
 }

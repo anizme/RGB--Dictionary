@@ -2,11 +2,16 @@ package dictionary;
 
 import algorithms.Sort;
 import algorithms.Search;
+import controller.Alert.ConfirmationAlert;
+import controller.Alert.DetailAlert;
 import games.Game1;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class DictionaryManagement {
@@ -93,14 +98,19 @@ public class DictionaryManagement {
     }
 
     /* Update a word. */
-    public void dictionaryUpdate(String word_target, String word_explain) {
+    public boolean dictionaryUpdate(String word_target, String word_explain) {
         int pos = Search.findPositionInWordListByString(word_target, dictionary.getListOfWords());
         if (pos == -1) {    //if there is no word_target in current dictionary
             System.out.println("NO INFORMATION");
         } else {
-            //dictionary.getListOfWords().get(pos).setWord_target(word_target);
-            dictionary.getListOfWords().get(pos).setWord_explain(word_explain);
+            DetailAlert alert = new ConfirmationAlert("Confirm...",
+                    "Do you want to change the meaning of this word?");
+            if (alert.alertAction()) {
+                dictionary.getListOfWords().get(pos).setWord_explain(word_explain);
+                return true;
+            }
         }
+        return false;
     }
 
     /* Return words started with a given string. */
@@ -110,14 +120,15 @@ public class DictionaryManagement {
         List<Word> listOfWords = dictionary.getListOfWords();
         Sort.sortDictionaryInAlphabeticalOrder(listOfWords);
         int pos = Search.findPositionOfFirstWordStartedWithAGivenString(searchWord, listOfWords);
-        if (pos == -1) {    //if there is no words in current dictionary started with searchWord;
-            System.out.println("NO INFORMATION");
-        } else {
+        if (pos != -1) {
             String word = listOfWords.get(pos).getWord_target().toLowerCase();
-            while (word.length() >= searchWord.length()
+            while (word.length() >= searchWord.length() && pos < listOfWords.size() - 1
                     && word.substring(0, searchWord.length()).equals(searchWord.toLowerCase())) {
                 searchWordsList.add(listOfWords.get(pos).getWord_target());
                 pos++;
+                if (pos == listOfWords.size()) {
+                    break;
+                }
                 word = listOfWords.get(pos).getWord_target().toLowerCase();
             }
         }
@@ -148,12 +159,12 @@ public class DictionaryManagement {
 
     /* Check if exist before add. */
     public boolean dictionaryConditionalAdd(String word_target, String word_explain, boolean isExist) {
+        Alert addAlert = new Alert(Alert.AlertType.NONE);
         if (isExist) {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("This word has in my dictionary with meaning: " + dictionaryLookup(word_target));
-            System.out.println("Do you want to add another meaning?(Y/N)");
-            String ans = sc.nextLine();
-            if (ans.trim().equalsIgnoreCase("y")) {
+            DetailAlert alert = new ConfirmationAlert("CONFIRM",
+                    "This word has in my dictionary with meaning: " + dictionaryLookup(word_target)
+                            + ". Do you want to add another meaning for this word?");
+            if (alert.alertAction()) {
                 dictionaryAddAnotherMeaningOfWord(word_target, word_explain);
                 return true;
             }

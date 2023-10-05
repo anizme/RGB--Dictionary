@@ -1,19 +1,24 @@
 package controller.panes;
 
+import controller.Alert.ConfirmationAlert;
+import controller.Alert.DetailAlert;
+import controller.Alert.NoOptionAlert;
 import controller.ApplicationStart;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static controller.ApplicationStart.dictionaryManagement;
 
-public class SearchController  extends ActionController implements Initializable {
+public class SearchController extends ActionController implements Initializable {
 
     @FXML
     private ListView<String> lvSearchWordsList;
@@ -28,33 +33,65 @@ public class SearchController  extends ActionController implements Initializable
     private TextField tfSearchWord;
 
     @FXML
+    private AnchorPane paneUpdate;
+
+    @FXML
+    private TextArea taUpdateMeaning;
+
+    @FXML
     void lookup(ActionEvent event) {
         System.out.println("Look up");
         taMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
     }
 
     @FXML
+    void update(ActionEvent event) {
+        taUpdateMeaning.clear();
+        if (paneUpdate.isVisible()) {
+            paneUpdate.setVisible(false);
+        } else {
+            paneUpdate.setVisible(true);
+        }
+    }
+
+    @FXML
+    void updateAction(ActionEvent event) {
+        DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
+                "Nothing to update");
+        if (taUpdateMeaning.getText().isEmpty()) {
+            alert.alertAction();
+        } else {
+            if (dictionaryManagement.dictionaryUpdate(tfSearchWord.getText(), taUpdateMeaning.getText())) {
+                alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
+                        "Updated new meaning for this word.");
+                alert.alertAction();
+                paneUpdate.setVisible(false);
+                taMeaning.setText(taUpdateMeaning.getText());
+            } else {
+                alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
+                        "Failed to update new meaning for this word.");
+                alert.alertAction();
+            }
+        }
+    }
+
+    @FXML
     void remove(ActionEvent event) {
         System.out.println("remove");
-        Alert removeAlert = new Alert(Alert.AlertType.NONE);
-        removeAlert.setAlertType(Alert.AlertType.CONFIRMATION);
-        removeAlert.setHeaderText("CONFIRM...");
-        removeAlert.setContentText("Make sure you want to remove this word from the dictionary.");
-        Optional<ButtonType> isCanRemove = removeAlert.showAndWait();
-        if (isCanRemove.get() == ButtonType.OK) {
+        DetailAlert alert = new ConfirmationAlert("CONFIRM..."
+                , "Make sure you want to remove this word from the dictionary.");
+        if (alert.alertAction()) {
             boolean canRemove = dictionaryManagement.dictionaryRemove(tfSearchWord.getText());
-            if(canRemove) {
-                removeAlert.setAlertType(Alert.AlertType.INFORMATION);
-                removeAlert.setHeaderText("Notification");
-                removeAlert.setContentText("Removed " + tfSearchWord.getText());
-                removeAlert.showAndWait();
+            if (canRemove) {
+                ((NoOptionAlert) alert).setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification"
+                        , "Removed " + tfSearchWord.getText());
+                alert.alertAction();
                 taMeaning.setText("");
                 tfSearchWord.clear();
             } else {
-                removeAlert.setAlertType(Alert.AlertType.ERROR);
-                removeAlert.setHeaderText("Error...");
-                removeAlert.setContentText("Can not find the word " + tfSearchWord.getText());
-                removeAlert.showAndWait();
+                ((NoOptionAlert) alert).setAlertFullInfo(Alert.AlertType.ERROR, "Error..."
+                        , "Can not find the word " + tfSearchWord.getText());
+                alert.alertAction();
             }
         }
     }
@@ -63,7 +100,12 @@ public class SearchController  extends ActionController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
-            lvSearchWordsList.getItems().addAll(ApplicationStart.dictionaryManagement.dictionarySearch(tfSearchWord.getText()));
+            if (!tfSearchWord.getText().isEmpty()) {
+                lvSearchWordsList.getItems()
+                        .addAll(ApplicationStart.dictionaryManagement.dictionarySearch(tfSearchWord.getText()));
+            }
         });
+
+        paneUpdate.setVisible(false);
     }
 }
