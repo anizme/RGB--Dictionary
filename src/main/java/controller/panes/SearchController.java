@@ -4,13 +4,17 @@ import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
 import controller.Alert.NoOptionAlert;
 import controller.ApplicationStart;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -40,7 +44,6 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     void lookup(ActionEvent event) {
-        System.out.println("Look up");
         taMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
     }
 
@@ -100,12 +103,20 @@ public class SearchController extends ActionController implements Initializable 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
-            if (!tfSearchWord.getText().isEmpty()) {
+            if (tfSearchWord.getText() != null) {
                 lvSearchWordsList.getItems()
                         .addAll(ApplicationStart.dictionaryManagement.dictionarySearch(tfSearchWord.getText()));
             }
         });
-
+        lvSearchWordsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
+                    tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
+                    taMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
+                }
+            }
+        });
         paneUpdate.setVisible(false);
     }
 }

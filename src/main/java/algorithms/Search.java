@@ -29,6 +29,13 @@ public class Search {
 
     /* Returns the current position in dictionary of the first word started with a given string. */
     public static int findPosOfFirstContainedWord(String searchWord, List<Word> listOfWords) {
+        int n = searchWord.length();
+        for (int i = 0; i < listOfWords.size(); i++) {
+            if (listOfWords.get(i).getWord_target().length() >= n
+                    && listOfWords.get(i).getWord_target().toLowerCase().substring(0, n).equals(searchWord.toLowerCase())) {
+                return i;
+            }
+        }
         return binarySearchPosContainedInWordList(searchWord, listOfWords, 0, listOfWords.size() - 1);
     }
 
@@ -40,7 +47,7 @@ public class Search {
         }
         int mid = start + (end - start) / 2;
         int cmp = listOfWords.get(mid).getWord_target().compareToIgnoreCase(word_target);
-        boolean isContain = listOfWords.get(mid).getWord_target().toLowerCase().contains(word_target);
+        boolean isContain = isFirstContain(listOfWords.get(mid).getWord_target(), word_target);
         if (!isContain) {
             if (cmp < 0) {
                 return binarySearchPosContainedInWordList(word_target, listOfWords, mid + 1, end);
@@ -54,5 +61,11 @@ public class Search {
                 return mid;
             }
         }
+    }
+
+    /* if string source has string target at beginning. */
+    public static boolean isFirstContain(String source, String target) {
+        int n = target.length();
+        return source.substring(0, n).toLowerCase().equals(target.toLowerCase());
     }
 }
