@@ -9,3 +9,7 @@
     -fx-scale-y: 1.2;
     -fx-scale-z: 1.2;
 }
+
+.detailsBar:hover {
+    -fx-background-color: #255F85;
+}

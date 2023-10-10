@@ -119,7 +119,7 @@ public class DictionaryManagement {
         searchWordsList.clear();
         List<Word> listOfWords = dictionary.getListOfWords();
         Sort.sortDictionaryInAlphabeticalOrder(listOfWords);
-        int pos = Search.findPositionOfFirstWordStartedWithAGivenString(searchWord, listOfWords);
+        int pos = Search.findPosOfFirstContainedWord(searchWord, listOfWords);
         if (pos != -1) {
             String word = listOfWords.get(pos).getWord_target().toLowerCase();
             while (word.length() >= searchWord.length() && pos < listOfWords.size() - 1
