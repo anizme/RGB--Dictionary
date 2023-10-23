@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import services.TranslateAPI;
+import services.VoiceRSS;
 
 import java.io.IOException;
 import java.net.URL;
@@ -158,13 +159,21 @@ public class TranslateAPIController extends ActionController implements Initiali
     }
 
     @FXML
-    void speak1(ActionEvent event) {
-
+    void speak1(ActionEvent event) throws Exception {
+        VoiceRSS.Name = nameFrom;
+        VoiceRSS.language = speakFrom;
+        if (!Objects.equals(taTextToTrans.getText(), "")) {
+            VoiceRSS.speakWord(taTextToTrans.getText());
+        }
     }
 
     @FXML
-    void speak2(ActionEvent event) {
-
+    void speak2(ActionEvent event) throws Exception {
+        VoiceRSS.Name = nameTo;
+        VoiceRSS.language = speakTo;
+        if (!Objects.equals(taTransText.getText(), "")) {
+            VoiceRSS.speakWord(taTransText.getText());
+        }
     }
 
     @FXML

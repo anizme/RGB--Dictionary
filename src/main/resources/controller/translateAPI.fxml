@@ -67,7 +67,7 @@
                   <Button fx:id="langToThird" minWidth="44.0" mnemonicParsing="false" onAction="#korea2" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Hàn" />
                   <Button fx:id="langToFourth" minWidth="44.0" mnemonicParsing="false" onAction="#rus" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Nga" />
                   <Button fx:id="langToFifth" minWidth="44.0" mnemonicParsing="false" onAction="#chinese" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Trung" />
-                  <Button mnemonicParsing="false" onAction="#speak1" styleClass="button-speak">
+                  <Button mnemonicParsing="false" onAction="#speak2" styleClass="button-speak">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -2,7 +2,8 @@ module controller.dictionary {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.jfoenix;
-
+    requires voicerss.tts;
+    requires java.desktop;
 
     opens controller to javafx.fxml;
     exports controller;
