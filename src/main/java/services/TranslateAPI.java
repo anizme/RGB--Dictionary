@@ -7,6 +7,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+/**
+ * API dang lay tam thoi, chua biet cach su dung tinh nang phat hien ngon ngu
+ * TODO: nghien cuu tinh nang phat hien ngon ngu cua api hien tai hoac kiem api moi
+ */
+
 public class TranslateAPI {
 
     public static String googleTranslate(String langFrom, String langTo, String text) throws IOException {
