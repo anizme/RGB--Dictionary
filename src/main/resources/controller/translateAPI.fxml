@@ -21,7 +21,7 @@
                   <Button fx:id="langFromFourth" minWidth="44.0" mnemonicParsing="false" onAction="#korea" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Hàn" />
                   <Button mnemonicParsing="false" onAction="#speak1" prefHeight="33.0" prefWidth="36.0" styleClass="button-speak">
                      <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/speak.png" />
                            </image>
@@ -32,7 +32,7 @@
             <TextArea fx:id="taTextToTrans" prefHeight="194.0" prefWidth="708.0" promptText="Nhập từ hoặc đoạn văn..." />
          </children>
       </VBox>
-      <HBox alignment="CENTER" layoutX="29.0" layoutY="262.0" prefHeight="65.0" prefWidth="743.0" AnchorPane.bottomAnchor="273.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="262.0">
+      <HBox alignment="CENTER" layoutX="29.0" layoutY="237.0" prefHeight="65.0" prefWidth="743.0" AnchorPane.bottomAnchor="298.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="237.0">
          <children>
             <TextField fx:id="tfSrcLang" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
             <Button alignment="CENTER" mnemonicParsing="false" styleClass="button-double-arrow">
@@ -58,7 +58,7 @@
             </HBox>
          </children>
       </HBox>
-      <VBox layoutX="29.0" layoutY="335.0" prefHeight="235.0" prefWidth="708.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0">
+      <VBox layoutX="29.0" layoutY="287.0" prefHeight="235.0" prefWidth="708.0" AnchorPane.bottomAnchor="51.19999999999993" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0">
          <children>
             <HBox prefHeight="30.0" prefWidth="708.0">
                <children>

@@ -66,6 +66,6 @@ public class Search {
     /* if string source has string target at beginning. */
     public static boolean isFirstContain(String source, String target) {
         int n = target.length();
-        return source.substring(0, n).toLowerCase().equals(target.toLowerCase());
+        return source.substring(0, n - 1).toLowerCase().equals(target.toLowerCase());
     }
 }
