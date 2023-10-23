@@ -60,6 +60,18 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </JFXButton>
+            <JFXButton fx:id="btTranslate" alignment="CENTER" contentDisplay="CENTER" onAction="#translate" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/translateAPI.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </JFXButton>
             <JFXButton fx:id="btSetting" alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -85,6 +97,7 @@
                      </VBox.margin></JFXButton>
                   <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Add" textAlignment="CENTER" />
                   <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Game" textAlignment="CENTER" />
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#translate" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Translate" textAlignment="CENTER" />
                   <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Setting" textAlignment="CENTER" />
                </children></VBox>
          </children>

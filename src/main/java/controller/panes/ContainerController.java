@@ -25,6 +25,8 @@ public class ContainerController implements Initializable {
     private GameController gameController;
     private AnchorPane settingPane = null;
     private SettingController settingController;
+    private AnchorPane translatePane = null;
+    private TranslateAPIController translateController;
 
     @FXML
     private JFXButton btAdd;
@@ -34,6 +36,9 @@ public class ContainerController implements Initializable {
 
     @FXML
     private JFXButton btSearch;
+
+    @FXML
+    private JFXButton btTranslate;
 
     @FXML
     private JFXButton btSetting;
@@ -84,6 +89,15 @@ public class ContainerController implements Initializable {
     }
 
     @FXML
+    void translate(ActionEvent event) {
+        menuDetails.setVisible(false);
+        resetNavButton();
+        showTranslatePane();
+        translateController.initData(this);
+        btTranslate.setStyle("-fx-background-color: #a2d2df;");
+    }
+
+    @FXML
     void menu(ActionEvent event) {
         menuDetails.setVisible(true);
     }
@@ -97,6 +111,7 @@ public class ContainerController implements Initializable {
         btAdd.setStyle("-fx-background-color: #ffffff;");
         btGame.setStyle("-fx-background-color: #ffffff;");
         btSetting.setStyle("-fx-background-color: #ffffff;");
+        btTranslate.setStyle("-fx-background-color: #ffffff;");
     }
 
     public void showSearchPane() {
@@ -113,6 +128,10 @@ public class ContainerController implements Initializable {
 
     public void showSettingPane() {
         this.setContentPane(settingPane);
+    }
+
+    public void showTranslatePane() {
+        this.setContentPane(translatePane);
     }
 
     @Override
@@ -150,6 +169,15 @@ public class ContainerController implements Initializable {
             settingPane = fxmlLoader.load();
             settingController = fxmlLoader.getController();
             settingController.initData(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("translateAPI.fxml"));
+            translatePane = fxmlLoader.load();
+            translateController = fxmlLoader.getController();
+            translateController.initData(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,0 +1,54 @@
+.button-lang:hover {
+    -fx-background-color: none;
+}
+
+
+ .button-double-arrow {
+     -fx-pref-width: 60;
+     -fx-pref-height: 40;
+ }
+
+.button-double-arrow:hover {
+    -fx-background-color: none;
+    -fx-cursor: default;
+}
+
+.button-translate-submit {
+    -fx-border-radius: 3;
+    -fx-padding: 5;
+    -fx-pref-width: 120;
+    -fx-pref-height: 30;
+
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.button-translate-submit:hover {
+    -fx-text-fill: white;
+    -fx-background-color: #255F85;
+}
+
+/* ========================= TextField ========================= */
+
+.text-field {
+    -fx-background-color: white;
+    -fx-font-size: 15;
+}
+
+/* ========================= TextArea ========================= */
+
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: white;
+}
+
+.text-area .content {
+    -fx-background-color: white;
+    -fx-font-size: 15;
+}
+
+.text-area:focused {
+    -fx-background-color:white;
+    -fx-font-size: 15;
+}
