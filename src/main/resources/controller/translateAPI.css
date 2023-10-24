@@ -1,15 +1,15 @@
 .button-lang:hover {
-    -fx-background-color: none;
+    -fx-background-color: #a2d2df;;
 }
 
 
- .button-double-arrow {
-     -fx-pref-width: 60;
-     -fx-pref-height: 40;
- }
+.button-double-arrow {
+    -fx-pref-width: 60;
+    -fx-pref-height: 40;
+}
 
 .button-double-arrow:hover {
-    -fx-background-color: none;
+    -fx-background-color: #a2d2df;
     -fx-cursor: default;
 }
 
@@ -49,6 +49,6 @@
 }
 
 .text-area:focused {
-    -fx-background-color:white;
+    -fx-background-color: white;
     -fx-font-size: 15;
 }

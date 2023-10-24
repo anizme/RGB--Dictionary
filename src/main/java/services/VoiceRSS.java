@@ -4,11 +4,11 @@ import com.voicerss.tts.AudioFormat;
 import com.voicerss.tts.VoiceParameters;
 import com.voicerss.tts.VoiceProvider;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import javax.sound.sampled.*;
 
 
 public class VoiceRSS {
@@ -20,6 +20,7 @@ public class VoiceRSS {
     public static String language = "en-gb";
     public static String Name = "Linda";
     public static double speed = 1;
+
     public static void speakWord(String word) throws Exception {
         VoiceProvider tts = new VoiceProvider(API_KEY);
         VoiceParameters params = new VoiceParameters(word, AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);

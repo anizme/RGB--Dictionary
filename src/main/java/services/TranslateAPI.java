@@ -1,39 +1,50 @@
 package services;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-/**
- * API dang lay tam thoi, chua biet cach su dung tinh nang phat hien ngon ngu
- * TODO: nghien cuu tinh nang phat hien ngon ngu cua api hien tai hoac kiem api moi
- */
 
 public class TranslateAPI {
 
-    public static String googleTranslate(String langFrom, String langTo, String text) throws IOException {
-        String urlScript = "https://script.google.com/macros/s/AKfycbw1qSfs1Hvfnoi3FzGuoDWijwQW69eGcMM_iGDF7p5vu1oN_CaFqIDFmCGzBuuGCk_N/exec" +
-                "?q=" + URLEncoder.encode(text, "UTF-8") +
-                "&target=" + langTo +
-                "&source=" + langFrom;
-        URL url = new URL(urlScript);
-        StringBuilder response = new StringBuilder();
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestProperty("User-Agent", "Mozilla/5.0");
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+    public static String ggTransToJSON(String langFrom, String langTo, String text) throws Exception {
+        // Xác định URL
+        String apiUrl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + langFrom
+                + "&tl=" + langTo + "&dt=t&q=" + URLEncoder.encode(text, "UTF-8");
+
+        // Tạo URL object
+        URL url = new URL(apiUrl);
+
+        // Tạo kết nối HTTP
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+
+        // Đọc phản hồi từ API
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String line;
+        StringBuilder responseContent = new StringBuilder();
+
+        while ((line = reader.readLine()) != null) {
+            responseContent.append(line);
         }
-        in.close();
-        return response.toString();
+        reader.close();
+
+        // Xử lý và in phản hồi từ API
+        return responseContent.toString();
     }
 
-    public static void main(String[] args) throws IOException {
-        String text = "hello";
-        System.out.println("Translated text: \n" + googleTranslate("", "ja", text));
+    public static String googleTranslate(String langFrom, String langTo, String text) throws Exception {
+        return APItranslateJSON.getTransLang(ggTransToJSON(langFrom, langTo, text));
+    }
+
+    public static String googleDetect(String langFrom, String langTo, String text) throws Exception {
+        return APItranslateJSON.getDetectLang(ggTransToJSON(langFrom, langTo, text));
+    }
+
+    public static void main(String[] args) throws Exception {
+        String text = "Hello, my name Annie";
+        System.out.println("Translated text: \n" + googleTranslate("auto", "ko", text));
     }
 }

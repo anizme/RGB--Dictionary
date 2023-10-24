@@ -4,6 +4,7 @@ module controller.dictionary {
     requires com.jfoenix;
     requires voicerss.tts;
     requires java.desktop;
+    requires org.json;
 
     opens controller to javafx.fxml;
     exports controller;

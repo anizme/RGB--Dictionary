@@ -9,13 +9,12 @@ import javafx.scene.control.TextField;
 import services.TranslateAPI;
 import services.VoiceRSS;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TranslateAPIController extends ActionController implements Initializable {
-    String languageFrom = "";
+    String languageFrom = "auto";
     String languageTo = "vi";
     String nameFrom;
     String speakFrom;
@@ -77,11 +76,11 @@ public class TranslateAPIController extends ActionController implements Initiali
     }
 
     @FXML
-    void chinese(ActionEvent event) throws IOException {
+    void chinese(ActionEvent event) throws Exception {
         resetStyleLangTo();
         langToFifth.getStyleClass().add("active");
         languageTo = "zh";
-        tfDesLang.setText("Tiếng Trung");
+        tfDesLang.setText("Chinese");
         nameTo = "Luli";
         speakTo = "zh-cn";
         if (!Objects.equals(taTextToTrans.getText(), "")) {
@@ -89,14 +88,16 @@ public class TranslateAPIController extends ActionController implements Initiali
         }
     }
 
-    @FXML
-    void detect(ActionEvent event) {
+    void detect() throws Exception {
         resetStyleLangFrom();
         langFromFirst.getStyleClass().add("active");
-        languageFrom = "";
-        tfSrcLang.setText("Phát hiện n.ngữ");
+        languageFrom = "auto";
+        tfSrcLang.setText("Auto detect");
         nameFrom = "Linda";
         speakFrom = "en-gb";
+        if (!Objects.equals(taTextToTrans.getText(), "")) {
+            tfSrcLang.setText(TranslateAPI.googleDetect(languageFrom, languageTo, taTextToTrans.getText()));
+        }
     }
 
     @FXML
@@ -104,16 +105,16 @@ public class TranslateAPIController extends ActionController implements Initiali
         resetStyleLangFrom();
         langFromSecond.getStyleClass().add("active");
         languageFrom = "en";
-        tfSrcLang.setText("Tiếng Anh");
+        tfSrcLang.setText("English");
         nameFrom = "Linda";
         speakFrom = "en-gb";
     }
 
     @FXML
-    void eng2(ActionEvent event) throws IOException {
+    void eng2(ActionEvent event) throws Exception {
         resetStyleLangTo();
         langToSecond.getStyleClass().add("active");
-        tfDesLang.setText("Tiếng Anh");
+        tfDesLang.setText("English");
         languageTo = "en";
         nameTo = "Linda";
         speakTo = "en-gb";
@@ -126,17 +127,17 @@ public class TranslateAPIController extends ActionController implements Initiali
     void korea(ActionEvent event) {
         resetStyleLangFrom();
         langFromFourth.getStyleClass().add("active");
-        tfSrcLang.setText("Tiếng Hàn");
+        tfSrcLang.setText("Korean");
         languageFrom = "ko";
         nameFrom = "Nari";
         speakFrom = "ko-kr";
     }
 
     @FXML
-    void korea2(ActionEvent event) throws IOException {
+    void korea2(ActionEvent event) throws Exception {
         resetStyleLangTo();
         langToThird.getStyleClass().add("active");
-        tfDesLang.setText("Tiếng Hàn");
+        tfDesLang.setText("Korean");
         languageTo = "ko";
         nameTo = "Nari";
         speakTo = "ko-kr";
@@ -146,10 +147,10 @@ public class TranslateAPIController extends ActionController implements Initiali
     }
 
     @FXML
-    void rus(ActionEvent event) throws IOException {
+    void rus(ActionEvent event) throws Exception {
         resetStyleLangTo();
         langToFourth.getStyleClass().add("active");
-        tfDesLang.setText("Tiếng Nga");
+        tfDesLang.setText("Russian");
         languageTo = "ru";
         nameTo = "Marina";
         speakTo = "ru-ru";
@@ -177,9 +178,12 @@ public class TranslateAPIController extends ActionController implements Initiali
     }
 
     @FXML
-    void translate(ActionEvent event) throws IOException {
+    void translate(ActionEvent event) throws Exception {
         if (!Objects.equals(taTextToTrans.getText(), "")) {
             taTransText.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, taTextToTrans.getText()));
+            if (languageFrom.equals("auto")) {
+                detect();
+            }
         }
     }
 
@@ -187,17 +191,17 @@ public class TranslateAPIController extends ActionController implements Initiali
     void vie1(ActionEvent event) {
         resetStyleLangFrom();
         langFromThird.getStyleClass().add("active");
-        tfSrcLang.setText("Tiếng Việt");
+        tfSrcLang.setText("Vietnamese");
         languageFrom = "vi";
         nameFrom = "Chi";
         speakFrom = "vi-vn";
     }
 
     @FXML
-    void vie2(ActionEvent event) throws IOException {
+    void vie2(ActionEvent event) throws Exception {
         resetStyleLangTo();
         langToFirst.getStyleClass().add("active");
-        tfDesLang.setText("Tiếng Việt");
+        tfDesLang.setText("Vietnamese");
         languageTo = "vi";
         nameTo = "Chi";
         speakTo = "vi-vn";
@@ -211,13 +215,13 @@ public class TranslateAPIController extends ActionController implements Initiali
         langFromFirst.getStyleClass().add("active");
         langToFirst.getStyleClass().add("active");
 
-        tfSrcLang.setText("Phát hiện n.ngữ");
+        tfSrcLang.setText("Auto detect");
         taTextToTrans.setText("");
         nameFrom = "Linda";
         speakFrom = "en-gb";
-        languageFrom = "";
+        languageFrom = "auto";
 
-        tfDesLang.setText("Tiếng Việt");
+        tfDesLang.setText("Vietnamese");
         nameTo = "Chi";
         speakTo = "vi-vn";
         languageTo = "vi";
