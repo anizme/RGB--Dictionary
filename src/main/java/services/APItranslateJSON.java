@@ -1,13 +1,8 @@
 package services;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class APItranslateJSON  {
+public class APItranslateJSON {
     public static String getDetectLang(String jsonResponse) {
         JSONArray jsonArray = new JSONArray(jsonResponse);
         // Lấy giá trị từ JSON
