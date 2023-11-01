@@ -1,10 +1,12 @@
 module controller.dictionary {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.web;
     requires com.jfoenix;
     requires voicerss.tts;
     requires java.desktop;
     requires org.json;
+    requires java.sql;
 
     opens controller to javafx.fxml;
     exports controller;

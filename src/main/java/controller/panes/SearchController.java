@@ -4,22 +4,21 @@ import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
 import controller.Alert.NoOptionAlert;
 import controller.ApplicationStart;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.HTMLEditor;
+import javafx.scene.web.WebView;
+import services.DatabaseConnect;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static controller.ApplicationStart.databaseConnect;
 import static controller.ApplicationStart.dictionaryManagement;
 
 public class SearchController extends ActionController implements Initializable {
@@ -31,29 +30,32 @@ public class SearchController extends ActionController implements Initializable 
     private AnchorPane searchPane;
 
     @FXML
-    private TextArea taMeaning;
+    private WebView wvMeaning;
 
     @FXML
     private TextField tfSearchWord;
 
     @FXML
-    private AnchorPane paneUpdate;
+    private HTMLEditor htmlUpdateMeaning;
 
     @FXML
-    private TextArea taUpdateMeaning;
+    private Button btSave;
 
     @FXML
     void lookup(ActionEvent event) {
-        taMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
+        wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
+        //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
     }
 
     @FXML
     void update(ActionEvent event) {
-        taUpdateMeaning.clear();
-        if (paneUpdate.isVisible()) {
-            paneUpdate.setVisible(false);
+        if (htmlUpdateMeaning.isVisible()) {
+            htmlUpdateMeaning.setVisible(false);
+            btSave.setVisible(false);
         } else {
-            paneUpdate.setVisible(true);
+            htmlUpdateMeaning.setVisible(true);
+            btSave.setVisible(true);
+            htmlUpdateMeaning.setHtmlText(DatabaseConnect.getMeaning(tfSearchWord.getText()));
         }
     }
 
@@ -61,15 +63,16 @@ public class SearchController extends ActionController implements Initializable 
     void updateAction(ActionEvent event) {
         DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
                 "Nothing to update");
-        if (taUpdateMeaning.getText().isEmpty()) {
+        if (htmlUpdateMeaning.getHtmlText().isEmpty()) {
             alert.alertAction();
         } else {
-            if (dictionaryManagement.dictionaryUpdate(tfSearchWord.getText(), taUpdateMeaning.getText())) {
+            if (dictionaryManagement.dictionaryUpdate(tfSearchWord.getText(), htmlUpdateMeaning.getHtmlText())) {
                 alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
                         "Updated new meaning for this word.");
                 alert.alertAction();
-                paneUpdate.setVisible(false);
-                taMeaning.setText(taUpdateMeaning.getText());
+                htmlUpdateMeaning.setVisible(false);
+                //wvMeaning.setText(htmlUpdateMeaning.getText());
+                wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(htmlUpdateMeaning.getHtmlText()));
             } else {
                 alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
                         "Failed to update new meaning for this word.");
@@ -89,7 +92,7 @@ public class SearchController extends ActionController implements Initializable 
                     , "Removed " + tfSearchWord.getText());
             if (canRemove) {
                 alert.alertAction();
-                taMeaning.setText("");
+                wvMeaning.getEngine().loadContent("");
                 tfSearchWord.clear();
             } else {
                 alert.setAlertFullInfo(Alert.AlertType.ERROR, "Error..."
@@ -113,10 +116,12 @@ public class SearchController extends ActionController implements Initializable 
             public void handle(MouseEvent mouseEvent) {
                 if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
                     tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
-                    taMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
+                    //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
+                    wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
                 }
             }
         });
-        paneUpdate.setVisible(false);
+        htmlUpdateMeaning.setVisible(false);
+        btSave.setVisible(false);
     }
 }

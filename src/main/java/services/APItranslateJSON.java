@@ -18,7 +18,7 @@ public class APItranslateJSON {
             case "zh":
                 return "Chinese";
             default:
-                return jsonArray.getString(2);
+                return "Nothing";
         }
     }
 
