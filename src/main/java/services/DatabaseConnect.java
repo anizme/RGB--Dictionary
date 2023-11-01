@@ -144,26 +144,15 @@ public class DatabaseConnect {
                 System.out.println(connection1);
                 connection = connection1;
             }
-
-            // tmp += '%'
             String querry = String.format("SELECT * FROM av WHERE word LIKE '%s'", word);
             System.out.println(querry);
             PreparedStatement preparedStatement;
-            System.out.println("connection state: " + connection);
             preparedStatement = connection.prepareStatement(querry);
-            System.out.println("prepare state: " + preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             int i = 0;
-            //List<tmp> entities = new ArrayList<tmp>();
             while (resultSet.next() == true && i < 10) {
-                int id = resultSet.getInt(1);
-                //String word = resultSet.getString(2);
                 String html = resultSet.getString(3);
-                String pro = resultSet.getString(5);
-                i++;
                 ans = html;
-                //tmp a = new tmp(id, word, html, pro);
-                //entities.add(a);
             }
         } catch (Exception e) {
             e.printStackTrace();

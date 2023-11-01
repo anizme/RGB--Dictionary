@@ -8,17 +8,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 import services.DatabaseConnect;
+import services.VoiceRSS;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static controller.ApplicationStart.databaseConnect;
 import static controller.ApplicationStart.dictionaryManagement;
 
 public class SearchController extends ActionController implements Initializable {
@@ -40,6 +43,24 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     private Button btSave;
+
+    @FXML
+    void usSpeak(ActionEvent event) throws Exception {
+
+        VoiceRSS.Name = VoiceRSS.voiceNameUS;
+        speak("en-gb");
+    }
+
+    @FXML
+    void ukSpeak(ActionEvent event) throws Exception {
+        VoiceRSS.Name = VoiceRSS.voiceNameUS;
+        speak("en-us");
+    }
+
+    private void speak(String lang) throws Exception {
+        VoiceRSS.language = lang;
+        VoiceRSS.speakWord(tfSearchWord.getText().toLowerCase());
+    }
 
     @FXML
     void lookup(ActionEvent event) {
