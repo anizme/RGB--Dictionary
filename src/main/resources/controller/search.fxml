@@ -3,14 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.HTMLEditor?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane fx:id="searchPane" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
    <children>
@@ -22,7 +23,7 @@
             <Rectangle2D height="538.0" width="800.0" />
          </viewport>
       </ImageView>
-      <AnchorPane layoutX="48.0" layoutY="113.0" prefHeight="414.0" prefWidth="300.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="120.0">
+      <AnchorPane layoutX="48.0" layoutY="95.0" prefHeight="415.0" prefWidth="300.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="95.0">
          <children>
             <TextField fx:id="tfSearchWord" prefHeight="45.0" prefWidth="236.0" promptText="Enter word to search" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0" />
             <Button layoutX="248.0" layoutY="1.0" mnemonicParsing="false" onAction="#lookup" prefHeight="45.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -34,22 +35,52 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ListView fx:id="lvSearchWordsList" prefHeight="314.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <ListView fx:id="lvSearchWordsList" prefHeight="350.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="509.0" layoutY="120.0" prefHeight="390.0" prefWidth="390.0" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="45.0">
+      <AnchorPane layoutX="325.0" layoutY="-10.0" prefHeight="460.0" prefWidth="400.0" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="45.0">
          <children>
-            <TextArea layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <HBox layoutX="190.0" layoutY="14.0" prefHeight="46.0" prefWidth="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox prefHeight="32.0" prefWidth="133.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="55.0">
+                  <Label prefHeight="32.0" prefWidth="16.0" text="US" />
+                  <Button mnemonicParsing="false" onAction="#usSpeak" prefHeight="68.0" prefWidth="35.0">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/speak.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="2.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label prefHeight="41.0" prefWidth="16.0" text="UK">
+                     <HBox.margin>
+                        <Insets left="20.0" right="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#ukSpeak" prefHeight="75.0" prefWidth="35.0">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/speak.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="190.0" layoutY="14.0" prefHeight="30.0" prefWidth="176.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="btSave" mnemonicParsing="false" onAction="#updateAction" prefHeight="45.0" prefWidth="55.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/volume.png" />
+                              <Image url="@../images/save.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -77,17 +108,8 @@
                   </Button>
                </children>
             </HBox>
-            <TextArea fx:id="taMeaning" layoutY="75.0" prefHeight="314.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paneUpdate" layoutX="292.0" layoutY="182.0" prefHeight="279.0" prefWidth="458.0" style="-fx-background-color: #ffe39f;">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#updateAction" prefHeight="26.0" prefWidth="82.0" text="Update" />
-                  <TextArea fx:id="taUpdateMeaning" prefHeight="261.0" prefWidth="458.0" />
-               </children>
-            </VBox>
+            <WebView fx:id="wvMeaning" layoutX="39.0" layoutY="186.0" prefHeight="350.0" prefWidth="375.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="-69.0" layoutY="48.0" prefHeight="415.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import services.DatabaseConnect;
 
 import java.io.IOException;
 
@@ -19,6 +20,8 @@ public class ApplicationStart extends Application {
              throw new RuntimeException(e);
          }
      }
+
+    public static DatabaseConnect databaseConnect = new DatabaseConnect();
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("container.fxml"));
