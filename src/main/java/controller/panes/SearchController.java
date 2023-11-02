@@ -128,8 +128,10 @@ public class SearchController extends ActionController implements Initializable 
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
             if (tfSearchWord.getText() != null) {
+                String tmp = tfSearchWord.getText();
+                String querry = String.format("SELECT word FROM av WHERE word LIKE '%s%%' ORDER BY word", tmp);
                 lvSearchWordsList.getItems()
-                        .addAll(ApplicationStart.dictionaryManagement.dictionarySearch(tfSearchWord.getText()));
+                        .addAll(DatabaseConnect.GetWord(querry));
             }
         });
         lvSearchWordsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
