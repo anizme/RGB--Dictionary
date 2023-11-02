@@ -1,15 +1,15 @@
 .content-pane {
-    -fx-background-color : #def3f6;
+    -fx-background-color : #000033;
 }
 
 .button-lang {
-    -fx-background-color: lightgrey;
-    -fx-text-fill: black;
+    -fx-background-color: #008000;
+    -fx-text-fill: white;
     -fx-background-radius: 10px;
 }
 
 .button-lang:hover {
-    -fx-background-color: #a2d2df;;
+    -fx-background-color: #32cd32;
 }
 
 
@@ -42,11 +42,14 @@
 /* ========================= TextField ========================= */
 
 .text-field {
-    -fx-background-color: white;
+/*
+    -fx-background-color: #001932;
+*/
+    -fx-background-color: #2f4f4f;
     -fx-font-size: 15;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-background-radius: 10px;
-    -fx-border-color: black;
+    -fx-border-color: white;
     -fx-border-radius: 10px;
 }
 
@@ -54,22 +57,24 @@
 
 .text-area {
     -fx-background-insets: 0;
-    -fx-background-color: white;
+    -fx-background-color: #8F9097;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill : white;
+    -fx-font-size: 15;
     -fx-background-radius: 10px;
-    -fx-prompt-text-fill : black;
-    -fx-text-fill: black;
 }
 
 .text-area .content {
-    -fx-background-color: white;
+    -fx-background-color: #8F9097;
+    -fx-text-fill: white;
     -fx-font-size: 15;
     -fx-background-radius: 10px;
-    -fx-text-fill: black;
 }
 
 .text-area:focused {
-    -fx-background-color: white;
+    -fx-background-color: #8F9097;
+    -fx-text-fill: white;
     -fx-font-size: 15;
     -fx-background-radius: 10px;
-    -fx-text-fill: black;
 }
+

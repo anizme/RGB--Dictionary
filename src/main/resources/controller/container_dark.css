@@ -1,11 +1,10 @@
 
 .navBar {
-    -fx-background-color: white;
+    -fx-background-color: #2f4f4f;
 }
 
-
 .button: {
-    -fx-background-color: white;
+    -fx-background-color: #2f4f4f;
 }
 
 .controlBar:hover {

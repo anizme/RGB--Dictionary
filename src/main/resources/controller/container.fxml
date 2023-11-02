@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
    <children>
-      <AnchorPane prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #010135;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #0C4A6E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="10.0" onAction="#menu" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
                <graphic>
@@ -20,64 +22,81 @@
                   </ImageView>
                </graphic>
             </JFXButton>
+            <JFXToggleButton fx:id="switchMode" layoutX="274.0" layoutY="-11.0" prefHeight="19.0" prefWidth="146.0" />
+            <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="56.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
-      <VBox layoutY="174.0" prefHeight="555.0" prefWidth="60.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="48.0">
+      <VBox fx:id="navBar" layoutY="48.0" prefHeight="552.0" prefWidth="80.0" styleClass="navBar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="850.0" AnchorPane.topAnchor="48.0">
          <children>
-            <JFXButton fx:id="btSearch" alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+            <JFXButton fx:id="btSearch" alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="70.0" prefWidth="70.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btSearchView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/search.png" />
+                        <Image url="@../images/search_animation.png" />
                      </image>
+                     <viewport>
+                        <Rectangle2D height="66.0" width="66.0" />
+                     </viewport>
                   </ImageView>
                </graphic>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="btAdd" alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+            <JFXButton fx:id="btAdd" alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="70.0" prefWidth="70.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btAddView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/add.png" />
+                        <Image url="@../images/add_animation.png" />
                      </image>
+                     <viewport>
+                        <Rectangle2D height="67.0" width="67.0" />
+                     </viewport>
                   </ImageView>
                </graphic>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="btGame" alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+            <JFXButton fx:id="btGame" alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="70.0" prefWidth="70.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btGameView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/game.png" />
+                        <Image url="@../images/game_animation.png" />
                      </image>
+                     <viewport>
+                        <Rectangle2D height="173.0" width="173.0" />
+                     </viewport>
                   </ImageView>
                </graphic>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="btTranslate" alignment="CENTER" contentDisplay="CENTER" onAction="#translate" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+            <JFXButton fx:id="btTranslate" alignment="CENTER" contentDisplay="CENTER" onAction="#translate" prefHeight="70.0" prefWidth="70.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btTranslateView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/translateAPI.png" />
+                        <Image url="@../images/translate_animation1.png" />
                      </image>
+                     <viewport>
+                        <Rectangle2D height="68.0" width="68.0" />
+                     </viewport>
                   </ImageView>
                </graphic>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="btSetting" alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="55.0" prefWidth="55.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
+            <JFXButton fx:id="btSetting" alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="70.0" prefWidth="70.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btSettingView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/cog.png" />
+                        <Image url="@../images/setting_animation.png" />
                      </image>
+                     <viewport>
+                        <Rectangle2D height="66.0" width="66.0" />
+                     </viewport>
                   </ImageView>
                </graphic>
                <VBox.margin>
@@ -86,20 +105,22 @@
             </JFXButton>
          </children>
       </VBox>
-      <AnchorPane fx:id="contentPane" layoutX="56.0" layoutY="45.0" prefHeight="555.0" prefWidth="875.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
-      <AnchorPane fx:id="menuDetails" layoutX="55.0" layoutY="45.0" prefHeight="555.0" prefWidth="132.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="48.0">
+      <AnchorPane fx:id="contentPane" layoutX="232.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
+      <AnchorPane fx:id="menuDetails" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="132.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="48.0">
          <children>
-            <VBox prefHeight="554.0" prefWidth="104.0" style="-fx-background-color: #f6f6f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox prefHeight="554.0" prefWidth="104.0" spacing="10.0" style="-fx-background-color: #f6f6f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Search" textAlignment="CENTER">
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Search" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets top="10.0" />
-                     </VBox.margin></JFXButton>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Add" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Game" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#translate" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Translate" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="65.0" prefWidth="150.0" styleClass="detailsBar" text="Setting" textAlignment="CENTER" />
-               </children></VBox>
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Add" textAlignment="CENTER" />
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Game" textAlignment="CENTER" />
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#translate" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Translate" textAlignment="CENTER" />
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Setting" textAlignment="CENTER" />
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>
