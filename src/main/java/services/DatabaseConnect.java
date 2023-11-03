@@ -1,33 +1,9 @@
 package services;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-class tmp {
-    public int id;
-    public String word;
-    public String des;
-    public String pro;
-
-    tmp() {
-        id = 0;
-        word = "";
-        des = "";
-        pro = "";
-    }
-
-    tmp(int i, String wo, String ds, String pr) {
-        id = i;
-        word = wo;
-        des = ds;
-        pro = pr;
-    }
-}
 
 public class DatabaseConnect {
 
@@ -88,15 +64,35 @@ public class DatabaseConnect {
 //
 //    }
 
-    public static void GetWordFromData() throws Exception {
+    public static void tryConnect() {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
+        //TODO: change url link into this template: "jdbc:sqlite:...\src\main\resources\data\dict_hh.db"
+        try (Connection tmpConnection = DriverManager.getConnection(
+                "jdbc:sqlite:C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\data\\dict_hh.db")) {
+            if (tmpConnection != null) {
+                System.out.println("Connected: " + tmpConnection);
+                connection = tmpConnection;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void GetWordFromData() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        //TODO: change url link into this template: "jdbc:sqlite:...\src\main\resources\data\dict_hh.db"
         try (Connection connection1 = DriverManager.getConnection(
-                "jdbc:sqlite:C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\data\\dict_hh.db");) {
+                "jdbc:sqlite:C:\\Users\\hiren\\Documents\\UET subjects\\OOP\\INT2204-23_OOP\\Dictionary-RGB\\src\\main\\resources\\data\\dict_hh.db")) {
             if (connection1 != null) {
                 System.out.println("Connected");
                 System.out.println(connection1);
@@ -113,16 +109,11 @@ public class DatabaseConnect {
             System.out.println("prepare state: " + preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             int i = 0;
-            //List<tmp> entities = new ArrayList<tmp>();
-            while (resultSet.next() == true && i < 10) {
+            while (resultSet.next() && i < 10) {
                 int id = resultSet.getInt(1);
-                //String word = resultSet.getString(2);
-                //String html = resultSet.getString(3);
                 String pro = resultSet.getString(5);
                 System.out.println(id + "  " + pro);
                 i++;
-                //tmp a = new tmp(id, word, html, pro);
-                //entities.add(a);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,82 +122,47 @@ public class DatabaseConnect {
 
     }
 
-    public static String getMeaning(String word) {
+    public static String getMeaning(String word) throws SQLException {
         String ans = "";
-        try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+        if (connection == null) {
+            tryConnect();
         }
-        try (Connection connection1 = DriverManager.getConnection(
-                "jdbc:sqlite:C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\data\\dict_hh.db");) {
-            if (connection1 != null) {
-                System.out.println("Connected");
-                System.out.println(connection1);
-                connection = connection1;
-            }
-            String querry = String.format("SELECT * FROM av WHERE word LIKE '%s'", word);
-            System.out.println(querry);
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement(querry);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            int i = 0;
-            while (resultSet.next() == true && i < 10) {
-                String html = resultSet.getString(3);
-                ans = html;
-                i++;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            // TODO: handle exception
+        String query = String.format("SELECT * FROM av WHERE word LIKE '%s'", word);
+        System.out.println(query);
+        PreparedStatement preparedStatement;
+        preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int i = 0;
+        while (resultSet.next() && i < 10) {
+            ans = resultSet.getString(3);
+            i++;
         }
         return ans;
     }
 
-    public static List<String> GetWord(String querry) {
-        List<String> listword = new ArrayList<>();
-        try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+    public static List<String> getWord(String query) throws SQLException {
+        List<String> listWord = new ArrayList<>();
+        if (connection == null) {
+            tryConnect();
         }
-        try (Connection connection1 = DriverManager.getConnection(
-                "jdbc:sqlite:C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\data\\dict_hh.db");) {
-            if (connection1 != null) {
-                System.out.println("Connected");
-                System.out.println(connection1);
-                connection = connection1;
-            }
-            System.out.println(querry);
-            PreparedStatement preparedStatement;
-            System.out.println("connection state: " + connection);
-            preparedStatement = connection.prepareStatement(querry);
-            System.out.println("prepare state: " + preparedStatement);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            int i = 0;
-            //List<tmp> entities = new ArrayList<tmp>();
-            while (resultSet.next() == true) {
-                listword.add(resultSet.getString(1));
-                //String html = resultSet.getString(3);
-                //String pro = resultSet.getString(5);
-                //System.out.println(id + "  " + pro);
-                //tmp a = new tmp(id, word, html, pro);
-                //entities.add(a);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            // TODO: handle exception
+        System.out.println(query);
+        PreparedStatement preparedStatement;
+        System.out.println("connection state: " + connection);
+        preparedStatement = connection.prepareStatement(query);
+        System.out.println("prepare state: " + preparedStatement);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            listWord.add(resultSet.getString(1));
         }
-        return listword;
+
+        return listWord;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);
         String tmp = sc.nextLine();
-        String querry = String.format("SELECT word FROM av WHERE word LIKE '%s%%' ORDER BY word", tmp);
-        System.out.println("MAIN: " + GetWord(querry));
+        String query = String.format("SELECT word FROM av WHERE word LIKE '%s%%' ORDER BY word", tmp);
+        System.out.println("MAIN: " + getWord(query));
         sc.close();
     }
 }

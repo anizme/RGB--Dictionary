@@ -22,6 +22,7 @@ import services.DatabaseConnect;
 import services.VoiceRSS;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
@@ -71,14 +72,14 @@ public class SearchController extends ActionController implements Initializable 
     }
 
     @FXML
-    void lookup(ActionEvent event) {
+    void lookup(ActionEvent event) throws SQLException {
         wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
         //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
         history.push(tfSearchWord.getText() + "  ⓡ");
     }
 
     @FXML
-    void update(ActionEvent event) {
+    void update(ActionEvent event) throws SQLException {
         if (htmlUpdateMeaning.isVisible()) {
             htmlUpdateMeaning.setVisible(false);
             btSave.setVisible(false);
@@ -90,7 +91,7 @@ public class SearchController extends ActionController implements Initializable 
     }
 
     @FXML
-    void updateAction(ActionEvent event) {
+    void updateAction(ActionEvent event) throws SQLException {
         DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
                 "Nothing to update");
         if (htmlUpdateMeaning.getHtmlText().isEmpty()) {
@@ -140,8 +141,12 @@ public class SearchController extends ActionController implements Initializable 
                 String tmp = tfSearchWord.getText();
                 if (!tmp.equals("")) {
                     String querry = String.format("SELECT word FROM av WHERE word LIKE '%s%%' ORDER BY word", tmp);
-                    lvSearchWordsList.getItems()
-                            .addAll(DatabaseConnect.GetWord(querry));
+                    try {
+                        lvSearchWordsList.getItems()
+                                .addAll(DatabaseConnect.getWord(querry));
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 } else {
                     Collections.reverse(history);
                     lvSearchWordsList.getItems().addAll(history);
@@ -156,7 +161,11 @@ public class SearchController extends ActionController implements Initializable 
                 if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
                     tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
                     //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
-                    wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                    try {
+                        wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                     history.push(tfSearchWord.getText() + "  ⓡ");
                 }
             }
@@ -179,7 +188,11 @@ public class SearchController extends ActionController implements Initializable 
         tfSearchWord.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
-                    lookup(null);
+                    try {
+                        lookup(null);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });

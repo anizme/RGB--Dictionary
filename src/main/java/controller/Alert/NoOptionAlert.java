@@ -19,9 +19,4 @@ public class NoOptionAlert extends DetailAlert {
         alert.setHeaderText(headerText);
     }
 
-    @Override
-    public boolean alertAction() {
-        alert.showAndWait();
-        return true;
-    }
 }
