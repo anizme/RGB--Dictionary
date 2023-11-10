@@ -105,14 +105,15 @@ public class ContainerController implements Initializable {
 
     private ImageViewSprite btSettingViewSprite;
 
-    @FXML
+//    @FXML
+//    private JFXToggleButton switchMode;
     private JFXToggleButton switchMode;
     private boolean isLightMode;
 
     private Image lightBackground;
     private Image darkBackground;
-    private SpriteAnimation lightToDarkAnimation, lightToDarkAnimationSetting;
-    private SpriteAnimation darkToLightAnimation, darkToLightAnimationSetting;
+    private SpriteAnimation lightToDarkAnimation;
+    private SpriteAnimation darkToLightAnimation;
 
     @FXML
     private AnchorPane mainPane;
@@ -137,17 +138,6 @@ public class ContainerController implements Initializable {
         resetNavButton();
         showAddPane();
         addController.initData(this);
-//        if (isLightMode) {
-//            btAdd.setStyle("-fx-background-color: whitesmoke;" +
-//                    "-fx-background-radius: 10px;" +
-//                    "-fx-border-color: black;" +
-//                    "-fx-border-radius: 10px;");
-//        } else {
-//            btAdd.setStyle("-fx-background-color: black;" +
-//                    "-fx-background-radius: 10px;" +
-//                    "-fx-border-color: white;" +
-//                    "-fx-border-radius: 10px;");
-//        }
     }
 
     @FXML
@@ -161,17 +151,6 @@ public class ContainerController implements Initializable {
         resetNavButton();
         showGamePane();
         gameController.initData(this);
-//        if (isLightMode) {
-//            btGame.setStyle("-fx-background-color: whitesmoke;" +
-//                    "-fx-background-radius: 10px;" +
-//                    "-fx-border-color: black;" +
-//                    "-fx-border-radius: 10px;");
-//        } else {
-//            btGame.setStyle("-fx-background-color: black;" +
-//                    "-fx-background-radius: 10px;" +
-//                    "-fx-border-color: white;" +
-//                    "-fx-border-radius: 10px;");
-//        }
     }
 
     @FXML
@@ -185,17 +164,6 @@ public class ContainerController implements Initializable {
         resetNavButton();
         showSearchPane();
         searchController.initData(this);
-//        if (isLightMode) {
-//            btSearch.setStyle("-fx-background-color: whitesmoke;" +
-//                    "-fx-background-radius: 10px;" +
-//                    "-fx-border-color: black;" +
-//                    "-fx-border-radius: 10px;");
-//        } else {
-//            btSearch.setStyle("-fx-background-color: black;" +
-//                    "-fx-background-radius: 10px;" +
-//                    "-fx-border-color: white;" +
-//                    "-fx-border-radius: 10px;");
-//        }
     }
 
     @FXML
@@ -209,17 +177,6 @@ public class ContainerController implements Initializable {
         resetNavButton();
         showSettingPane();
         settingController.initData(this);
-//        if (isLightMode) {
-//            btSetting.setStyle("-fx-background-color: whitesmoke;" +
-//                    "-fx-background-radius: 10px;" +
-//                    "-fx-border-color: black;" +
-//                    "-fx-border-radius: 10px;");
-//        } else {
-//            btSetting.setStyle("-fx-background-color: black;" +
-//                    "-fx-background-radius: 10px;" +
-//                    "-fx-border-color: white;" +
-//                    "-fx-border-radius: 10px;");
-//        }
     }
 
     @FXML
@@ -233,19 +190,6 @@ public class ContainerController implements Initializable {
         resetNavButton();
         showTranslatePane();
         translateController.initData(this);
-//        if (isLightMode) {
-//            btTranslate.setStyle("-fx-background-color: whitesmoke;" +
-//                                 "-fx-background-radius: 10px;" +
-//                                 "-fx-border-color: black;" +
-//                                 "-fx-border-radius: 10px;");
-//        } else {
-//            btTranslate.setStyle("-fx-background-color: black;" +
-//                                 "-fx-background-radius: 10px;" +
-//                                 "-fx-border-color: white;" +
-//                                 "-fx-border-radius: 10px;");
-//        }
-
-
     }
 
     @FXML
@@ -259,10 +203,6 @@ public class ContainerController implements Initializable {
 
     private void resetNavButton() {
         if (isLightMode) {
-//            btSearch.setStyle("-fx-background-color: #ffffff;");
-//            btAdd.setStyle("-fx-background-color: #ffffff;");
-//            btGame.setStyle("-fx-background-color: #ffffff;");
-//            btSetting.setStyle("-fx-background-color: #ffffff;");
             if (isAdd) {
                 btAdd.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
@@ -304,10 +244,6 @@ public class ContainerController implements Initializable {
                 btTranslate.setStyle("-fx-background-color: white");
             }
         } else {
-//            btSearch.setStyle("-fx-background-color: #2f4f4f;");
-//            btAdd.setStyle("-fx-background-color: #2f4f4f;");
-//            btGame.setStyle("-fx-background-color: #2f4f4f;");
-//            btSetting.setStyle("-fx-background-color: #2f4f4f;");
             if (isAdd) {
                 btAdd.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
@@ -375,200 +311,76 @@ public class ContainerController implements Initializable {
 
         mainPane.getStylesheets().removeAll(this.getClass().getResource("/controller/container_dark.css").toString());
         mainPane.getStylesheets().add(this.getClass().getResource("/controller/container.css").toString());
+
         btAddView.setImage(addImage);
         btGameView.setImage(gameImage);
         btSearchView.setImage(searchImage);
         btSettingView.setImage(settingImage);
+
         translateController.getTranslatePane().getStylesheets().
                 removeAll(this.getClass().getResource("/controller/translateAPI_dark.css").toString());
         translateController.getTranslatePane().getStylesheets().
                 add(this.getClass().getResource("/controller/translateAPI.css").toString());
-        resetNavButton();
-        translateController.getBackgroundView().setImage(lightBackground);
+
+        translateController.getBackgroundView().setImage(darkBackground);
         translateController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+
+        addController.getBackgroundView().setImage(darkBackground);
+        addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+
+        gameController.getBackgroundImage().setImage(darkBackground);
+        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
+
+        searchController.getBackgroundView().setImage(darkBackground);
+        searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+
         settingController.getBackgroundView().setImage(lightBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
-        darkToLightAnimation = new SpriteAnimation(translateController.getBackgroundView(), Duration.millis(1000), 40, 5,
+
+        darkToLightAnimation = new SpriteAnimation(settingController.getBackgroundView(), Duration.millis(1000), 40, 5,
                 0, 0, 800, 538);
-//        else if (isSetting) darkToLightAnimation = new SpriteAnimation(settingController.getBackgroundView(), Duration.millis(1000), 40, 5,
-//                0, 0, 800, 538);
         darkToLightAnimation.setCycleCount(1);
         darkToLightAnimation.play();
-        darkToLightAnimationSetting = new SpriteAnimation(settingController.getBackgroundView(), Duration.millis(1000), 40, 5,
-                0, 0, 800, 538);
-        darkToLightAnimationSetting.setCycleCount(1);
-        darkToLightAnimationSetting.play();
     }
 
     public void darkModeSetting() {
 
         mainPane.getStylesheets().removeAll(this.getClass().getResource("/controller/container.css").toString());
         mainPane.getStylesheets().add(this.getClass().getResource("/controller/container_dark.css").toString());
+
         btAddView.setImage(addImageDark);
         btGameView.setImage(gameImageDark);
         btSearchView.setImage(searchImageDark);
         btSettingView.setImage(settingImageDark);
+
         translateController.getTranslatePane().getStylesheets().
                 removeAll(this.getClass().getResource("/controller/translateAPI.css").toString());
         translateController.getTranslatePane().getStylesheets().
                 add(this.getClass().getResource("/controller/translateAPI_dark.css").toString());
-        translateController.getBackgroundView().setImage(darkBackground);
+
+        translateController.getBackgroundView().setImage(lightBackground);
         translateController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+
+        addController.getBackgroundView().setImage(lightBackground);
+        addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+
+        gameController.getBackgroundImage().setImage(lightBackground);
+        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
+
+        searchController.getBackgroundView().setImage(lightBackground);
+        searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+
         settingController.getBackgroundView().setImage(darkBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
-//        if (isTranslate) {
-        lightToDarkAnimation = new SpriteAnimation(translateController.getBackgroundView(), Duration.millis(1000), 40, 5,
-                    0, 0, 800, 538);
-//            settingController.getBackgroundView().setImage(lightBackground);
-//            settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
-//        }
-//        else if (isSetting) {
-//            lightToDarkAnimation = new SpriteAnimation(settingController.getBackgroundView(), Duration.millis(1000), 40, 5,
-//                    0, 0, 800, 538);
-//            translateController.getBackgroundView().setImage(lightBackground);
-//            translateController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
-//        }
+
+        lightToDarkAnimation = new SpriteAnimation(settingController.getBackgroundView(), Duration.millis(1000), 40, 5,
+                0, 0, 800, 538);
         lightToDarkAnimation.setCycleCount(1);
         lightToDarkAnimation.play();
-        lightToDarkAnimationSetting = new SpriteAnimation(settingController.getBackgroundView(), Duration.millis(1000), 40, 5,
-                0, 0, 800, 538);
-        lightToDarkAnimationSetting.setCycleCount(1);
-        lightToDarkAnimationSetting.play();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        menuDetails.setVisible(false);
-        isLightMode = true;
-
-        lightBackground = new Image(this.getClass().getResourceAsStream("/images/dark_to_light_animation.png"));
-        darkBackground = new Image(this.getClass().getResourceAsStream("/images/light_to_dark_animation.png"));
-
-        addImage = new Image(this.getClass().getResourceAsStream("/images/add_animation.png"));
-        gameImage = new Image(this.getClass().getResourceAsStream("/images/game_animation.png"));
-        searchImage = new Image(this.getClass().getResourceAsStream("/images/search_animation.png"));
-        settingImage = new Image(this.getClass().getResourceAsStream("/images/setting_animation.png"));
-        translateImage = new Image(this.getClass().getResourceAsStream("/images/translate_animation1.png"));
-
-        addImageDark = new Image(this.getClass().getResourceAsStream("/images/add_animation_dark.png"));
-        gameImageDark = new Image(this.getClass().getResourceAsStream("/images/game_animation_dark.png"));
-        searchImageDark = new Image(this.getClass().getResourceAsStream("/images/search_animation_dark.png"));
-        settingImageDark = new Image(this.getClass().getResourceAsStream("/images/setting_animation_dark.png"));
-
-
-        switchMode.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (isLightMode) {
-                    isLightMode = false;
-                    darkModeSetting();
-                    resetNavButton();
-                } else {
-                    isLightMode = true;
-                    lightModeSetting();
-                    resetNavButton();
-                }
-            }
-        });
-
-        btAdd.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btAddViewSprite = new ImageViewSprite(btAddView, isLightMode ? addImage : addImageDark,
-                        4, 11, 44, 67, 67, 40);
-//                btAddViewSprite = new ImageViewSprite(btAddView, addImage,
-//                        4, 11, 44, 603, 603, 40);
-                btAddViewSprite.start();
-            }
-        });
-        btAdd.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btAddViewSprite.stop();
-                btAddView.setImage(isLightMode ? addImage : addImageDark);
-                //btAddView.setImage(addImage);
-                btAddView.setViewport(new Rectangle2D(0, 0, 67, 67));
-            }
-        });
-
-        btGame.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btGameViewSprite = new ImageViewSprite(btGameView, isLightMode ? gameImage : gameImageDark,
-                        6, 19, 114, 173, 173, 63);
-//                btGameViewSprite = new ImageViewSprite(btGameView, gameImage,
-//                        6, 19, 114, 519, 519, 63);
-                btGameViewSprite.start();
-            }
-        });
-        btGame.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btGameViewSprite.stop();
-                btGameView.setImage(isLightMode ? gameImage : gameImageDark);
-                //btGameView.setImage(gameImage);
-                btGameView.setViewport(new Rectangle2D(0, 0, 173, 173));
-            }
-        });
-
-        btSearch.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btSearchViewSprite = new ImageViewSprite(btSearchView, isLightMode ? searchImage : searchImageDark,
-                      5, 13, 65, 66, 66, 60);
-//                btSearchViewSprite = new ImageViewSprite(btSearchView, searchImage,
-//                        5, 13, 65, 66, 66, 60);
-                btSearchViewSprite.start();
-            }
-        });
-        btSearch.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btSearchViewSprite.stop();
-                btSearchView.setImage(isLightMode ? searchImage : searchImageDark);
-                //btSearchView.setImage(searchImage);
-                btSearchView.setViewport(new Rectangle2D(0, 0, 66, 66));
-            }
-        });
-
-        btSetting.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btSettingViewSprite = new ImageViewSprite(btSettingView, isLightMode ? settingImage : settingImageDark,
-                        5, 11, 55, 66, 66, 60);
-//                btSettingViewSprite = new ImageViewSprite(btSettingView, settingImage,
-//                        5, 11, 55, 528, 528, 60);
-                btSettingViewSprite.start();
-            }
-        });
-        btSetting.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btSettingViewSprite.stop();
-                btSettingView.setImage(isLightMode ? settingImage : settingImageDark);
-                //btSettingView.setImage(settingImage);
-                btSettingView.setViewport(new Rectangle2D(0, 0, 66, 66));
-            }
-        });
-
-        btTranslate.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                //imgView.setImage(new Image(this.getClass().getResourceAsStream("/images/add.png")));
-                btTranslateViewSprite = new ImageViewSprite(btTranslateView, translateImage,
-                        5, 9, 43, 68, 68, 30);
-                btTranslateViewSprite.start();
-            }
-        });
-        btTranslate.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btTranslateViewSprite.stop();
-                btTranslateView.setImage(translateImage);
-                btTranslateView.setViewport(new Rectangle2D(0, 0, 68, 68));
-            }
-        });
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
             searchPane = fxmlLoader.load();
@@ -613,6 +425,125 @@ public class ContainerController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        switchMode= settingController.getSwitchMode();
+        menuDetails.setVisible(false);
+        isLightMode = true;
+
+        lightBackground = new Image(this.getClass().getResourceAsStream("/images/dark_to_light_animation.png"));
+        darkBackground = new Image(this.getClass().getResourceAsStream("/images/light_to_dark_animation.png"));
+
+        addImage = new Image(this.getClass().getResourceAsStream("/images/add_animation.png"));
+        gameImage = new Image(this.getClass().getResourceAsStream("/images/game_animation.png"));
+        searchImage = new Image(this.getClass().getResourceAsStream("/images/search_animation.png"));
+        settingImage = new Image(this.getClass().getResourceAsStream("/images/setting_animation.png"));
+        translateImage = new Image(this.getClass().getResourceAsStream("/images/translate_animation1.png"));
+
+        addImageDark = new Image(this.getClass().getResourceAsStream("/images/add_animation_dark.png"));
+        gameImageDark = new Image(this.getClass().getResourceAsStream("/images/game_animation_dark.png"));
+        searchImageDark = new Image(this.getClass().getResourceAsStream("/images/search_animation_dark.png"));
+        settingImageDark = new Image(this.getClass().getResourceAsStream("/images/setting_animation_dark.png"));
+
+
+        switchMode.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (isLightMode) {
+                    isLightMode = false;
+                    darkModeSetting();
+                    resetNavButton();
+                } else {
+                    isLightMode = true;
+                    lightModeSetting();
+                    resetNavButton();
+                }
+            }
+        });
+
+        btAdd.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btAddViewSprite = new ImageViewSprite(btAddView, isLightMode ? addImage : addImageDark,
+                        4, 11, 44, 67, 67, 40);
+                btAddViewSprite.start();
+            }
+        });
+        btAdd.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btAddViewSprite.stop();
+                btAddView.setImage(isLightMode ? addImage : addImageDark);
+                btAddView.setViewport(new Rectangle2D(0, 0, 67, 67));
+            }
+        });
+
+        btGame.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btGameViewSprite = new ImageViewSprite(btGameView, isLightMode ? gameImage : gameImageDark,
+                        6, 19, 114, 173, 173, 63);
+                btGameViewSprite.start();
+            }
+        });
+        btGame.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btGameViewSprite.stop();
+                btGameView.setImage(isLightMode ? gameImage : gameImageDark);
+                btGameView.setViewport(new Rectangle2D(0, 0, 173, 173));
+            }
+        });
+
+        btSearch.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btSearchViewSprite = new ImageViewSprite(btSearchView, isLightMode ? searchImage : searchImageDark,
+                      5, 13, 65, 66, 66, 60);
+                btSearchViewSprite.start();
+            }
+        });
+        btSearch.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btSearchViewSprite.stop();
+                btSearchView.setImage(isLightMode ? searchImage : searchImageDark);
+                btSearchView.setViewport(new Rectangle2D(0, 0, 66, 66));
+            }
+        });
+
+        btSetting.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btSettingViewSprite = new ImageViewSprite(btSettingView, isLightMode ? settingImage : settingImageDark,
+                        5, 11, 55, 66, 66, 60);
+                btSettingViewSprite.start();
+            }
+        });
+        btSetting.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btSettingViewSprite.stop();
+                btSettingView.setImage(isLightMode ? settingImage : settingImageDark);
+                btSettingView.setViewport(new Rectangle2D(0, 0, 66, 66));
+            }
+        });
+
+        btTranslate.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btTranslateViewSprite = new ImageViewSprite(btTranslateView, translateImage,
+                        5, 9, 43, 68, 68, 30);
+                btTranslateViewSprite.start();
+            }
+        });
+        btTranslate.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btTranslateViewSprite.stop();
+                btTranslateView.setImage(translateImage);
+                btTranslateView.setViewport(new Rectangle2D(0, 0, 68, 68));
+            }
+        });
 
         //search(null);
     }

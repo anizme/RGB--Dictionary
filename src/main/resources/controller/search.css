@@ -1,0 +1,27 @@
+.button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-background-radius: 10px;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-font-size: 15;
+    -fx-text-fill: black;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-font-size: 15;
+    -fx-text-fill: black;
+}
+
+.result-area {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-text-fill: white;
+}

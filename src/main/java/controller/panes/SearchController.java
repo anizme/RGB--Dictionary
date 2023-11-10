@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
@@ -25,6 +26,9 @@ import java.util.ResourceBundle;
 import static controller.ApplicationStart.dictionaryManagement;
 
 public class SearchController extends ActionController implements Initializable {
+
+    @FXML
+    private ImageView backgroundView;
 
     @FXML
     private ListView<String> lvSearchWordsList;
@@ -43,6 +47,10 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     private Button btSave;
+
+    public ImageView getBackgroundView() {
+        return backgroundView;
+    }
 
     @FXML
     void usSpeak(ActionEvent event) throws Exception {

@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="addPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.AddController">
    <children>
-      <ImageView fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/light_to_dark_animation.png" />
          </image>

@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane fx:id="gamePane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.GameController">
    <children>
       <Label layoutX="361.0" layoutY="226.0" prefHeight="69.0" prefWidth="125.0" text="game" />
+      <ImageView fx:id="backgroundImage" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/light_to_dark_animation.png" />
+         </image>
+         <viewport>
+            <Rectangle2D height="538.0" width="800.0" />
+         </viewport>
+      </ImageView>
    </children>
 </AnchorPane>

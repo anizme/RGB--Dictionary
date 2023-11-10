@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.image.Image?>
@@ -22,7 +21,6 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXToggleButton fx:id="switchMode" layoutX="274.0" layoutY="-11.0" prefHeight="19.0" prefWidth="146.0" />
             <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="56.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>

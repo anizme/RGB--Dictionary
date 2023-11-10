@@ -94,7 +94,7 @@ public class DatabaseConnect {
             e.printStackTrace();
         }
         try (Connection connection1 = DriverManager.getConnection(
-                "jdbc:sqlite:C:\\Users\\hiren\\Documents\\UET subjects\\OOP\\INT2204-23_OOP\\Dictionary-RGB\\src\\main\\resources\\data\\dict_hh.db");) {
+                "jdbc:sqlite:D:\\HA\\RGB-_-Dictionary\\src\\main\\resources\\data\\dict_hh.db");) {
             if (connection1 != null) {
                 System.out.println("Connected");
                 System.out.println(connection1);
@@ -138,7 +138,7 @@ public class DatabaseConnect {
             e.printStackTrace();
         }
         try (Connection connection1 = DriverManager.getConnection(
-                "jdbc:sqlite:C:\\Users\\hiren\\Documents\\UET subjects\\OOP\\INT2204-23_OOP\\Dictionary-RGB\\src\\main\\resources\\data\\dict_hh.db");) {
+                "jdbc:sqlite:D:\\HA\\RGB-_-Dictionary\\src\\main\\resources\\data\\dict_hh.db");) {
             if (connection1 != null) {
                 System.out.println("Connected");
                 System.out.println(connection1);
