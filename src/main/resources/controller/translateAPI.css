@@ -9,7 +9,7 @@
 }
 
 .button-lang:hover {
-    -fx-background-color: #a2d2df;;
+    -fx-background-color: #a2d2df;
 }
 
 
@@ -24,19 +24,30 @@
 }
 
 .button-translate-submit {
-    -fx-border-radius: 3;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
     -fx-padding: 5;
     -fx-pref-width: 120;
     -fx-pref-height: 30;
 
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-size: 18;
     -fx-font-weight: bold;
 }
 
 .button-translate-submit:hover {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-background-color: #255F85;
+}
+
+.button-speak {
+    -fx-background-color: lightgrey;
+    -fx-background-radius: 10px;
+}
+
+.button-speak:hover {
+    -fx-background-color: #a2d2df;
+    -fx-background-radius: 10px;
 }
 
 /* ========================= TextField ========================= */

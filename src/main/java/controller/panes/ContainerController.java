@@ -321,10 +321,13 @@ public class ContainerController implements Initializable {
                 removeAll(this.getClass().getResource("/controller/translateAPI_dark.css").toString());
         translateController.getTranslatePane().getStylesheets().
                 add(this.getClass().getResource("/controller/translateAPI.css").toString());
-
         translateController.getBackgroundView().setImage(darkBackground);
         translateController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
+        addController.getAddPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/add_dark.css").toString());
+        addController.getAddPane().getStylesheets().
+                add(this.getClass().getResource("/controller/add.css").toString());
         addController.getBackgroundView().setImage(darkBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
@@ -357,10 +360,13 @@ public class ContainerController implements Initializable {
                 removeAll(this.getClass().getResource("/controller/translateAPI.css").toString());
         translateController.getTranslatePane().getStylesheets().
                 add(this.getClass().getResource("/controller/translateAPI_dark.css").toString());
-
         translateController.getBackgroundView().setImage(lightBackground);
         translateController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
+        addController.getAddPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/add.css").toString());
+        addController.getAddPane().getStylesheets().
+                add(this.getClass().getResource("/controller/add_dark.css").toString());
         addController.getBackgroundView().setImage(lightBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 

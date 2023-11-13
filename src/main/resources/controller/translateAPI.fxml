@@ -19,9 +19,9 @@
          <viewport>
             <Rectangle2D height="538.0" width="800.0" />
          </viewport></ImageView>
-      <VBox layoutX="29.0" layoutY="29.0" prefHeight="224.0" prefWidth="708.0" spacing="1.0" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="29.0">
+      <VBox layoutX="29.0" layoutY="29.0" prefHeight="224.0" prefWidth="708.0" spacing="2.0" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="29.0">
          <children>
-            <HBox prefHeight="80.0" prefWidth="793.0" spacing="1.0">
+            <HBox prefHeight="80.0" prefWidth="793.0" spacing="2.0">
                <children>
                   <Button fx:id="langFromFirst" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Auto detect">
                      <graphic>
@@ -55,7 +55,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#speak1" prefHeight="33.0" prefWidth="36.0" styleClass="button-speak">
+                  <Button mnemonicParsing="false" onAction="#speak1" prefHeight="35.0" prefWidth="35.0" styleClass="button-speak">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -95,9 +95,9 @@
             </HBox>
          </children>
       </HBox>
-      <VBox layoutX="29.0" layoutY="287.0" prefHeight="235.0" prefWidth="708.0" spacing="1.0" AnchorPane.bottomAnchor="51.19999999999993" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0">
+      <VBox layoutX="29.0" layoutY="287.0" prefHeight="235.0" prefWidth="708.0" spacing="2.0" AnchorPane.bottomAnchor="51.19999999999993" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0">
          <children>
-            <HBox prefHeight="50.0" prefWidth="793.0" spacing="1.0">
+            <HBox prefHeight="50.0" prefWidth="793.0" spacing="2.0">
                <children>
                   <Button fx:id="langToFirst" minWidth="44.0" mnemonicParsing="false" onAction="#vie2" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
                      <graphic>
@@ -139,7 +139,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#speak2" styleClass="button-speak">
+                  <Button mnemonicParsing="false" onAction="#speak2" prefHeight="35.0" prefWidth="35.0" styleClass="button-speak">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>

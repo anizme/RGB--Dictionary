@@ -24,7 +24,9 @@
 }
 
 .button-translate-submit {
-    -fx-border-radius: 3;
+    -fx-background-color: #008000;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
     -fx-padding: 5;
     -fx-pref-width: 120;
     -fx-pref-height: 30;
@@ -36,7 +38,17 @@
 
 .button-translate-submit:hover {
     -fx-text-fill: white;
-    -fx-background-color: #255F85;
+    -fx-background-color: #32cd32;
+}
+
+.button-speak {
+    -fx-background-color: #008000;
+    -fx-background-radius: 10px;
+}
+
+.button-speak:hover {
+    -fx-background-color: #32cd32;
+    -fx-background-radius: 10px;
 }
 
 /* ========================= TextField ========================= */

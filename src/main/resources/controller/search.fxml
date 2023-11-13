@@ -14,7 +14,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="searchPane" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search_dark.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
+<AnchorPane fx:id="searchPane" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
    <children>
       <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -115,8 +115,8 @@
                   </Button>
                </children>
             </HBox>
-            <WebView fx:id="wvMeaning" layoutX="39.0" layoutY="186.0" prefHeight="406.0" prefWidth="400.0" styleClass="result-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" prefHeight="406.0" prefWidth="400.0" style="-fx-background-color: #2f4f4f;" styleClass="result-area" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <WebView fx:id="wvMeaning" layoutX="39.0" layoutY="186.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>
