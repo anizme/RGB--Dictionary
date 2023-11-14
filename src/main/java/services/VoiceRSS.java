@@ -44,6 +44,6 @@ public class VoiceRSS {
     }
 
     public static void main(String[] args) throws Exception {
-        speakWord("hi");
+        speakWord("hello");
     }
 }

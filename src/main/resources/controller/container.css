@@ -3,11 +3,6 @@
     -fx-background-color: white;
 }
 
-
-.button: {
-    -fx-background-color: white;
-}
-
 .controlBar:hover {
     -fx-scale-x: 1.2;
     -fx-scale-y: 1.2;

@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -15,13 +17,24 @@ import static controller.ApplicationStart.dictionaryManagement;
 public class AddController extends ActionController implements Initializable {
 
     @FXML
+    private ImageView backgroundView;
+
+    @FXML
     private AnchorPane addPane;
 
     @FXML
-    private TextArea taNewWord;
+    private TextField taNewWord;
 
     @FXML
-    private TextArea taWordMeaning;
+    private TextField taWordMeaning;
+
+    public ImageView getBackgroundView() {
+        return backgroundView;
+    }
+
+    public AnchorPane getAddPane() {
+        return addPane;
+    }
 
     @FXML
     void addAction(ActionEvent event) {

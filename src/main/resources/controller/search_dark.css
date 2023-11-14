@@ -1,0 +1,22 @@
+.button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-background-radius: 10px;
+}
+
+.text-field {
+    -fx-background-color: #2f4f4f;
+    -fx-background-radius: 10px;
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+}
+
+.list-view {
+    -fx-background-color: #2f4f4f;
+    -fx-border-color: white;
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+}
+

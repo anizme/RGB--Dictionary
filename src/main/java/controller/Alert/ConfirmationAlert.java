@@ -14,6 +14,6 @@ public class ConfirmationAlert extends DetailAlert {
     @Override
     public boolean alertAction() {
         Optional<ButtonType> isOK = alert.showAndWait();
-        return isOK.get() == ButtonType.OK;
+        return isOK.filter(buttonType -> buttonType == ButtonType.OK).isPresent();
     }
 }

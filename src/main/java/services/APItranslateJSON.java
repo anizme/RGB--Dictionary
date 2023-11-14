@@ -6,20 +6,14 @@ public class APItranslateJSON {
     public static String getDetectLang(String jsonResponse) {
         JSONArray jsonArray = new JSONArray(jsonResponse);
         // Lấy giá trị từ JSON
-        switch (jsonArray.getString(2)) {
-            case "vi":
-                return "Vietnamese";
-            case "en":
-                return "English";
-            case "ko":
-                return "Korea";
-            case "ru":
-                return "Russian";
-            case "zh":
-                return "Chinese";
-            default:
-                return "Nothing";
-        }
+        return switch (jsonArray.getString(2)) {
+            case "vi" -> "Vietnamese";
+            case "en" -> "English";
+            case "ko" -> "Korea";
+            case "ru" -> "Russian";
+            case "zh" -> "Chinese";
+            default -> "Nothing";
+        };
     }
 
     public static String getTransLang(String jsonResponse) {

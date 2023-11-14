@@ -1,0 +1,12 @@
+.button {
+    -fx-background-color: lightgrey;
+    -fx-background-radius: 10px;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-text-fill: black;
+}

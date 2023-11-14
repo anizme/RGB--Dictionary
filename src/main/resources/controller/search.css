@@ -1,0 +1,46 @@
+.button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-background-radius: 10px;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-font-size: 15;
+    -fx-text-fill: black;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-font-size: 15;
+    -fx-text-fill: black;
+}
+
+.html-editor
+{
+    -fx-font: 12 cambria;
+    -fx-border-color: black;
+    /*
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    */
+}
+
+.html-editor .button, .html-editor .toggle-button
+{
+    -fx-background-color: lightblue;
+}
+
+.html-editor-background
+{
+    -fx-color-label-visible: true;
+}
+
+.html-editor-foreground
+{
+    -fx-color-label-visible: true;
+}

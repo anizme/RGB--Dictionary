@@ -69,6 +69,6 @@ public class Search {
         if (source.length() < n) {
             return false;
         }
-        return source.substring(0, n - 1).toLowerCase().equals(target.toLowerCase());
+        return source.substring(0, n - 1).equalsIgnoreCase(target);
     }
 }
