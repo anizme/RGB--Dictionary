@@ -22,7 +22,7 @@ public class ImageViewSprite extends AnimationTimer {
     private int currentCol = 0;
     private int currentRow = 0;
 
-    private long lastFrame = 0;
+    private long lastFrame;
 
     public ImageViewSprite(ImageView imageView, Image image, int columns, int rows, int totalFrames, int frameWidth, int frameHeight, float framesPerSecond) {
         this.imageView = imageView;

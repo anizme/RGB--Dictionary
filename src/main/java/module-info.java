@@ -7,6 +7,7 @@ module controller.dictionary {
     requires java.desktop;
     requires org.json;
     requires java.sql;
+    requires org.xerial.sqlitejdbc;
 
     opens controller to javafx.fxml;
     exports controller;
