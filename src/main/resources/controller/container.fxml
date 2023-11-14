@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
    <children>
-      <AnchorPane prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #0C4A6E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="53.0" prefWidth="930.0" style="-fx-background-color: #0C4A6E;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="10.0" onAction="#menu" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="5.0" onAction="#menu" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="5.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -21,7 +21,15 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="56.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton fx:id="btExit" alignment="CENTER" contentDisplay="CENTER" layoutX="865.0" onAction="#exit" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cancel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
       <VBox fx:id="navBar" layoutY="48.0" prefHeight="552.0" prefWidth="80.0" styleClass="navBar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="850.0" AnchorPane.topAnchor="48.0">

@@ -3,6 +3,7 @@ package controller.panes;
 import com.jfoenix.controls.JFXToggleButton;
 import controller.ApplicationStart;
 import dictionary.DictionaryManagement;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -36,6 +37,8 @@ public class ContainerController implements Initializable {
     private SettingController settingController;
     private AnchorPane translatePane = null;
     private TranslateAPIController translateController;
+    @FXML
+    private JFXButton btExit;
 
     @FXML
     private JFXButton btAdd;
@@ -126,7 +129,10 @@ public class ContainerController implements Initializable {
 
     @FXML
     private VBox navBar;
-
+    @FXML
+    void exit(ActionEvent event) {
+        Platform.exit();
+    }
     @FXML
     void add(ActionEvent event) {
         isAdd = true;
