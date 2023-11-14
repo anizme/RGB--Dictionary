@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -112,21 +113,14 @@
          </children>
       </VBox>
       <AnchorPane fx:id="contentPane" layoutX="232.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
-      <AnchorPane fx:id="menuDetails" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="132.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="48.0">
+      <AnchorPane fx:id="menuPane" layoutX="80.0" layoutY="42.0" prefHeight="558.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0">
          <children>
-            <VBox prefHeight="554.0" prefWidth="104.0" spacing="10.0" style="-fx-background-color: #f6f6f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Search" textAlignment="CENTER">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </JFXButton>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Add" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Game" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#translate" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Translate" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Setting" textAlignment="CENTER" />
-               </children>
-            </VBox>
+            <Label layoutX="48.0" layoutY="506.0" text="RGB gang gang" />
+            <ImageView fitHeight="224.0" fitWidth="328.0" layoutX="313.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/RGB.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

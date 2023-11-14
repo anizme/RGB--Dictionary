@@ -125,7 +125,7 @@ public class ContainerController implements Initializable {
     private AnchorPane contentPane;
 
     @FXML
-    private AnchorPane menuDetails;
+    private AnchorPane menuPane;
 
     @FXML
     private VBox navBar;
@@ -140,7 +140,6 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = false;
-        menuDetails.setVisible(false);
         resetNavButton();
         showAddPane();
         addController.initData(this);
@@ -153,7 +152,6 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = false;
-        menuDetails.setVisible(false);
         resetNavButton();
         showGamePane();
         gameController.initData(this);
@@ -166,7 +164,6 @@ public class ContainerController implements Initializable {
         isSearch = true;
         isSetting = false;
         isTranslate = false;
-        menuDetails.setVisible(false);
         resetNavButton();
         showSearchPane();
         searchController.initData(this);
@@ -179,7 +176,6 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = true;
         isTranslate = false;
-        menuDetails.setVisible(false);
         resetNavButton();
         showSettingPane();
         settingController.initData(this);
@@ -192,7 +188,6 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = true;
-        menuDetails.setVisible(false);
         resetNavButton();
         showTranslatePane();
         translateController.initData(this);
@@ -200,7 +195,8 @@ public class ContainerController implements Initializable {
 
     @FXML
     void menu(ActionEvent event) {
-        menuDetails.setVisible(true);
+        menuPane.setVisible(true);
+        setContentPane(menuPane);
     }
 
     private void setContentPane(AnchorPane contentPane) {
@@ -393,6 +389,7 @@ public class ContainerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        menuPane.setVisible(false);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
             searchPane = fxmlLoader.load();
@@ -439,7 +436,6 @@ public class ContainerController implements Initializable {
         }
 
         switchMode= settingController.getSwitchMode();
-        menuDetails.setVisible(false);
         isLightMode = true;
 
         lightBackground = new Image(this.getClass().getResourceAsStream("/images/dark_to_light_animation.png"));
