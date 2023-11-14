@@ -339,8 +339,8 @@ public class ContainerController implements Initializable {
         addController.getBackgroundView().setImage(darkBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
-        gameController.getBackgroundImage().setImage(darkBackground);
-        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
+//        gameController.getBackgroundImage().setImage(darkBackground);
+//        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         searchController.getBackgroundView().setImage(darkBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
@@ -378,8 +378,8 @@ public class ContainerController implements Initializable {
         addController.getBackgroundView().setImage(lightBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
-        gameController.getBackgroundImage().setImage(lightBackground);
-        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
+//        gameController.getBackgroundImage().setImage(lightBackground);
+//        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         searchController.getBackgroundView().setImage(lightBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));

@@ -1,5 +1,8 @@
 package controller.panes;
 
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
+
 import controller.ApplicationStart;
 import controller.panes.games.GameSelectionController;
 import javafx.fxml.FXML;
@@ -13,16 +16,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameController extends ActionController implements Initializable {
-    @FXML
-    private ImageView defaultGame;
 
     @FXML
     private AnchorPane gameContainer;
 
     private AnchorPane selectGame;
     private GameSelectionController gameSelectionController;
-
-    private AnchorPane crossWord;
 
     protected void setGamePane(AnchorPane contentPane) {
         this.gameContainer.getChildren().setAll(contentPane);

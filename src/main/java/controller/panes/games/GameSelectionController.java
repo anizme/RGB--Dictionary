@@ -72,7 +72,7 @@ public class GameSelectionController extends GameController implements Initializ
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("crossword.fxml"));
             crossWordPane = fxmlLoader.load();
             crossWordController = fxmlLoader.getController();
-            //crossWordController.initData(this.state);
+            crossWordController.initData(this.state);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
