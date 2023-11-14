@@ -65,13 +65,13 @@ public class SearchController extends ActionController implements Initializable 
     @FXML
     void usSpeak(ActionEvent event) throws Exception {
         VoiceRSS.Name = VoiceRSS.voiceNameUS;
-        speak("en-gb");
+        speak("en-us");
     }
 
     @FXML
     void ukSpeak(ActionEvent event) throws Exception {
-        VoiceRSS.Name = VoiceRSS.voiceNameUS;
-        speak("en-us");
+        VoiceRSS.Name = VoiceRSS.voiceNameUK;
+        speak("en-gb");
     }
 
     private void speak(String lang) throws Exception {
@@ -163,6 +163,7 @@ public class SearchController extends ActionController implements Initializable 
                 }
             }
         });
+
         lvSearchWordsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -204,6 +205,7 @@ public class SearchController extends ActionController implements Initializable 
                 }
             }
         });
+
         htmlUpdateMeaning.setVisible(false);
         btSave.setVisible(false);
     }

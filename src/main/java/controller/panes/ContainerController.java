@@ -17,11 +17,14 @@ import javafx.scene.layout.AnchorPane;
 import com.jfoenix.controls.JFXButton;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import services.DatabaseConnect;
+import services.DatabaseDictionary;
 import services.ImageViewSprite;
 import services.SpriteAnimation;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ContainerController implements Initializable {
@@ -130,7 +133,10 @@ public class ContainerController implements Initializable {
     @FXML
     private VBox navBar;
     @FXML
-    void exit(ActionEvent event) {
+    void exit(ActionEvent event) throws SQLException {
+        if (DatabaseConnect.connection != null) {
+            DatabaseConnect.connection.close();
+        }
         Platform.exit();
     }
     @FXML
