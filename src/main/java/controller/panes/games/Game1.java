@@ -1,4 +1,4 @@
-package games;
+package controller.panes.games;
 
 
 import dictionary.Word;

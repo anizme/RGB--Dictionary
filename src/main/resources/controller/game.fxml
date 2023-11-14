@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="gameContainer" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #AFD3E2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.GameController">
+   <children>
+      <ImageView fx:id="defaultGame" fitHeight="441.0" fitWidth="297.0" layoutX="265.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/timeGame.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

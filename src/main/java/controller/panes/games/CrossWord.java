@@ -1,29 +1,29 @@
-package games;
+package controller.panes.games;
 
 import algorithms.Sort;
 import com.jfoenix.controls.JFXButton;
 import controller.panes.ActionController;
 import dictionary.Word;
-import javafx.fxml.Initializable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.*;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.event.ActionEvent;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URL;
 import java.util.*;
-import java.util.List;
 
 public class CrossWord extends ActionController implements Initializable {
+
     @FXML
     private GridPane initBoard;
 
@@ -70,7 +70,7 @@ public class CrossWord extends ActionController implements Initializable {
     public CrossWord() throws Exception {
         wordList = new ArrayList<>();
         tmpPos = new ArrayList<>();
-        File dictionaryFile = new File("C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\data\\dictionaries.txt");
+        File dictionaryFile = new File("src/main/resources/data/dictionaries.txt");
         Scanner sc = new Scanner(dictionaryFile);
         while (sc.hasNextLine()) {
             String line = sc.nextLine();

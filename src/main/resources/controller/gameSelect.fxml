@@ -10,10 +10,26 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="gameContainer" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #AFD3E2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.GameController">
+<AnchorPane fx:id="gameContainer" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #AFD3E2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.GameSelectionController">
    <children>
-      <Rectangle fx:id="crwBG" arcHeight="5.0" arcWidth="5.0" height="572.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="850.0" />
+      <Rectangle fx:id="crwBG" arcHeight="5.0" arcWidth="5.0" height="572.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="850.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.17777778208255768" blue="0.17777778208255768" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9904938340187073" green="1.0" blue="0.4296296238899231" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
       <Rectangle fx:id="defBG" arcHeight="5.0" arcWidth="5.0" height="572.0" stroke="TRANSPARENT" strokeType="INSIDE" width="850.0">
          <fill>
             <LinearGradient endX="1.0" endY="0.8106060741525708" startX="1.0" startY="0.2727272293784402">
@@ -32,29 +48,29 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <JFXButton fx:id="game3" layoutX="127.0" layoutY="396.0" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="GAME3" textFill="#d14af0">
+      <JFXButton fx:id="game3" layoutX="127.0" layoutY="396.0" onAction="#btGame3" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="GAME3" textFill="#d14af0">
          <font>
             <Font name="Segoe UI Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="game2" layoutX="128.0" layoutY="275.0" prefHeight="55.0" prefWidth="177.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="GAME2" textFill="#d14af0">
+      <JFXButton fx:id="game2" layoutX="128.0" layoutY="275.0" onAction="#btGame2" prefHeight="55.0" prefWidth="177.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="GAME2" textFill="#d14af0">
          <font>
             <Font name="Segoe UI Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="crossWord" layoutX="128.0" layoutY="150.0" prefHeight="55.0" prefWidth="177.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CROSSWORD" textFill="#d14af0">
+      <JFXButton fx:id="crossWord" layoutX="128.0" layoutY="150.0" onAction="#btCrossWord" prefHeight="55.0" prefWidth="177.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CROSSWORD" textFill="#d14af0">
          <font>
             <Font name="Segoe UI Bold" size="12.0" />
          </font>
       </JFXButton>
-      <ImageView fx:id="defaultGame" fitHeight="456.0" fitWidth="361.0" layoutX="449.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="defaultGame" fitHeight="388.0" fitWidth="297.0" layoutX="473.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/11187233_4660425.jpg" />
+            <Image url="@../images/timeGame.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="crossWordGame" fitHeight="412.0" fitWidth="322.0" layoutX="449.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/fposter,small,wall_texture,product,750x1000.jpg" />
+            <Image url="@../images/cossWordGame.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="GAME2" fitHeight="456.0" fitWidth="322.0" layoutX="449.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" visible="false" />

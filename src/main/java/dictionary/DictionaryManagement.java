@@ -4,14 +4,12 @@ import algorithms.Sort;
 import algorithms.Search;
 import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
-import games.Game1;
+import controller.panes.games.Game1;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class DictionaryManagement {
