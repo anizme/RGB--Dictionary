@@ -143,7 +143,7 @@ public class SearchController extends ActionController implements Initializable 
                     String querry = String.format("SELECT word FROM av WHERE word LIKE '%s%%' ORDER BY word", tmp);
                     try {
                         lvSearchWordsList.getItems()
-                                .addAll(DatabaseConnect.getWord(querry));
+                                .addAll(DatabaseConnect.getAllWordTargets(querry));
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
