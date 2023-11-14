@@ -588,7 +588,7 @@ public class ContainerController implements Initializable {
         }
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("game.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("gameContainer.fxml"));
             gamePane = fxmlLoader.load();
             gameController = fxmlLoader.getController();
             gameController.initData(this);

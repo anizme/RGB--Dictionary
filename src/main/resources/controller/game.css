@@ -1,0 +1,10 @@
+.button: {
+}
+
+.textArea: {
+}
+
+.rounded-button {
+    -fx-background-radius: 1em; /* Điều chỉnh độ cong của góc */
+    -fx-padding: 10px 20px; /* Điều chỉnh lề để nút không bị chồng lên nhau quá nhiều */
+}
