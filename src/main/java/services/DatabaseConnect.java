@@ -10,7 +10,7 @@ import java.util.Scanner;
 //TODO: change PRJ_PATH to run
 public class DatabaseConnect {
     private static final String DB_PATH = "src\\\\main\\\\resources\\\\data\\\\dict_hh.db";
-    private static String prj_path = "C:\\Users\\hiren\\Documents\\UET subjects\\OOP\\INT2204-23_OOP\\Dictionary-RGB\\";
+    private static String prj_path = "D:\\HA\\RGB-_-Dictionary\\";
     private static final String PRJ_PATH = prj_path.replace("\\", "\\\\");
     private static final String SQL_URL = "jdbc:sqlite:" + PRJ_PATH + DB_PATH;
 

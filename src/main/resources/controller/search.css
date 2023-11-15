@@ -20,6 +20,11 @@
     -fx-text-fill: black;
 }
 
+.web-view {
+    -fx-background-color: white;
+    -fx-border-color: black;
+}
+
 .html-editor
 {
     -fx-font: 12 cambria;

@@ -3,24 +3,31 @@ package controller.panes;
 import com.jfoenix.controls.JFXToggleButton;
 import controller.ApplicationStart;
 import dictionary.DictionaryManagement;
+import javafx.animation.Animation;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import com.jfoenix.controls.JFXButton;
-import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import javafx.util.Duration;
+import services.DatabaseConnect;
 import services.ImageViewSprite;
 import services.SpriteAnimation;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ContainerController implements Initializable {
@@ -108,7 +115,7 @@ public class ContainerController implements Initializable {
 //    @FXML
 //    private JFXToggleButton switchMode;
     private JFXToggleButton switchMode;
-    private boolean isLightMode;
+    static boolean isLightMode;
 
     private Image lightBackground;
     private Image darkBackground;
@@ -126,6 +133,9 @@ public class ContainerController implements Initializable {
 
     @FXML
     private VBox navBar;
+
+    @FXML
+    private Label welcomeLabel;
 
     @FXML
     void add(ActionEvent event) {
@@ -334,8 +344,42 @@ public class ContainerController implements Initializable {
         gameController.getBackgroundImage().setImage(darkBackground);
         gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
 
+        searchController.getSearchPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/search_dark.css").toString());
+        searchController.getSearchPane().getStylesheets().
+                add(this.getClass().getResource("/controller/search.css").toString());
         searchController.getBackgroundView().setImage(darkBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        try {
+            if (searchController.isUpdate()) {
+                searchController.getHtmlEditor().setHtmlText("<body style='background-color: white; color: black'/>"
+                        + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
+            }
+            searchController.getWebView().getEngine().loadContent("<body style='background-color: white; color: black'/>"
+                    + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        searchController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                        } else {
+                            setText(item);
+                        }
+                        if(getIndex() % 2 == 1)
+                            setStyle("-fx-background-color: white; -fx-text-fill: black;");
+                        else
+                            setStyle("-fx-background-color: whitesmoke; -fx-text-fill: black");
+                    }
+                };
+            }
+        });
 
         settingController.getBackgroundView().setImage(lightBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
@@ -373,8 +417,50 @@ public class ContainerController implements Initializable {
         gameController.getBackgroundImage().setImage(lightBackground);
         gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
 
+        searchController.getSearchPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/search.css").toString());
+        searchController.getSearchPane().getStylesheets().
+                add(this.getClass().getResource("/controller/search_dark.css").toString());
         searchController.getBackgroundView().setImage(lightBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        try {
+            if (searchController.isUpdate()) {
+                searchController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+                        + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
+            }
+            searchController.getWebView().getEngine().loadContent("<body style='background-color: #2f4f4f; color: white'/>"
+                    + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        searchController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                            if(getIndex() % 2 == 1) {
+                                setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                            } else {
+                                setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                            }
+                        } else {
+                            setText(item);
+                            if(getIndex() % 2 == 1) {
+                                setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                            } else {
+                                setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                            }
+                        }
+
+                    }
+                };
+            }
+        });
 
         settingController.getBackgroundView().setImage(darkBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
@@ -387,6 +473,10 @@ public class ContainerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        TranslateTransition transition = new TranslateTransition(Duration.millis(9000), welcomeLabel);
+        transition.setByX(-1400);
+        transition.setCycleCount(Animation.INDEFINITE);
+        transition.play();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
             searchPane = fxmlLoader.load();
