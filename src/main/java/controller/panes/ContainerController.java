@@ -118,9 +118,7 @@ public class ContainerController implements Initializable {
 
     @FXML
     void exit(ActionEvent event) throws SQLException {
-        if (DatabaseConnect.connection != null) {
-            DatabaseConnect.connection.close();
-        }
+        DatabaseConnect.close();
         Platform.exit();
     }
 

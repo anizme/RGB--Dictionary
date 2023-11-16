@@ -19,7 +19,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="5.0" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="5.0" onAction="#menu" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
