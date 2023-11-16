@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 //TODO: change PRJ_PATH to run
-public class DatabaseConnect {
+public class DatabaseConnect extends DatabaseDictionary {
     private static final String DB_PATH = "src\\\\main\\\\resources\\\\data\\\\dict_hh.db";
     public static Connection connection = null;
     private static String prj_path = "C:\\Users\\hiren\\Documents\\UET subjects\\OOP\\INT2204-23_OOP\\Dictionary-RGB\\";
@@ -94,7 +94,8 @@ public class DatabaseConnect {
         return ans;
     }
 
-    public static List<String> getAllWordTargets(String query) throws SQLException {
+    public static List<String> getListWordTargets(String word) throws SQLException {
+        String query = String.format("SELECT word FROM av WHERE word LIKE '%s%%' ORDER BY word", word);
         List<String> listWord = new ArrayList<>();
         if (connection == null) {
             tryConnect();
@@ -111,10 +112,18 @@ public class DatabaseConnect {
         return listWord;
     }
 
+    public static void insertNewWord(String def, String mean) {
+        String query = String.format("UPDATE av SET WHERE word = %s", def);
+    }
+
     public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);
         String tmp = sc.nextLine();
-        System.out.println("MAIN: " + getMeaning(tmp));
+        List<String> l = getListWordTargets(tmp);
+        for (String str : l) {
+            System.out.println(str);
+        }
+
 
         // Close the database connection when you're done with it
         if (connection != null) {
@@ -122,5 +131,42 @@ public class DatabaseConnect {
         }
 
         sc.close();
+    }
+
+    @Override
+    public void close() throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+    }
+
+    @Override
+    public ArrayList<Word> getAllWords() {
+        return null;
+    }
+
+    @Override
+    public List<String> getAllWordTargets(String src) throws SQLException {
+        return getListWordTargets(src);
+    }
+
+    @Override
+    public String lookUpWord(String target) throws SQLException {
+        return getMeaning(target);
+    }
+
+    @Override
+    public boolean insertWord(String target, String definition) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteWord(String target) {
+        return false;
+    }
+
+    @Override
+    public boolean updateWordDefinition(String target, String definition) {
+        return false;
     }
 }

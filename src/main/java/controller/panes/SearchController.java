@@ -117,6 +117,12 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     void update(ActionEvent event) throws SQLException {
+        if (tfSearchWord.textProperty().isEqualTo("").get()) {
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
+                    "Nothing to update");
+            alert.alertAction();
+            return;
+        }
         if (htmlUpdateMeaning.isVisible()) {
             isUpdate = false;
             htmlUpdateMeaning.setVisible(false);
@@ -161,7 +167,12 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     void remove(ActionEvent event) {
-        System.out.println("remove");
+        if (tfSearchWord.textProperty().isEqualTo("").get()) {
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
+                    "Nothing to delete");
+            alert.alertAction();
+            return;
+        }
         DetailAlert confirmationAlert = new ConfirmationAlert("CONFIRM..."
                 , "Make sure you want to remove this word from the dictionary.");
         if (confirmationAlert.alertAction()) {
@@ -182,16 +193,13 @@ public class SearchController extends ActionController implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
             if (tfSearchWord.getText() != null) {
-                String tmp = tfSearchWord.getText();
-                if (!tmp.equals("")) {
-                    String query = String.format("SELECT word FROM av WHERE word LIKE '%s%%' ORDER BY word", tmp);
+                String searchWord = tfSearchWord.getText();
+                if (!searchWord.equals("")) {
                     try {
-                        lvSearchWordsList.getItems()
-                                .addAll(DatabaseConnect.getAllWordTargets(query));
+                        lvSearchWordsList.getItems().addAll(DatabaseConnect.getListWordTargets(searchWord));
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }

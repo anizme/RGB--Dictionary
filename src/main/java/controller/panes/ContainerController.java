@@ -1,5 +1,6 @@
 package controller.panes;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import controller.ApplicationStart;
 import dictionary.DictionaryManagement;
@@ -17,12 +18,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import com.jfoenix.controls.JFXButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.Duration;
-import services.DatabaseConnect;
-import services.DatabaseDictionary;
 import services.DatabaseConnect;
 import services.ImageViewSprite;
 import services.SpriteAnimation;
@@ -34,6 +33,7 @@ import java.util.ResourceBundle;
 
 public class ContainerController implements Initializable {
 
+    static boolean isLightMode;
     private DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private AnchorPane searchPane = null;
     private SearchController searchController;
@@ -47,79 +47,46 @@ public class ContainerController implements Initializable {
     private TranslateAPIController translateController;
     @FXML
     private JFXButton btExit;
-
     @FXML
     private JFXButton btAdd;
-
     private boolean isAdd;
-
     @FXML
     private ImageView btAddView;
-
     private Image addImage;
-
     private Image addImageDark;
-
     private ImageViewSprite btAddViewSprite;
-
     @FXML
     private JFXButton btGame;
-
     private boolean isGame;
-
     @FXML
     private ImageView btGameView;
-
     private Image gameImage;
-
     private Image gameImageDark;
-
     private ImageViewSprite btGameViewSprite;
-
     @FXML
     private JFXButton btSearch;
-
     private boolean isSearch;
-
     @FXML
     private ImageView btSearchView;
-
     private Image searchImage;
-
     private Image searchImageDark;
-
     private ImageViewSprite btSearchViewSprite;
-
     @FXML
     private JFXButton btTranslate;
-
     private boolean isTranslate;
-
     @FXML
     private ImageView btTranslateView;
-
     private Image translateImage;
-
     private ImageViewSprite btTranslateViewSprite;
-
     @FXML
     private JFXButton btSetting;
-
     private boolean isSetting;
-
     @FXML
     private ImageView btSettingView;
-
     private Image settingImage;
-
     private Image settingImageDark;
-
     private ImageViewSprite btSettingViewSprite;
-
     private JFXToggleButton switchMode;
-
-    static boolean isLightMode;
-
     private Image lightBackground;
     private Image darkBackground;
     private SpriteAnimation lightToDarkAnimation;
@@ -148,6 +115,7 @@ public class ContainerController implements Initializable {
     private KeyValue labelSize;
     private KeyValue labelText;
     private KeyFrame keyFrame;
+
     @FXML
     void exit(ActionEvent event) throws SQLException {
         if (DatabaseConnect.connection != null) {
@@ -155,6 +123,7 @@ public class ContainerController implements Initializable {
         }
         Platform.exit();
     }
+
     @FXML
     void add(ActionEvent event) {
         isAdd = true;
@@ -162,7 +131,6 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = false;
-        //menuDetails.setVisible(false);
         resetNavButton();
         showAddPane();
         addController.initData(this);
@@ -175,7 +143,6 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = false;
-        //menuDetails.setVisible(false);
         resetNavButton();
         showGamePane();
         gameController.initData(this);
@@ -188,7 +155,6 @@ public class ContainerController implements Initializable {
         isSearch = true;
         isSetting = false;
         isTranslate = false;
-        //menuDetails.setVisible(false);
         resetNavButton();
         showSearchPane();
         searchController.initData(this);
@@ -201,7 +167,6 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = true;
         isTranslate = false;
-        //menuDetails.setVisible(false);
         resetNavButton();
         showSettingPane();
         settingController.initData(this);
@@ -214,7 +179,6 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = true;
-        //menuDetails.setVisible(false);
         resetNavButton();
         showTranslatePane();
         translateController.initData(this);
@@ -391,7 +355,7 @@ public class ContainerController implements Initializable {
                         } else {
                             setText(item);
                         }
-                        if(getIndex() % 2 == 1)
+                        if (getIndex() % 2 == 1)
                             setStyle("-fx-background-color: white; -fx-text-fill: black;");
                         else
                             setStyle("-fx-background-color: whitesmoke; -fx-text-fill: black");
@@ -462,14 +426,14 @@ public class ContainerController implements Initializable {
                         super.updateItem(item, empty);
                         if (item == null || empty) {
                             setText(null);
-                            if(getIndex() % 2 == 1) {
+                            if (getIndex() % 2 == 1) {
                                 setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
                             } else {
                                 setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
                             }
                         } else {
                             setText(item);
-                            if(getIndex() % 2 == 1) {
+                            if (getIndex() % 2 == 1) {
                                 setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
                             } else {
                                 setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
@@ -557,7 +521,7 @@ public class ContainerController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        switchMode= settingController.getSwitchMode();
+        switchMode = settingController.getSwitchMode();
         isLightMode = true;
 
         lightBackground = new Image(this.getClass().getResourceAsStream("/images/dark_to_light_animation.png"));
@@ -646,7 +610,7 @@ public class ContainerController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 btSearchViewSprite = new ImageViewSprite(btSearchView, isLightMode ? searchImage : searchImageDark,
-                      5, 13, 65, 66, 66, 60);
+                        5, 13, 65, 66, 66, 60);
                 btSearchViewSprite.start();
                 menuLabel.setDisable(false);
                 menuLabel.setVisible(true);
