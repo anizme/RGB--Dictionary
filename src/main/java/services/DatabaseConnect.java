@@ -1,5 +1,7 @@
 package services;
 
+import dictionary.Word;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,12 +112,15 @@ public class DatabaseConnect {
     }
 
     public static void main(String[] args) throws SQLException {
-        String str = getMeaning("hello");
-        System.out.println("MAIN: " + str);
+        Scanner sc = new Scanner(System.in);
+        String tmp = sc.nextLine();
+        System.out.println("MAIN: " + getMeaning(tmp));
 
         // Close the database connection when you're done with it
         if (connection != null) {
             connection.close();
         }
+
+        sc.close();
     }
 }

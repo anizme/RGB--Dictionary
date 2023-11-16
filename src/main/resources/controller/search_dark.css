@@ -18,5 +18,38 @@
     -fx-border-color: white;
     -fx-font-size: 15;
     -fx-text-fill: white;
+    -fx-control-inner-background-color: #2f4f4f;
 }
 
+.web-view {
+    -fx-background-color: #2f4f4f;
+    -fx-border-color: white;
+}
+
+.html-editor
+{
+    -fx-font: 12 cambria;
+    -fx-border-color: white;
+    -fx-background-color: #2f4f4f;
+    /*
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    */
+}
+
+.html-editor .button, .html-editor .toggle-button
+{
+    -fx-background-color: lightblue;
+}
+
+.html-editor-background
+{
+    -fx-color-label-visible: true;
+    -fx-background-color: #2f4f4f;
+}
+
+.html-editor-foreground
+{
+    -fx-color-label-visible: true;
+    -fx-background-color: #2f4f4f;
+}
