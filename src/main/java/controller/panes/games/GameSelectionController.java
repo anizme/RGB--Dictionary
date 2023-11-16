@@ -2,6 +2,7 @@ package controller.panes.games;
 
 import com.jfoenix.controls.JFXButton;
 import controller.ApplicationStart;
+import controller.panes.ActionController;
 import controller.panes.GameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,11 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameSelectionController extends GameController implements Initializable {
+public class GameSelectionController extends ActionController implements Initializable {
     @FXML
     private ImageView defaultGame;
 
@@ -44,9 +46,15 @@ public class GameSelectionController extends GameController implements Initializ
     @FXML
     private AnchorPane gameContainer;
 
+    private GameController gameController;
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
     @FXML
     void btCrossWord(ActionEvent event) {
-        super.showCrossWord();
+        gameController.showCrossWord();
     }
 
     @FXML
@@ -61,13 +69,5 @@ public class GameSelectionController extends GameController implements Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("crossword.fxml"));
-            crossWordPane = fxmlLoader.load();
-            crossWordController = fxmlLoader.getController();
-            crossWordController.initData(this.state);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

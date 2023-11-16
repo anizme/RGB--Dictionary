@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="gameContainer" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.GameController" />
+
+<AnchorPane fx:id="gameContainer" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.GameController">
+   <children>
+      <AnchorPane fx:id="contentPane" layoutX="-2.0" layoutY="-3.0" prefHeight="555.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <JFXButton fx:id="btBack" layoutX="32.0" layoutY="22.0" onAction="#gameMenu" prefHeight="40.0" prefWidth="104.0" text="BACK" />
+   </children>
+</AnchorPane>

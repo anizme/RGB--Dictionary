@@ -1,5 +1,6 @@
 package controller.panes;
 
+import com.jfoenix.controls.JFXButton;
 import controller.ApplicationStart;
 import controller.panes.games.CrossWord;
 import controller.panes.games.GameSelectionController;
@@ -18,6 +19,12 @@ import java.util.ResourceBundle;
 public class GameController extends ActionController implements Initializable {
 
     @FXML
+    private JFXButton btBack;
+
+    @FXML
+    private AnchorPane contentPane;
+
+    @FXML
     private AnchorPane gameContainer;
 
     protected AnchorPane selectGame;
@@ -26,18 +33,17 @@ public class GameController extends ActionController implements Initializable {
     protected AnchorPane crossWordPane;
     protected CrossWord crossWordController;
 
-    private Button back = new Button("BACK");
-
+    @FXML
+    void gameMenu(ActionEvent event) {
+        showGamePane();
+    }
 
     private void setGamePane(AnchorPane contentPane) {
-        this.gameContainer.getChildren().setAll(contentPane);
-
+        this.contentPane.getChildren().setAll(contentPane);
     }
 
     public void showGamePane() {
         this.setGamePane(selectGame);
-        System.out.println("hi");
-        gameContainer.getChildren().add(back);
     }
 
     public void showCrossWord() {
@@ -46,17 +52,12 @@ public class GameController extends ActionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        back.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                showGamePane();
-            }
-        });
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("gameSelect.fxml"));
             selectGame = fxmlLoader.load();
             gameSelectionController = fxmlLoader.getController();
             gameSelectionController.initData(this.state);
+            gameSelectionController.setGameController(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
