@@ -40,10 +40,12 @@ public class GameController extends ActionController implements Initializable {
 
     private void setGamePane(AnchorPane contentPane) {
         this.contentPane.getChildren().setAll(contentPane);
+        btBack.setVisible(true);
     }
 
     public void showGamePane() {
         this.setGamePane(selectGame);
+        btBack.setVisible(false);
     }
 
     public void showCrossWord() {
@@ -56,8 +58,7 @@ public class GameController extends ActionController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("gameSelect.fxml"));
             selectGame = fxmlLoader.load();
             gameSelectionController = fxmlLoader.getController();
-            gameSelectionController.initData(this.state);
-            gameSelectionController.setGameController(this);
+            gameSelectionController.initGameControllerContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -66,7 +67,7 @@ public class GameController extends ActionController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("crossword.fxml"));
             crossWordPane = fxmlLoader.load();
             crossWordController = fxmlLoader.getController();
-            crossWordController.initData(this.state);
+            crossWordController.initGameControllerContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

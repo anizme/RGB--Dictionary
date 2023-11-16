@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameSelectionController extends ActionController implements Initializable {
+public class GameSelectionController extends GameAction implements Initializable {
     @FXML
     private ImageView defaultGame;
 
@@ -46,15 +46,9 @@ public class GameSelectionController extends ActionController implements Initial
     @FXML
     private AnchorPane gameContainer;
 
-    private GameController gameController;
-
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
-
     @FXML
     void btCrossWord(ActionEvent event) {
-        gameController.showCrossWord();
+        gameControllerContainer.showCrossWord();
     }
 
     @FXML

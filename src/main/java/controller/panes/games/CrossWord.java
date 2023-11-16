@@ -23,7 +23,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.*;
 
-public class CrossWord extends GameController implements Initializable {
+public class CrossWord extends GameAction implements Initializable {
 
     @FXML
     private GridPane initBoard;
@@ -89,11 +89,6 @@ public class CrossWord extends GameController implements Initializable {
         sc.close();
         if (PLAY != null)
             PLAY.setStyle("-fx-background-color: rgb(152, 238, 204);");
-    }
-
-    @FXML
-    void gameMenu(ActionEvent event) {
-        showGamePane();
     }
 
     private void addHoverEffect(Button button) {
