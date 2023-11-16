@@ -362,6 +362,10 @@ public class ContainerController implements Initializable {
             }
         });
 
+        settingController.getSettingPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/setting_dark.css").toString());
+        settingController.getSettingPane().getStylesheets().
+                add(this.getClass().getResource("/controller/setting.css").toString());
         settingController.getBackgroundView().setImage(lightBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
@@ -443,6 +447,10 @@ public class ContainerController implements Initializable {
             }
         });
 
+        settingController.getSettingPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/setting.css").toString());
+        settingController.getSettingPane().getStylesheets().
+                add(this.getClass().getResource("/controller/setting_dark.css").toString());
         settingController.getBackgroundView().setImage(darkBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 

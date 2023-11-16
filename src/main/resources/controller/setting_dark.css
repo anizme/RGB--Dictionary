@@ -1,0 +1,15 @@
+.pane {
+    -fx-border-color: #30cccc;
+    -fx-border-radius: 24;
+    -fx-border-width: 4;
+}
+
+.button {
+    -fx-background-color: #30cccc;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+}
+
+.label {
+    -fx-text-fill: #30cccc;
+}

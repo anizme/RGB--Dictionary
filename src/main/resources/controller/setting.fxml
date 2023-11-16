@@ -9,8 +9,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="settingPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SettingController">
+<AnchorPane fx:id="settingPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@setting.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SettingController">
    <children>
       <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,41 +21,80 @@
             <Rectangle2D height="538.0" width="800.0" />
          </viewport>
       </ImageView>
-      <JFXToggleButton fx:id="switchMode" layoutX="80.0" layoutY="138.0" text="Light" />
-      <Label layoutX="26.0" layoutY="158.0" prefHeight="18.0" prefWidth="54.0" text="Mode:" />
-      <Slider fx:id="slider" blockIncrement="0.125" layoutX="26.0" layoutY="434.0" majorTickUnit="0.5" max="2.0" min="0.5" minorTickCount="1" showTickLabels="true" showTickMarks="true" value="1.0" />
-      <Label layoutX="27.0" layoutY="401.0" styleClass="text-label" text="Speak Speed" />
-      <ChoiceBox fx:id="choiceBoxUK" layoutX="27.0" layoutY="273.0" prefWidth="150.0" />
-      <Label layoutX="31.0" layoutY="235.0" styleClass="text-label" text="UK" />
-      <Button ellipsisString="" layoutX="195.0" layoutY="272.0" mnemonicParsing="false" onAction="#voiceuk" styleClass="button-speak">
-         <graphic>
-            <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/speak.png" />
-               </image>
-            </ImageView>
-         </graphic>
+      <AnchorPane layoutX="87.0" layoutY="171.0" prefHeight="273.0" prefWidth="676.0" style="-fx-border-width: 4;" styleClass="pane">
+         <children>
+            <Slider fx:id="slider" blockIncrement="0.125" layoutX="420.0" layoutY="193.0" majorTickUnit="0.5" max="2.0" min="0.5" minorTickCount="1" prefHeight="28.0" prefWidth="140.0" showTickLabels="true" showTickMarks="true" value="1.0" />
+            <Label alignment="CENTER" layoutX="273.0" layoutY="183.0" prefHeight="38.0" prefWidth="130.0" styleClass="text-label" text="Speak Speed">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Label alignment="CENTER" layoutX="320.0" layoutY="45.0" prefHeight="38.0" prefWidth="36.0" styleClass="text-label" text="UK">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <ChoiceBox fx:id="choiceBoxUK" layoutX="376.0" layoutY="52.0" prefHeight="25.0" prefWidth="184.0" />
+            <Button ellipsisString="" layoutX="577.0" layoutY="51.0" mnemonicParsing="false" onAction="#voiceuk" styleClass="button-speak">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/speak.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ChoiceBox fx:id="choiceBoxUS" layoutX="376.0" layoutY="126.0" prefHeight="25.0" prefWidth="184.0" />
+            <Button ellipsisString="" layoutX="577.0" layoutY="124.0" mnemonicParsing="false" onAction="#voiceus" prefHeight="25.0" prefWidth="36.0" styleClass="button-speak">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/speak.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Label alignment="CENTER" layoutX="320.0" layoutY="119.0" prefHeight="38.0" prefWidth="36.0" styleClass="text-label" text="US">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Button ellipsisString="" layoutX="577.0" layoutY="193.0" mnemonicParsing="false" onAction="#voice" styleClass="button-speak">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/speak.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label alignment="CENTER" layoutX="53.0" layoutY="107.0" prefHeight="61.0" prefWidth="176.0" text="SOUND EFFECT">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button layoutX="374.0" layoutY="460.0" mnemonicParsing="false" onAction="#saveVoice" prefHeight="61.0" prefWidth="103.0" styleClass="button-main" text="Save">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
       </Button>
-      <ChoiceBox fx:id="choiceBoxUS" layoutX="27.0" layoutY="348.0" prefWidth="150.0" />
-      <Label layoutX="31.0" layoutY="317.0" styleClass="text-label" text="US" />
-      <Button ellipsisString="" layoutX="195.0" layoutY="434.0" mnemonicParsing="false" onAction="#voice" styleClass="button-speak">
-         <graphic>
-            <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/speak.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button ellipsisString="" layoutX="195.0" layoutY="348.0" mnemonicParsing="false" onAction="#voiceus" styleClass="button-speak">
-         <graphic>
-            <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/speak.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="405.0" layoutY="507.0" mnemonicParsing="false" onAction="#saveVoice" styleClass="button-main" text="Save" />
+      <AnchorPane layoutX="87.0" layoutY="34.0" prefHeight="116.0" prefWidth="676.0" style="-fx-border-width: 4;" styleClass="pane">
+         <children>
+            <Label alignment="CENTER" layoutX="38.0" layoutY="24.0" prefHeight="68.0" prefWidth="176.0" text="APPEARANCE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="385.0" layoutY="39.0" prefHeight="38.0" prefWidth="60.0" text="Light">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <JFXToggleButton fx:id="switchMode" contentDisplay="GRAPHIC_ONLY" layoutX="445.0" layoutY="24.0" prefHeight="25.0" prefWidth="36.0" size="12.0" text="Light" />
+            <Label alignment="CENTER" layoutX="521.0" layoutY="39.0" prefHeight="38.0" prefWidth="60.0" text="Dark">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
