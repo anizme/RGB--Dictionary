@@ -19,7 +19,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="10.0" onAction="#menu" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="10.0" prefHeight="45.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -109,23 +109,11 @@
             </JFXButton>
          </children>
       </VBox>
-      <AnchorPane fx:id="contentPane" layoutX="232.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
-      <AnchorPane fx:id="menuDetails" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="132.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="48.0">
-         <children>
-            <VBox prefHeight="554.0" prefWidth="104.0" spacing="10.0" style="-fx-background-color: #f6f6f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Search" textAlignment="CENTER">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </JFXButton>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#add" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Add" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#game" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Game" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#translate" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Translate" textAlignment="CENTER" />
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#setting" prefHeight="70.0" prefWidth="150.0" styleClass="detailsBar" text="Setting" textAlignment="CENTER" />
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="contentPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
+      <Label fx:id="menuLabel" alignment="CENTER" disable="true" layoutX="80.0" layoutY="478.0" prefHeight="30.0" prefWidth="0.0" styleClass="menu-label" visible="false">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

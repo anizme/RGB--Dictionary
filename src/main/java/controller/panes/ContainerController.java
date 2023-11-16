@@ -3,8 +3,7 @@ package controller.panes;
 import com.jfoenix.controls.JFXToggleButton;
 import controller.ApplicationStart;
 import dictionary.DictionaryManagement;
-import javafx.animation.Animation;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -112,9 +111,8 @@ public class ContainerController implements Initializable {
 
     private ImageViewSprite btSettingViewSprite;
 
-//    @FXML
-//    private JFXToggleButton switchMode;
     private JFXToggleButton switchMode;
+
     static boolean isLightMode;
 
     private Image lightBackground;
@@ -129,13 +127,19 @@ public class ContainerController implements Initializable {
     private AnchorPane contentPane;
 
     @FXML
-    private AnchorPane menuDetails;
-
-    @FXML
     private VBox navBar;
 
     @FXML
     private Label welcomeLabel;
+
+    @FXML
+    private Label menuLabel;
+
+    private Timeline timeline;
+    private KeyValue labelPosition;
+    private KeyValue labelSize;
+    private KeyValue labelText;
+    private KeyFrame keyFrame;
 
     @FXML
     void add(ActionEvent event) {
@@ -144,7 +148,7 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = false;
-        menuDetails.setVisible(false);
+        //menuDetails.setVisible(false);
         resetNavButton();
         showAddPane();
         addController.initData(this);
@@ -157,7 +161,7 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = false;
-        menuDetails.setVisible(false);
+        //menuDetails.setVisible(false);
         resetNavButton();
         showGamePane();
         gameController.initData(this);
@@ -170,7 +174,7 @@ public class ContainerController implements Initializable {
         isSearch = true;
         isSetting = false;
         isTranslate = false;
-        menuDetails.setVisible(false);
+        //menuDetails.setVisible(false);
         resetNavButton();
         showSearchPane();
         searchController.initData(this);
@@ -183,7 +187,7 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = true;
         isTranslate = false;
-        menuDetails.setVisible(false);
+        //menuDetails.setVisible(false);
         resetNavButton();
         showSettingPane();
         settingController.initData(this);
@@ -196,15 +200,10 @@ public class ContainerController implements Initializable {
         isSearch = false;
         isSetting = false;
         isTranslate = true;
-        menuDetails.setVisible(false);
+        //menuDetails.setVisible(false);
         resetNavButton();
         showTranslatePane();
         translateController.initData(this);
-    }
-
-    @FXML
-    void menu(ActionEvent event) {
-        menuDetails.setVisible(true);
     }
 
     private void setContentPane(AnchorPane contentPane) {
@@ -473,10 +472,26 @@ public class ContainerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        navBar.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                menuLabel.setDisable(true);
+                menuLabel.setVisible(false);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 478);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 0);
+                labelText = new KeyValue(menuLabel.textProperty(), "");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
+            }
+        });
+
         TranslateTransition transition = new TranslateTransition(Duration.millis(9000), welcomeLabel);
         transition.setByX(-1400);
         transition.setCycleCount(Animation.INDEFINITE);
         transition.play();
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
             searchPane = fxmlLoader.load();
@@ -523,7 +538,6 @@ public class ContainerController implements Initializable {
         }
 
         switchMode= settingController.getSwitchMode();
-        menuDetails.setVisible(false);
         isLightMode = true;
 
         lightBackground = new Image(this.getClass().getResourceAsStream("/images/dark_to_light_animation.png"));
@@ -562,6 +576,15 @@ public class ContainerController implements Initializable {
                 btAddViewSprite = new ImageViewSprite(btAddView, isLightMode ? addImage : addImageDark,
                         4, 11, 44, 67, 67, 40);
                 btAddViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 158);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 50);
+                labelText = new KeyValue(menuLabel.textProperty(), "ADD");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btAdd.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -579,6 +602,15 @@ public class ContainerController implements Initializable {
                 btGameViewSprite = new ImageViewSprite(btGameView, isLightMode ? gameImage : gameImageDark,
                         6, 19, 114, 173, 173, 63);
                 btGameViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 238);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 70);
+                labelText = new KeyValue(menuLabel.textProperty(), "GAME");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btGame.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -596,6 +628,15 @@ public class ContainerController implements Initializable {
                 btSearchViewSprite = new ImageViewSprite(btSearchView, isLightMode ? searchImage : searchImageDark,
                       5, 13, 65, 66, 66, 60);
                 btSearchViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 78);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 80);
+                labelText = new KeyValue(menuLabel.textProperty(), "SEARCH");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btSearch.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -613,6 +654,15 @@ public class ContainerController implements Initializable {
                 btSettingViewSprite = new ImageViewSprite(btSettingView, isLightMode ? settingImage : settingImageDark,
                         5, 11, 55, 66, 66, 60);
                 btSettingViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 398);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 90);
+                labelText = new KeyValue(menuLabel.textProperty(), "SETTING");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btSetting.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -630,6 +680,15 @@ public class ContainerController implements Initializable {
                 btTranslateViewSprite = new ImageViewSprite(btTranslateView, translateImage,
                         5, 9, 43, 68, 68, 30);
                 btTranslateViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 318);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 120);
+                labelText = new KeyValue(menuLabel.textProperty(), "TRANSLATE");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btTranslate.setOnMouseExited(new EventHandler<MouseEvent>() {
