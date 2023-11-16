@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="searchPane" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
+<AnchorPane fx:id="searchPane" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
    <children>
       <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -117,6 +118,30 @@
             </HBox>
             <WebView fx:id="wvMeaning" layoutX="39.0" layoutY="186.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <JFXButton fx:id="stared" layoutX="347.0" layoutY="66.0" onAction="#removeFavorite" prefHeight="31.0" prefWidth="22.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT">
+               <font>
+                  <Font size="1.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="noStared" layoutX="347.0" layoutY="66.0" onAction="#addFavorite" prefHeight="31.0" prefWidth="22.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT" visible="false">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="1.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

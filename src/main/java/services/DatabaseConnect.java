@@ -4,12 +4,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //TODO: change PRJ_PATH to run
 public class DatabaseConnect {
     private static final String DB_PATH = "src\\\\main\\\\resources\\\\data\\\\dict_hh.db";
     public static Connection connection = null;
-    private static String prj_path = "C:\\Users\\hiren\\Documents\\UET subjects\\OOP\\INT2204-23_OOP\\Dictionary-RGB\\";
+    private static String prj_path = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\";
     private static final String PRJ_PATH = prj_path.replace("\\", "\\\\");
     private static final String SQL_URL = "jdbc:sqlite:" + PRJ_PATH + DB_PATH;
 
@@ -109,10 +111,47 @@ public class DatabaseConnect {
         return listWord;
     }
 
+    public static String getShortMeaning(String src) throws SQLException {
+        String ans = "";
+        if (connection == null) {
+            tryConnect();
+        }
+        String query = String.format("SELECT * FROM av WHERE word LIKE '%s'", src);
+        System.out.println(query);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            ans = resultSet.getString(4);
+        }
+        return ans;
+    }
+
+    public static String getShortPro(String src) throws SQLException {
+        String ans = "";
+        if (connection == null) {
+            tryConnect();
+        }
+        String query = String.format("SELECT * FROM av WHERE word LIKE '%s'", src);
+        System.out.println(query);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            ans = resultSet.getString(5);
+        }
+        return ans;
+    }
+
+    public static String getWordByRegex(String pattern, String src) {
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(src);
+        m.find();
+        return m.group(2);
+    }
+
     public static void main(String[] args) throws SQLException {
         String str = getMeaning("hello");
         System.out.println("MAIN: " + str);
-
+        System.out.println(getWordByRegex("(\\<h1>)(.*)(\\<\\/h1>)", str));
         // Close the database connection when you're done with it
         if (connection != null) {
             connection.close();

@@ -303,6 +303,9 @@ public class CrossWord extends ActionController implements Initializable {
             }
             for (Node node : listNode) {
                 Button button1 = (Button) node;
+                if (button1.getStyle().equals(cocolor)) {
+                    continue;
+                }
                 button1.setStyle(dfcolor);
                 addHoverEffect(button1);
             }

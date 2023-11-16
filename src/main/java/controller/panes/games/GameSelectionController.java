@@ -68,6 +68,21 @@ public class GameSelectionController extends GameController implements Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (crossWord != null) {
+            crossWord.setOnMouseEntered(e -> {
+                defaultGame.setVisible(false);
+                defBG.setVisible(false);
+                crossWordGame.setVisible(true);
+                crwBG.setVisible(true);
+            });
+
+            crossWord.setOnMouseExited(e -> {
+                defaultGame.setVisible(true);
+                defBG.setVisible(true);
+                crossWordGame.setVisible(false);
+                crwBG.setVisible(false);
+            });
+        }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("crossword.fxml"));
             crossWordPane = fxmlLoader.load();

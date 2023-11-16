@@ -1,5 +1,6 @@
 package controller.panes;
 
+import com.jfoenix.controls.JFXButton;
 import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
 import controller.Alert.NoOptionAlert;
@@ -24,10 +25,7 @@ import services.VoiceRSS;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.ResourceBundle;
-
-import java.util.Stack;
+import java.util.*;
 
 import static controller.ApplicationStart.dictionaryManagement;
 
@@ -52,9 +50,17 @@ public class SearchController extends ActionController implements Initializable 
     private HTMLEditor htmlUpdateMeaning;
 
     @FXML
+    private JFXButton noStared;
+
+    @FXML
+    private JFXButton stared;
+
+    @FXML
     private Button btSave;
 
-    private Stack<String> history = new Stack<>();
+    public Stack<String> history = new Stack<>();
+
+    static Map<String, String> favorite = new HashMap<>();
 
     private boolean check = true;
 
@@ -83,7 +89,14 @@ public class SearchController extends ActionController implements Initializable 
     void lookup(ActionEvent event) throws SQLException {
         wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
         //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
-        history.push(tfSearchWord.getText() + "  ⓡ");
+        if (favorite.containsValue(tfSearchWord.getText().toLowerCase())) {
+            noStared.setVisible(false);
+            stared.setVisible(true);
+        } else {
+            noStared.setVisible(true);
+            stared.setVisible(false);
+        }
+        history.push(tfSearchWord.getText());
     }
 
     @FXML
@@ -91,10 +104,19 @@ public class SearchController extends ActionController implements Initializable 
         if (htmlUpdateMeaning.isVisible()) {
             htmlUpdateMeaning.setVisible(false);
             btSave.setVisible(false);
+            if (favorite.containsValue(tfSearchWord.getText())) {
+                noStared.setVisible(false);
+                stared.setVisible(true);
+            } else {
+                noStared.setVisible(true);
+                stared.setVisible(false);
+            }
         } else {
             htmlUpdateMeaning.setVisible(true);
             btSave.setVisible(true);
             htmlUpdateMeaning.setHtmlText(DatabaseConnect.getMeaning(tfSearchWord.getText()));
+            noStared.setVisible(false);
+            stared.setVisible(false);
         }
     }
 
@@ -141,8 +163,30 @@ public class SearchController extends ActionController implements Initializable 
         }
     }
 
+    public void addFavorite(ActionEvent event) throws Exception {
+        String str = tfSearchWord.getText();
+        favorite.put(str, str);
+        noStared.setVisible(false);
+        stared.setVisible(true);
+    }
+
+    public void removeFavorite(ActionEvent event) throws Exception {
+        int size = favorite.size();
+        for (String x : favorite.keySet()) {
+            String s = favorite.get(x);
+            if (s.equals(tfSearchWord.getText())) {
+                favorite.remove(x);
+                break;
+            }
+        }
+        noStared.setVisible(true);
+        stared.setVisible(false);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        noStared.setVisible(true);
+        stared.setVisible(false);
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
             if (tfSearchWord.getText() != null) {
@@ -175,7 +219,14 @@ public class SearchController extends ActionController implements Initializable 
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    history.push(tfSearchWord.getText() + "  ⓡ");
+                    if (favorite.containsValue(tfSearchWord.getText().toLowerCase())) {
+                        noStared.setVisible(false);
+                        stared.setVisible(true);
+                    } else {
+                        noStared.setVisible(true);
+                        stared.setVisible(false);
+                    }
+                    history.push(tfSearchWord.getText());
                 }
             }
         });

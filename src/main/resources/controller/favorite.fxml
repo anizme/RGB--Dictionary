@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: AFD3E2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.FavoriteController">
+   <children>
+      <ListView fx:id="favoriteList" layoutX="96.0" layoutY="150.0" prefHeight="366.0" prefWidth="454.0" style="-fx-background-radius: 1em;" />
+      <JFXButton fx:id="update" layoutX="567.0" layoutY="150.0" onAction="#updateListView" prefHeight="39.0" prefWidth="66.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="UPDATE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="favoriteTextField" alignment="CENTER" layoutX="96.0" layoutY="85.0" prefHeight="39.0" prefWidth="354.0" promptText="Type your word here." style="-fx-background-radius: 1em;" />
+      <JFXButton fx:id="search" layoutX="483.0" layoutY="85.0" onAction="#searchFavorite" prefHeight="39.0" prefWidth="66.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="SEARCH" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="567.0" layoutY="213.0" prefHeight="39.0" prefWidth="93.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="FLASH CARD" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

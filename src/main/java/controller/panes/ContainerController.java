@@ -40,6 +40,8 @@ public class ContainerController implements Initializable {
     private SettingController settingController;
     private AnchorPane translatePane = null;
     private TranslateAPIController translateController;
+    private AnchorPane favoritePane = null;
+    private FavoriteController favoriteController;
     @FXML
     private JFXButton btExit;
 
@@ -110,6 +112,14 @@ public class ContainerController implements Initializable {
     private Image settingImageDark;
 
     private ImageViewSprite btSettingViewSprite;
+
+    @FXML
+    private JFXButton btFavorite;
+
+    private boolean isFavorite;
+
+    private ImageView btFavoriteView;
+
 
 //    @FXML
 //    private JFXToggleButton switchMode;
@@ -199,6 +209,12 @@ public class ContainerController implements Initializable {
         translateController.initData(this);
     }
 
+    @FXML
+    void favorite(ActionEvent event) {
+        resetNavButton();
+        showFavoritePane();
+        favoriteController.initData(this);
+    }
     @FXML
     void menu(ActionEvent event) {
         menuPane.setVisible(true);
@@ -313,6 +329,10 @@ public class ContainerController implements Initializable {
 
     public void showTranslatePane() {
         this.setContentPane(translatePane);
+    }
+
+    public void showFavoritePane() {
+        this.setContentPane(favoritePane);
     }
 
     public void lightModeSetting() {
@@ -436,6 +456,15 @@ public class ContainerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("translateAPI.fxml"));
             translatePane = fxmlLoader.load();
             translateController = fxmlLoader.getController();
+            translateController.initData(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("favorite.fxml"));
+            favoritePane = fxmlLoader.load();
+            favoriteController = fxmlLoader.getController();
             translateController.initData(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
