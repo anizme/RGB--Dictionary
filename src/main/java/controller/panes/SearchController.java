@@ -61,7 +61,7 @@ public class SearchController extends ActionController implements Initializable 
     @FXML
     private Button btSave;
 
-    public Stack<String> history = new Stack<>();
+    public Set<String> history = new HashSet<>();
 
     static Map<String, String> favorite = new HashMap<>();
 
@@ -131,8 +131,13 @@ public class SearchController extends ActionController implements Initializable 
             noStared.setVisible(true);
             stared.setVisible(false);
         }
-        history.push(tfSearchWord.getText());
-        history.push(tfSearchWord.getText());
+        for (String iterator : history) {
+            if (iterator.equals(tfSearchWord.getText())) {
+                history.remove(iterator);
+                break;
+            }
+        }
+        history.add(tfSearchWord.getText());
     }
 
     @FXML
@@ -270,9 +275,9 @@ public class SearchController extends ActionController implements Initializable 
                         throw new RuntimeException(ex);
                     }
                 } else {
-                    Collections.reverse(history);
+                    //Collections.reverse(history);
                     lvSearchWordsList.getItems().addAll(history);
-                    Collections.reverse(history);
+                    //Collections.reverse(history);
                     check = false;
                 }
             }
@@ -303,7 +308,7 @@ public class SearchController extends ActionController implements Initializable 
                         noStared.setVisible(true);
                         stared.setVisible(false);
                     }
-                    history.push(tfSearchWord.getText());
+                    history.add(tfSearchWord.getText());
                 }
             }
         });
@@ -312,9 +317,9 @@ public class SearchController extends ActionController implements Initializable 
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (tfSearchWord.getText().isEmpty() && check) {
-                    Collections.reverse(history);
+                    //Collections.reverse(history);
                     lvSearchWordsList.getItems().addAll(history);
-                    Collections.reverse(history);
+                    //Collections.reverse(history);
                     check = false;
                 } else if (!tfSearchWord.getText().isEmpty()) {
                     check = true;
