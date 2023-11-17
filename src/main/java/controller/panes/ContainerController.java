@@ -1,8 +1,10 @@
 package controller.panes;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import controller.ApplicationStart;
 import dictionary.DictionaryManagement;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,15 +12,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import com.jfoenix.controls.JFXButton;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import services.DatabaseConnect;
-import services.DatabaseDictionary;
 import services.ImageViewSprite;
 import services.SpriteAnimation;
 
@@ -29,6 +33,7 @@ import java.util.ResourceBundle;
 
 public class ContainerController implements Initializable {
 
+    static boolean isLightMode;
     private DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private AnchorPane searchPane = null;
     private SearchController searchController;
@@ -44,73 +49,44 @@ public class ContainerController implements Initializable {
     private FavoriteController favoriteController;
     @FXML
     private JFXButton btExit;
-
     @FXML
     private JFXButton btAdd;
-
     private boolean isAdd;
-
     @FXML
     private ImageView btAddView;
-
     private Image addImage;
-
     private Image addImageDark;
-
     private ImageViewSprite btAddViewSprite;
-
     @FXML
     private JFXButton btGame;
-
     private boolean isGame;
-
     @FXML
     private ImageView btGameView;
-
     private Image gameImage;
-
     private Image gameImageDark;
-
     private ImageViewSprite btGameViewSprite;
-
     @FXML
     private JFXButton btSearch;
-
     private boolean isSearch;
-
     @FXML
     private ImageView btSearchView;
-
     private Image searchImage;
-
     private Image searchImageDark;
-
     private ImageViewSprite btSearchViewSprite;
-
     @FXML
     private JFXButton btTranslate;
-
     private boolean isTranslate;
-
     @FXML
     private ImageView btTranslateView;
-
     private Image translateImage;
-
     private ImageViewSprite btTranslateViewSprite;
-
     @FXML
     private JFXButton btSetting;
-
     private boolean isSetting;
-
     @FXML
     private ImageView btSettingView;
-
     private Image settingImage;
-
     private Image settingImageDark;
-
     private ImageViewSprite btSettingViewSprite;
 
     @FXML
@@ -124,8 +100,6 @@ public class ContainerController implements Initializable {
 //    @FXML
 //    private JFXToggleButton switchMode;
     private JFXToggleButton switchMode;
-    private boolean isLightMode;
-
     private Image lightBackground;
     private Image darkBackground;
     private SpriteAnimation lightToDarkAnimation;
@@ -142,13 +116,25 @@ public class ContainerController implements Initializable {
 
     @FXML
     private VBox navBar;
+
+    @FXML
+    private Label welcomeLabel;
+
+    @FXML
+    private Label menuLabel;
+
+    private Timeline timeline;
+    private KeyValue labelPosition;
+    private KeyValue labelSize;
+    private KeyValue labelText;
+    private KeyFrame keyFrame;
+
     @FXML
     void exit(ActionEvent event) throws SQLException {
-        if (DatabaseConnect.connection != null) {
-            DatabaseConnect.connection.close();
-        }
+        DatabaseConnect.close();
         Platform.exit();
     }
+
     @FXML
     void add(ActionEvent event) {
         isAdd = true;
@@ -362,9 +348,47 @@ public class ContainerController implements Initializable {
 //        gameController.getBackgroundImage().setImage(darkBackground);
 //        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
 
+        searchController.getSearchPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/search_dark.css").toString());
+        searchController.getSearchPane().getStylesheets().
+                add(this.getClass().getResource("/controller/search.css").toString());
         searchController.getBackgroundView().setImage(darkBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        try {
+            if (searchController.isUpdate()) {
+                searchController.getHtmlEditor().setHtmlText("<body style='background-color: white; color: black'/>"
+                        + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
+            }
+            searchController.getWebView().getEngine().loadContent("<body style='background-color: white; color: black'/>"
+                    + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        searchController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                        } else {
+                            setText(item);
+                        }
+                        if (getIndex() % 2 == 1)
+                            setStyle("-fx-background-color: white; -fx-text-fill: black;");
+                        else
+                            setStyle("-fx-background-color: whitesmoke; -fx-text-fill: black");
+                    }
+                };
+            }
+        });
 
+        settingController.getSettingPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/setting_dark.css").toString());
+        settingController.getSettingPane().getStylesheets().
+                add(this.getClass().getResource("/controller/setting.css").toString());
         settingController.getBackgroundView().setImage(lightBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
@@ -401,9 +425,55 @@ public class ContainerController implements Initializable {
 //        gameController.getBackgroundImage().setImage(lightBackground);
 //        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
 
+        searchController.getSearchPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/search.css").toString());
+        searchController.getSearchPane().getStylesheets().
+                add(this.getClass().getResource("/controller/search_dark.css").toString());
         searchController.getBackgroundView().setImage(lightBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        try {
+            if (searchController.isUpdate()) {
+                searchController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+                        + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
+            }
+            searchController.getWebView().getEngine().loadContent("<body style='background-color: #2f4f4f; color: white'/>"
+                    + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        searchController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                            if (getIndex() % 2 == 1) {
+                                setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                            } else {
+                                setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                            }
+                        } else {
+                            setText(item);
+                            if (getIndex() % 2 == 1) {
+                                setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                            } else {
+                                setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                            }
+                        }
+
+                    }
+                };
+            }
+        });
+
+        settingController.getSettingPane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/setting.css").toString());
+        settingController.getSettingPane().getStylesheets().
+                add(this.getClass().getResource("/controller/setting_dark.css").toString());
         settingController.getBackgroundView().setImage(darkBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
@@ -415,7 +485,26 @@ public class ContainerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        navBar.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                menuLabel.setDisable(true);
+                menuLabel.setVisible(false);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 478);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 0);
+                labelText = new KeyValue(menuLabel.textProperty(), "");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
+            }
+        });
         menuPane.setVisible(false);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(9000), welcomeLabel);
+        transition.setByX(-1400);
+        transition.setCycleCount(Animation.INDEFINITE);
+        transition.play();
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
             searchPane = fxmlLoader.load();
@@ -470,7 +559,7 @@ public class ContainerController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        switchMode= settingController.getSwitchMode();
+        switchMode = settingController.getSwitchMode();
         isLightMode = true;
 
         lightBackground = new Image(this.getClass().getResourceAsStream("/images/dark_to_light_animation.png"));
@@ -509,6 +598,15 @@ public class ContainerController implements Initializable {
                 btAddViewSprite = new ImageViewSprite(btAddView, isLightMode ? addImage : addImageDark,
                         4, 11, 44, 67, 67, 40);
                 btAddViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 158);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 50);
+                labelText = new KeyValue(menuLabel.textProperty(), "ADD");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btAdd.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -526,6 +624,15 @@ public class ContainerController implements Initializable {
                 btGameViewSprite = new ImageViewSprite(btGameView, isLightMode ? gameImage : gameImageDark,
                         6, 19, 114, 173, 173, 63);
                 btGameViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 238);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 70);
+                labelText = new KeyValue(menuLabel.textProperty(), "GAME");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btGame.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -541,8 +648,17 @@ public class ContainerController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 btSearchViewSprite = new ImageViewSprite(btSearchView, isLightMode ? searchImage : searchImageDark,
-                      5, 13, 65, 66, 66, 60);
+                        5, 13, 65, 66, 66, 60);
                 btSearchViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 78);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 80);
+                labelText = new KeyValue(menuLabel.textProperty(), "SEARCH");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btSearch.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -560,6 +676,15 @@ public class ContainerController implements Initializable {
                 btSettingViewSprite = new ImageViewSprite(btSettingView, isLightMode ? settingImage : settingImageDark,
                         5, 11, 55, 66, 66, 60);
                 btSettingViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 398);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 90);
+                labelText = new KeyValue(menuLabel.textProperty(), "SETTING");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btSetting.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -577,6 +702,15 @@ public class ContainerController implements Initializable {
                 btTranslateViewSprite = new ImageViewSprite(btTranslateView, translateImage,
                         5, 9, 43, 68, 68, 30);
                 btTranslateViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 318);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 120);
+                labelText = new KeyValue(menuLabel.textProperty(), "TRANSLATE");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         });
         btTranslate.setOnMouseExited(new EventHandler<MouseEvent>() {

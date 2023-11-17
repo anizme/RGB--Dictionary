@@ -13,6 +13,8 @@
     -fx-scale-z: 1.2;
 }
 
-.detailsBar:hover {
-    -fx-background-color: #255F85;
+.menu-label {
+    -fx-background-color: #30cccc;
+    -fx-background-radius: 7;
+    -fx-text-fill: white;
 }

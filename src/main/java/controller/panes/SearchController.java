@@ -4,18 +4,18 @@ import com.jfoenix.controls.JFXButton;
 import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
 import controller.Alert.NoOptionAlert;
-import controller.ApplicationStart;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
@@ -26,6 +26,9 @@ import services.VoiceRSS;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.Collections;
+import java.util.ResourceBundle;
+import java.util.Stack;
 
 import static controller.ApplicationStart.dictionaryManagement;
 
@@ -64,8 +67,34 @@ public class SearchController extends ActionController implements Initializable 
 
     private boolean check = true;
 
+    private boolean isUpdate = false;
+
     public ImageView getBackgroundView() {
         return backgroundView;
+    }
+
+    public AnchorPane getSearchPane() {
+        return searchPane;
+    }
+
+    public TextField getTfSearchWord() {
+        return tfSearchWord;
+    }
+
+    public boolean isUpdate() {
+        return isUpdate;
+    }
+
+    public ListView<String> getListView() {
+        return lvSearchWordsList;
+    }
+
+    public WebView getWebView() {
+        return wvMeaning;
+    }
+
+    public HTMLEditor getHtmlEditor() {
+        return htmlUpdateMeaning;
     }
 
     @FXML
@@ -87,7 +116,13 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     void lookup(ActionEvent event) throws SQLException {
-        wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
+        if (ContainerController.isLightMode) {
+            wvMeaning.getEngine().loadContent("<body style='background-color: white; color: black;'/>"
+                    + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+        } else {
+            wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
+                    + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+        }
         //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
         if (favorite.containsValue(tfSearchWord.getText().toLowerCase())) {
             noStared.setVisible(false);
@@ -97,11 +132,19 @@ public class SearchController extends ActionController implements Initializable 
             stared.setVisible(false);
         }
         history.push(tfSearchWord.getText());
+        history.push(tfSearchWord.getText());
     }
 
     @FXML
     void update(ActionEvent event) throws SQLException {
+        if (tfSearchWord.textProperty().isEqualTo("").get()) {
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
+                    "Nothing to update");
+            alert.alertAction();
+            return;
+        }
         if (htmlUpdateMeaning.isVisible()) {
+            isUpdate = false;
             htmlUpdateMeaning.setVisible(false);
             btSave.setVisible(false);
             if (favorite.containsValue(tfSearchWord.getText())) {
@@ -112,8 +155,17 @@ public class SearchController extends ActionController implements Initializable 
                 stared.setVisible(false);
             }
         } else {
+            isUpdate = true;
             htmlUpdateMeaning.setVisible(true);
             btSave.setVisible(true);
+
+            if (ContainerController.isLightMode) {
+                htmlUpdateMeaning.setHtmlText("<body style='background-color: white; color: black'/>"
+                        + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+            } else {
+                htmlUpdateMeaning.setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+                        + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+            }
             htmlUpdateMeaning.setHtmlText(DatabaseConnect.getMeaning(tfSearchWord.getText()));
             noStared.setVisible(false);
             stared.setVisible(false);
@@ -127,31 +179,51 @@ public class SearchController extends ActionController implements Initializable 
         if (htmlUpdateMeaning.getHtmlText().isEmpty()) {
             alert.alertAction();
         } else {
-            if (dictionaryManagement.dictionaryUpdate(tfSearchWord.getText(), htmlUpdateMeaning.getHtmlText())) {
+            try {
+                DatabaseConnect.updateWord(tfSearchWord.getText(), htmlUpdateMeaning.getHtmlText());
                 alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
                         "Updated new meaning for this word.");
                 alert.alertAction();
                 htmlUpdateMeaning.setVisible(false);
-                //wvMeaning.setText(htmlUpdateMeaning.getText());
-                wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(htmlUpdateMeaning.getHtmlText()));
-            } else {
+                //btSave.setVisible(false);
+                wvMeaning.getEngine().loadContent(htmlUpdateMeaning.getHtmlText());
+            } catch (Exception e) {
                 alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
                         "Failed to update new meaning for this word.");
                 alert.alertAction();
             }
+//            if (dictionaryManagement.dictionaryUpdate(tfSearchWord.getText(), htmlUpdateMeaning.getHtmlText())) {
+//                alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
+//                        "Updated new meaning for this word.");
+//                alert.alertAction();
+//                htmlUpdateMeaning.setVisible(false);
+//                //wvMeaning.setText(htmlUpdateMeaning.getText());
+//                wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(htmlUpdateMeaning.getHtmlText()));
+//            } else {
+//                alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
+//                        "Failed to update new meaning for this word.");
+//                alert.alertAction();
+//            }
         }
     }
 
     @FXML
-    void remove(ActionEvent event) {
-        System.out.println("remove");
+    void remove(ActionEvent event) throws SQLException {
+        if (tfSearchWord.textProperty().isEqualTo("").get()) {
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
+                    "Nothing to delete");
+            alert.alertAction();
+            return;
+        }
         DetailAlert confirmationAlert = new ConfirmationAlert("CONFIRM..."
                 , "Make sure you want to remove this word from the dictionary.");
         if (confirmationAlert.alertAction()) {
-            boolean canRemove = dictionaryManagement.dictionaryRemove(tfSearchWord.getText());
+            //boolean canRemove = dictionaryManagement.dictionaryRemove(tfSearchWord.getText());
+            boolean canRemove = !lvSearchWordsList.getItems().isEmpty();
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.INFORMATION, "Notification"
                     , "Removed " + tfSearchWord.getText());
             if (canRemove) {
+                DatabaseConnect.deleteWord(tfSearchWord.getText());
                 alert.alertAction();
                 wvMeaning.getEngine().loadContent("");
                 tfSearchWord.clear();
@@ -190,12 +262,10 @@ public class SearchController extends ActionController implements Initializable 
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
             if (tfSearchWord.getText() != null) {
-                String tmp = tfSearchWord.getText();
-                if (!tmp.equals("")) {
-                    String querry = String.format("SELECT word FROM av WHERE word LIKE '%s%%' ORDER BY word", tmp);
+                String searchWord = tfSearchWord.getText();
+                if (!searchWord.equals("")) {
                     try {
-                        lvSearchWordsList.getItems()
-                                .addAll(DatabaseConnect.getAllWordTargets(querry));
+                        lvSearchWordsList.getItems().addAll(DatabaseConnect.getListWordTargets(searchWord));
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -215,7 +285,14 @@ public class SearchController extends ActionController implements Initializable 
                     tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
                     //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
                     try {
-                        wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                        //wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                        if (ContainerController.isLightMode) {
+                            wvMeaning.getEngine().loadContent("<body style='background-color: white; color: black;'/>"
+                                    + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                        } else {
+                            wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
+                                    + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                        }
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

@@ -116,7 +116,7 @@
                   </Button>
                </children>
             </HBox>
-            <WebView fx:id="wvMeaning" layoutX="39.0" layoutY="186.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <WebView fx:id="wvMeaning" layoutY="186.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <JFXButton fx:id="stared" layoutX="347.0" layoutY="66.0" onAction="#removeFavorite" prefHeight="31.0" prefWidth="22.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT">
                <font>

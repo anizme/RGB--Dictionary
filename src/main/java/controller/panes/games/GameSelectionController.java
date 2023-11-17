@@ -12,12 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 
-import javax.security.auth.login.CredentialException;
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameSelectionController extends GameController implements Initializable {
+public class GameSelectionController extends GameAction implements Initializable {
     @FXML
     private ImageView defaultGame;
 
@@ -25,9 +25,6 @@ public class GameSelectionController extends GameController implements Initializ
     private ImageView crossWordGame;
     @FXML
     private JFXButton crossWord;
-
-    private AnchorPane crossWordPane;
-    private CrossWord crossWordController;
 
     @FXML
     private ImageView GAME2;
@@ -46,14 +43,13 @@ public class GameSelectionController extends GameController implements Initializ
     @FXML
     private Rectangle defBG;
 
-
-
     @FXML
     private AnchorPane gameContainer;
 
+
     @FXML
     void btCrossWord(ActionEvent event) {
-        super.setGamePane(crossWordPane);
+        gameControllerContainer.showCrossWord();
     }
 
     @FXML
@@ -68,28 +64,5 @@ public class GameSelectionController extends GameController implements Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (crossWord != null) {
-            crossWord.setOnMouseEntered(e -> {
-                defaultGame.setVisible(false);
-                defBG.setVisible(false);
-                crossWordGame.setVisible(true);
-                crwBG.setVisible(true);
-            });
-
-            crossWord.setOnMouseExited(e -> {
-                defaultGame.setVisible(true);
-                defBG.setVisible(true);
-                crossWordGame.setVisible(false);
-                crwBG.setVisible(false);
-            });
-        }
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("crossword.fxml"));
-            crossWordPane = fxmlLoader.load();
-            crossWordController = fxmlLoader.getController();
-            crossWordController.initData(this.state);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

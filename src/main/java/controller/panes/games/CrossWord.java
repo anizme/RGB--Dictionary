@@ -2,7 +2,7 @@ package controller.panes.games;
 
 import algorithms.Sort;
 import com.jfoenix.controls.JFXButton;
-import controller.panes.ActionController;
+import controller.panes.GameController;
 import dictionary.Word;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
@@ -22,7 +23,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.*;
 
-public class CrossWord extends ActionController implements Initializable {
+public class CrossWord extends GameAction implements Initializable {
 
     @FXML
     private GridPane initBoard;
@@ -51,6 +52,9 @@ public class CrossWord extends ActionController implements Initializable {
     @FXML
     private TextField label2;
 
+    @FXML
+    private AnchorPane gamePane;
+
     private List<Word> wordList;
     private List<Word> wordPlay;
     private List<List<Character>> charBoard;
@@ -66,6 +70,8 @@ public class CrossWord extends ActionController implements Initializable {
     private String wrcolor = "-fx-background-color: #FF6969;";
     private String dfcolor = "-fx-background-color: #FBFFDC;";
     private boolean isRunning = false;
+    private URL url;
+    private ResourceBundle resourceBundle;
 
     public CrossWord() throws Exception {
         wordList = new ArrayList<>();
@@ -384,6 +390,5 @@ public class CrossWord extends ActionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

@@ -37,6 +37,10 @@ public class SettingController extends ActionController implements Initializable
     @FXML
     private Slider slider;
 
+    public AnchorPane getSettingPane() {
+        return settingPane;
+    }
+
     public ImageView getBackgroundView() {
         return backgroundView;
     }

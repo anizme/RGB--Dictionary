@@ -1,6 +1,3 @@
-.content-pane {
-    -fx-background-color : #def3f6;
-}
 
 .button-lang {
     -fx-background-color: lightgrey;
@@ -24,20 +21,21 @@
 }
 
 .button-translate-submit {
+    -fx-background-color: #008000;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-padding: 5;
     -fx-pref-width: 120;
     -fx-pref-height: 30;
 
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 18;
     -fx-font-weight: bold;
 }
 
 .button-translate-submit:hover {
-    -fx-text-fill: black;
-    -fx-background-color: #255F85;
+    -fx-text-fill: white;
+    -fx-background-color: #32cd32;
 }
 
 .button-speak {
