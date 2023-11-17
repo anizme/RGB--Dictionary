@@ -1,25 +1,23 @@
-.content-pane {
-    -fx-background-color : #000033;
-}
 
 .button-lang {
-    -fx-background-color: #008000;
+    -fx-background-color: #6495ed;
     -fx-text-fill: white;
     -fx-background-radius: 10px;
 }
 
 .button-lang:hover {
-    -fx-background-color: #32cd32;
+    -fx-background-color: #30cccc;
 }
 
 
 .button-double-arrow {
     -fx-pref-width: 60;
     -fx-pref-height: 40;
+    -fx-background-color: #30cccc;
 }
 
 .button-double-arrow:hover {
-    -fx-background-color: #a2d2df;
+    -fx-background-color: lightblue;
     -fx-cursor: default;
 }
 
@@ -42,12 +40,12 @@
 }
 
 .button-speak {
-    -fx-background-color: #008000;
+    -fx-background-color: #6495ed;
     -fx-background-radius: 10px;
 }
 
 .button-speak:hover {
-    -fx-background-color: #32cd32;
+    -fx-background-color: #30cccc;
     -fx-background-radius: 10px;
 }
 
