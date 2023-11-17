@@ -1,17 +1,25 @@
 package controller.panes;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 import services.DatabaseConnect;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -21,28 +29,145 @@ public class FavoriteController extends ActionController implements Initializabl
     private ListView<String> favoriteList;
     @FXML
     private TextField favoriteTextField;
+    @FXML
+    private JFXButton flashCardButton;
+    @FXML
+    private AnchorPane favoriteAnchorpane;
+    @FXML
+    private AnchorPane flashCardAnchorpane;
+    @FXML
+    private Label cards;
+    @FXML
+    private JFXButton rightButton;
+    @FXML
+    private JFXButton leftButton;
+    @FXML
+    private Label sttLabel;
+
+    private int stt = 0;
+    private List<String> frontCard;
+    private List<String> backCard;
+    private int check = 0;
 
     public FavoriteController() {
+        frontCard = new ArrayList<>();
+        backCard = new ArrayList<>();
         if (favoriteList != null) {
             favoriteList.getItems().addAll(SearchController.favorite.keySet());
         }
+    }
+
+    public void playFlashCard() {
+        favoriteAnchorpane.setVisible(false);
+        flashCardAnchorpane.setVisible(true);
+        cards.setText(frontCard.get(stt));
+        check = 1;
     }
 
     public void updateListView(ActionEvent event) throws Exception {
         Set<String> favoriteKey = SearchController.favorite.keySet();
         for (String x : favoriteKey) {
             String s = SearchController.favorite.get(x);
+            frontCard.add(s);
             s += "\n" + "/" + DatabaseConnect.getShortPro(s) + "/" + "\n" + "- " + DatabaseConnect.getShortMeaning(s);
+            backCard.add(s);
             favoriteList.getItems().add(s);
         }
     }
 
     public void searchFavorite(ActionEvent event) throws Exception {
         String tmp = favoriteTextField.getText();
+
     }
 
+    public void right(ActionEvent event) throws Exception {
+        if (stt < frontCard.size()-1) {
+            stt += 1;
+        }
+        rightSlide(cards);
+        check = 0;
+        cards.setText(frontCard.get(stt));
+        check = 1;
+        sttLabel.setText(Integer.toString(stt));
+    }
+
+    public void left(ActionEvent event) throws Exception {
+        if (stt > 0) {
+            stt -= 1;
+        }
+        leftSlide(cards);
+        check = 0;
+        cards.setText(frontCard.get(stt));
+        check = 1;
+        sttLabel.setText(Integer.toString(stt));
+    }
+
+    private void leftSlide(Label textField) {
+        textField.setOpacity(0);
+        textField.setTranslateX(-200);
+        Timeline timeline = new Timeline();
+
+        KeyFrame slideIn = new KeyFrame(Duration.seconds(0.5),
+                new KeyValue(textField.translateXProperty(), 0),
+                new KeyValue(textField.opacityProperty(), 1));
+
+        timeline.getKeyFrames().add(slideIn);
+
+        timeline.play();
+    }
+
+    private void rightSlide(Label textField) {
+        textField.setOpacity(0);
+        textField.setTranslateX(200);
+        Timeline timeline = new Timeline();
+
+        KeyFrame slideIn = new KeyFrame(Duration.seconds(0.5),
+                new KeyValue(textField.translateXProperty(), 0),
+                new KeyValue(textField.opacityProperty(), 1));
+
+        timeline.getKeyFrames().add(slideIn);
+
+        timeline.play();
+    }
+
+    public void back(ActionEvent event) throws Exception {
+        favoriteAnchorpane.setVisible(true);
+        flashCardAnchorpane.setVisible(false);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        cards.setOnMouseClicked(e -> {
+            Rotate rotate = new Rotate();
+            rotate.setAxis(Rotate.Y_AXIS);
+            double duration = 0.4;
 
+            // Flip from 0 to 180 degrees
+            KeyValue keyValue1 = new KeyValue(rotate.angleProperty(), 0);
+            KeyValue keyValue2 = new KeyValue(rotate.angleProperty(), 180);
+
+            // Create a Timeline for the flip animation
+            KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(duration / 2), keyValue1);
+            KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(duration), keyValue2);
+            Timeline timeline = new Timeline(keyFrame1, keyFrame2);
+
+            // Set up the rotation axis
+            rotate.setPivotX(cards.getWidth() / 2);
+            rotate.setPivotY(cards.getHeight() / 2);
+            cards.getTransforms().add(rotate);
+
+            timeline.setOnFinished(evt -> {
+                if (check == 0) {
+                    cards.setText(frontCard.get(stt));
+                    check = 1;
+                } else {
+                    cards.setText(backCard.get(stt));
+                    check = 0;
+                }
+                // Remove the Rotate transform
+                cards.getTransforms().remove(rotate);
+            });
+            // Play the animation
+            timeline.play();
+        });
     }
 }
