@@ -117,7 +117,7 @@ public class SearchController extends ActionController implements Initializable 
     @FXML
     void lookup(ActionEvent event) throws SQLException {
         if (ContainerController.isLightMode) {
-            wvMeaning.getEngine().loadContent("<body style='background-color: white; color: black;'/>"
+            wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>"
                     + DatabaseConnect.getMeaning(tfSearchWord.getText()));
         } else {
             wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
@@ -152,6 +152,7 @@ public class SearchController extends ActionController implements Initializable 
             isUpdate = false;
             htmlUpdateMeaning.setVisible(false);
             btSave.setVisible(false);
+            wvMeaning.setVisible(true);
             if (favorite.containsValue(tfSearchWord.getText())) {
                 noStared.setVisible(false);
                 stared.setVisible(true);
@@ -163,15 +164,14 @@ public class SearchController extends ActionController implements Initializable 
             isUpdate = true;
             htmlUpdateMeaning.setVisible(true);
             btSave.setVisible(true);
-
+            wvMeaning.setVisible(false);
             if (ContainerController.isLightMode) {
-                htmlUpdateMeaning.setHtmlText("<body style='background-color: white; color: black'/>"
+                htmlUpdateMeaning.setHtmlText("<body style='background-color: #def3f6; color: black'/>"
                         + DatabaseConnect.getMeaning(tfSearchWord.getText()));
             } else {
                 htmlUpdateMeaning.setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
                         + DatabaseConnect.getMeaning(tfSearchWord.getText()));
             }
-            htmlUpdateMeaning.setHtmlText(DatabaseConnect.getMeaning(tfSearchWord.getText()));
             noStared.setVisible(false);
             stared.setVisible(false);
         }
@@ -264,6 +264,7 @@ public class SearchController extends ActionController implements Initializable 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         noStared.setVisible(true);
         stared.setVisible(false);
+        wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>");
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
             if (tfSearchWord.getText() != null) {
@@ -292,7 +293,7 @@ public class SearchController extends ActionController implements Initializable 
                     try {
                         //wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
                         if (ContainerController.isLightMode) {
-                            wvMeaning.getEngine().loadContent("<body style='background-color: white; color: black;'/>"
+                            wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>"
                                     + DatabaseConnect.getMeaning(tfSearchWord.getText()));
                         } else {
                             wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"

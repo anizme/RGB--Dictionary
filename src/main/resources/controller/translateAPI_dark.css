@@ -52,39 +52,12 @@
 /* ========================= TextField ========================= */
 
 .text-field {
-/*
-    -fx-background-color: #001932;
-*/
     -fx-background-color: #2f4f4f;
     -fx-font-size: 15;
     -fx-text-fill: white;
     -fx-background-radius: 10px;
-    -fx-border-color: white;
+    -fx-border-color: #30cccc;
     -fx-border-radius: 10px;
-}
-
-/* ========================= TextArea ========================= */
-
-.text-area {
-    -fx-background-insets: 0;
-    -fx-background-color: #8F9097;
-    -fx-text-fill: white;
-    -fx-prompt-text-fill : white;
-    -fx-font-size: 15;
-    -fx-background-radius: 10px;
-}
-
-.text-area .content {
-    -fx-background-color: #8F9097;
-    -fx-text-fill: white;
-    -fx-font-size: 15;
-    -fx-background-radius: 10px;
-}
-
-.text-area:focused {
-    -fx-background-color: #8F9097;
-    -fx-text-fill: white;
-    -fx-font-size: 15;
-    -fx-background-radius: 10px;
+    -fx-border-width: 2;
 }
 

@@ -2,6 +2,8 @@
     -fx-border-color: black;
     -fx-border-radius: 24;
     -fx-border-width: 4;
+    -fx-background-color: #def3f6;
+    -fx-background-radius: 24;
 }
 
 .button {
@@ -13,3 +15,9 @@
 .label {
     -fx-text-fill: black;
 }
+
+.slider .axis {
+    -fx-tick-label-fill: black;
+    -fx-tick-label-font-size: 12;
+}
+

@@ -43,6 +43,8 @@ public class FavoriteController extends ActionController implements Initializabl
     private JFXButton leftButton;
     @FXML
     private Label sttLabel;
+    @FXML
+    private ImageView backgroundView;
 
     private int stt = 0;
     private List<String> frontCard;
@@ -55,6 +57,14 @@ public class FavoriteController extends ActionController implements Initializabl
         if (favoriteList != null) {
             favoriteList.getItems().addAll(SearchController.favorite.keySet());
         }
+    }
+
+    public AnchorPane getFavoritePane() {
+        return favoriteAnchorpane;
+    }
+
+    public ImageView getBackgroundView() {
+        return backgroundView;
     }
 
     public void playFlashCard() {

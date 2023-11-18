@@ -12,18 +12,18 @@
 
 <AnchorPane fx:id="translatePane" prefHeight="555.0" prefWidth="850.0" styleClass="content-pane" stylesheets="@translateAPI.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.TranslateAPIController">
    <children>
-      <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true">
          <image>
             <Image url="@../images/light_to_dark_animation.png" />
          </image>
          <viewport>
             <Rectangle2D height="538.0" width="800.0" />
          </viewport></ImageView>
-      <VBox layoutX="29.0" layoutY="29.0" prefHeight="224.0" prefWidth="708.0" spacing="2.0" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="29.0">
+      <VBox layoutX="29.0" layoutY="29.0" prefHeight="224.0" prefWidth="793.0" spacing="2.0" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="29.0">
          <children>
             <HBox prefHeight="80.0" prefWidth="793.0" spacing="2.0">
                <children>
-                  <Button fx:id="langFromFirst" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Auto detect">
+                  <Button fx:id="langFromFirst" mnemonicParsing="false" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Auto detect">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -31,7 +31,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langFromSecond" minWidth="44.0" mnemonicParsing="false" onAction="#eng" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="English">
+                  <Button fx:id="langFromSecond" minWidth="44.0" mnemonicParsing="false" onAction="#eng" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="English">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -39,7 +39,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langFromThird" minWidth="44.0" mnemonicParsing="false" onAction="#vie1" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
+                  <Button fx:id="langFromThird" minWidth="44.0" mnemonicParsing="false" onAction="#vie1" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -47,7 +47,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langFromFourth" minWidth="44.0" mnemonicParsing="false" onAction="#korea" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Korean">
+                  <Button fx:id="langFromFourth" minWidth="44.0" mnemonicParsing="false" onAction="#korea" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Korean">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,7 +55,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#speak1" prefHeight="35.0" prefWidth="35.0" styleClass="button-speak">
+                  <Button mnemonicParsing="false" onAction="#speak1" opacity="0.9" prefHeight="35.0" prefWidth="35.0" styleClass="button-speak">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -65,12 +65,12 @@
                      </graphic></Button>
                </children>
             </HBox>
-            <TextField fx:id="taTextToTrans" alignment="TOP_LEFT" prefHeight="518.0" prefWidth="793.0" promptText="Enter a word or a paragraph to translate" />
+            <TextField fx:id="taTextToTrans" alignment="TOP_LEFT" opacity="0.9" prefHeight="518.0" prefWidth="793.0" promptText="Enter a word or a paragraph to translate" />
          </children>
       </VBox>
       <HBox alignment="CENTER" layoutX="29.0" layoutY="237.0" prefHeight="65.0" prefWidth="743.0" AnchorPane.bottomAnchor="298.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="237.0">
          <children>
-            <TextField fx:id="tfSrcLang" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
+            <TextField fx:id="tfSrcLang" opacity="0.9" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
             <AnchorPane prefHeight="37.0" prefWidth="40.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="86.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
@@ -80,10 +80,10 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <TextField fx:id="tfDesLang" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
+            <TextField fx:id="tfDesLang" opacity="0.9" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
             <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="191.0">
                <children>
-                  <Button alignment="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#translate" prefHeight="37.0" prefWidth="142.0" styleClass="button-translate-submit" text="Translate">
+                  <Button alignment="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#translate" opacity="0.9" prefHeight="37.0" prefWidth="142.0" styleClass="button-translate-submit" text="Translate">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -99,7 +99,7 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="793.0" spacing="2.0">
                <children>
-                  <Button fx:id="langToFirst" minWidth="44.0" mnemonicParsing="false" onAction="#vie2" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
+                  <Button fx:id="langToFirst" minWidth="44.0" mnemonicParsing="false" onAction="#vie2" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -107,7 +107,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langToSecond" minWidth="44.0" mnemonicParsing="false" onAction="#eng2" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="English">
+                  <Button fx:id="langToSecond" minWidth="44.0" mnemonicParsing="false" onAction="#eng2" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="English">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -115,7 +115,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langToThird" minWidth="44.0" mnemonicParsing="false" onAction="#korea2" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Korean">
+                  <Button fx:id="langToThird" minWidth="44.0" mnemonicParsing="false" onAction="#korea2" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Korean">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -123,7 +123,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langToFourth" minWidth="44.0" mnemonicParsing="false" onAction="#rus" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Russian">
+                  <Button fx:id="langToFourth" minWidth="44.0" mnemonicParsing="false" onAction="#rus" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Russian">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -131,7 +131,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langToFifth" minWidth="44.0" mnemonicParsing="false" onAction="#chinese" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Chinese">
+                  <Button fx:id="langToFifth" minWidth="44.0" mnemonicParsing="false" onAction="#chinese" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Chinese">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -139,7 +139,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#speak2" prefHeight="35.0" prefWidth="35.0" styleClass="button-speak">
+                  <Button mnemonicParsing="false" onAction="#speak2" opacity="0.9" prefHeight="35.0" prefWidth="35.0" styleClass="button-speak">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -150,7 +150,7 @@
                   </Button>
                </children>
             </HBox>
-            <TextField fx:id="taTransText" alignment="TOP_LEFT" prefHeight="205.0" prefWidth="793.0" />
+            <TextField fx:id="taTransText" alignment="TOP_LEFT" opacity="0.9" prefHeight="205.0" prefWidth="793.0" />
          </children>
       </VBox>
       <TextArea fx:id="taTextToTans" disable="true" prefHeight="194.0" prefWidth="708.0" promptText="Enter a word or a paragraph to translate" styleClass="text-area" visible="false" />

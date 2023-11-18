@@ -15,9 +15,9 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="searchPane" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
+<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
    <children>
-      <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backgroundView" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
             <Image url="@../images/light_to_dark_animation.png" />
          </image>
@@ -25,30 +25,30 @@
             <Rectangle2D height="538.0" width="800.0" />
          </viewport>
       </ImageView>
-      <AnchorPane layoutX="48.0" layoutY="67.0" prefHeight="460.0" prefWidth="300.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="67.0">
+      <AnchorPane layoutX="48.0" layoutY="50.0" prefHeight="460.0" prefWidth="315.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="50.0">
          <children>
-            <TextField fx:id="tfSearchWord" prefHeight="45.0" prefWidth="236.0" promptText="Enter word to search" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0" />
-            <Button layoutX="248.0" layoutY="1.0" mnemonicParsing="false" onAction="#lookup" prefHeight="45.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TextField fx:id="tfSearchWord" opacity="0.9" prefHeight="45.0" prefWidth="236.0" promptText="Enter word to search" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0" />
+            <Button layoutX="248.0" layoutY="1.0" mnemonicParsing="false" onAction="#lookup" opacity="0.9" prefHeight="45.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/search.png" />
+                        <Image url="@../images/search-interface-symbol.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <ListView fx:id="lvSearchWordsList" prefHeight="406.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <ListView fx:id="lvSearchWordsList" opacity="0.9" prefHeight="406.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="325.0" layoutY="-10.0" prefHeight="460.0" prefWidth="400.0" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="45.0">
          <children>
             <HBox prefHeight="45.0" prefWidth="169.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="22.0" text="US" textFill="WHITE">
+                  <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="22.0" text="US" textFill="WHITE">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <Button mnemonicParsing="false" onAction="#usSpeak" prefHeight="45.0" prefWidth="50.0">
+                  <Button mnemonicParsing="false" onAction="#usSpeak" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -60,15 +60,15 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </Button>
-                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="22.0" text="UK" textFill="WHITE">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="22.0" text="UK" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" right="2.0" />
                      </HBox.margin>
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#ukSpeak" prefHeight="45.0" prefWidth="50.0">
+                  <Button mnemonicParsing="false" onAction="#ukSpeak" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,9 +79,9 @@
                   </Button>
                </children>
             </HBox>
-            <HBox layoutX="190.0" layoutY="14.0" prefHeight="45.0" prefWidth="158.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox layoutX="200.0" prefHeight="45.0" prefWidth="158.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="btSave" mnemonicParsing="false" onAction="#updateAction" prefHeight="45.0" prefWidth="50.0">
+                  <Button fx:id="btSave" mnemonicParsing="false" onAction="#updateAction" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
@@ -93,7 +93,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#update" prefHeight="45.0" prefWidth="50.0">
+                  <Button mnemonicParsing="false" onAction="#update" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
@@ -105,7 +105,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#remove" prefHeight="45.0" prefWidth="50.0">
+                  <Button mnemonicParsing="false" onAction="#remove" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -116,9 +116,19 @@
                   </Button>
                </children>
             </HBox>
-            <WebView fx:id="wvMeaning" layoutY="186.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <JFXButton fx:id="stared" layoutX="347.0" layoutY="66.0" onAction="#removeFavorite" prefHeight="31.0" prefWidth="22.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT">
+            <JFXButton fx:id="noStared" layoutX="371.0" layoutY="7.0" onAction="#addFavorite" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT" visible="false">
+               <font>
+                  <Font size="1.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="stared" layoutX="371.0" layoutY="7.0" onAction="#removeFavorite" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT">
                <font>
                   <Font size="1.0" />
                </font>
@@ -130,18 +140,9 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="noStared" layoutX="347.0" layoutY="66.0" onAction="#addFavorite" prefHeight="31.0" prefWidth="22.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT" visible="false">
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/1.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font size="1.0" />
-               </font>
-            </JFXButton>
+            <WebView fx:id="wvMeaning" layoutY="186.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <AnchorPane layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="409.0" style="-fx-background-color: transparent;" styleClass="meaning-pane" />
+            <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>

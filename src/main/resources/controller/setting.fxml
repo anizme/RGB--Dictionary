@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="settingPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@setting.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SettingController">
    <children>
-      <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backgroundView" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
             <Image url="@../images/light_to_dark_animation.png" />
          </image>
@@ -21,7 +21,7 @@
             <Rectangle2D height="538.0" width="800.0" />
          </viewport>
       </ImageView>
-      <AnchorPane layoutX="87.0" layoutY="171.0" prefHeight="273.0" prefWidth="676.0" style="-fx-border-width: 4;" styleClass="pane">
+      <AnchorPane layoutX="87.0" layoutY="171.0" opacity="0.9" prefHeight="273.0" prefWidth="676.0" style="-fx-border-width: 4;" styleClass="pane">
          <children>
             <Slider fx:id="slider" blockIncrement="0.125" layoutX="420.0" layoutY="193.0" majorTickUnit="0.5" max="2.0" min="0.5" minorTickCount="1" prefHeight="28.0" prefWidth="140.0" showTickLabels="true" showTickMarks="true" value="1.0" />
             <Label alignment="CENTER" layoutX="273.0" layoutY="183.0" prefHeight="38.0" prefWidth="130.0" styleClass="text-label" text="Speak Speed">
@@ -71,12 +71,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="374.0" layoutY="460.0" mnemonicParsing="false" onAction="#saveVoice" prefHeight="61.0" prefWidth="103.0" styleClass="button-main" text="Save">
+      <Button layoutX="374.0" layoutY="469.0" mnemonicParsing="false" onAction="#saveVoice" opacity="0.9" prefHeight="61.0" prefWidth="103.0" styleClass="button-main" text="Save">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="87.0" layoutY="34.0" prefHeight="116.0" prefWidth="676.0" style="-fx-border-width: 4;" styleClass="pane">
+      <AnchorPane layoutX="87.0" layoutY="34.0" opacity="0.9" prefHeight="116.0" prefWidth="676.0" style="-fx-border-width: 4;" styleClass="pane">
          <children>
             <Label alignment="CENTER" layoutX="38.0" layoutY="24.0" prefHeight="68.0" prefWidth="176.0" text="APPEARANCE">
                <font>

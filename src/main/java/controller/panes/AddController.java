@@ -41,6 +41,9 @@ public class AddController extends ActionController implements Initializable {
     @FXML
     private TextField tfAddWord;
 
+    private boolean isSearch = false;
+    private boolean isAddWord = false;
+
     public ImageView getBackgroundView() {
         return backgroundView;
     }
@@ -49,6 +52,29 @@ public class AddController extends ActionController implements Initializable {
         return addPane;
     }
 
+    public String getDefaultText() {
+        return defaultText;
+    }
+
+    public HTMLEditor getHtmlEditor() {
+        return htmlAddMeaning;
+    }
+
+    public TextField getTfAddWord() {
+        return tfAddWord;
+    }
+
+    public ListView<String> getListView() {
+        return lvSearchWordsList;
+    }
+
+    public boolean isSearch() {
+        return isSearch;
+    }
+
+    public boolean isAddWord() {
+        return isAddWord;
+    }
 
     @FXML
     void addAction(ActionEvent event) throws SQLException {
@@ -57,7 +83,6 @@ public class AddController extends ActionController implements Initializable {
             alert.alertAction();
         } else if (htmlAddMeaning.getHtmlText().equals("")) {
             System.out.println("add");
-            ;
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Missing meaning of word", "Error");
             alert.alertAction();
         } else {
@@ -90,7 +115,7 @@ public class AddController extends ActionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        htmlAddMeaning.setHtmlText("");
+        htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>");
         tfAddWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
             if (tfAddWord.getText() != null) {
@@ -109,10 +134,11 @@ public class AddController extends ActionController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
+                    isSearch = true;
                     tfAddWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
                     try {
                         if (ContainerController.isLightMode) {
-                            htmlAddMeaning.setHtmlText("<body style='background-color: white; color: black;'/>"
+                            htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>"
                                     + DatabaseConnect.getMeaning(tfAddWord.getText()));
                         } else {
                             htmlAddMeaning.setHtmlText("<body style='background-color: #2f4f4f; color: white;'/>"
@@ -122,16 +148,21 @@ public class AddController extends ActionController implements Initializable {
                         throw new RuntimeException(e);
                     }
                 }
+//                else {
+//                    isSearch = false;
+//                }
             }
         });
 
         tfAddWord.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
+                    isAddWord = true;
                     if (!tfAddWord.getText().isEmpty()) {
-                        htmlAddMeaning.setHtmlText(String.format(defaultText, tfAddWord.getText()));
+                        htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>" +
+                                String.format(defaultText, tfAddWord.getText()));
                     } else {
-                        htmlAddMeaning.setHtmlText(defaultText);
+                        htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>" + defaultText);
                     }
 
                 }

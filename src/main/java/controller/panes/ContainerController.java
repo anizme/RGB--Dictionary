@@ -49,6 +49,7 @@ public class ContainerController implements Initializable {
     private FavoriteController favoriteController;
     @FXML
     private JFXButton btExit;
+
     @FXML
     private JFXButton btAdd;
     private boolean isAdd;
@@ -57,6 +58,7 @@ public class ContainerController implements Initializable {
     private Image addImage;
     private Image addImageDark;
     private ImageViewSprite btAddViewSprite;
+
     @FXML
     private JFXButton btGame;
     private boolean isGame;
@@ -65,6 +67,7 @@ public class ContainerController implements Initializable {
     private Image gameImage;
     private Image gameImageDark;
     private ImageViewSprite btGameViewSprite;
+
     @FXML
     private JFXButton btSearch;
     private boolean isSearch;
@@ -73,6 +76,7 @@ public class ContainerController implements Initializable {
     private Image searchImage;
     private Image searchImageDark;
     private ImageViewSprite btSearchViewSprite;
+
     @FXML
     private JFXButton btTranslate;
     private boolean isTranslate;
@@ -80,6 +84,7 @@ public class ContainerController implements Initializable {
     private ImageView btTranslateView;
     private Image translateImage;
     private ImageViewSprite btTranslateViewSprite;
+
     @FXML
     private JFXButton btSetting;
     private boolean isSetting;
@@ -91,11 +96,12 @@ public class ContainerController implements Initializable {
 
     @FXML
     private JFXButton btFavorite;
-
     private boolean isFavorite;
-
+    @FXML
     private ImageView btFavoriteView;
-
+    private Image favoriteImage;
+    private Image favoriteImageDark;
+    private ImageViewSprite btFavoriteViewSprite;
 
 //    @FXML
 //    private JFXToggleButton switchMode;
@@ -138,6 +144,7 @@ public class ContainerController implements Initializable {
     @FXML
     void add(ActionEvent event) {
         isAdd = true;
+        isFavorite = false;
         isGame = false;
         isSearch = false;
         isSetting = false;
@@ -150,6 +157,7 @@ public class ContainerController implements Initializable {
     @FXML
     void game(ActionEvent event) {
         isAdd = false;
+        isFavorite = false;
         isGame = true;
         isSearch = false;
         isSetting = false;
@@ -162,6 +170,7 @@ public class ContainerController implements Initializable {
     @FXML
     void search(ActionEvent event) {
         isAdd = false;
+        isFavorite = false;
         isGame = false;
         isSearch = true;
         isSetting = false;
@@ -174,6 +183,7 @@ public class ContainerController implements Initializable {
     @FXML
     void setting(ActionEvent event) {
         isAdd = false;
+        isFavorite = false;
         isGame = false;
         isSearch = false;
         isSetting = true;
@@ -186,6 +196,7 @@ public class ContainerController implements Initializable {
     @FXML
     void translate(ActionEvent event) {
         isAdd = false;
+        isFavorite = false;
         isGame = false;
         isSearch = false;
         isSetting = false;
@@ -197,6 +208,12 @@ public class ContainerController implements Initializable {
 
     @FXML
     void favorite(ActionEvent event) {
+        isAdd = false;
+        isFavorite = true;
+        isGame = false;
+        isSearch = false;
+        isSetting = false;
+        isTranslate = false;
         resetNavButton();
         showFavoritePane();
         favoriteController.initData(this);
@@ -217,15 +234,26 @@ public class ContainerController implements Initializable {
                 btAdd.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btAdd.setStyle("-fx-background-color: white");
+            }
+            if (isFavorite) {
+                btFavorite.setStyle("-fx-background-color: whitesmoke;" +
+                        "-fx-background-radius: 10px;" +
+                        "-fx-border-color: black;" +
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
+            } else {
+                btFavorite.setStyle("-fx-background-color: white");
             }
             if (isGame) {
                 btGame.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btGame.setStyle("-fx-background-color: white");
             }
@@ -233,7 +261,8 @@ public class ContainerController implements Initializable {
                 btSearch.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btSearch.setStyle("-fx-background-color: white");
             }
@@ -241,7 +270,8 @@ public class ContainerController implements Initializable {
                 btSetting.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btSetting.setStyle("-fx-background-color: white");
             }
@@ -249,7 +279,8 @@ public class ContainerController implements Initializable {
                 btTranslate.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btTranslate.setStyle("-fx-background-color: white");
             }
@@ -257,40 +288,54 @@ public class ContainerController implements Initializable {
             if (isAdd) {
                 btAdd.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
-                        "-fx-border-color: white;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-color: #30cccc;" +
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btAdd.setStyle("-fx-background-color: #2f4f4f;");
+            }
+            if (isFavorite) {
+                btFavorite.setStyle("-fx-background-color: black;" +
+                        "-fx-background-radius: 10px;" +
+                        "-fx-border-color: #30cccc;" +
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
+            } else {
+                btFavorite.setStyle("-fx-background-color: #2f4f4f;");
             }
             if (isGame) {
                 btGame.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
-                        "-fx-border-color: white;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-color: #30cccc;" +
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btGame.setStyle("-fx-background-color: #2f4f4f;");
             }
             if (isSearch) {
                 btSearch.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
-                        "-fx-border-color: white;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-color: #30cccc;" +
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btSearch.setStyle("-fx-background-color: #2f4f4f;");
             }
             if (isSetting) {
                 btSetting.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
-                        "-fx-border-color: white;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-color: #30cccc;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-border-width: 2;");
             } else {
                 btSetting.setStyle("-fx-background-color: #2f4f4f;");
             }
             if (isTranslate) {
                 btTranslate.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
-                        "-fx-border-color: white;" +
-                        "-fx-border-radius: 10px;");
+                        "-fx-border-color: #30cccc;" +
+                        "-fx-border-radius: 10px;"+
+                        "-fx-border-width: 2;");
             } else {
                 btTranslate.setStyle("-fx-background-color: #2f4f4f;");
             }
@@ -327,6 +372,7 @@ public class ContainerController implements Initializable {
         mainPane.getStylesheets().add(this.getClass().getResource("/controller/container.css").toString());
 
         btAddView.setImage(addImage);
+        btFavoriteView.setImage(favoriteImage);
         btGameView.setImage(gameImage);
         btSearchView.setImage(searchImage);
         btSettingView.setImage(settingImage);
@@ -344,6 +390,39 @@ public class ContainerController implements Initializable {
                 add(this.getClass().getResource("/controller/add.css").toString());
         addController.getBackgroundView().setImage(darkBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        try {
+            addController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
+                    + DatabaseConnect.getMeaning(addController.getTfAddWord().getText()));
+            if (addController.isAddWord()) {
+                addController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
+                        + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        addController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                        } else {
+                            setText(item);
+                        }
+                        if (getIndex() % 2 == 1)
+                            setStyle("-fx-background-color: white; -fx-text-fill: black;");
+                        else
+                            setStyle("-fx-background-color: #def3f6; -fx-text-fill: black");
+                    }
+                };
+            }
+        });
+
 
 //        gameController.getBackgroundImage().setImage(darkBackground);
 //        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
@@ -356,10 +435,10 @@ public class ContainerController implements Initializable {
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
         try {
             if (searchController.isUpdate()) {
-                searchController.getHtmlEditor().setHtmlText("<body style='background-color: white; color: black'/>"
+                searchController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
                         + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
             }
-            searchController.getWebView().getEngine().loadContent("<body style='background-color: white; color: black'/>"
+            searchController.getWebView().getEngine().loadContent("<body style='background-color: #def3f6; color: black'/>"
                     + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -379,11 +458,18 @@ public class ContainerController implements Initializable {
                         if (getIndex() % 2 == 1)
                             setStyle("-fx-background-color: white; -fx-text-fill: black;");
                         else
-                            setStyle("-fx-background-color: whitesmoke; -fx-text-fill: black");
+                            setStyle("-fx-background-color: #def3f6; -fx-text-fill: black");
                     }
                 };
             }
         });
+
+        favoriteController.getFavoritePane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/favorite_dark.css").toString());
+        favoriteController.getFavoritePane().getStylesheets().
+                add(this.getClass().getResource("/controller/favorite.css").toString());
+        favoriteController.getBackgroundView().setImage(lightBackground);
+        favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         settingController.getSettingPane().getStylesheets().
                 removeAll(this.getClass().getResource("/controller/setting_dark.css").toString());
@@ -404,6 +490,7 @@ public class ContainerController implements Initializable {
         mainPane.getStylesheets().add(this.getClass().getResource("/controller/container_dark.css").toString());
 
         btAddView.setImage(addImageDark);
+        btFavoriteView.setImage(favoriteImageDark);
         btGameView.setImage(gameImageDark);
         btSearchView.setImage(searchImageDark);
         btSettingView.setImage(settingImageDark);
@@ -421,6 +508,49 @@ public class ContainerController implements Initializable {
                 add(this.getClass().getResource("/controller/add_dark.css").toString());
         addController.getBackgroundView().setImage(lightBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        try {
+            addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+                    + DatabaseConnect.getMeaning(addController.getTfAddWord().getText()));
+            if (addController.isAddWord()) {
+                addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+                        + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//        try {
+//            if (addController.isSearch()) {
+//                addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+//                        + DatabaseConnect.getMeaning(addController.getTfAddWord().getText()));
+//            }
+//            if (addController.isAddWord()) {
+//                addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+//                        + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        addController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                        } else {
+                            setText(item);
+                        }
+                        if (getIndex() % 2 == 1)
+                            setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                        else
+                            setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                    }
+                };
+            }
+        });
 
 //        gameController.getBackgroundImage().setImage(lightBackground);
 //        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
@@ -436,7 +566,7 @@ public class ContainerController implements Initializable {
                 searchController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
                         + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
             }
-            searchController.getWebView().getEngine().loadContent("<body style='background-color: #2f4f4f; color: white'/>"
+            searchController.getWebView().getEngine().loadContent("<body style='background-color: #2f4f4f; color: white; border-color: #30cccc'/>"
                     + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
 
         } catch (SQLException e) {
@@ -469,6 +599,13 @@ public class ContainerController implements Initializable {
                 };
             }
         });
+
+        favoriteController.getFavoritePane().getStylesheets().
+                removeAll(this.getClass().getResource("/controller/favorite.css").toString());
+        favoriteController.getFavoritePane().getStylesheets().
+                add(this.getClass().getResource("/controller/favorite_dark.css").toString());
+        favoriteController.getBackgroundView().setImage(lightBackground);
+        favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         settingController.getSettingPane().getStylesheets().
                 removeAll(this.getClass().getResource("/controller/setting.css").toString());
@@ -490,7 +627,7 @@ public class ContainerController implements Initializable {
             public void handle(MouseEvent mouseEvent) {
                 menuLabel.setDisable(true);
                 menuLabel.setVisible(false);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 478);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 558);
                 labelSize = new KeyValue(menuLabel.prefWidthProperty(), 0);
                 labelText = new KeyValue(menuLabel.textProperty(), "");
                 keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
@@ -500,7 +637,7 @@ public class ContainerController implements Initializable {
             }
         });
         menuPane.setVisible(false);
-        TranslateTransition transition = new TranslateTransition(Duration.millis(9000), welcomeLabel);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(15000), welcomeLabel);
         transition.setByX(-1400);
         transition.setCycleCount(Animation.INDEFINITE);
         transition.play();
@@ -566,12 +703,14 @@ public class ContainerController implements Initializable {
         darkBackground = new Image(this.getClass().getResourceAsStream("/images/light_to_dark_animation.png"));
 
         addImage = new Image(this.getClass().getResourceAsStream("/images/add_animation.png"));
+        favoriteImage = new Image(this.getClass().getResourceAsStream("/images/favorite_animation.png"));
         gameImage = new Image(this.getClass().getResourceAsStream("/images/game_animation.png"));
         searchImage = new Image(this.getClass().getResourceAsStream("/images/search_animation.png"));
         settingImage = new Image(this.getClass().getResourceAsStream("/images/setting_animation.png"));
-        translateImage = new Image(this.getClass().getResourceAsStream("/images/translate_animation1.png"));
+        translateImage = new Image(this.getClass().getResourceAsStream("/images/translate_animation.png"));
 
         addImageDark = new Image(this.getClass().getResourceAsStream("/images/add_animation_dark.png"));
+        favoriteImageDark = new Image(this.getClass().getResourceAsStream("/images/favorite_animation_dark.png"));
         gameImageDark = new Image(this.getClass().getResourceAsStream("/images/game_animation_dark.png"));
         searchImageDark = new Image(this.getClass().getResourceAsStream("/images/search_animation_dark.png"));
         settingImageDark = new Image(this.getClass().getResourceAsStream("/images/setting_animation_dark.png"));
@@ -618,11 +757,37 @@ public class ContainerController implements Initializable {
             }
         });
 
+        btFavorite.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btFavoriteViewSprite = new ImageViewSprite(btFavoriteView, isLightMode ? favoriteImage : favoriteImageDark,
+                        5, 10, 47, 75, 75, 60);
+                btFavoriteViewSprite.start();
+                menuLabel.setDisable(false);
+                menuLabel.setVisible(true);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 398);
+                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 100);
+                labelText = new KeyValue(menuLabel.textProperty(), "FAVORITE");
+                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+                timeline = new Timeline(keyFrame);
+                timeline.setCycleCount(1);
+                timeline.play();
+            }
+        });
+        btFavorite.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                btFavoriteViewSprite.stop();
+                btFavoriteView.setImage(isLightMode ? favoriteImage : favoriteImageDark);
+                btFavoriteView.setViewport(new Rectangle2D(0, 0, 75, 75));
+            }
+        });
+
         btGame.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 btGameViewSprite = new ImageViewSprite(btGameView, isLightMode ? gameImage : gameImageDark,
-                        6, 19, 114, 173, 173, 63);
+                        6, 19, 114, 64, 64, 63);
                 btGameViewSprite.start();
                 menuLabel.setDisable(false);
                 menuLabel.setVisible(true);
@@ -640,7 +805,7 @@ public class ContainerController implements Initializable {
             public void handle(MouseEvent mouseEvent) {
                 btGameViewSprite.stop();
                 btGameView.setImage(isLightMode ? gameImage : gameImageDark);
-                btGameView.setViewport(new Rectangle2D(0, 0, 173, 173));
+                btGameView.setViewport(new Rectangle2D(0, 0, 64, 64));
             }
         });
 
@@ -678,7 +843,7 @@ public class ContainerController implements Initializable {
                 btSettingViewSprite.start();
                 menuLabel.setDisable(false);
                 menuLabel.setVisible(true);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 398);
+                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 478);
                 labelSize = new KeyValue(menuLabel.prefWidthProperty(), 90);
                 labelText = new KeyValue(menuLabel.textProperty(), "SETTING");
                 keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);

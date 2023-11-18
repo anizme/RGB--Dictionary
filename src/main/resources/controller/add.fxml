@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane fx:id="addPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@add.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.AddController">
+<AnchorPane fx:id="addPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@add.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.AddController">
    <children>
-      <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="backgroundView" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../images/light_to_dark_animation.png" />
          </image>
@@ -24,9 +24,9 @@
          <children>
             <AnchorPane prefHeight="471.0" prefWidth="366.0">
                <children>
-                  <TextField fx:id="tfAddWord" prefHeight="46.0" prefWidth="235.0" promptText="Enter word to add" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="0.0" />
-                  <ListView fx:id="lvSearchWordsList" prefHeight="356.0" prefWidth="316.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="48.0" />
-                  <Button layoutX="264.0" mnemonicParsing="false" onAction="#addAction" prefHeight="46.0" prefWidth="52.0">
+                  <TextField fx:id="tfAddWord" opacity="0.9" prefHeight="46.0" prefWidth="253.0" promptText="Enter to get default meaning template" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="lvSearchWordsList" layoutY="58.0" opacity="0.9" prefHeight="379.0" prefWidth="316.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="48.0" />
+                  <Button layoutX="264.0" mnemonicParsing="false" onAction="#addAction" opacity="0.9" prefHeight="46.0" prefWidth="52.0">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -37,7 +37,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <HTMLEditor fx:id="htmlAddMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="366.0" prefWidth="398.0" />
+            <HTMLEditor fx:id="htmlAddMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" opacity="0.9" prefHeight="366.0" prefWidth="398.0" />
          </children>
       </HBox>
    </children>

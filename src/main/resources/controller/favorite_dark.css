@@ -23,36 +23,14 @@
     -fx-control-inner-background-color: #2f4f4f;
 }
 
-.meaning-pane {
+/*
+.label {
+    -fx-background-color: #2f4f4f;
+    -fx-background-radius: 10px;
     -fx-border-color: #30cccc;
+    -fx-border-radius: 10px;
     -fx-border-width: 2;
+    -fx-font-size: 15;
+    -fx-text-fill: white;
 }
-
-.html-editor
-{
-    -fx-font: 12 cambria;
-    -fx-border-color: #30cccc;
-    -fx-border-width: 2;
-    -fx-background-color: #2f4f4f;
-    /*
-    -fx-border-style: solid;
-    -fx-border-width: 1;
-    */
-}
-
-.html-editor .button, .html-editor .toggle-button
-{
-    -fx-background-color: #30cccc;
-}
-
-.html-editor-background
-{
-    -fx-color-label-visible: true;
-    -fx-background-color: #2f4f4f;
-}
-
-.html-editor-foreground
-{
-    -fx-color-label-visible: true;
-    -fx-background-color: #2f4f4f;
-}
+*/

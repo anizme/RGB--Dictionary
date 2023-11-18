@@ -22,33 +22,14 @@
     -fx-text-fill: black;
 }
 
-.meaning-pane{
+/*
+.label {
+    -fx-background-color: #def3f6;
+    -fx-background-radius: 10px;
     -fx-border-color: black;
+    -fx-border-radius: 10px;
     -fx-border-width: 2;
+    -fx-font-size: 15;
+    -fx-text-fill: black;
 }
-
-.html-editor
-{
-    -fx-font: 12 cambria;
-    -fx-border-color: black;
-    -fx-border-width: 2;
-    /*
-    -fx-border-style: solid;
-    -fx-border-width: 1;
-    */
-}
-
-.html-editor .button, .html-editor .toggle-button
-{
-    -fx-background-color: lightblue;
-}
-
-.html-editor-background
-{
-    -fx-color-label-visible: true;
-}
-
-.html-editor-foreground
-{
-    -fx-color-label-visible: true;
-}
+*/
