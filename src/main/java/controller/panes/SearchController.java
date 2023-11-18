@@ -61,10 +61,6 @@ public class SearchController extends ActionController implements Initializable 
     @FXML
     private Button btSave;
 
-    public Set<String> history = new HashSet<>();
-
-    static Map<String, String> favorite = new HashMap<>();
-
     private boolean check = true;
 
     private boolean isUpdate = false;
@@ -124,20 +120,18 @@ public class SearchController extends ActionController implements Initializable 
                     + DatabaseConnect.getMeaning(tfSearchWord.getText()));
         }
         //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
-        if (favorite.containsValue(tfSearchWord.getText().toLowerCase())) {
+        String s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
+        if (s != null) {
             noStared.setVisible(false);
             stared.setVisible(true);
         } else {
             noStared.setVisible(true);
             stared.setVisible(false);
         }
-        for (String iterator : history) {
-            if (iterator.equals(tfSearchWord.getText())) {
-                history.remove(iterator);
-                break;
-            }
-        }
-        history.add(tfSearchWord.getText());
+        String tmp = tfSearchWord.getText();
+        tmp = tmp.toLowerCase();
+        DatabaseConnect.clearHistoryWord(tmp);
+        DatabaseConnect.insertHistory(tmp);
     }
 
     @FXML
@@ -154,6 +148,8 @@ public class SearchController extends ActionController implements Initializable 
             btSave.setVisible(false);
             wvMeaning.setVisible(true);
             if (favorite.containsValue(tfSearchWord.getText())) {
+            String s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
+            if (s != null) {
                 noStared.setVisible(false);
                 stared.setVisible(true);
             } else {
@@ -242,22 +238,21 @@ public class SearchController extends ActionController implements Initializable 
 
     public void addFavorite(ActionEvent event) throws Exception {
         String str = tfSearchWord.getText();
-        favorite.put(str, str);
+        DatabaseConnect.insertFavorite(str);
         noStared.setVisible(false);
         stared.setVisible(true);
     }
 
     public void removeFavorite(ActionEvent event) throws Exception {
-        int size = favorite.size();
-        for (String x : favorite.keySet()) {
-            String s = favorite.get(x);
-            if (s.equals(tfSearchWord.getText())) {
-                favorite.remove(x);
-                break;
-            }
-        }
+        DatabaseConnect.clearFavoriteWord(tfSearchWord.getText().toLowerCase());
         noStared.setVisible(true);
         stared.setVisible(false);
+    }
+
+    public void updateHistoryInListView() throws SQLException {
+        List<String> tmp = DatabaseConnect.getHistory();
+        Collections.reverse(tmp);
+        lvSearchWordsList.getItems().addAll(tmp);
     }
 
     @Override
@@ -277,7 +272,13 @@ public class SearchController extends ActionController implements Initializable 
                     }
                 } else {
                     //Collections.reverse(history);
-                    lvSearchWordsList.getItems().addAll(history);
+                    try {
+                        List<String> tmp = DatabaseConnect.getHistory();
+                        Collections.reverse(tmp);
+                        lvSearchWordsList.getItems().addAll(tmp);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     //Collections.reverse(history);
                     check = false;
                 }
@@ -286,7 +287,7 @@ public class SearchController extends ActionController implements Initializable 
 
         lvSearchWordsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent){
                 if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
                     tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
                     //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
@@ -302,14 +303,27 @@ public class SearchController extends ActionController implements Initializable 
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    if (favorite.containsValue(tfSearchWord.getText().toLowerCase())) {
-                        noStared.setVisible(false);
-                        stared.setVisible(true);
-                    } else {
-                        noStared.setVisible(true);
-                        stared.setVisible(false);
+                    String s = null;
+                    try {
+                        s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
+                        if (s != null) {
+                            noStared.setVisible(false);
+                            stared.setVisible(true);
+                        } else {
+                            noStared.setVisible(true);
+                            stared.setVisible(false);
+                        }
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
                     }
-                    history.add(tfSearchWord.getText());
+                    String tmp = tfSearchWord.getText();
+                    tmp = tmp.toLowerCase();
+                    try {
+                        DatabaseConnect.clearHistoryWord(tmp);
+                        DatabaseConnect.insertHistory(tmp);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });
@@ -318,9 +332,13 @@ public class SearchController extends ActionController implements Initializable 
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (tfSearchWord.getText().isEmpty() && check) {
-                    //Collections.reverse(history);
-                    lvSearchWordsList.getItems().addAll(history);
-                    //Collections.reverse(history);
+                    try {
+                        List<String> tmp = DatabaseConnect.getHistory();
+                        Collections.reverse(tmp);
+                        lvSearchWordsList.getItems().addAll(tmp);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                     check = false;
                 } else if (!tfSearchWord.getText().isEmpty()) {
                     check = true;
