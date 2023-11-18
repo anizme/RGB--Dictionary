@@ -196,9 +196,10 @@ public class ContainerController implements Initializable {
     }
 
     @FXML
-    void favorite(ActionEvent event) {
+    void favorite(ActionEvent event) throws Exception {
         resetNavButton();
         showFavoritePane();
+        favoriteController.updateListView(new ActionEvent());
         favoriteController.initData(this);
     }
     @FXML

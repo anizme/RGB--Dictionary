@@ -45,33 +45,25 @@ public class FavoriteController extends ActionController implements Initializabl
     private Label sttLabel;
 
     private int stt = 0;
-    private List<String> frontCard;
-    private List<String> backCard;
     private int check = 0;
 
-    public FavoriteController() {
-        frontCard = new ArrayList<>();
-        backCard = new ArrayList<>();
+    public FavoriteController() throws SQLException {
         if (favoriteList != null) {
-            favoriteList.getItems().addAll(SearchController.favorite.keySet());
+            favoriteList.getItems().addAll(DatabaseConnect.getFavorite());
         }
     }
 
-    public void playFlashCard() {
+    public void playFlashCard() throws SQLException {
         favoriteAnchorpane.setVisible(false);
         flashCardAnchorpane.setVisible(true);
-        cards.setText(frontCard.get(stt));
+        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
         check = 1;
     }
 
     public void updateListView(ActionEvent event) throws Exception {
-        Set<String> favoriteKey = SearchController.favorite.keySet();
-        for (String x : favoriteKey) {
-            String s = SearchController.favorite.get(x);
-            frontCard.add(s);
-            s += "\n" + "/" + DatabaseConnect.getShortPro(s) + "/" + "\n" + "- " + DatabaseConnect.getShortMeaning(s);
-            backCard.add(s);
-            favoriteList.getItems().add(s);
+        if (favoriteList != null) {
+            favoriteList.getItems().clear();
+            favoriteList.getItems().addAll(DatabaseConnect.getFavoriteWordShortMeaning());
         }
     }
 
@@ -81,12 +73,12 @@ public class FavoriteController extends ActionController implements Initializabl
     }
 
     public void right(ActionEvent event) throws Exception {
-        if (stt < frontCard.size()-1) {
+        if (stt < DatabaseConnect.getFavorite().size() - 1) {
             stt += 1;
         }
         rightSlide(cards);
         check = 0;
-        cards.setText(frontCard.get(stt));
+        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
         check = 1;
         sttLabel.setText(Integer.toString(stt));
     }
@@ -97,7 +89,7 @@ public class FavoriteController extends ActionController implements Initializabl
         }
         leftSlide(cards);
         check = 0;
-        cards.setText(frontCard.get(stt));
+        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
         check = 1;
         sttLabel.setText(Integer.toString(stt));
     }
@@ -157,10 +149,18 @@ public class FavoriteController extends ActionController implements Initializabl
 
             timeline.setOnFinished(evt -> {
                 if (check == 0) {
-                    cards.setText(frontCard.get(stt));
+                    try {
+                        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     check = 1;
                 } else {
-                    cards.setText(backCard.get(stt));
+                    try {
+                        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     check = 0;
                 }
                 // Remove the Rotate transform
