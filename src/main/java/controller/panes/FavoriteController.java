@@ -4,12 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
-import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
@@ -18,12 +18,9 @@ import services.DatabaseConnect;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
-public class FavoriteController extends ActionController implements Initializable{
+public class FavoriteController extends ActionController implements Initializable {
 
     @FXML
     private ListView<String> favoriteList;
@@ -66,7 +63,7 @@ public class FavoriteController extends ActionController implements Initializabl
     public void playFlashCard() throws SQLException {
         favoriteAnchorpane.setVisible(false);
         flashCardAnchorpane.setVisible(true);
-        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
+        cards.setText(DatabaseConnect.getFavoriteWord(stt + 1).get(check));
         check = 1;
     }
 
@@ -88,7 +85,7 @@ public class FavoriteController extends ActionController implements Initializabl
         }
         rightSlide(cards);
         check = 0;
-        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
+        cards.setText(DatabaseConnect.getFavoriteWord(stt + 1).get(check));
         check = 1;
         sttLabel.setText(Integer.toString(stt));
     }
@@ -99,7 +96,7 @@ public class FavoriteController extends ActionController implements Initializabl
         }
         leftSlide(cards);
         check = 0;
-        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
+        cards.setText(DatabaseConnect.getFavoriteWord(stt + 1).get(check));
         check = 1;
         sttLabel.setText(Integer.toString(stt));
     }
@@ -136,6 +133,7 @@ public class FavoriteController extends ActionController implements Initializabl
         favoriteAnchorpane.setVisible(true);
         flashCardAnchorpane.setVisible(false);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cards.setOnMouseClicked(e -> {
@@ -160,14 +158,14 @@ public class FavoriteController extends ActionController implements Initializabl
             timeline.setOnFinished(evt -> {
                 if (check == 0) {
                     try {
-                        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
+                        cards.setText(DatabaseConnect.getFavoriteWord(stt + 1).get(check));
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
                     check = 1;
                 } else {
                     try {
-                        cards.setText(DatabaseConnect.getFavoriteWord(stt+1).get(check));
+                        cards.setText(DatabaseConnect.getFavoriteWord(stt + 1).get(check));
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }

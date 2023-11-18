@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -25,12 +24,9 @@ import services.VoiceRSS;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.*;
 import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Stack;
-
-import static controller.ApplicationStart.dictionaryManagement;
 
 public class SearchController extends ActionController implements Initializable {
 
@@ -147,7 +143,6 @@ public class SearchController extends ActionController implements Initializable 
             htmlUpdateMeaning.setVisible(false);
             btSave.setVisible(false);
             wvMeaning.setVisible(true);
-            if (favorite.containsValue(tfSearchWord.getText())) {
             String s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
             if (s != null) {
                 noStared.setVisible(false);
@@ -287,7 +282,7 @@ public class SearchController extends ActionController implements Initializable 
 
         lvSearchWordsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent){
+            public void handle(MouseEvent mouseEvent) {
                 if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
                     tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
                     //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
