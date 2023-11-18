@@ -29,6 +29,8 @@ import services.SpriteAnimation;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ContainerController implements Initializable {
@@ -160,7 +162,7 @@ public class ContainerController implements Initializable {
     }
 
     @FXML
-    void search(ActionEvent event) {
+    void search(ActionEvent event) throws SQLException {
         isAdd = false;
         isGame = false;
         isSearch = true;
@@ -169,6 +171,7 @@ public class ContainerController implements Initializable {
         resetNavButton();
         showSearchPane();
         searchController.initData(this);
+        searchController.updateHistoryInListView();
     }
 
     @FXML

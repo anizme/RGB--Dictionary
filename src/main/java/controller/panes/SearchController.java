@@ -248,6 +248,12 @@ public class SearchController extends ActionController implements Initializable 
         stared.setVisible(false);
     }
 
+    public void updateHistoryInListView() throws SQLException {
+        List<String> tmp = DatabaseConnect.getHistory();
+        Collections.reverse(tmp);
+        lvSearchWordsList.getItems().addAll(tmp);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         noStared.setVisible(true);

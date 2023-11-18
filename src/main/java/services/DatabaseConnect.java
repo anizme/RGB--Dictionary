@@ -7,11 +7,17 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//TODO: change PRJ_PATH to run
+/**
+ * TODO: change PRJ_PATH to run
+ * Anizme: C:\Users\hiren\Documents\UET subjects\OOP\INT2204-23_OOP\Dictionary-RGB\
+ * chuquangcan: C:\Users\ADMIN\IdeaProjects\Clone4\
+ * HAnguyen-119:
+ */
+
 public class DatabaseConnect {
     private static final String DB_PATH = "src\\\\main\\\\resources\\\\data\\\\dict_hh.db";
     public static Connection connection = null;
-    private static final String prj_path = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\";
+    private static final String prj_path = "C:\\Users\\hiren\\Documents\\UET subjects\\OOP\\INT2204-23_OOP\\Dictionary-RGB\\";
     private static final String PRJ_PATH = prj_path.replace("\\", "\\\\");
     private static final String SQL_URL = "jdbc:sqlite:" + PRJ_PATH + DB_PATH;
 
