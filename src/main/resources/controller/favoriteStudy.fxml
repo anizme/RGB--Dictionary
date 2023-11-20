@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -17,14 +16,6 @@
       </ImageView>
       <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane fx:id="blur" opacity="0.7" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="hintPane" layoutX="224.0" layoutY="149.0" prefHeight="307.0" prefWidth="362.0" style="-fx-background-color: #fffff2;" visible="false" AnchorPane.leftAnchor="224.0" AnchorPane.topAnchor="149.0">
-         <children>
-            <JFXButton layoutX="32.0" layoutY="252.0" onAction="#getHint" text="Hint" />
-            <JFXButton layoutX="284.0" layoutY="252.0" onAction="#hintOK" text="OK" />
-            <Label layoutX="41.0" layoutY="31.0" text="Word:" />
-            <JFXTextArea layoutX="32.0" layoutY="70.0" prefHeight="138.0" prefWidth="305.0" />
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="modePane" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0">
          <children>
             <ChoiceBox fx:id="cbMode" layoutX="25.0" layoutY="72.0" prefWidth="150.0" />
@@ -33,6 +24,5 @@
          </children>
       </AnchorPane>
       <JFXButton layoutX="770.0" layoutY="21.0" onAction="#mode" text="Mode" textFill="WHITE" />
-      <JFXButton layoutX="698.0" layoutY="21.0" onAction="#hint" text="Hint" textFill="WHITE" />
    </children>
 </AnchorPane>

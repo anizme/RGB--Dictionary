@@ -25,9 +25,6 @@ public class StudyModeController extends FavoriteAction implements Initializable
     private AnchorPane contentPane;
 
     @FXML
-    private AnchorPane hintPane;
-
-    @FXML
     private AnchorPane modePane;
 
     protected AnchorPane selectionPane;
@@ -42,28 +39,6 @@ public class StudyModeController extends FavoriteAction implements Initializable
     private void showWriting() throws SQLException {
         contentPane.getChildren().setAll(writingPane);
         writingModeController.reStart(new ActionEvent());
-    }
-
-    @FXML
-    void getHint(ActionEvent event) {
-
-    }
-
-    @FXML
-    void hint(ActionEvent event) {
-        if (hintPane.isVisible()) {
-            hintPane.setVisible(false);
-            blur.setVisible(false);
-        } else {
-            hintPane.setVisible(true);
-            blur.setVisible(true);
-        }
-    }
-
-    @FXML
-    void hintOK(ActionEvent event) {
-        hintPane.setVisible(false);
-        blur.setVisible(false);
     }
 
     @FXML
