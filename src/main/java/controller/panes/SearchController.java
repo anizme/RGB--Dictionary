@@ -191,6 +191,7 @@ public class SearchController extends ActionController implements Initializable 
                 wvMeaning.setVisible(true);
                 btSave.setVisible(false);
                 wvMeaning.getEngine().loadContent(htmlUpdateMeaning.getHtmlText());
+                noStared.setVisible(true);
             } catch (Exception e) {
                 alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
                         "Failed to update new meaning for this word.");

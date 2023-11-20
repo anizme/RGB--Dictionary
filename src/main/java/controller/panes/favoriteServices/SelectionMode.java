@@ -110,13 +110,26 @@ public class SelectionMode extends FavoriteAction implements Initializable {
         Random random = new Random();
         int randomAns = random.nextInt(4);
         options.get(randomAns).setText(currentAns);
+        int[] op = new int[3];
+        op[0] = random.nextInt(numOfQuestions);
+        while (DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(op[0])).get(0).equals(currentAns)) {
+            op[0] = random.nextInt(numOfQuestions);
+        }
+        op[1] = random.nextInt(numOfQuestions);
+        while (op[1] == op[0] ||
+                DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(op[1])).get(0).equals(currentAns)) {
+            op[1] = random.nextInt(numOfQuestions);
+        }
+        op[2] = random.nextInt(numOfQuestions);
+        while (op[2] == op[1] || op[2] == op[0] |
+                DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(op[2])).get(0).equals(currentAns)) {
+            op[2] = random.nextInt(numOfQuestions);
+        }
+        int j = 0;
         for (int i = 0; i < 4; i++) {
             if (i != randomAns) {
-                int distractAns = random.nextInt(numOfQuestions);
-                while (DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(distractAns)).get(0).equals(currentAns)) {
-                    distractAns = random.nextInt(numOfQuestions);
-                }
-                options.get(i).setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(distractAns)).get(0));
+                options.get(i).setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(op[j])).get(0));
+                j++;
             }
         }
     }
