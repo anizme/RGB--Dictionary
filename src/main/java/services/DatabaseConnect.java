@@ -101,13 +101,13 @@ public class DatabaseConnect {
         preparedStatement1.executeUpdate();
     }
 
-    public static List<String> getFavoriteWord(int stt) throws SQLException {
+    public static List<String> getFavoriteWord(String word) throws SQLException {
         List<String> res = new ArrayList<>();
         String ans = "";
         if (connection == null) {
             tryConnect();
         }
-        String query = String.format("SELECT word, shortmeaning FROM favorite WHERE stt = %d", stt);
+        String query = String.format("SELECT word, shortmeaning FROM favorite WHERE word = '%s'", word);
         System.out.println(query);
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
