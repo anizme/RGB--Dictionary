@@ -16,7 +16,7 @@
          </image>
       </ImageView>
       <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="blur" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="blur" opacity="0.7" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane fx:id="hintPane" layoutX="224.0" layoutY="149.0" prefHeight="307.0" prefWidth="362.0" style="-fx-background-color: #fffff2;" visible="false" AnchorPane.leftAnchor="224.0" AnchorPane.topAnchor="149.0">
          <children>
             <JFXButton layoutX="32.0" layoutY="252.0" onAction="#getHint" text="Hint" />

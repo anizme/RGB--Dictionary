@@ -28,16 +28,19 @@ public class WritingMode extends FavoriteAction implements Initializable {
     private String currentAns = "";
 
     @FXML
+    private AnchorPane blurPane;
+
+    @FXML
+    private Label curQ;
+
+    @FXML
+    private Label lbCorrect;
+
+    @FXML
     private Label lbFalse;
 
     @FXML
     private Label lbTrue;
-
-    @FXML
-    private AnchorPane blurPane;
-
-    @FXML
-    private Label lbCorrect;
 
     @FXML
     private Label lbWrong;
@@ -51,10 +54,12 @@ public class WritingMode extends FavoriteAction implements Initializable {
     @FXML
     private TextArea taMeaning;
 
+
     @FXML
     void writingSubmit(ActionEvent event) throws SQLException {
         if (taAnswerWord.getText().toLowerCase().trim().equals(currentAns.toLowerCase().trim())) {
             correctQ++;
+            lbCorrect.setText(String.valueOf(correctQ));
             lbTrue.setVisible(true);
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(e -> {
@@ -63,6 +68,7 @@ public class WritingMode extends FavoriteAction implements Initializable {
             pause.play();
         } else {
             wrongQ++;
+            lbWrong.setText(String.valueOf(wrongQ));
             lbFalse.setVisible(true);
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(e -> {
@@ -70,8 +76,9 @@ public class WritingMode extends FavoriteAction implements Initializable {
             });
             pause.play();
         }
-        if (curQuestion + 1 < numOfQuestions) {
-            curQuestion++;
+        curQuestion++;
+        curQ.setText(String.valueOf(curQuestion) + "/" + String.valueOf(numOfQuestions));
+        if (curQuestion < numOfQuestions) {
             getNextQuestion();
         } else {
             showResult();
@@ -81,15 +88,8 @@ public class WritingMode extends FavoriteAction implements Initializable {
 
     void showResult() {
         taAnswerWord.clear();
-        PauseTransition pause = new PauseTransition(Duration.seconds(2));
-        pause.setOnFinished(e -> {
-        });
-        pause.pause();
-
         blurPane.setVisible(true);
         resPane.setVisible(true);
-        lbCorrect.setText(String.valueOf(correctQ));
-        lbWrong.setText(String.valueOf(wrongQ));
     }
 
     void getNextQuestion() throws SQLException {
@@ -106,6 +106,7 @@ public class WritingMode extends FavoriteAction implements Initializable {
         blurPane.setVisible(false);
         resPane.setVisible(false);
         taAnswerWord.clear();
+        curQ.setText(String.valueOf(curQuestion) + "/" + String.valueOf(numOfQuestions));
         try {
             taMeaning.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(1));
             currentAns = DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(0);
@@ -116,11 +117,8 @@ public class WritingMode extends FavoriteAction implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lbTrue.setVisible(false);
-        lbWrong.setVisible(false);
         try {
-            taMeaning.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(1));
-            currentAns = DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(0);
+            reStart(new ActionEvent());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
