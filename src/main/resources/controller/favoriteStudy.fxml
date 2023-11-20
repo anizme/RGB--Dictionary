@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="572.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.StudyModeController">
-
+   <children>
+      <ImageView fitHeight="572.0" fitWidth="857.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../images/studyBoard.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="blur" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="hintPane" layoutX="224.0" layoutY="149.0" prefHeight="307.0" prefWidth="362.0" style="-fx-background-color: #fffff2;" visible="false" AnchorPane.leftAnchor="224.0" AnchorPane.topAnchor="149.0">
+         <children>
+            <JFXButton layoutX="32.0" layoutY="252.0" onAction="#getHint" text="Hint" />
+            <JFXButton layoutX="284.0" layoutY="252.0" onAction="#hintOK" text="OK" />
+            <Label layoutX="41.0" layoutY="31.0" text="Word:" />
+            <JFXTextArea layoutX="32.0" layoutY="70.0" prefHeight="138.0" prefWidth="305.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="modePane" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <ChoiceBox fx:id="cbMode" layoutX="25.0" layoutY="72.0" prefWidth="150.0" />
+            <Label layoutX="25.0" layoutY="39.0" prefHeight="18.0" prefWidth="86.0" text="Study Mode" />
+            <JFXButton layoutX="74.0" layoutY="151.0" onAction="#modeOK" text="OK" />
+         </children>
+      </AnchorPane>
+      <JFXButton layoutX="770.0" layoutY="21.0" onAction="#mode" text="Mode" textFill="WHITE" />
+      <JFXButton layoutX="698.0" layoutY="21.0" onAction="#hint" text="Hint" textFill="WHITE" />
+   </children>
 </AnchorPane>

@@ -1,12 +1,12 @@
 package controller.panes.favoriteServices;
 
 
-import controller.panes.FavoriteController;
+import controller.panes.ActionController;
 
 public abstract class FavoriteAction{
-    protected FavoriteController favoriteController;
+    protected ActionController actionController;
 
-    public void initFavoriteControllerContainer(FavoriteController favoriteController) {
-        this.favoriteController = favoriteController;
+    public void initFavoriteControllerContainer(ActionController favoriteController) {
+        this.actionController = favoriteController;
     }
 }
