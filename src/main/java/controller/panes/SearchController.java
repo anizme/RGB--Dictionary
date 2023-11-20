@@ -116,18 +116,25 @@ public class SearchController extends ActionController implements Initializable 
                     + DatabaseConnect.getMeaning(tfSearchWord.getText()));
         }
         //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
-        String s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
-        if (s != null) {
-            noStared.setVisible(false);
-            stared.setVisible(true);
-        } else {
-            noStared.setVisible(true);
-            stared.setVisible(false);
-        }
+        noStared.setVisible(false);
+        stared.setVisible(false);
         String tmp = tfSearchWord.getText();
         tmp = tmp.toLowerCase();
         DatabaseConnect.clearHistoryWord(tmp);
-        DatabaseConnect.insertHistory(tmp);
+        if (!DatabaseConnect.getMeaning(tfSearchWord.getText()).isEmpty()) {
+            DatabaseConnect.insertHistory(tmp);
+            String s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
+            if (s != null) {
+                noStared.setVisible(false);
+                stared.setVisible(true);
+            } else {
+                htmlUpdateMeaning.setVisible(false);
+                wvMeaning.setVisible(true);
+                btSave.setVisible(false);
+                noStared.setVisible(true);
+                stared.setVisible(false);
+            }
+        }
     }
 
     @FXML
@@ -181,7 +188,8 @@ public class SearchController extends ActionController implements Initializable 
                         "Updated new meaning for this word.");
                 alert.alertAction();
                 htmlUpdateMeaning.setVisible(false);
-                //btSave.setVisible(false);
+                wvMeaning.setVisible(true);
+                btSave.setVisible(false);
                 wvMeaning.getEngine().loadContent(htmlUpdateMeaning.getHtmlText());
             } catch (Exception e) {
                 alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
@@ -233,7 +241,9 @@ public class SearchController extends ActionController implements Initializable 
 
     public void addFavorite(ActionEvent event) throws Exception {
         String str = tfSearchWord.getText();
-        DatabaseConnect.insertFavorite(str);
+        if (DatabaseConnect.getMeaning(tfSearchWord.getText()) != null) {
+            DatabaseConnect.insertFavorite(str);
+        }
         noStared.setVisible(false);
         stared.setVisible(true);
     }
@@ -295,6 +305,9 @@ public class SearchController extends ActionController implements Initializable 
                             wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
                                     + DatabaseConnect.getMeaning(tfSearchWord.getText()));
                         }
+                        htmlUpdateMeaning.setVisible(false);
+                        wvMeaning.setVisible(true);
+                        btSave.setVisible(false);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -315,7 +328,12 @@ public class SearchController extends ActionController implements Initializable 
                     tmp = tmp.toLowerCase();
                     try {
                         DatabaseConnect.clearHistoryWord(tmp);
-                        DatabaseConnect.insertHistory(tmp);
+                        if (!DatabaseConnect.getMeaning(tfSearchWord.getText()).isEmpty()) {
+                            DatabaseConnect.insertHistory(tmp);
+                        } else {
+                            noStared.setVisible(false);
+                            stared.setVisible(false);
+                        }
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -326,18 +344,18 @@ public class SearchController extends ActionController implements Initializable 
         tfSearchWord.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (tfSearchWord.getText().isEmpty() && check) {
-                    try {
-                        List<String> tmp = DatabaseConnect.getHistory();
-                        Collections.reverse(tmp);
-                        lvSearchWordsList.getItems().addAll(tmp);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    check = false;
-                } else if (!tfSearchWord.getText().isEmpty()) {
-                    check = true;
-                }
+//                if (tfSearchWord.getText().isEmpty() && check) {
+//                    try {
+//                        List<String> tmp = DatabaseConnect.getHistory();
+//                        Collections.reverse(tmp);
+//                        lvSearchWordsList.getItems().addAll(tmp);
+//                    } catch (SQLException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                    check = false;
+//                } else if (!tfSearchWord.getText().isEmpty()) {
+//                    check = true;
+//                }
             }
         });
 
@@ -346,6 +364,9 @@ public class SearchController extends ActionController implements Initializable 
                 if (event.getCode() == KeyCode.ENTER) {
                     try {
                         lookup(null);
+                        htmlUpdateMeaning.setVisible(false);
+                        wvMeaning.setVisible(true);
+                        btSave.setVisible(false);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
