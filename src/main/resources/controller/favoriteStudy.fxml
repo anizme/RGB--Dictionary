@@ -23,6 +23,14 @@
             <JFXButton layoutX="74.0" layoutY="151.0" onAction="#modeOK" text="OK" />
          </children>
       </AnchorPane>
-      <JFXButton layoutX="770.0" layoutY="21.0" onAction="#mode" text="Mode" textFill="WHITE" />
+      <JFXButton layoutX="770.0" layoutY="21.0" minWidth="42.0" onAction="#mode" prefHeight="38.0" prefWidth="42.0" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/3dots.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

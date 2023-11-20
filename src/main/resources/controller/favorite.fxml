@@ -70,6 +70,13 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="BACK" onAction="#back" style="-fx-background-color: WHITE; -fx-background-radius: 0.25EM;" text="BACK" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <JFXButton fx:id="BACK" onAction="#back" pickOnBounds="false" prefHeight="32.0" prefWidth="41.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
    </children>
 </AnchorPane>

@@ -1,8 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="572.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.SelectionMode">
-
+   <children>
+      <TextArea fx:id="taMeaning" editable="false" layoutX="121.0" layoutY="119.0" prefHeight="128.0" prefWidth="607.0" />
+      <JFXButton fx:id="btA" layoutX="121.0" layoutY="351.0" onAction="#submit" prefHeight="67.0" prefWidth="196.0" />
+      <JFXButton fx:id="btB" layoutX="532.0" layoutY="351.0" onAction="#submit" prefHeight="67.0" prefWidth="196.0" />
+      <JFXButton fx:id="btC" layoutX="121.0" layoutY="451.0" onAction="#submit" prefHeight="67.0" prefWidth="196.0" />
+      <JFXButton fx:id="btD" layoutX="532.0" layoutY="451.0" onAction="#submit" prefHeight="67.0" prefWidth="196.0" />
+      <Label layoutX="121.0" layoutY="82.0" text="Choose the wod has meaning as below:" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="curQ" layoutX="121.0" layoutY="261.0" text="Label" textFill="WHITE" />
+      <Label fx:id="lbTrue" layoutX="470.0" layoutY="279.0" prefHeight="54.0" prefWidth="254.0" text="Correct! You are great" textFill="#19ae21" visible="false" wrapText="true">
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/smile.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbFalse" layoutX="476.0" layoutY="279.0" prefHeight="54.0" prefWidth="248.0" text="Wrong! Study carefully" textFill="#c91818" visible="false" wrapText="true">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cry.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="767.0" layoutY="518.0" onAction="#reStart" text="Restart" />
+      <AnchorPane fx:id="blurPane" layoutX="10.0" layoutY="10.0" opacity="0.7" prefHeight="572.0" prefWidth="850.0" style="-fx-background-color: #000000;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="resPane" focusTraversable="true" layoutX="311.0" layoutY="160.0" prefHeight="248.0" prefWidth="232.0" style="-fx-background-color: #ffffff;" visible="false">
+         <children>
+            <Label layoutX="76.0" layoutY="28.0" prefHeight="34.0" prefWidth="80.0" text="RESULT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="95.0" prefHeight="18.0" prefWidth="57.0" text="Correct:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="136.0" prefHeight="18.0" prefWidth="57.0" text="Wrong:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbCorrect" layoutX="116.0" layoutY="95.0" prefHeight="20.0" prefWidth="94.0" />
+            <Label fx:id="lbWrong" layoutX="116.0" layoutY="136.0" prefHeight="20.0" prefWidth="94.0" />
+            <JFXButton layoutX="90.0" layoutY="191.0" onAction="#reStart" text="Restart" />
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>
