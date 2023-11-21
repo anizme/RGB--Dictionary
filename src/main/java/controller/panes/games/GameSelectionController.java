@@ -38,12 +38,6 @@ public class GameSelectionController extends GameAction implements Initializable
     private JFXButton game3;
 
     @FXML
-    private Rectangle crwBG;
-
-    @FXML
-    private Rectangle defBG;
-
-    @FXML
     private AnchorPane gameContainer;
 
 
@@ -54,7 +48,7 @@ public class GameSelectionController extends GameAction implements Initializable
 
     @FXML
     void btGame2(ActionEvent event) {
-
+        gameControllerContainer.showHangman();
     }
 
     @FXML

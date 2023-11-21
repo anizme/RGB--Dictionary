@@ -663,19 +663,16 @@ public class ContainerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        navBar.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                menuLabel.setDisable(true);
-                menuLabel.setVisible(false);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 558);
-                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 0);
-                labelText = new KeyValue(menuLabel.textProperty(), "");
-                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
-                timeline = new Timeline(keyFrame);
-                timeline.setCycleCount(1);
-                timeline.play();
-            }
+        navBar.setOnMouseExited(mouseEvent -> {
+            menuLabel.setDisable(true);
+            menuLabel.setVisible(false);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 558);
+            labelSize = new KeyValue(menuLabel.prefWidthProperty(), 0);
+            labelText = new KeyValue(menuLabel.textProperty(), "");
+            keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+            timeline = new Timeline(keyFrame);
+            timeline.setCycleCount(1);
+            timeline.play();
         });
         menuPane.setVisible(false);
         TranslateTransition transition = new TranslateTransition(Duration.millis(15000), welcomeLabel);
@@ -757,175 +754,136 @@ public class ContainerController implements Initializable {
         settingImageDark = new Image(this.getClass().getResourceAsStream("/images/setting_animation_dark.png"));
 
 
-        switchMode.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (isLightMode) {
-                    isLightMode = false;
-                    darkModeSetting();
-                    resetNavButton();
-                } else {
-                    isLightMode = true;
-                    lightModeSetting();
-                    resetNavButton();
-                }
+        switchMode.setOnMouseClicked(mouseEvent -> {
+            if (isLightMode) {
+                isLightMode = false;
+                darkModeSetting();
+                resetNavButton();
+            } else {
+                isLightMode = true;
+                lightModeSetting();
+                resetNavButton();
             }
         });
 
-        btAdd.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btAddViewSprite = new ImageViewSprite(btAddView, isLightMode ? addImage : addImageDark,
-                        4, 11, 44, 67, 67, 40);
-                btAddViewSprite.start();
-                menuLabel.setDisable(false);
-                menuLabel.setVisible(true);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 158);
-                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 50);
-                labelText = new KeyValue(menuLabel.textProperty(), "ADD");
-                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
-                timeline = new Timeline(keyFrame);
-                timeline.setCycleCount(1);
-                timeline.play();
-            }
+        btAdd.setOnMouseEntered(mouseEvent -> {
+            btAddViewSprite = new ImageViewSprite(btAddView, isLightMode ? addImage : addImageDark,
+                    4, 11, 44, 67, 67, 40);
+            btAddViewSprite.start();
+            menuLabel.setDisable(false);
+            menuLabel.setVisible(true);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 158);
+            labelSize = new KeyValue(menuLabel.prefWidthProperty(), 50);
+            labelText = new KeyValue(menuLabel.textProperty(), "ADD");
+            keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+            timeline = new Timeline(keyFrame);
+            timeline.setCycleCount(1);
+            timeline.play();
         });
-        btAdd.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btAddViewSprite.stop();
-                btAddView.setImage(isLightMode ? addImage : addImageDark);
-                btAddView.setViewport(new Rectangle2D(0, 0, 67, 67));
-            }
+        btAdd.setOnMouseExited(mouseEvent -> {
+            btAddViewSprite.stop();
+            btAddView.setImage(isLightMode ? addImage : addImageDark);
+            btAddView.setViewport(new Rectangle2D(0, 0, 67, 67));
         });
 
-        btFavorite.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btFavoriteViewSprite = new ImageViewSprite(btFavoriteView, isLightMode ? favoriteImage : favoriteImageDark,
-                        5, 10, 47, 75, 75, 60);
-                btFavoriteViewSprite.start();
-                menuLabel.setDisable(false);
-                menuLabel.setVisible(true);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 398);
-                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 100);
-                labelText = new KeyValue(menuLabel.textProperty(), "FAVORITE");
-                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
-                timeline = new Timeline(keyFrame);
-                timeline.setCycleCount(1);
-                timeline.play();
-            }
+        btFavorite.setOnMouseEntered(mouseEvent -> {
+            btFavoriteViewSprite = new ImageViewSprite(btFavoriteView, isLightMode ? favoriteImage : favoriteImageDark,
+                    5, 10, 47, 75, 75, 60);
+            btFavoriteViewSprite.start();
+            menuLabel.setDisable(false);
+            menuLabel.setVisible(true);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 398);
+            labelSize = new KeyValue(menuLabel.prefWidthProperty(), 100);
+            labelText = new KeyValue(menuLabel.textProperty(), "FAVORITE");
+            keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+            timeline = new Timeline(keyFrame);
+            timeline.setCycleCount(1);
+            timeline.play();
         });
-        btFavorite.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btFavoriteViewSprite.stop();
-                btFavoriteView.setImage(isLightMode ? favoriteImage : favoriteImageDark);
-                btFavoriteView.setViewport(new Rectangle2D(0, 0, 75, 75));
-            }
+        btFavorite.setOnMouseExited(mouseEvent -> {
+            btFavoriteViewSprite.stop();
+            btFavoriteView.setImage(isLightMode ? favoriteImage : favoriteImageDark);
+            btFavoriteView.setViewport(new Rectangle2D(0, 0, 75, 75));
         });
 
-        btGame.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btGameViewSprite = new ImageViewSprite(btGameView, isLightMode ? gameImage : gameImageDark,
-                        6, 19, 114, 64, 64, 63);
-                btGameViewSprite.start();
-                menuLabel.setDisable(false);
-                menuLabel.setVisible(true);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 238);
-                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 70);
-                labelText = new KeyValue(menuLabel.textProperty(), "GAME");
-                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
-                timeline = new Timeline(keyFrame);
-                timeline.setCycleCount(1);
-                timeline.play();
-            }
+        btGame.setOnMouseEntered(mouseEvent -> {
+            btGameViewSprite = new ImageViewSprite(btGameView, isLightMode ? gameImage : gameImageDark,
+                    6, 19, 114, 64, 64, 63);
+            btGameViewSprite.start();
+            menuLabel.setDisable(false);
+            menuLabel.setVisible(true);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 238);
+            labelSize = new KeyValue(menuLabel.prefWidthProperty(), 70);
+            labelText = new KeyValue(menuLabel.textProperty(), "GAME");
+            keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+            timeline = new Timeline(keyFrame);
+            timeline.setCycleCount(1);
+            timeline.play();
         });
-        btGame.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btGameViewSprite.stop();
-                btGameView.setImage(isLightMode ? gameImage : gameImageDark);
-                btGameView.setViewport(new Rectangle2D(0, 0, 64, 64));
-            }
+        btGame.setOnMouseExited(mouseEvent -> {
+            btGameViewSprite.stop();
+            btGameView.setImage(isLightMode ? gameImage : gameImageDark);
+            btGameView.setViewport(new Rectangle2D(0, 0, 64, 64));
         });
 
-        btSearch.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btSearchViewSprite = new ImageViewSprite(btSearchView, isLightMode ? searchImage : searchImageDark,
-                        5, 13, 65, 66, 66, 60);
-                btSearchViewSprite.start();
-                menuLabel.setDisable(false);
-                menuLabel.setVisible(true);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 78);
-                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 80);
-                labelText = new KeyValue(menuLabel.textProperty(), "SEARCH");
-                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
-                timeline = new Timeline(keyFrame);
-                timeline.setCycleCount(1);
-                timeline.play();
-            }
+        btSearch.setOnMouseEntered(mouseEvent -> {
+            btSearchViewSprite = new ImageViewSprite(btSearchView, isLightMode ? searchImage : searchImageDark,
+                    5, 13, 65, 66, 66, 60);
+            btSearchViewSprite.start();
+            menuLabel.setDisable(false);
+            menuLabel.setVisible(true);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 78);
+            labelSize = new KeyValue(menuLabel.prefWidthProperty(), 80);
+            labelText = new KeyValue(menuLabel.textProperty(), "SEARCH");
+            keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+            timeline = new Timeline(keyFrame);
+            timeline.setCycleCount(1);
+            timeline.play();
         });
-        btSearch.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btSearchViewSprite.stop();
-                btSearchView.setImage(isLightMode ? searchImage : searchImageDark);
-                btSearchView.setViewport(new Rectangle2D(0, 0, 66, 66));
-            }
+        btSearch.setOnMouseExited(mouseEvent -> {
+            btSearchViewSprite.stop();
+            btSearchView.setImage(isLightMode ? searchImage : searchImageDark);
+            btSearchView.setViewport(new Rectangle2D(0, 0, 66, 66));
         });
 
-        btSetting.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btSettingViewSprite = new ImageViewSprite(btSettingView, isLightMode ? settingImage : settingImageDark,
-                        5, 11, 55, 66, 66, 60);
-                btSettingViewSprite.start();
-                menuLabel.setDisable(false);
-                menuLabel.setVisible(true);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 478);
-                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 90);
-                labelText = new KeyValue(menuLabel.textProperty(), "SETTING");
-                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
-                timeline = new Timeline(keyFrame);
-                timeline.setCycleCount(1);
-                timeline.play();
-            }
+        btSetting.setOnMouseEntered(mouseEvent -> {
+            btSettingViewSprite = new ImageViewSprite(btSettingView, isLightMode ? settingImage : settingImageDark,
+                    5, 11, 55, 66, 66, 60);
+            btSettingViewSprite.start();
+            menuLabel.setDisable(false);
+            menuLabel.setVisible(true);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 478);
+            labelSize = new KeyValue(menuLabel.prefWidthProperty(), 90);
+            labelText = new KeyValue(menuLabel.textProperty(), "SETTING");
+            keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+            timeline = new Timeline(keyFrame);
+            timeline.setCycleCount(1);
+            timeline.play();
         });
-        btSetting.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btSettingViewSprite.stop();
-                btSettingView.setImage(isLightMode ? settingImage : settingImageDark);
-                btSettingView.setViewport(new Rectangle2D(0, 0, 66, 66));
-            }
+        btSetting.setOnMouseExited(mouseEvent -> {
+            btSettingViewSprite.stop();
+            btSettingView.setImage(isLightMode ? settingImage : settingImageDark);
+            btSettingView.setViewport(new Rectangle2D(0, 0, 66, 66));
         });
 
-        btTranslate.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btTranslateViewSprite = new ImageViewSprite(btTranslateView, translateImage,
-                        5, 9, 43, 68, 68, 30);
-                btTranslateViewSprite.start();
-                menuLabel.setDisable(false);
-                menuLabel.setVisible(true);
-                labelPosition = new KeyValue(menuLabel.layoutYProperty(), 318);
-                labelSize = new KeyValue(menuLabel.prefWidthProperty(), 120);
-                labelText = new KeyValue(menuLabel.textProperty(), "TRANSLATE");
-                keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
-                timeline = new Timeline(keyFrame);
-                timeline.setCycleCount(1);
-                timeline.play();
-            }
+        btTranslate.setOnMouseEntered(mouseEvent -> {
+            btTranslateViewSprite = new ImageViewSprite(btTranslateView, translateImage,
+                    5, 9, 43, 68, 68, 30);
+            btTranslateViewSprite.start();
+            menuLabel.setDisable(false);
+            menuLabel.setVisible(true);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 318);
+            labelSize = new KeyValue(menuLabel.prefWidthProperty(), 120);
+            labelText = new KeyValue(menuLabel.textProperty(), "TRANSLATE");
+            keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
+            timeline = new Timeline(keyFrame);
+            timeline.setCycleCount(1);
+            timeline.play();
         });
-        btTranslate.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                btTranslateViewSprite.stop();
-                btTranslateView.setImage(translateImage);
-                btTranslateView.setViewport(new Rectangle2D(0, 0, 68, 68));
-            }
+        btTranslate.setOnMouseExited(mouseEvent -> {
+            btTranslateViewSprite.stop();
+            btTranslateView.setImage(translateImage);
+            btTranslateView.setViewport(new Rectangle2D(0, 0, 68, 68));
         });
 
         //search(null);

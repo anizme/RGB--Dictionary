@@ -1,6 +1,7 @@
 package controller.panes;
 
 import com.jfoenix.controls.JFXButton;
+import controller.panes.games.Hangman;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 
@@ -43,6 +44,9 @@ public class GameController extends ActionController implements Initializable {
     protected AnchorPane crossWordPane;
     protected CrossWord crossWordController;
 
+    protected AnchorPane hangmanPane;
+    protected Hangman hangmanController;
+
     @FXML
     void gameMenu(ActionEvent event) {
         showGamePane();
@@ -60,6 +64,10 @@ public class GameController extends ActionController implements Initializable {
 
     public void showCrossWord() {
         this.setGamePane(crossWordPane);
+    }
+
+    public void showHangman() {
+        this.setGamePane(hangmanPane);
     }
 
     @Override
@@ -82,6 +90,16 @@ public class GameController extends ActionController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("hangman.fxml"));
+            hangmanPane = fxmlLoader.load();
+            hangmanController = fxmlLoader.getController();
+            hangmanController.initGameControllerContainer(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         gameMenuBackground.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
