@@ -7,6 +7,7 @@ import dictionary.Word;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -44,6 +46,27 @@ public class CrossWord extends GameAction implements Initializable {
     private ImageView NO;
 
     @FXML
+    private ImageView spaceShip;
+
+    @FXML
+    private ImageView starWay1;
+
+    @FXML
+    private ImageView starWay2;
+
+    @FXML
+    private ImageView starWay3;
+
+    @FXML
+    private ImageView fireBall;
+
+    @FXML
+    private ImageView congratulation;
+
+    @FXML
+    private ImageView fireWork;
+
+    @FXML
     private TextField meaning;
 
     @FXML
@@ -55,20 +78,33 @@ public class CrossWord extends GameAction implements Initializable {
     @FXML
     private AnchorPane gamePane;
 
+    @FXML
+    private Rectangle bgButtonGrid;
+
     private List<Word> wordList;
     private List<Word> wordPlay;
     private List<List<Character>> charBoard;
     private List<String> playerAnswer;
     private List<List<Integer>> posXY;
     private List<Integer> tmpPos;
-    private int numsWord = 2;
+    private int numsWord = 3;
     private int row = 10;
     private int col = 10;
     private int count = 0;
+    private double xDefault = 64.0;
+    private double yDefault = 455.0;
+    private double xPlanet1 = 43.0;
+    private double yPlanet1 = 251.0;
+    private double xPlanet2 = 109.0;
+    private double yPlanet2 = 107.0;
+    private double xPlanet3 = 54.0;
+    private double yPlanet3 = 0.0;
+    private double yFireBall;
+    private int noPlanet = 0;
     private String gocolor = "-fx-background-color: #ff9130;";
     private String cocolor = "-fx-background-color: #85E6C5;";
     private String wrcolor = "-fx-background-color: #FF6969;";
-    private String dfcolor = "-fx-background-color: #FBFFDC;";
+    private String dfcolor = "-fx-background-color: #FAFEFF;";
     private boolean isRunning = false;
     private URL url;
     private ResourceBundle resourceBundle;
@@ -89,6 +125,9 @@ public class CrossWord extends GameAction implements Initializable {
         sc.close();
         if (PLAY != null)
             PLAY.setStyle("-fx-background-color: rgb(152, 238, 204);");
+        if (fireBall != null) {
+            yFireBall = fireBall.getLayoutY();
+        }
     }
 
     private void addHoverEffect(Button button) {
@@ -185,6 +224,9 @@ public class CrossWord extends GameAction implements Initializable {
         Random rand = new Random();
         ObservableList<Node> panelList = initBoard.getChildren();
         for (Node x : panelList) {
+            x.setStyle(dfcolor);
+        }
+        for (Node x : panelList) {
             addHoverEffect((Button) x);
         }
         // Create null board
@@ -254,6 +296,14 @@ public class CrossWord extends GameAction implements Initializable {
         label1.setVisible(false);
         label2.setVisible(false);
         meaning.setVisible(false);
+        noPlanet = 0;
+        spaceShipGo();
+        count = 0;
+        initBoard.setVisible(true);
+        congratulation.setVisible(false);
+        fireWork.setVisible(false);
+        fireBall.setVisible(true);
+        bgButtonGrid.setVisible(true);
     }
 
     @FXML
@@ -325,6 +375,106 @@ public class CrossWord extends GameAction implements Initializable {
         }
     }
 
+    void spaceShipGo() {
+        double x, y;
+        x = spaceShip.getLayoutX();
+        y = spaceShip.getLayoutY();
+        if (noPlanet == 1) {
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
+            translateTransition.setToX(xPlanet1-x);
+            translateTransition.setToY(yPlanet1-y);
+            translateTransition.play();
+
+            fireBall.setOpacity(1);
+            fireBall.setTranslateX(0);
+            Timeline timeline = new Timeline();
+
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+                    new KeyValue(fireBall.translateXProperty(), xDefault - 200 - fireBall.getLayoutX()),
+                    new KeyValue(fireBall.translateYProperty(), yDefault + 50 - fireBall.getLayoutY()));
+
+            timeline.getKeyFrames().add(slideIn);
+            timeline.setOnFinished(e -> {
+                fireBall.setTranslateX(0);
+                fireBall.setTranslateY(0);
+                fireBall.setOpacity(1);
+            });
+
+            timeline.play();
+            starWay1.setVisible(false);
+        } else if (noPlanet == 2) {
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
+            translateTransition.setToX(xPlanet2-x);
+            translateTransition.setToY(yPlanet2-y);
+            translateTransition.play();
+
+            fireBall.setOpacity(1);
+            fireBall.setTranslateX(0);
+            fireBall.setRotate(22.0);
+            Timeline timeline = new Timeline();
+
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+                    new KeyValue(fireBall.translateXProperty(), xPlanet1 - 200 - fireBall.getLayoutX()),
+                    new KeyValue(fireBall.translateYProperty(), yPlanet1 + 50 - fireBall.getLayoutY()));
+
+            timeline.getKeyFrames().add(slideIn);
+            timeline.setOnFinished(e -> {
+                fireBall.setTranslateX(0);
+                fireBall.setTranslateY(0);
+                fireBall.setOpacity(1);
+            });
+
+            timeline.play();
+            starWay2.setVisible(false);
+        } else if (noPlanet == 3) {
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
+            translateTransition.setToX(xPlanet3-x);
+            translateTransition.setToY(yPlanet3-y);
+            translateTransition.play();
+
+            fireBall.setOpacity(1);
+            fireBall.setTranslateX(0);
+            fireBall.setRotate(53.0);
+            Timeline timeline = new Timeline();
+
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+                    new KeyValue(fireBall.translateXProperty(), xPlanet2 - 250 - fireBall.getLayoutX()),
+                    new KeyValue(fireBall.translateYProperty(), yPlanet2 + 10 - fireBall.getLayoutY()));
+
+            timeline.getKeyFrames().add(slideIn);
+            timeline.setOnFinished(e -> {
+                fireBall.setTranslateX(0);
+                fireBall.setTranslateY(0);
+                fireBall.setOpacity(1);
+                initBoard.setVisible(false);
+                bgButtonGrid.setVisible(false);
+                fireBall.setVisible(false);
+                congratulation.setVisible(true);
+                fireWork.setVisible(true);
+                fireWork.setTranslateY(-500);
+                Timeline timeline2 = new Timeline();
+
+                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(2),
+                        new KeyValue(fireWork.translateYProperty(), 700));
+
+                timeline2.getKeyFrames().add(slideIn2);
+                timeline2.play();
+            });
+
+            timeline.play();
+            starWay3.setVisible(false);
+        } else {
+            starWay1.setVisible(true);
+            starWay2.setVisible(true);
+            starWay3.setVisible(true);
+            spaceShip.setTranslateX(0);
+            spaceShip.setTranslateY(0);
+            fireBall.setTranslateX(0);
+            fireBall.setTranslateY(0);
+            fireBall.setRotate(0);
+        }
+    }
+
     void checkAns(String yourWord, List<Integer> tmpPos) {
         ObservableList<Node> listNode = initBoard.getChildren();
         int x1 = tmpPos.get(0);
@@ -339,6 +489,8 @@ public class CrossWord extends GameAction implements Initializable {
                 YES.setVisible(true);
                 NO.setVisible(false);
                 meaning.setText(wordPlay.get(i).getWord_explain());
+                noPlanet++;
+                spaceShipGo();
                 if (x1 == x2) {
                     for (int k = y1; k <= y2; k++) {
                         Button button1 = (Button) listNode.get(k * col + x1);
