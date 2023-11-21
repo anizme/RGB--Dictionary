@@ -28,31 +28,31 @@
                   <HBox layoutX="76.0" layoutY="52.0" prefHeight="50.0" prefWidth="699.0" spacing="12.0">
                      <children>
                         <TextField fx:id="tfFavorite" alignment="CENTER" opacity="0.9" prefHeight="50.0" prefWidth="315.0" promptText="Type your word here." style="-fx-background-radius: 1em;" />
-                        <JFXButton fx:id="btSearch" alignment="CENTER_RIGHT" onAction="#searchFavorite" opacity="0.9" prefHeight="50.0" prefWidth="107.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="SEARCH" textFill="WHITE">
+                        <JFXButton alignment="CENTER_RIGHT" onAction="#removeFavorite" opacity="0.9" prefHeight="50.0" prefWidth="122.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="REMOVE" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/search-interface-symbol.png" />
+                                    <Image url="@../images/removed.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btStudy" alignment="CENTER_RIGHT" onAction="#study" opacity="0.9" prefHeight="50.0" prefWidth="108.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="STUDY" textFill="WHITE">
+                        <JFXButton alignment="CENTER_RIGHT" onAction="#study" opacity="0.9" prefHeight="50.0" prefWidth="108.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="STUDY" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/refresh.png" />
+                                    <Image url="@../images/open-book.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btFlashCard" alignment="CENTER_RIGHT" onAction="#playFlashCard" prefHeight="50.0" prefWidth="133.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="FLASH CARD" textFill="WHITE" wrapText="true">
+                        <JFXButton alignment="CENTER_RIGHT" onAction="#playFlashCard" prefHeight="50.0" prefWidth="133.0" style="-fx-background-color: #19A7CE; -fx-background-radius: 1em;" text="FLASH CARD" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

@@ -35,6 +35,9 @@ public class DatabaseConnect {
         }
     }
 
+    /**
+     * HISTORY QUERY
+     */
     public static void insertHistory(String historyWord) throws SQLException {
         if (connection == null) {
             tryConnect();
@@ -65,6 +68,43 @@ public class DatabaseConnect {
         }
     }
 
+
+    public static List<String> getHistory() throws SQLException {
+        List<String> ans = new ArrayList<>();
+        if (connection == null) {
+            tryConnect();
+        }
+        String query = "SELECT word FROM history";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            ans.add(resultSet.getString(1));
+        }
+        return ans;
+    }
+
+    public static void clearHistoryWord(String word) throws SQLException {
+        if (connection == null) {
+            tryConnect();
+        }
+        String query = String.format("DELETE FROM history WHERE word LIKE '%s'", word);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        int rowsUpdated = preparedStatement.executeUpdate();
+    }
+
+    public static void clearHistory() throws SQLException {
+        if (connection == null) {
+            tryConnect();
+        }
+        String query = "DELETE FROM history;\n" +
+                "VACUUM;";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        int rowsUpdated = preparedStatement.executeUpdate();
+    }
+
+    /**
+     * FAVORITE QUERY
+     */
     public static void insertFavorite(String word) throws SQLException {
         if (connection == null) {
             tryConnect();
@@ -127,7 +167,7 @@ public class DatabaseConnect {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet1 = preparedStatement.executeQuery();
         while (resultSet1.next()) {
-            res.add(resultSet1.getString(1) + '\n' + resultSet1.getString(2));
+            res.add(resultSet1.getString(1) + "\n" + resultSet1.getString(2));
         }
         return res;
     }
@@ -181,6 +221,23 @@ public class DatabaseConnect {
         preparedStatement.executeUpdate();
     }
 
+    public static List<String> getListFavoriteWordTargets(String word) throws SQLException {
+        String query = String.format("SELECT word, shortmeaning FROM favorite WHERE word LIKE '%s%%' ORDER BY word", word);
+        List<String> listWord = new ArrayList<>();
+        if (connection == null) {
+            tryConnect();
+        }
+        System.out.println(query);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            String tmpWord = resultSet.getString(1);
+            String tmpShortmeaning = resultSet.getString(2);
+            listWord.add(tmpWord + "\n" + tmpShortmeaning);
+        }
+        return listWord;
+    }
+
     public static void clearFavorite() throws SQLException {
         if (connection == null) {
             tryConnect();
@@ -191,38 +248,9 @@ public class DatabaseConnect {
         int rowsUpdated = preparedStatement.executeUpdate();
     }
 
-    public static List<String> getHistory() throws SQLException {
-        List<String> ans = new ArrayList<>();
-        if (connection == null) {
-            tryConnect();
-        }
-        String query = "SELECT word FROM history";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            ans.add(resultSet.getString(1));
-        }
-        return ans;
-    }
-
-    public static void clearHistoryWord(String word) throws SQLException {
-        if (connection == null) {
-            tryConnect();
-        }
-        String query = String.format("DELETE FROM history WHERE word LIKE '%s'", word);
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        int rowsUpdated = preparedStatement.executeUpdate();
-    }
-
-    public static void clearHistory() throws SQLException {
-        if (connection == null) {
-            tryConnect();
-        }
-        String query = "DELETE FROM history;\n" +
-                "VACUUM;";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        int rowsUpdated = preparedStatement.executeUpdate();
-    }
+    /**
+     * AV QUERY
+     */
 
     public static void insertWord(String def, String meaning) throws SQLException {
         if (connection == null) {
@@ -347,8 +375,10 @@ public class DatabaseConnect {
     }
 
     public static void main(String[] args) throws SQLException {
-        insertFavorite("H");
-        // Close the database connection when you're done with it
+        List<String> res = getListFavoriteWordTargets("hi");
+        for (String t : res) {
+            System.out.println(t);
+        }
         if (connection != null) {
             connection.close();
         }

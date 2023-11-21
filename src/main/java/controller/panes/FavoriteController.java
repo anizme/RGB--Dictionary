@@ -8,6 +8,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -23,6 +25,8 @@ import services.DatabaseConnect;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class FavoriteController extends ActionController implements Initializable {
@@ -31,15 +35,6 @@ public class FavoriteController extends ActionController implements Initializabl
 
     @FXML
     private ImageView backgroundView;
-
-    @FXML
-    private JFXButton btFlashCard;
-
-    @FXML
-    private JFXButton btSearch;
-
-    @FXML
-    private JFXButton btStudy;
 
     @FXML
     private AnchorPane contentPane;
@@ -99,9 +94,10 @@ public class FavoriteController extends ActionController implements Initializabl
         }
     }
 
-    public void searchFavorite(ActionEvent event) throws Exception {
-        String tmp = tfFavorite.getText();
-
+    @FXML
+    void removeFavorite(ActionEvent event) throws Exception {
+        this.state.getSearchController().removeFavorite(tfFavorite.getText().trim().toLowerCase());
+        updateListView(new ActionEvent());
     }
 
     @Override
@@ -123,5 +119,27 @@ public class FavoriteController extends ActionController implements Initializabl
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        tfFavorite.textProperty().addListener(e -> {
+            lvFavorite.getItems().clear();
+            if (tfFavorite.getText() != null) {
+                String searchWord = tfFavorite.getText();
+                try {
+                    lvFavorite.getItems().addAll(DatabaseConnect.getListFavoriteWordTargets(searchWord));
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        lvFavorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (!lvFavorite.getSelectionModel().isEmpty()) {
+                    String[] parts = lvFavorite.getSelectionModel().getSelectedItem().split("\n");
+                    tfFavorite.setText(parts[0]);
+                }
+            }
+        });
     }
 }

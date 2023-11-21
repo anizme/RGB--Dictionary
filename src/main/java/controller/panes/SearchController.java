@@ -249,8 +249,13 @@ public class SearchController extends ActionController implements Initializable 
         stared.setVisible(true);
     }
 
+    @FXML
     public void removeFavorite(ActionEvent event) throws Exception {
-        DatabaseConnect.clearFavoriteWord(tfSearchWord.getText().toLowerCase());
+        removeFavorite(tfSearchWord.getText().toLowerCase());
+    }
+
+    public void removeFavorite(String word) throws SQLException {
+        DatabaseConnect.clearFavoriteWord(word);
         noStared.setVisible(true);
         stared.setVisible(false);
     }
@@ -339,24 +344,6 @@ public class SearchController extends ActionController implements Initializable 
                         throw new RuntimeException(e);
                     }
                 }
-            }
-        });
-
-        tfSearchWord.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-//                if (tfSearchWord.getText().isEmpty() && check) {
-//                    try {
-//                        List<String> tmp = DatabaseConnect.getHistory();
-//                        Collections.reverse(tmp);
-//                        lvSearchWordsList.getItems().addAll(tmp);
-//                    } catch (SQLException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                    check = false;
-//                } else if (!tfSearchWord.getText().isEmpty()) {
-//                    check = true;
-//                }
             }
         });
 

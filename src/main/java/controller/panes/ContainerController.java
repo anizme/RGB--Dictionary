@@ -183,6 +183,10 @@ public class ContainerController implements Initializable {
         searchController.updateHistoryInListView();
     }
 
+    public SearchController getSearchController() {
+        return searchController;
+    }
+
     @FXML
     void setting(ActionEvent event) {
         isAdd = false;
