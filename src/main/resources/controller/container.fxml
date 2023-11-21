@@ -57,7 +57,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="contentPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
       <VBox fx:id="navBar" layoutY="48.0" prefHeight="552.0" prefWidth="80.0" styleClass="navBar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="850.0" AnchorPane.topAnchor="48.0">
          <children>
             <JFXButton fx:id="btSearch" alignment="CENTER" contentDisplay="CENTER" onAction="#search" prefHeight="70.0" prefWidth="70.0" styleClass="navBar" textAlignment="CENTER" textOverrun="CLIP">
@@ -152,6 +151,7 @@
             </JFXButton>
          </children>
       </VBox>
+      <AnchorPane fx:id="contentPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
       <Label fx:id="menuLabel" alignment="CENTER" disable="true" layoutX="80.0" layoutY="478.0" prefHeight="30.0" prefWidth="0.0" styleClass="menu-label" visible="false">
          <font>
             <Font name="System Bold" size="19.0" />
