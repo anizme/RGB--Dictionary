@@ -1,5 +1,6 @@
 package controller;
 
+import controller.panes.ContainerController;
 import dictionary.DictionaryManagement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +16,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class ApplicationStart extends Application {
-    public static DictionaryManagement dictionaryManagement = new DictionaryManagement();
-     static {
-         try {
-             dictionaryManagement.insertFromFile();
-         } catch (Exception e) {
-             throw new RuntimeException(e);
-         }
-     }
+//    public static DictionaryManagement dictionaryManagement = new DictionaryManagement();
+//     static {
+//         try {
+//             dictionaryManagement.insertFromFile();
+//         } catch (Exception e) {
+//             throw new RuntimeException(e);
+//         }
+//     }
 
      static {
          if (DatabaseConnect.connection == null) {
@@ -39,6 +40,8 @@ public class ApplicationStart extends Application {
         //stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/RGB.png")));
         stage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(fxmlLoader.load(), 930, 600);
+        ContainerController controller = fxmlLoader.getController();
+        controller.setStage(stage);
         stage.setScene(scene);
         stage.show();
     }

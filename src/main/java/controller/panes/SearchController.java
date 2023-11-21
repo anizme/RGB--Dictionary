@@ -268,8 +268,6 @@ public class SearchController extends ActionController implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        noStared.setVisible(true);
-        stared.setVisible(false);
         wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>");
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();

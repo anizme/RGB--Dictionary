@@ -32,8 +32,9 @@ public class StudyModeController extends FavoriteAction implements Initializable
     protected AnchorPane writingPane;
     protected WritingMode writingModeController;
 
-    private void showSelection() {
+    private void showSelection() throws SQLException {
         contentPane.getChildren().setAll(selectionPane);
+        selectionModeController.reStart(new ActionEvent());
     }
 
     private void showWriting() throws SQLException {

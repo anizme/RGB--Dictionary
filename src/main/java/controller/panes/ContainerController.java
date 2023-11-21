@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import services.DatabaseConnect;
@@ -36,7 +37,8 @@ import java.util.ResourceBundle;
 public class ContainerController implements Initializable {
 
     static boolean isLightMode;
-    private DictionaryManagement dictionaryManagement = new DictionaryManagement();
+
+    //private DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private AnchorPane searchPane = null;
     private SearchController searchController;
     private AnchorPane addPane = null;
@@ -137,9 +139,40 @@ public class ContainerController implements Initializable {
     private KeyValue labelText;
     private KeyFrame keyFrame;
 
+    private Stage stage;
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    @FXML
+    private void handlePopUpButton() {
+        stage.setIconified(false);
+    }
+
+    @FXML
+    private void handleMinimizeButton() {
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void handleMousePressed(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+    @FXML
+    private void handleMouseDragged(MouseEvent event) {
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+    }
+
     @FXML
     void exit(ActionEvent event) throws SQLException {
         DatabaseConnect.close();
+        stage.close();
         Platform.exit();
     }
 

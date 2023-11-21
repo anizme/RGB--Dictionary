@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
    <children>
-      <AnchorPane prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #0C4A6E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #0C4A6E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="welcomeLabel" layoutX="1000.0" layoutY="5.0" prefHeight="38.0" prefWidth="300.0" text="Welcome to RGB Dictionary" textFill="WHITE">
                <font>
@@ -33,6 +33,24 @@
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/cancel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="828.0" layoutY="8.0" onAction="#handlePopUpButton" prefHeight="32.0" prefWidth="40.0">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pop-up.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="776.0" layoutY="11.0" onAction="#handleMinimizeButton" prefHeight="21.0" prefWidth="38.0">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/minimize.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -134,13 +152,12 @@
          </children>
       </VBox>
       <AnchorPane fx:id="contentPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
-      <AnchorPane fx:id="contentPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
       <Label fx:id="menuLabel" alignment="CENTER" disable="true" layoutX="80.0" layoutY="478.0" prefHeight="30.0" prefWidth="0.0" styleClass="menu-label" visible="false">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="menuPane" layoutX="80.0" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #222222;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="menuPane" layoutX="80.0" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #222222;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" layoutX="296.0" layoutY="393.0" prefHeight="70.0" prefWidth="259.0" text="RGB Team" textFill="WHITE">
                <font>

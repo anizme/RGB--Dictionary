@@ -15,7 +15,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
+<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
    <children>
       <ImageView fx:id="backgroundView" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
@@ -128,7 +128,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="stared" layoutX="371.0" layoutY="7.0" onAction="#removeFavorite" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT">
+            <JFXButton fx:id="stared" layoutX="371.0" layoutY="7.0" onAction="#removeFavorite" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT" visible="false">
                <font>
                   <Font size="1.0" />
                </font>
