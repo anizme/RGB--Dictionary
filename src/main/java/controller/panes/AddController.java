@@ -78,7 +78,7 @@ public class AddController extends ActionController implements Initializable {
 
     @FXML
     void addAction(ActionEvent event) throws SQLException {
-        if (!lvSearchWordsList.getItems().isEmpty()) {
+        if (!DatabaseConnect.getMeaning(tfAddWord.getText()).isEmpty()) {
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "This word has already exists", "Error");
             alert.alertAction();
         } else if (htmlAddMeaning.getHtmlText().equals("")) {
@@ -88,7 +88,7 @@ public class AddController extends ActionController implements Initializable {
         } else {
             ConfirmationAlert alert = new ConfirmationAlert("Confirm to add new word", "Confirm?");
             if (alert.alertAction()) {
-                DatabaseConnect.insertWord(tfAddWord.getText(), htmlAddMeaning.getHtmlText());
+                DatabaseConnect.insertWord(tfAddWord.getText(), htmlAddMeaning.getHtmlText().replace("'", "''"));
             }
         }
 //        Alert addAlert = new Alert(Alert.AlertType.NONE);

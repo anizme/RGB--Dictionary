@@ -51,8 +51,6 @@ public class ContainerController implements Initializable {
     private TranslateAPIController translateController;
     private AnchorPane favoritePane = null;
     private FavoriteController favoriteController;
-    @FXML
-    private JFXButton btExit;
 
     @FXML
     private JFXButton btAdd;
@@ -127,8 +125,8 @@ public class ContainerController implements Initializable {
     @FXML
     private VBox navBar;
 
-    @FXML
-    private Label welcomeLabel;
+//    @FXML
+//    private Label welcomeLabel;
 
     @FXML
     private Label menuLabel;
@@ -666,7 +664,7 @@ public class ContainerController implements Initializable {
         navBar.setOnMouseExited(mouseEvent -> {
             menuLabel.setDisable(true);
             menuLabel.setVisible(false);
-            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 558);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 600);
             labelSize = new KeyValue(menuLabel.prefWidthProperty(), 0);
             labelText = new KeyValue(menuLabel.textProperty(), "");
             keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
@@ -675,10 +673,10 @@ public class ContainerController implements Initializable {
             timeline.play();
         });
         menuPane.setVisible(false);
-        TranslateTransition transition = new TranslateTransition(Duration.millis(15000), welcomeLabel);
-        transition.setByX(-1400);
-        transition.setCycleCount(Animation.INDEFINITE);
-        transition.play();
+//        TranslateTransition transition = new TranslateTransition(Duration.millis(15000), welcomeLabel);
+//        transition.setByX(-1400);
+//        transition.setCycleCount(Animation.INDEFINITE);
+//        transition.play();
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
@@ -772,7 +770,7 @@ public class ContainerController implements Initializable {
             btAddViewSprite.start();
             menuLabel.setDisable(false);
             menuLabel.setVisible(true);
-            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 158);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 150);
             labelSize = new KeyValue(menuLabel.prefWidthProperty(), 50);
             labelText = new KeyValue(menuLabel.textProperty(), "ADD");
             keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
@@ -792,7 +790,7 @@ public class ContainerController implements Initializable {
             btFavoriteViewSprite.start();
             menuLabel.setDisable(false);
             menuLabel.setVisible(true);
-            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 398);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 390);
             labelSize = new KeyValue(menuLabel.prefWidthProperty(), 100);
             labelText = new KeyValue(menuLabel.textProperty(), "FAVORITE");
             keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
@@ -812,7 +810,7 @@ public class ContainerController implements Initializable {
             btGameViewSprite.start();
             menuLabel.setDisable(false);
             menuLabel.setVisible(true);
-            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 238);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 230);
             labelSize = new KeyValue(menuLabel.prefWidthProperty(), 70);
             labelText = new KeyValue(menuLabel.textProperty(), "GAME");
             keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
@@ -832,7 +830,7 @@ public class ContainerController implements Initializable {
             btSearchViewSprite.start();
             menuLabel.setDisable(false);
             menuLabel.setVisible(true);
-            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 78);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 70);
             labelSize = new KeyValue(menuLabel.prefWidthProperty(), 80);
             labelText = new KeyValue(menuLabel.textProperty(), "SEARCH");
             keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
@@ -852,7 +850,7 @@ public class ContainerController implements Initializable {
             btSettingViewSprite.start();
             menuLabel.setDisable(false);
             menuLabel.setVisible(true);
-            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 478);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 470);
             labelSize = new KeyValue(menuLabel.prefWidthProperty(), 90);
             labelText = new KeyValue(menuLabel.textProperty(), "SETTING");
             keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
@@ -872,7 +870,7 @@ public class ContainerController implements Initializable {
             btTranslateViewSprite.start();
             menuLabel.setDisable(false);
             menuLabel.setVisible(true);
-            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 318);
+            labelPosition = new KeyValue(menuLabel.layoutYProperty(), 310);
             labelSize = new KeyValue(menuLabel.prefWidthProperty(), 120);
             labelText = new KeyValue(menuLabel.textProperty(), "TRANSLATE");
             keyFrame = new KeyFrame(Duration.millis(300), labelPosition, labelSize, labelText);
@@ -885,7 +883,5 @@ public class ContainerController implements Initializable {
             btTranslateView.setImage(translateImage);
             btTranslateView.setViewport(new Rectangle2D(0, 0, 68, 68));
         });
-
-        //search(null);
     }
 }
