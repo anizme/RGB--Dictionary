@@ -189,17 +189,38 @@
       </ImageView>
       <ImageView fx:id="spaceShip" fitHeight="138.0" fitWidth="31.0" layoutX="64.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true" rotate="-1.7">
          <image>
-            <Image url="@../images/1x/Asset%201.png" />
+            <Image url="@../images/1x/Asset 1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="congratulation" fitHeight="231.0" fitWidth="277.0" layoutX="321.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="winner" fitHeight="464.0" fitWidth="363.0" layoutX="253.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/congratulation.png" />
+            <Image url="@../images/win.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="fireWork" fitHeight="464.0" fitWidth="598.0" layoutX="204.0" layoutY="-50.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="loser" fitHeight="363.0" fitWidth="363.0" layoutX="253.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/paper.png" />
+            <Image url="@../images/lose.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="guideCrossWord" fitHeight="363.0" fitWidth="363.0" layoutX="254.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/guideCrossWord.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="flash" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="555.0" layoutX="-4.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="854.0" />
+      <ImageView fx:id="heart1" fitHeight="31.0" fitWidth="33.0" layoutX="667.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/heart.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="heart2" fitHeight="31.0" fitWidth="33.0" layoutX="717.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/heart.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="heart3" fitHeight="31.0" fitWidth="33.0" layoutX="769.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/heart.png" />
          </image>
       </ImageView>
    </children>
