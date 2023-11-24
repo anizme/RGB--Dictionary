@@ -1,6 +1,7 @@
 package controller.panes.favoriteServices;
 
 import com.jfoenix.controls.JFXButton;
+import controller.panes.ActionController;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +11,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import services.DatabaseConnect;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -19,7 +19,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class SelectionMode extends FavoriteAction implements Initializable {
+import static controller.ApplicationStart.favoriteDB;
+
+public class SelectionMode extends ActionController implements Initializable {
 
     private int numOfQuestions = 0;
     private int curQuestion = 0;
@@ -101,8 +103,8 @@ public class SelectionMode extends FavoriteAction implements Initializable {
     }
 
     void getNextQuestion() throws SQLException {
-        taMeaning.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(1));
-        currentAns = DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(0);
+        taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
+        currentAns = FavoriteUtils.getFavoriteShortMeaningAt(curQuestion);
         genOptions();
     }
 
@@ -112,23 +114,23 @@ public class SelectionMode extends FavoriteAction implements Initializable {
         options.get(randomAns).setText(currentAns);
         int[] op = new int[3];
         op[0] = random.nextInt(numOfQuestions);
-        while (DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(op[0])).get(0).equals(currentAns)) {
+        while (FavoriteUtils.getFavoriteWordAt(op[0]).equals(currentAns)) {
             op[0] = random.nextInt(numOfQuestions);
         }
         op[1] = random.nextInt(numOfQuestions);
         while (op[1] == op[0] ||
-                DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(op[1])).get(0).equals(currentAns)) {
+                FavoriteUtils.getFavoriteWordAt(op[1]).equals(currentAns)) {
             op[1] = random.nextInt(numOfQuestions);
         }
         op[2] = random.nextInt(numOfQuestions);
         while (op[2] == op[1] || op[2] == op[0] |
-                DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(op[2])).get(0).equals(currentAns)) {
+                FavoriteUtils.getFavoriteWordAt(op[2]).equals(currentAns)) {
             op[2] = random.nextInt(numOfQuestions);
         }
         int j = 0;
         for (int i = 0; i < 4; i++) {
             if (i != randomAns) {
-                options.get(i).setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(op[j])).get(0));
+                options.get(i).setText(FavoriteUtils.getFavoriteWordAt(op[j]));
                 j++;
             }
         }
@@ -136,7 +138,7 @@ public class SelectionMode extends FavoriteAction implements Initializable {
 
     @FXML
     void reStart(ActionEvent event) throws SQLException {
-        numOfQuestions = DatabaseConnect.getFavorite().size();
+        numOfQuestions = favoriteDB.getFavoriteWord().size();
         curQuestion = 0;
         correctQ = 0;
         wrongQ = 0;
@@ -144,8 +146,8 @@ public class SelectionMode extends FavoriteAction implements Initializable {
         resPane.setVisible(false);
         curQ.setText(String.valueOf(curQuestion) + "/" + String.valueOf(numOfQuestions));
         try {
-            taMeaning.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(1));
-            currentAns = DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(0);
+            taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
+            currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

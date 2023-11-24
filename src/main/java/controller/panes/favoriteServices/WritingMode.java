@@ -1,5 +1,6 @@
 package controller.panes.favoriteServices;
 
+import controller.panes.ActionController;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,15 +13,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import services.DatabaseConnect;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.concurrent.Delayed;
-import java.util.zip.InflaterInputStream;
 
-public class WritingMode extends FavoriteAction implements Initializable {
+import static controller.ApplicationStart.favoriteDB;
+
+public class WritingMode extends ActionController implements Initializable {
     private int numOfQuestions = 0;
     private int curQuestion = 0;
     private int correctQ = 0;
@@ -94,13 +93,13 @@ public class WritingMode extends FavoriteAction implements Initializable {
     }
 
     void getNextQuestion() throws SQLException {
-        taMeaning.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(1));
-        currentAns = DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(0);
+        taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
+        currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);
     }
 
     @FXML
     void reStart(ActionEvent event) throws SQLException {
-        numOfQuestions = DatabaseConnect.getFavorite().size();
+        numOfQuestions = favoriteDB.getFavoriteWord().size();
         curQuestion = 0;
         correctQ = 0;
         wrongQ = 0;
@@ -109,8 +108,8 @@ public class WritingMode extends FavoriteAction implements Initializable {
         taAnswerWord.clear();
         curQ.setText(String.valueOf(curQuestion) + "/" + String.valueOf(numOfQuestions));
         try {
-            taMeaning.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(1));
-            currentAns = DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(curQuestion)).get(0);
+            taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
+            currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

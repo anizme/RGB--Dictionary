@@ -1,6 +1,7 @@
 package controller.panes.favoriteServices;
 
 import controller.ApplicationStart;
+import controller.panes.ActionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class StudyModeController extends FavoriteAction implements Initializable {
+public class StudyModeController extends ActionController implements Initializable {
 
     @FXML
     private ChoiceBox<String> cbMode;
@@ -70,7 +71,7 @@ public class StudyModeController extends FavoriteAction implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("writingMode.fxml"));
             writingPane = fxmlLoader.load();
             writingModeController = fxmlLoader.getController();
-            writingModeController.initFavoriteControllerContainer(this.actionController);
+            writingModeController.setContainer(this.container);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -79,7 +80,7 @@ public class StudyModeController extends FavoriteAction implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("selectionMode.fxml"));
             selectionPane = fxmlLoader.load();
             selectionModeController = fxmlLoader.getController();
-            selectionModeController.initFavoriteControllerContainer(this.actionController);
+            selectionModeController.setContainer(this.container);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

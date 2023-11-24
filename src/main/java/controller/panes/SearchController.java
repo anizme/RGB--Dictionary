@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
-import services.DatabaseConnect;
 import services.VoiceRSS;
 
 import java.net.URL;
@@ -27,6 +26,8 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static controller.ApplicationStart.*;
 
 public class SearchController extends ActionController implements Initializable {
 
@@ -110,21 +111,20 @@ public class SearchController extends ActionController implements Initializable 
     void lookup(ActionEvent event) throws SQLException {
         if (ContainerController.isLightMode) {
             wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>"
-                    + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                    + dictionaryDB.getMeaning(tfSearchWord.getText()));
         } else {
             wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
-                    + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                    + dictionaryDB.getMeaning(tfSearchWord.getText()));
         }
-        //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
+
         noStared.setVisible(false);
         stared.setVisible(false);
-        String tmp = tfSearchWord.getText();
-        tmp = tmp.toLowerCase();
-        DatabaseConnect.clearHistoryWord(tmp);
-        if (!DatabaseConnect.getMeaning(tfSearchWord.getText()).isEmpty()) {
-            DatabaseConnect.insertHistory(tmp);
-            String s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
-            if (s != null) {
+        String wordText = tfSearchWord.getText().toLowerCase();
+        wordText = wordText.toLowerCase();
+        historyDB.removeHistoryWord(wordText);
+        if (dictionaryDB.isInDictionary(wordText)) {
+            historyDB.insertHistory(wordText);
+            if (favoriteDB.isWordInFavorite(wordText)) {
                 noStared.setVisible(false);
                 stared.setVisible(true);
             } else {
@@ -150,14 +150,13 @@ public class SearchController extends ActionController implements Initializable 
             htmlUpdateMeaning.setVisible(false);
             btSave.setVisible(false);
             wvMeaning.setVisible(true);
-            String s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
-            if (s != null) {
-                noStared.setVisible(false);
-                stared.setVisible(true);
-            } else {
-                noStared.setVisible(true);
-                stared.setVisible(false);
-            }
+//            if (dictionaryDB.isInDictionary(tfSearchWord.getText().toLowerCase())) {
+//                noStared.setVisible(false);
+//                stared.setVisible(true);
+//            } else {
+//                noStared.setVisible(true);
+//                stared.setVisible(false);
+//            }
         } else {
             isUpdate = true;
             htmlUpdateMeaning.setVisible(true);
@@ -165,10 +164,10 @@ public class SearchController extends ActionController implements Initializable 
             wvMeaning.setVisible(false);
             if (ContainerController.isLightMode) {
                 htmlUpdateMeaning.setHtmlText("<body style='background-color: #def3f6; color: black'/>"
-                        + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                        + dictionaryDB.getMeaning(tfSearchWord.getText()));
             } else {
                 htmlUpdateMeaning.setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
-                        + DatabaseConnect.getMeaning(tfSearchWord.getText()));
+                        + dictionaryDB.getMeaning(tfSearchWord.getText()));
             }
             noStared.setVisible(false);
             stared.setVisible(false);
@@ -183,7 +182,7 @@ public class SearchController extends ActionController implements Initializable 
             alert.alertAction();
         } else {
             try {
-                DatabaseConnect.updateWord(tfSearchWord.getText(), htmlUpdateMeaning.getHtmlText());
+                dictionaryDB.updateWord(tfSearchWord.getText(), htmlUpdateMeaning.getHtmlText());
                 alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
                         "Updated new meaning for this word.");
                 alert.alertAction();
@@ -197,18 +196,6 @@ public class SearchController extends ActionController implements Initializable 
                         "Failed to update new meaning for this word.");
                 alert.alertAction();
             }
-//            if (dictionaryManagement.dictionaryUpdate(tfSearchWord.getText(), htmlUpdateMeaning.getHtmlText())) {
-//                alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
-//                        "Updated new meaning for this word.");
-//                alert.alertAction();
-//                htmlUpdateMeaning.setVisible(false);
-//                //wvMeaning.setText(htmlUpdateMeaning.getText());
-//                wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(htmlUpdateMeaning.getHtmlText()));
-//            } else {
-//                alert.setAlertFullInfo(Alert.AlertType.INFORMATION, "Notification",
-//                        "Failed to update new meaning for this word.");
-//                alert.alertAction();
-//            }
         }
     }
 
@@ -228,7 +215,10 @@ public class SearchController extends ActionController implements Initializable 
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.INFORMATION, "Notification"
                     , "Removed " + tfSearchWord.getText());
             if (canRemove) {
-                DatabaseConnect.deleteWord(tfSearchWord.getText());
+                String wordToDelete = tfSearchWord.getText().trim().toLowerCase();
+                dictionaryDB.deleteWord(wordToDelete);
+                historyDB.removeHistoryWord(wordToDelete);
+                favoriteDB.removeFavoriteWord(wordToDelete);
                 alert.alertAction();
                 wvMeaning.getEngine().loadContent("");
                 tfSearchWord.clear();
@@ -241,9 +231,9 @@ public class SearchController extends ActionController implements Initializable 
     }
 
     public void addFavorite(ActionEvent event) throws Exception {
-        String str = tfSearchWord.getText();
-        if (DatabaseConnect.getMeaning(tfSearchWord.getText()) != null) {
-            DatabaseConnect.insertFavorite(str);
+        String word = tfSearchWord.getText();
+        if (!favoriteDB.isWordInFavorite(word)) {
+            favoriteDB.insertFavorite(word);
         }
         noStared.setVisible(false);
         stared.setVisible(true);
@@ -255,13 +245,13 @@ public class SearchController extends ActionController implements Initializable 
     }
 
     public void removeFavorite(String word) throws SQLException {
-        DatabaseConnect.clearFavoriteWord(word);
+        favoriteDB.removeFavoriteWord(word);
         noStared.setVisible(true);
         stared.setVisible(false);
     }
 
     public void updateHistoryInListView() throws SQLException {
-        List<String> tmp = DatabaseConnect.getHistory();
+        List<String> tmp = historyDB.getHistory();
         Collections.reverse(tmp);
         lvSearchWordsList.getItems().addAll(tmp);
     }
@@ -274,21 +264,11 @@ public class SearchController extends ActionController implements Initializable 
             if (tfSearchWord.getText() != null) {
                 String searchWord = tfSearchWord.getText();
                 if (!searchWord.equals("")) {
-                    try {
-                        lvSearchWordsList.getItems().addAll(DatabaseConnect.getListWordTargets(searchWord));
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    lvSearchWordsList.getItems().addAll(dictionaryDB.getListWordTargets(searchWord));
                 } else {
-                    //Collections.reverse(history);
-                    try {
-                        List<String> tmp = DatabaseConnect.getHistory();
-                        Collections.reverse(tmp);
-                        lvSearchWordsList.getItems().addAll(tmp);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    //Collections.reverse(history);
+                    List<String> tmp = historyDB.getHistory();
+                    Collections.reverse(tmp);
+                    lvSearchWordsList.getItems().addAll(tmp);
                     check = false;
                 }
             }
@@ -299,26 +279,19 @@ public class SearchController extends ActionController implements Initializable 
             public void handle(MouseEvent mouseEvent) {
                 if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
                     tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
-                    //wvMeaning.setText(dictionaryManagement.dictionaryLookup(tfSearchWord.getText()));
-                    try {
-                        //wvMeaning.getEngine().loadContent(DatabaseConnect.getMeaning(tfSearchWord.getText()));
-                        if (ContainerController.isLightMode) {
-                            wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>"
-                                    + DatabaseConnect.getMeaning(tfSearchWord.getText()));
-                        } else {
-                            wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
-                                    + DatabaseConnect.getMeaning(tfSearchWord.getText()));
-                        }
-                        htmlUpdateMeaning.setVisible(false);
-                        wvMeaning.setVisible(true);
-                        btSave.setVisible(false);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                    if (ContainerController.isLightMode) {
+                        wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>"
+                                + dictionaryDB.getMeaning(tfSearchWord.getText()));
+                    } else {
+                        wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
+                                + dictionaryDB.getMeaning(tfSearchWord.getText()));
                     }
+                    htmlUpdateMeaning.setVisible(false);
+                    wvMeaning.setVisible(true);
+                    btSave.setVisible(false);
                     String s = null;
                     try {
-                        s = DatabaseConnect.getFavoriteWordByWord(tfSearchWord.getText().toLowerCase());
-                        if (s != null) {
+                        if (favoriteDB.isWordInFavorite(tfSearchWord.getText().toLowerCase())) {
                             noStared.setVisible(false);
                             stared.setVisible(true);
                         } else {
@@ -328,18 +301,13 @@ public class SearchController extends ActionController implements Initializable 
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    String tmp = tfSearchWord.getText();
-                    tmp = tmp.toLowerCase();
-                    try {
-                        DatabaseConnect.clearHistoryWord(tmp);
-                        if (!DatabaseConnect.getMeaning(tfSearchWord.getText()).isEmpty()) {
-                            DatabaseConnect.insertHistory(tmp);
-                        } else {
-                            noStared.setVisible(false);
-                            stared.setVisible(false);
-                        }
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                    String wordText = tfSearchWord.getText().toLowerCase();
+                    historyDB.removeHistoryWord(wordText);
+                    if (dictionaryDB.isInDictionary(wordText)) {
+                        historyDB.insertHistory(wordText);
+                    } else {
+                        noStared.setVisible(false);
+                        stared.setVisible(false);
                     }
                 }
             }

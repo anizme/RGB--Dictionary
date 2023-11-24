@@ -3,10 +3,10 @@ package controller.panes;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class ActionController {
-    protected ContainerController state;
+public abstract class ActionController implements GeneralController {
+    protected GeneralController container;
 
-    public void initData(ContainerController state) {
-        this.state = state;
+    public void setContainer(GeneralController container) {
+        this.container = container;
     }
 }

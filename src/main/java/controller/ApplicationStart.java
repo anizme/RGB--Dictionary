@@ -5,19 +5,17 @@ import dictionary.DictionaryManagement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
-import javafx.scene.image.Image;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import services.DatabaseConnect;
+import services.database.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Map;
-import java.util.TreeSet;
 
 public class ApplicationStart extends Application {
+    public static DictionaryDB dictionaryDB = new DictionaryDB();
+    public static HistoryDB historyDB = new HistoryDB();
+    public static FavoriteDB favoriteDB = new FavoriteDB();
     public static DictionaryManagement dictionaryManagement = new DictionaryManagement();
      static {
          try {
@@ -27,15 +25,16 @@ public class ApplicationStart extends Application {
          }
      }
 
-     static {
-         if (DatabaseConnect.connection == null) {
-             try {
-                 DatabaseConnect.tryConnect();
-             } catch (SQLException e) {
-                 throw new RuntimeException(e);
-             }
-         }
-     }
+//     static {
+//         if (DatabaseConnect.connection == null) {
+//             try {
+//                 DatabaseConnect.tryConnect();
+//             } catch (SQLException e) {
+//                 throw new RuntimeException(e);
+//             }
+//         }
+//     }
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("container.fxml"));

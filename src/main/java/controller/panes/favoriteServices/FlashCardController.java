@@ -1,6 +1,7 @@
 package controller.panes.favoriteServices;
 
 import com.jfoenix.controls.JFXButton;
+import controller.panes.ActionController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -11,13 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import services.DatabaseConnect;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class FlashCardController extends FavoriteAction implements Initializable {
+import static controller.ApplicationStart.favoriteDB;
+import static controller.ApplicationStart.historyDB;
+
+public class FlashCardController extends ActionController implements Initializable {
 
     @FXML
     private Label cards;
@@ -36,6 +39,8 @@ public class FlashCardController extends FavoriteAction implements Initializable
 
     private int stt = 0;
 
+    //check = 0 means card turns to word
+    //check = 1 means card turns to shortmeaning
     private int check = 0;
 
     @FXML
@@ -45,18 +50,18 @@ public class FlashCardController extends FavoriteAction implements Initializable
         }
         leftSlide(cards);
         check = 0;
-        cards.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(stt)).get(check));
+        cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(check, stt));
         sttLabel.setText(Integer.toString(stt));
     }
 
     @FXML
     void right(ActionEvent event) throws SQLException {
-        if (stt < DatabaseConnect.getFavorite().size() - 1) {
+        if (stt < favoriteDB.getFavorite().size() - 1) {
             stt += 1;
         }
         rightSlide(cards);
         check = 0;
-        cards.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(stt)).get(check));
+        cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(check, stt));
         sttLabel.setText(Integer.toString(stt));
     }
 
@@ -91,7 +96,7 @@ public class FlashCardController extends FavoriteAction implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            cards.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(stt)).get(check));
+            cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(check, stt));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -118,13 +123,13 @@ public class FlashCardController extends FavoriteAction implements Initializable
             timeline.setOnFinished(evt -> {
                 if (check == 0) {
                     try {
-                        cards.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(stt)).get(++check));
+                        cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(++check, stt));
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
                 } else if (check == 1){
                     try {
-                        cards.setText(DatabaseConnect.getFavoriteWord(DatabaseConnect.getFavorite().get(stt)).get(--check));
+                        cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(--check, stt));
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }

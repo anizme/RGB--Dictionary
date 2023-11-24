@@ -3,11 +3,9 @@ package controller.panes;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import controller.ApplicationStart;
-import dictionary.DictionaryManagement;
 import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,22 +21,20 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
-import services.DatabaseConnect;
 import services.ImageViewSprite;
 import services.SpriteAnimation;
+import services.database.BaseDatabase;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class ContainerController implements Initializable {
+import static controller.ApplicationStart.dictionaryDB;
+import static controller.ApplicationStart.favoriteDB;
 
+public class ContainerController extends ActionController implements Initializable {
     static boolean isLightMode;
-
-    //private DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private AnchorPane searchPane = null;
     private SearchController searchController;
     private AnchorPane addPane = null;
@@ -105,8 +101,6 @@ public class ContainerController implements Initializable {
     private Image favoriteImageDark;
     private ImageViewSprite btFavoriteViewSprite;
 
-//    @FXML
-//    private JFXToggleButton switchMode;
     private JFXToggleButton switchMode;
     private Image lightBackground;
     private Image darkBackground;
@@ -125,9 +119,6 @@ public class ContainerController implements Initializable {
     @FXML
     private VBox navBar;
 
-//    @FXML
-//    private Label welcomeLabel;
-
     @FXML
     private Label menuLabel;
 
@@ -143,11 +134,6 @@ public class ContainerController implements Initializable {
 
     public void setStage(Stage stage) {
         this.stage = stage;
-    }
-
-    @FXML
-    private void handlePopUpButton() {
-        stage.setIconified(false);
     }
 
     @FXML
@@ -169,7 +155,7 @@ public class ContainerController implements Initializable {
 
     @FXML
     void exit(ActionEvent event) throws SQLException {
-        DatabaseConnect.close();
+        BaseDatabase.close();
         stage.close();
         Platform.exit();
     }
@@ -184,7 +170,7 @@ public class ContainerController implements Initializable {
         isTranslate = false;
         resetNavButton();
         showAddPane();
-        addController.initData(this);
+        addController.reset();
     }
 
     @FXML
@@ -197,7 +183,6 @@ public class ContainerController implements Initializable {
         isTranslate = false;
         resetNavButton();
         showGamePane();
-        gameController.initData(this);
     }
 
     @FXML
@@ -210,7 +195,6 @@ public class ContainerController implements Initializable {
         isTranslate = false;
         resetNavButton();
         showSearchPane();
-        searchController.initData(this);
         searchController.updateHistoryInListView();
     }
 
@@ -228,7 +212,6 @@ public class ContainerController implements Initializable {
         isTranslate = false;
         resetNavButton();
         showSettingPane();
-        settingController.initData(this);
     }
 
     @FXML
@@ -241,7 +224,6 @@ public class ContainerController implements Initializable {
         isTranslate = true;
         resetNavButton();
         showTranslatePane();
-        translateController.initData(this);
     }
 
     @FXML
@@ -255,7 +237,6 @@ public class ContainerController implements Initializable {
         resetNavButton();
         showFavoritePane();
         favoriteController.updateListView(new ActionEvent());
-        favoriteController.initData(this);
     }
     @FXML
     void menu(ActionEvent event) {
@@ -429,16 +410,11 @@ public class ContainerController implements Initializable {
                 add(this.getClass().getResource("/controller/add.css").toString());
         addController.getBackgroundView().setImage(darkBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
-        try {
+        addController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
+                + dictionaryDB.getMeaning(addController.getTfAddWord().getText()));
+        if (addController.isAddWord()) {
             addController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
-                    + DatabaseConnect.getMeaning(addController.getTfAddWord().getText()));
-            if (addController.isAddWord()) {
-                addController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
-                        + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+                    + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
         }
 
         addController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
@@ -472,16 +448,12 @@ public class ContainerController implements Initializable {
                 add(this.getClass().getResource("/controller/search.css").toString());
         searchController.getBackgroundView().setImage(darkBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
-        try {
-            if (searchController.isUpdate()) {
-                searchController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
-                        + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
-            }
-            searchController.getWebView().getEngine().loadContent("<body style='background-color: #def3f6; color: black'/>"
-                    + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (searchController.isUpdate()) {
+            searchController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
+                    + dictionaryDB.getMeaning(searchController.getTfSearchWord().getText()));
         }
+        searchController.getWebView().getEngine().loadContent("<body style='background-color: #def3f6; color: black'/>"
+                + dictionaryDB.getMeaning(searchController.getTfSearchWord().getText()));
         searchController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
@@ -547,29 +519,13 @@ public class ContainerController implements Initializable {
                 add(this.getClass().getResource("/controller/add_dark.css").toString());
         addController.getBackgroundView().setImage(lightBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
-        try {
+        addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+                + dictionaryDB.getMeaning(addController.getTfAddWord().getText()));
+        if (addController.isAddWord()) {
             addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
-                    + DatabaseConnect.getMeaning(addController.getTfAddWord().getText()));
-            if (addController.isAddWord()) {
-                addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
-                        + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+                    + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
         }
-//        try {
-//            if (addController.isSearch()) {
-//                addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
-//                        + DatabaseConnect.getMeaning(addController.getTfAddWord().getText()));
-//            }
-//            if (addController.isAddWord()) {
-//                addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
-//                        + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+
         addController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
@@ -600,17 +556,13 @@ public class ContainerController implements Initializable {
                 add(this.getClass().getResource("/controller/search_dark.css").toString());
         searchController.getBackgroundView().setImage(lightBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
-        try {
-            if (searchController.isUpdate()) {
-                searchController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
-                        + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
-            }
-            searchController.getWebView().getEngine().loadContent("<body style='background-color: #2f4f4f; color: white; border-color: #30cccc'/>"
-                    + DatabaseConnect.getMeaning(searchController.getTfSearchWord().getText()));
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (searchController.isUpdate()) {
+            searchController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
+                    + dictionaryDB.getMeaning(searchController.getTfSearchWord().getText()));
         }
+        searchController.getWebView().getEngine().loadContent("<body style='background-color: #2f4f4f; color: white; border-color: #30cccc'/>"
+                + dictionaryDB.getMeaning(searchController.getTfSearchWord().getText()));
+
         searchController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
@@ -682,7 +634,7 @@ public class ContainerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
             searchPane = fxmlLoader.load();
             searchController = fxmlLoader.getController();
-            searchController.initData(this);
+            searchController.setContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -691,7 +643,7 @@ public class ContainerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("add.fxml"));
             addPane = fxmlLoader.load();
             addController = fxmlLoader.getController();
-            addController.initData(this);
+            addController.setContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -700,7 +652,7 @@ public class ContainerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("game.fxml"));
             gamePane = fxmlLoader.load();
             gameController = fxmlLoader.getController();
-            gameController.initData(this);
+            gameController.setContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -709,7 +661,7 @@ public class ContainerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("setting.fxml"));
             settingPane = fxmlLoader.load();
             settingController = fxmlLoader.getController();
-            settingController.initData(this);
+            settingController.setContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -718,7 +670,7 @@ public class ContainerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("translateAPI.fxml"));
             translatePane = fxmlLoader.load();
             translateController = fxmlLoader.getController();
-            translateController.initData(this);
+            translateController.setContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -727,7 +679,7 @@ public class ContainerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("favorite.fxml"));
             favoritePane = fxmlLoader.load();
             favoriteController = fxmlLoader.getController();
-            translateController.initData(this);
+            favoriteController.setContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
