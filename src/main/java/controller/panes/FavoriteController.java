@@ -86,6 +86,9 @@ public class FavoriteController extends ActionController implements Initializabl
         return backgroundView;
     }
 
+    public ListView<String> getListView() {
+        return lvFavorite;
+    }
 
     public void updateListView(ActionEvent event) throws Exception {
         if (lvFavorite != null) {

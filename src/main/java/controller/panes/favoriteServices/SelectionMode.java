@@ -26,7 +26,6 @@ public class SelectionMode extends FavoriteAction implements Initializable {
     private int correctQ = 0;
     private int wrongQ = 0;
     private String currentAns = "";
-
     List<JFXButton> options = new ArrayList<>();
 
     @FXML

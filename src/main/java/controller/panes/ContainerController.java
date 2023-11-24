@@ -106,9 +106,6 @@ public class ContainerController implements Initializable {
     private Image favoriteImage;
     private Image favoriteImageDark;
     private ImageViewSprite btFavoriteViewSprite;
-
-//    @FXML
-//    private JFXToggleButton switchMode;
     private JFXToggleButton switchMode;
     private Image lightBackground;
     private Image darkBackground;
@@ -511,6 +508,26 @@ public class ContainerController implements Initializable {
                 add(this.getClass().getResource("/controller/favorite.css").toString());
         favoriteController.getBackgroundView().setImage(lightBackground);
         favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        favoriteController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                        } else {
+                            setText(item);
+                        }
+                        if (getIndex() % 2 == 1)
+                            setStyle("-fx-background-color: white; -fx-text-fill: black;");
+                        else
+                            setStyle("-fx-background-color: #def3f6; -fx-text-fill: black");
+                    }
+                };
+            }
+        });
 
         settingController.getSettingPane().getStylesheets().
                 removeAll(this.getClass().getResource("/controller/setting_dark.css").toString());
@@ -560,18 +577,7 @@ public class ContainerController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        try {
-//            if (addController.isSearch()) {
-//                addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
-//                        + DatabaseConnect.getMeaning(addController.getTfAddWord().getText()));
-//            }
-//            if (addController.isAddWord()) {
-//                addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
-//                        + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+
         addController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
@@ -647,6 +653,33 @@ public class ContainerController implements Initializable {
                 add(this.getClass().getResource("/controller/favorite_dark.css").toString());
         favoriteController.getBackgroundView().setImage(lightBackground);
         favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        favoriteController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                            if (getIndex() % 2 == 1) {
+                                setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                            } else {
+                                setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                            }
+                        } else {
+                            setText(item);
+                            if (getIndex() % 2 == 1) {
+                                setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                            } else {
+                                setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                            }
+                        }
+
+                    }
+                };
+            }
+        });
 
         settingController.getSettingPane().getStylesheets().
                 removeAll(this.getClass().getResource("/controller/setting.css").toString());
@@ -675,10 +708,10 @@ public class ContainerController implements Initializable {
             timeline.play();
         });
         menuPane.setVisible(false);
-        TranslateTransition transition = new TranslateTransition(Duration.millis(15000), welcomeLabel);
-        transition.setByX(-1400);
-        transition.setCycleCount(Animation.INDEFINITE);
-        transition.play();
+//        TranslateTransition transition = new TranslateTransition(Duration.millis(15000), welcomeLabel);
+//        transition.setByX(-1400);
+//        transition.setCycleCount(Animation.INDEFINITE);
+//        transition.play();
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
@@ -752,7 +785,6 @@ public class ContainerController implements Initializable {
         gameImageDark = new Image(this.getClass().getResourceAsStream("/images/game_animation_dark.png"));
         searchImageDark = new Image(this.getClass().getResourceAsStream("/images/search_animation_dark.png"));
         settingImageDark = new Image(this.getClass().getResourceAsStream("/images/setting_animation_dark.png"));
-
 
         switchMode.setOnMouseClicked(mouseEvent -> {
             if (isLightMode) {

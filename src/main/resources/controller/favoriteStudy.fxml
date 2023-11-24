@@ -6,21 +6,40 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="572.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.StudyModeController">
+<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.StudyModeController">
    <children>
-      <ImageView fitHeight="572.0" fitWidth="857.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="555.0" fitWidth="857.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/studyBoard.png" />
+            <Image url="@../images/studyMode.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="blur" opacity="0.7" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="modePane" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0">
+      <AnchorPane fx:id="contentPane" layoutX="-3.0" prefHeight="555.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="modePane" focusTraversable="true" layoutX="209.0" layoutY="58.0" prefHeight="438.0" prefWidth="459.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="209.0" AnchorPane.topAnchor="58.0">
          <children>
-            <ChoiceBox fx:id="cbMode" layoutX="25.0" layoutY="72.0" prefWidth="150.0" />
-            <Label layoutX="25.0" layoutY="39.0" prefHeight="18.0" prefWidth="86.0" text="Study Mode" />
-            <JFXButton layoutX="74.0" layoutY="151.0" onAction="#modeOK" text="OK" />
+            <ImageView fitHeight="441.0" fitWidth="459.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/Picture1.png" />
+               </image>
+            </ImageView>
+            <ChoiceBox fx:id="cbMode" disable="true" layoutX="25.0" layoutY="72.0" prefWidth="150.0" visible="false" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="76.0" prefHeight="78.0" prefWidth="348.0" text="CHOOSE YOUR STUDY MODE" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <JFXButton disable="true" layoutX="84.0" layoutY="115.0" onAction="#modeOK" text="OK" visible="false" />
+            <JFXButton fx:id="selectionButton" layoutX="117.0" layoutY="170.0" prefHeight="72.0" prefWidth="201.0" style="-fx-border-color: white; -fx-border-radius: 12; -fx-border-width: 4; -fx-background-color: transparent;" text="MULTIPLE CHOICES" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="writingButton" layoutX="117.0" layoutY="270.0" prefHeight="72.0" prefWidth="201.0" style="-fx-border-color: white; -fx-border-radius: 12; -fx-border-width: 4; -fx-background-color: transparent;" text="WRITING" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <JFXButton layoutX="770.0" layoutY="21.0" minWidth="42.0" onAction="#mode" prefHeight="38.0" prefWidth="42.0" textFill="WHITE">

@@ -1,11 +1,14 @@
 package controller.panes.favoriteServices;
 
+import com.jfoenix.controls.JFXButton;
 import controller.ApplicationStart;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -19,13 +22,16 @@ public class StudyModeController extends FavoriteAction implements Initializable
     private ChoiceBox<String> cbMode;
 
     @FXML
-    private AnchorPane blur;
-
-    @FXML
     private AnchorPane contentPane;
 
     @FXML
     private AnchorPane modePane;
+
+    @FXML
+    private JFXButton selectionButton;
+
+    @FXML
+    private JFXButton writingButton;
 
     protected AnchorPane selectionPane;
     protected SelectionMode selectionModeController;
@@ -46,10 +52,8 @@ public class StudyModeController extends FavoriteAction implements Initializable
     void mode(ActionEvent event) {
         if (modePane.isVisible()) {
             modePane.setVisible(false);
-            blur.setVisible(false);
         } else {
             modePane.setVisible(true);
-            blur.setVisible(true);
         }
     }
 
@@ -61,7 +65,6 @@ public class StudyModeController extends FavoriteAction implements Initializable
             showWriting();
         }
         modePane.setVisible(false);
-        blur.setVisible(false);
     }
 
     @Override
@@ -83,6 +86,22 @@ public class StudyModeController extends FavoriteAction implements Initializable
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        selectionButton.setOnMouseClicked(mouseEvent -> {
+            try {
+                showSelection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
+        writingButton.setOnMouseClicked(mouseEvent -> {
+            try {
+                showWriting();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
 
         cbMode.getItems().add("Writing");
         cbMode.getItems().add("Selection");
