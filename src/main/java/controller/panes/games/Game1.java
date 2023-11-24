@@ -12,13 +12,13 @@ public class Game1 {
     List<Word> ans;
     int size;
 
-    public void setSize(int n) {
-        size = n;
-    }
-
     public Game1() {
         boardWord = new ArrayList<>();
         ans = new ArrayList<>();
+    }
+
+    public void setSize(int n) {
+        size = n;
     }
 
     public boolean checkValid(int posX, int posY, int HorV, int length) {

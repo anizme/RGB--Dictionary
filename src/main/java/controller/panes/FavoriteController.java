@@ -5,14 +5,12 @@ import controller.ApplicationStart;
 import controller.panes.favoriteServices.FlashCardController;
 import controller.panes.favoriteServices.StudyModeController;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -23,29 +21,28 @@ import java.util.ResourceBundle;
 import static controller.ApplicationStart.favoriteDB;
 
 public class FavoriteController extends ActionController implements Initializable {
+    protected FlashCardController flashCardController;
+    protected AnchorPane flashCardPane;
+    protected StudyModeController studyModeController;
+    protected AnchorPane studyPane;
     @FXML
     private JFXButton BACK;
-
     @FXML
     private ImageView backgroundView;
-
     @FXML
     private AnchorPane contentPane;
-
     @FXML
     private AnchorPane favoritePane;
-
     @FXML
     private ListView<String> lvFavorite;
-
     @FXML
     private TextField tfFavorite;
 
-    protected FlashCardController flashCardController;
-    protected AnchorPane flashCardPane;
-
-    protected StudyModeController studyModeController;
-    protected AnchorPane studyPane;
+    public FavoriteController() throws SQLException {
+        if (lvFavorite != null) {
+            lvFavorite.getItems().addAll(favoriteDB.getFavorite());
+        }
+    }
 
     @FXML
     void back(ActionEvent event) {
@@ -63,12 +60,6 @@ public class FavoriteController extends ActionController implements Initializabl
     void study(ActionEvent event) {
         this.contentPane.getChildren().setAll(studyPane);
         BACK.setVisible(true);
-    }
-
-    public FavoriteController() throws SQLException {
-        if (lvFavorite != null) {
-            lvFavorite.getItems().addAll(favoriteDB.getFavorite());
-        }
     }
 
     public AnchorPane getFavoritePane() {
@@ -125,13 +116,10 @@ public class FavoriteController extends ActionController implements Initializabl
             }
         });
 
-        lvFavorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (!lvFavorite.getSelectionModel().isEmpty()) {
-                    String[] parts = lvFavorite.getSelectionModel().getSelectedItem().split("\n");
-                    tfFavorite.setText(parts[0]);
-                }
+        lvFavorite.setOnMouseClicked(mouseEvent -> {
+            if (!lvFavorite.getSelectionModel().isEmpty()) {
+                String[] parts = lvFavorite.getSelectionModel().getSelectedItem().split("\n");
+                tfFavorite.setText(parts[0]);
             }
         });
     }

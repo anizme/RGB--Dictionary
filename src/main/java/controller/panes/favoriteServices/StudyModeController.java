@@ -16,22 +16,18 @@ import java.util.ResourceBundle;
 
 public class StudyModeController extends ActionController implements Initializable {
 
-    @FXML
-    private ChoiceBox<String> cbMode;
-
-    @FXML
-    private AnchorPane blur;
-
-    @FXML
-    private AnchorPane contentPane;
-
-    @FXML
-    private AnchorPane modePane;
-
     protected AnchorPane selectionPane;
     protected SelectionMode selectionModeController;
     protected AnchorPane writingPane;
     protected WritingMode writingModeController;
+    @FXML
+    private ChoiceBox<String> cbMode;
+    @FXML
+    private AnchorPane blur;
+    @FXML
+    private AnchorPane contentPane;
+    @FXML
+    private AnchorPane modePane;
 
     private void showSelection() throws SQLException {
         contentPane.getChildren().setAll(selectionPane);

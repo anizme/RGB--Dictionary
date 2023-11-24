@@ -2,7 +2,6 @@ package controller.panes.games;
 
 import algorithms.Sort;
 import com.jfoenix.controls.JFXButton;
-import controller.panes.GameController;
 import dictionary.Word;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -81,30 +80,30 @@ public class CrossWord extends GameAction implements Initializable {
     @FXML
     private Rectangle bgButtonGrid;
 
-    private List<Word> wordList;
+    private final List<Word> wordList;
     private List<Word> wordPlay;
     private List<List<Character>> charBoard;
     private List<String> playerAnswer;
     private List<List<Integer>> posXY;
     private List<Integer> tmpPos;
-    private int numsWord = 3;
-    private int row = 10;
-    private int col = 10;
+    private final int numsWord = 3;
+    private final int row = 10;
+    private final int col = 10;
     private int count = 0;
-    private double xDefault = 64.0;
-    private double yDefault = 455.0;
-    private double xPlanet1 = 43.0;
-    private double yPlanet1 = 251.0;
-    private double xPlanet2 = 109.0;
-    private double yPlanet2 = 107.0;
-    private double xPlanet3 = 54.0;
-    private double yPlanet3 = 0.0;
+    private final double xDefault = 64.0;
+    private final double yDefault = 455.0;
+    private final double xPlanet1 = 43.0;
+    private final double yPlanet1 = 251.0;
+    private final double xPlanet2 = 109.0;
+    private final double yPlanet2 = 107.0;
+    private final double xPlanet3 = 54.0;
+    private final double yPlanet3 = 0.0;
     private double yFireBall;
     private int noPlanet = 0;
-    private String gocolor = "-fx-background-color: #ff9130;";
-    private String cocolor = "-fx-background-color: #85E6C5;";
-    private String wrcolor = "-fx-background-color: #FF6969;";
-    private String dfcolor = "-fx-background-color: #FAFEFF;";
+    private final  String gocolor = "-fx-background-color: #ff9130;";
+    private final String cocolor = "-fx-background-color: #85E6C5;";
+    private final String wrcolor = "-fx-background-color: #FF6969;";
+    private final String dfcolor = "-fx-background-color: #FAFEFF;";
     private boolean isRunning = false;
     private URL url;
     private ResourceBundle resourceBundle;
@@ -208,7 +207,7 @@ public class CrossWord extends GameAction implements Initializable {
     }
 
     @FXML
-    void setInitBoard(ActionEvent event) throws Exception {
+    void setInitBoard(ActionEvent event) {
         YES.setVisible(false);
         NO.setVisible(false);
         initWordPlay();
@@ -272,8 +271,7 @@ public class CrossWord extends GameAction implements Initializable {
         }
         int x = 0, y = 0;
         for (Node tmp : panelList) {
-            if (tmp instanceof Button) {
-                Button button = (Button) tmp;
+            if (tmp instanceof Button button) {
                 button.setText(Character.toString(charBoard.get(y).get(x)));
                 if (x < row - 1) {
                     x++;
@@ -286,7 +284,7 @@ public class CrossWord extends GameAction implements Initializable {
     }
 
     @FXML
-    void replay(ActionEvent event) throws Exception {
+    void replay(ActionEvent event) {
         isRunning = false;
         PLAYAGAIN.setVisible(false);
         answer.setVisible(false);
@@ -307,11 +305,11 @@ public class CrossWord extends GameAction implements Initializable {
     }
 
     @FXML
-    void getAns(ActionEvent event) throws Exception {
+    void getAns(ActionEvent event) {
         YES.setVisible(false);
         NO.setVisible(false);
         Button button = (Button) event.getSource();
-        int x = 0, y = 0;
+        int x, y;
         if (GridPane.getColumnIndex(button) != null && GridPane.getRowIndex(button) != null) {
             x = GridPane.getColumnIndex(button);
             y = GridPane.getRowIndex(button);
@@ -345,16 +343,16 @@ public class CrossWord extends GameAction implements Initializable {
             int y1 = tmpPos.get(1);
             int x2 = tmpPos.get(2);
             int y2 = tmpPos.get(3);
-            String yourWord = "";
+            StringBuilder yourWord = new StringBuilder();
             if (x1 == x2) {
                 for (int i = y1; i <= y2; i++) {
                     Button button1 = (Button) listNode.get(i * col + x1);
-                    yourWord += button1.getText();
+                    yourWord.append(button1.getText());
                 }
             } else if (y1 == y2) {
                 for (int i = x1; i <= x2; i++) {
                     Button button1 = (Button) listNode.get(y1 * col + i);
-                    yourWord += button1.getText();
+                    yourWord.append(button1.getText());
                 }
             }
             for (Node node : listNode) {
@@ -366,11 +364,9 @@ public class CrossWord extends GameAction implements Initializable {
                 addHoverEffect(button1);
             }
             System.out.println("Your word: " + yourWord);
-            if (yourWord != null) {
-                playerAnswer.add(yourWord);
-                answer.setText(yourWord);
-                checkAns(yourWord, tmpPos);
-            }
+            playerAnswer.add(yourWord.toString());
+            answer.setText(yourWord.toString());
+            checkAns(yourWord.toString(), tmpPos);
             tmpPos = new ArrayList<>();
         }
     }
@@ -381,8 +377,8 @@ public class CrossWord extends GameAction implements Initializable {
         y = spaceShip.getLayoutY();
         if (noPlanet == 1) {
             TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
-            translateTransition.setToX(xPlanet1-x);
-            translateTransition.setToY(yPlanet1-y);
+            translateTransition.setToX(xPlanet1 - x);
+            translateTransition.setToY(yPlanet1 - y);
             translateTransition.play();
 
             fireBall.setOpacity(1);
@@ -404,8 +400,8 @@ public class CrossWord extends GameAction implements Initializable {
             starWay1.setVisible(false);
         } else if (noPlanet == 2) {
             TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
-            translateTransition.setToX(xPlanet2-x);
-            translateTransition.setToY(yPlanet2-y);
+            translateTransition.setToX(xPlanet2 - x);
+            translateTransition.setToY(yPlanet2 - y);
             translateTransition.play();
 
             fireBall.setOpacity(1);
@@ -428,8 +424,8 @@ public class CrossWord extends GameAction implements Initializable {
             starWay2.setVisible(false);
         } else if (noPlanet == 3) {
             TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
-            translateTransition.setToX(xPlanet3-x);
-            translateTransition.setToY(yPlanet3-y);
+            translateTransition.setToX(xPlanet3 - x);
+            translateTransition.setToY(yPlanet3 - y);
             translateTransition.play();
 
             fireBall.setOpacity(1);

@@ -23,14 +23,12 @@ import static controller.ApplicationStart.favoriteDB;
 
 public class SelectionMode extends ActionController implements Initializable {
 
+    List<JFXButton> options = new ArrayList<>();
     private int numOfQuestions = 0;
     private int curQuestion = 0;
     private int correctQ = 0;
     private int wrongQ = 0;
     private String currentAns = "";
-
-    List<JFXButton> options = new ArrayList<>();
-
     @FXML
     private AnchorPane blurPane;
 
@@ -74,22 +72,18 @@ public class SelectionMode extends ActionController implements Initializable {
             lbCorrect.setText(String.valueOf(correctQ));
             lbTrue.setVisible(true);
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
-            pause.setOnFinished(e -> {
-                lbTrue.setVisible(false);
-            });
+            pause.setOnFinished(e -> lbTrue.setVisible(false));
             pause.play();
         } else {
             wrongQ++;
             lbWrong.setText(String.valueOf(wrongQ));
             lbFalse.setVisible(true);
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
-            pause.setOnFinished(e -> {
-                lbFalse.setVisible(false);
-            });
+            pause.setOnFinished(e -> lbFalse.setVisible(false));
             pause.play();
         }
         curQuestion++;
-        curQ.setText(String.valueOf(curQuestion) + "/" + String.valueOf(numOfQuestions));
+        curQ.setText(curQuestion + "/" + numOfQuestions);
         if (curQuestion < numOfQuestions) {
             getNextQuestion();
         } else {
@@ -144,7 +138,7 @@ public class SelectionMode extends ActionController implements Initializable {
         wrongQ = 0;
         blurPane.setVisible(false);
         resPane.setVisible(false);
-        curQ.setText(String.valueOf(curQuestion) + "/" + String.valueOf(numOfQuestions));
+        curQ.setText(curQuestion + "/" + numOfQuestions);
         try {
             taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
             currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);

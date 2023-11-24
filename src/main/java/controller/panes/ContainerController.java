@@ -3,7 +3,9 @@ package controller.panes;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import controller.ApplicationStart;
-import javafx.animation.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,10 +30,10 @@ import services.database.BaseDatabase;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static controller.ApplicationStart.dictionaryDB;
-import static controller.ApplicationStart.favoriteDB;
 
 public class ContainerController extends ActionController implements Initializable {
     static boolean isLightMode;
@@ -238,6 +240,7 @@ public class ContainerController extends ActionController implements Initializab
         showFavoritePane();
         favoriteController.updateListView(new ActionEvent());
     }
+
     @FXML
     void menu(ActionEvent event) {
         menuPane.setVisible(true);
@@ -254,7 +257,7 @@ public class ContainerController extends ActionController implements Initializab
                 btAdd.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btAdd.setStyle("-fx-background-color: white");
@@ -263,7 +266,7 @@ public class ContainerController extends ActionController implements Initializab
                 btFavorite.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btFavorite.setStyle("-fx-background-color: white");
@@ -272,7 +275,7 @@ public class ContainerController extends ActionController implements Initializab
                 btGame.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btGame.setStyle("-fx-background-color: white");
@@ -281,7 +284,7 @@ public class ContainerController extends ActionController implements Initializab
                 btSearch.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btSearch.setStyle("-fx-background-color: white");
@@ -290,7 +293,7 @@ public class ContainerController extends ActionController implements Initializab
                 btSetting.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btSetting.setStyle("-fx-background-color: white");
@@ -299,7 +302,7 @@ public class ContainerController extends ActionController implements Initializab
                 btTranslate.setStyle("-fx-background-color: whitesmoke;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: black;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btTranslate.setStyle("-fx-background-color: white");
@@ -309,7 +312,7 @@ public class ContainerController extends ActionController implements Initializab
                 btAdd.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: #30cccc;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btAdd.setStyle("-fx-background-color: #2f4f4f;");
@@ -318,7 +321,7 @@ public class ContainerController extends ActionController implements Initializab
                 btFavorite.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: #30cccc;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btFavorite.setStyle("-fx-background-color: #2f4f4f;");
@@ -327,7 +330,7 @@ public class ContainerController extends ActionController implements Initializab
                 btGame.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: #30cccc;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btGame.setStyle("-fx-background-color: #2f4f4f;");
@@ -336,7 +339,7 @@ public class ContainerController extends ActionController implements Initializab
                 btSearch.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: #30cccc;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btSearch.setStyle("-fx-background-color: #2f4f4f;");
@@ -354,7 +357,7 @@ public class ContainerController extends ActionController implements Initializab
                 btTranslate.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 10px;" +
                         "-fx-border-color: #30cccc;" +
-                        "-fx-border-radius: 10px;"+
+                        "-fx-border-radius: 10px;" +
                         "-fx-border-width: 2;");
             } else {
                 btTranslate.setStyle("-fx-background-color: #2f4f4f;");
@@ -388,8 +391,8 @@ public class ContainerController extends ActionController implements Initializab
 
     public void lightModeSetting() {
 
-        mainPane.getStylesheets().removeAll(this.getClass().getResource("/controller/container_dark.css").toString());
-        mainPane.getStylesheets().add(this.getClass().getResource("/controller/container.css").toString());
+        mainPane.getStylesheets().removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/container_dark.css")).toString());
+        mainPane.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("/controller/container.css")).toString());
 
         btAddView.setImage(addImage);
         btFavoriteView.setImage(favoriteImage);
@@ -398,16 +401,16 @@ public class ContainerController extends ActionController implements Initializab
         btSettingView.setImage(settingImage);
 
         translateController.getTranslatePane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/translateAPI_dark.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/translateAPI_dark.css")).toString());
         translateController.getTranslatePane().getStylesheets().
-                add(this.getClass().getResource("/controller/translateAPI.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/translateAPI.css")).toString());
         translateController.getBackgroundView().setImage(darkBackground);
         translateController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         addController.getAddPane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/add_dark.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/add_dark.css")).toString());
         addController.getAddPane().getStylesheets().
-                add(this.getClass().getResource("/controller/add.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/add.css")).toString());
         addController.getBackgroundView().setImage(darkBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
         addController.getHtmlEditor().setHtmlText("<body style='background-color: #def3f6; color: black'/>"
@@ -417,10 +420,10 @@ public class ContainerController extends ActionController implements Initializab
                     + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
         }
 
-        addController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        addController.getListView().setCellFactory(new Callback<>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
-                return new ListCell<String>() {
+                return new ListCell<>() {
                     @Override
                     protected void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
@@ -443,9 +446,9 @@ public class ContainerController extends ActionController implements Initializab
 //        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         searchController.getSearchPane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/search_dark.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/search_dark.css")).toString());
         searchController.getSearchPane().getStylesheets().
-                add(this.getClass().getResource("/controller/search.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/search.css")).toString());
         searchController.getBackgroundView().setImage(darkBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
         if (searchController.isUpdate()) {
@@ -454,10 +457,10 @@ public class ContainerController extends ActionController implements Initializab
         }
         searchController.getWebView().getEngine().loadContent("<body style='background-color: #def3f6; color: black'/>"
                 + dictionaryDB.getMeaning(searchController.getTfSearchWord().getText()));
-        searchController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        searchController.getListView().setCellFactory(new Callback<>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
-                return new ListCell<String>() {
+                return new ListCell<>() {
                     @Override
                     protected void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
@@ -476,16 +479,16 @@ public class ContainerController extends ActionController implements Initializab
         });
 
         favoriteController.getFavoritePane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/favorite_dark.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/favorite_dark.css")).toString());
         favoriteController.getFavoritePane().getStylesheets().
-                add(this.getClass().getResource("/controller/favorite.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/favorite.css")).toString());
         favoriteController.getBackgroundView().setImage(lightBackground);
         favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         settingController.getSettingPane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/setting_dark.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/setting_dark.css")).toString());
         settingController.getSettingPane().getStylesheets().
-                add(this.getClass().getResource("/controller/setting.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/setting.css")).toString());
         settingController.getBackgroundView().setImage(lightBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
@@ -497,8 +500,8 @@ public class ContainerController extends ActionController implements Initializab
 
     public void darkModeSetting() {
 
-        mainPane.getStylesheets().removeAll(this.getClass().getResource("/controller/container.css").toString());
-        mainPane.getStylesheets().add(this.getClass().getResource("/controller/container_dark.css").toString());
+        mainPane.getStylesheets().removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/container.css")).toString());
+        mainPane.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("/controller/container_dark.css")).toString());
 
         btAddView.setImage(addImageDark);
         btFavoriteView.setImage(favoriteImageDark);
@@ -507,16 +510,16 @@ public class ContainerController extends ActionController implements Initializab
         btSettingView.setImage(settingImageDark);
 
         translateController.getTranslatePane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/translateAPI.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/translateAPI.css")).toString());
         translateController.getTranslatePane().getStylesheets().
-                add(this.getClass().getResource("/controller/translateAPI_dark.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/translateAPI_dark.css")).toString());
         translateController.getBackgroundView().setImage(lightBackground);
         translateController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         addController.getAddPane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/add.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/add.css")).toString());
         addController.getAddPane().getStylesheets().
-                add(this.getClass().getResource("/controller/add_dark.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/add_dark.css")).toString());
         addController.getBackgroundView().setImage(lightBackground);
         addController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
         addController.getHtmlEditor().setHtmlText("<body style='background-color: #2f4f4f; color: white'/>"
@@ -526,10 +529,10 @@ public class ContainerController extends ActionController implements Initializab
                     + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
         }
 
-        addController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        addController.getListView().setCellFactory(new Callback<>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
-                return new ListCell<String>() {
+                return new ListCell<>() {
                     @Override
                     protected void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
@@ -551,9 +554,9 @@ public class ContainerController extends ActionController implements Initializab
 //        gameController.getBackgroundImage().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         searchController.getSearchPane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/search.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/search.css")).toString());
         searchController.getSearchPane().getStylesheets().
-                add(this.getClass().getResource("/controller/search_dark.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/search_dark.css")).toString());
         searchController.getBackgroundView().setImage(lightBackground);
         searchController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
         if (searchController.isUpdate()) {
@@ -563,10 +566,10 @@ public class ContainerController extends ActionController implements Initializab
         searchController.getWebView().getEngine().loadContent("<body style='background-color: #2f4f4f; color: white; border-color: #30cccc'/>"
                 + dictionaryDB.getMeaning(searchController.getTfSearchWord().getText()));
 
-        searchController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        searchController.getListView().setCellFactory(new Callback<>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
-                return new ListCell<String>() {
+                return new ListCell<>() {
                     @Override
                     protected void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
@@ -592,16 +595,16 @@ public class ContainerController extends ActionController implements Initializab
         });
 
         favoriteController.getFavoritePane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/favorite.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/favorite.css")).toString());
         favoriteController.getFavoritePane().getStylesheets().
-                add(this.getClass().getResource("/controller/favorite_dark.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/favorite_dark.css")).toString());
         favoriteController.getBackgroundView().setImage(lightBackground);
         favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
         settingController.getSettingPane().getStylesheets().
-                removeAll(this.getClass().getResource("/controller/setting.css").toString());
+                removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/setting.css")).toString());
         settingController.getSettingPane().getStylesheets().
-                add(this.getClass().getResource("/controller/setting_dark.css").toString());
+                add(Objects.requireNonNull(this.getClass().getResource("/controller/setting_dark.css")).toString());
         settingController.getBackgroundView().setImage(darkBackground);
         settingController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
 
@@ -625,10 +628,6 @@ public class ContainerController extends ActionController implements Initializab
             timeline.play();
         });
         menuPane.setVisible(false);
-//        TranslateTransition transition = new TranslateTransition(Duration.millis(15000), welcomeLabel);
-//        transition.setByX(-1400);
-//        transition.setCycleCount(Animation.INDEFINITE);
-//        transition.play();
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));
@@ -687,21 +686,21 @@ public class ContainerController extends ActionController implements Initializab
         switchMode = settingController.getSwitchMode();
         isLightMode = true;
 
-        lightBackground = new Image(this.getClass().getResourceAsStream("/images/dark_to_light_animation.png"));
-        darkBackground = new Image(this.getClass().getResourceAsStream("/images/light_to_dark_animation.png"));
+        lightBackground = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/dark_to_light_animation.png")));
+        darkBackground = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/light_to_dark_animation.png")));
 
-        addImage = new Image(this.getClass().getResourceAsStream("/images/add_animation.png"));
-        favoriteImage = new Image(this.getClass().getResourceAsStream("/images/favorite_animation.png"));
-        gameImage = new Image(this.getClass().getResourceAsStream("/images/game_animation.png"));
-        searchImage = new Image(this.getClass().getResourceAsStream("/images/search_animation.png"));
-        settingImage = new Image(this.getClass().getResourceAsStream("/images/setting_animation.png"));
-        translateImage = new Image(this.getClass().getResourceAsStream("/images/translate_animation.png"));
+        addImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/add_animation.png")));
+        favoriteImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/favorite_animation.png")));
+        gameImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/game_animation.png")));
+        searchImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/search_animation.png")));
+        settingImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/setting_animation.png")));
+        translateImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/translate_animation.png")));
 
-        addImageDark = new Image(this.getClass().getResourceAsStream("/images/add_animation_dark.png"));
-        favoriteImageDark = new Image(this.getClass().getResourceAsStream("/images/favorite_animation_dark.png"));
-        gameImageDark = new Image(this.getClass().getResourceAsStream("/images/game_animation_dark.png"));
-        searchImageDark = new Image(this.getClass().getResourceAsStream("/images/search_animation_dark.png"));
-        settingImageDark = new Image(this.getClass().getResourceAsStream("/images/setting_animation_dark.png"));
+        addImageDark = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/add_animation_dark.png")));
+        favoriteImageDark = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/favorite_animation_dark.png")));
+        gameImageDark = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/game_animation_dark.png")));
+        searchImageDark = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/search_animation_dark.png")));
+        settingImageDark = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/setting_animation_dark.png")));
 
 
         switchMode.setOnMouseClicked(mouseEvent -> {

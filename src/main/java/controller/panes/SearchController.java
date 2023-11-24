@@ -5,7 +5,6 @@ import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
 import controller.Alert.NoOptionAlert;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -14,8 +13,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
@@ -57,8 +54,6 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     private Button btSave;
-
-    private boolean check = true;
 
     private boolean isUpdate = false;
 
@@ -138,7 +133,7 @@ public class SearchController extends ActionController implements Initializable 
     }
 
     @FXML
-    void update(ActionEvent event) throws SQLException {
+    void update(ActionEvent event) {
         if (tfSearchWord.textProperty().isEqualTo("").get()) {
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
                     "Nothing to update");
@@ -175,7 +170,7 @@ public class SearchController extends ActionController implements Initializable 
     }
 
     @FXML
-    void updateAction(ActionEvent event) throws SQLException {
+    void updateAction(ActionEvent event) {
         DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Error...",
                 "Nothing to update");
         if (htmlUpdateMeaning.getHtmlText().isEmpty()) {
@@ -250,7 +245,7 @@ public class SearchController extends ActionController implements Initializable 
         stared.setVisible(false);
     }
 
-    public void updateHistoryInListView() throws SQLException {
+    public void updateHistoryInListView() {
         List<String> tmp = historyDB.getHistory();
         Collections.reverse(tmp);
         lvSearchWordsList.getItems().addAll(tmp);
@@ -263,67 +258,60 @@ public class SearchController extends ActionController implements Initializable 
             lvSearchWordsList.getItems().clear();
             if (tfSearchWord.getText() != null) {
                 String searchWord = tfSearchWord.getText();
-                if (!searchWord.equals("")) {
+                if (!searchWord.isEmpty()) {
                     lvSearchWordsList.getItems().addAll(dictionaryDB.getListWordTargets(searchWord));
                 } else {
                     List<String> tmp = historyDB.getHistory();
                     Collections.reverse(tmp);
                     lvSearchWordsList.getItems().addAll(tmp);
-                    check = false;
                 }
             }
         });
 
-        lvSearchWordsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
-                    tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
-                    if (ContainerController.isLightMode) {
-                        wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>"
-                                + dictionaryDB.getMeaning(tfSearchWord.getText()));
+        lvSearchWordsList.setOnMouseClicked(mouseEvent -> {
+            if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
+                tfSearchWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
+                if (ContainerController.isLightMode) {
+                    wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>"
+                            + dictionaryDB.getMeaning(tfSearchWord.getText()));
+                } else {
+                    wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
+                            + dictionaryDB.getMeaning(tfSearchWord.getText()));
+                }
+                htmlUpdateMeaning.setVisible(false);
+                wvMeaning.setVisible(true);
+                btSave.setVisible(false);
+                try {
+                    if (favoriteDB.isWordInFavorite(tfSearchWord.getText().toLowerCase())) {
+                        noStared.setVisible(false);
+                        stared.setVisible(true);
                     } else {
-                        wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
-                                + dictionaryDB.getMeaning(tfSearchWord.getText()));
+                        noStared.setVisible(true);
+                        stared.setVisible(false);
                     }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                String wordText = tfSearchWord.getText().toLowerCase();
+                historyDB.removeHistoryWord(wordText);
+                if (dictionaryDB.isInDictionary(wordText)) {
+                    historyDB.insertHistory(wordText);
+                } else {
+                    noStared.setVisible(false);
+                    stared.setVisible(false);
+                }
+            }
+        });
+
+        tfSearchWord.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    lookup(null);
                     htmlUpdateMeaning.setVisible(false);
                     wvMeaning.setVisible(true);
                     btSave.setVisible(false);
-                    String s = null;
-                    try {
-                        if (favoriteDB.isWordInFavorite(tfSearchWord.getText().toLowerCase())) {
-                            noStared.setVisible(false);
-                            stared.setVisible(true);
-                        } else {
-                            noStared.setVisible(true);
-                            stared.setVisible(false);
-                        }
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    String wordText = tfSearchWord.getText().toLowerCase();
-                    historyDB.removeHistoryWord(wordText);
-                    if (dictionaryDB.isInDictionary(wordText)) {
-                        historyDB.insertHistory(wordText);
-                    } else {
-                        noStared.setVisible(false);
-                        stared.setVisible(false);
-                    }
-                }
-            }
-        });
-
-        tfSearchWord.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ENTER) {
-                    try {
-                        lookup(null);
-                        htmlUpdateMeaning.setVisible(false);
-                        wvMeaning.setVisible(true);
-                        btSave.setVisible(false);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

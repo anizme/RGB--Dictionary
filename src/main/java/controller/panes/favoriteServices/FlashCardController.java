@@ -1,6 +1,5 @@
 package controller.panes.favoriteServices;
 
-import com.jfoenix.controls.JFXButton;
 import controller.panes.ActionController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -9,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
@@ -18,7 +16,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static controller.ApplicationStart.favoriteDB;
-import static controller.ApplicationStart.historyDB;
 
 public class FlashCardController extends ActionController implements Initializable {
 
@@ -26,21 +23,12 @@ public class FlashCardController extends ActionController implements Initializab
     private Label cards;
 
     @FXML
-    private AnchorPane flashCardAnchorpane;
-
-    @FXML
-    private JFXButton leftButton;
-
-    @FXML
-    private JFXButton rightButton;
-
-    @FXML
     private Label sttLabel;
 
     private int stt = 0;
 
     //check = 0 means card turns to word
-    //check = 1 means card turns to shortmeaning
+    //check = 1 means card turns to short meaning
     private int check = 0;
 
     @FXML
@@ -127,7 +115,7 @@ public class FlashCardController extends ActionController implements Initializab
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
-                } else if (check == 1){
+                } else if (check == 1) {
                     try {
                         cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(--check, stt));
                     } catch (SQLException ex) {
