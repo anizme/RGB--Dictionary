@@ -255,8 +255,8 @@
                   <Image url="@../images/asteroid.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="shipCollisionPosition" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="130.0" layoutY="226.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="10.0" />
-            <Rectangle fx:id="shieldCollisionPosition" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="130.0" layoutY="187.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="10.0" />
+            <Rectangle fx:id="shipCollisionPosition" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutX="125.0" layoutY="224.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="30.0" />
+            <Rectangle fx:id="shieldCollisionPosition" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutX="125.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="30.0" />
             <ImageView fx:id="shieldCollision" fitHeight="96.0" fitWidth="96.0" layoutX="87.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <viewport>
                   <Rectangle2D height="96.0" width="96.0" />
@@ -273,11 +273,27 @@
                   <Rectangle2D height="96.0" width="96.0" />
                </viewport>
             </ImageView>
+            <ImageView fx:id="welcomeHomeView" fitHeight="75.0" fitWidth="137.0" layoutX="104.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/welcome-home.gif" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="earthView" fitHeight="96.0" fitWidth="96.0" layoutX="8.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <viewport>
+                  <Rectangle2D height="96.0" width="96.0" />
+               </viewport>
+               <image>
+                  <Image url="@../images/earths.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="instruction" layoutX="57.0" layoutY="53.0" prefHeight="384.0" prefWidth="736.0" style="-fx-background-color: white; -fx-background-radius: 16;">
          <children>
-            <Label alignment="CENTER" layoutX="211.0" layoutY="155.0" prefHeight="75.0" prefWidth="315.0" text="INSTRUCTION" />
+            <Label alignment="CENTER" layoutX="211.0" layoutY="7.0" prefHeight="52.0" prefWidth="315.0" text="INSTRUCTION">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font></Label>
          </children>
       </AnchorPane>
       <JFXButton fx:id="instructionButton" contentDisplay="GRAPHIC_ONLY" disable="true" layoutX="10.0" layoutY="10.0" onAction="#showInstruction" prefHeight="48.0" prefWidth="48.0" style="-fx-background-radius: 30;" visible="false">

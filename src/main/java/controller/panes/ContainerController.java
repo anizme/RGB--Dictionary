@@ -484,6 +484,26 @@ public class ContainerController extends ActionController implements Initializab
                 add(Objects.requireNonNull(this.getClass().getResource("/controller/favorite.css")).toString());
         favoriteController.getBackgroundView().setImage(lightBackground);
         favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        favoriteController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                        } else {
+                            setText(item);
+                        }
+                        if (getIndex() % 2 == 1)
+                            setStyle("-fx-background-color: white; -fx-text-fill: black;");
+                        else
+                            setStyle("-fx-background-color: #def3f6; -fx-text-fill: black");
+                    }
+                };
+            }
+        });
 
         settingController.getSettingPane().getStylesheets().
                 removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/setting_dark.css")).toString());
@@ -529,7 +549,7 @@ public class ContainerController extends ActionController implements Initializab
                     + String.format(addController.getDefaultText(), addController.getTfAddWord().getText()));
         }
 
-        addController.getListView().setCellFactory(new Callback<>() {
+        addController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
                 return new ListCell<>() {
@@ -600,6 +620,33 @@ public class ContainerController extends ActionController implements Initializab
                 add(Objects.requireNonNull(this.getClass().getResource("/controller/favorite_dark.css")).toString());
         favoriteController.getBackgroundView().setImage(lightBackground);
         favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
+        favoriteController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                            if (getIndex() % 2 == 1) {
+                                setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                            } else {
+                                setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                            }
+                        } else {
+                            setText(item);
+                            if (getIndex() % 2 == 1) {
+                                setStyle("-fx-background-color: #2f4f3f; -fx-text-fill: white;");
+                            } else {
+                                setStyle("-fx-background-color: #2f4f4f; -fx-text-fill: white");
+                            }
+                        }
+
+                    }
+                };
+            }
+        });
 
         settingController.getSettingPane().getStylesheets().
                 removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/setting.css")).toString());

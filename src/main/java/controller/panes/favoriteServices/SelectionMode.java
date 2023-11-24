@@ -29,6 +29,7 @@ public class SelectionMode extends ActionController implements Initializable {
     private int correctQ = 0;
     private int wrongQ = 0;
     private String currentAns = "";
+
     @FXML
     private AnchorPane blurPane;
 

@@ -1,12 +1,15 @@
 package controller.panes.favoriteServices;
 
+import com.jfoenix.controls.JFXButton;
 import controller.ApplicationStart;
 import controller.panes.ActionController;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -28,6 +31,12 @@ public class StudyModeController extends ActionController implements Initializab
     private AnchorPane contentPane;
     @FXML
     private AnchorPane modePane;
+
+    @FXML
+    private JFXButton selectionButton;
+
+    @FXML
+    private JFXButton writingButton;
 
     private void showSelection() throws SQLException {
         contentPane.getChildren().setAll(selectionPane);
@@ -63,6 +72,7 @@ public class StudyModeController extends ActionController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        blur.setVisible(true);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("writingMode.fxml"));
             writingPane = fxmlLoader.load();
@@ -80,6 +90,24 @@ public class StudyModeController extends ActionController implements Initializab
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        selectionButton.setOnMouseClicked(mouseEvent -> {
+            try {
+                showSelection();
+                blur.setVisible(false);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
+        writingButton.setOnMouseClicked(mouseEvent -> {
+            try {
+                showWriting();
+                blur.setVisible(false);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
 
         cbMode.getItems().add("Writing");
         cbMode.getItems().add("Selection");

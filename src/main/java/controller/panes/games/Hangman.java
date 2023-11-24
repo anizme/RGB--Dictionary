@@ -3,18 +3,20 @@ package controller.panes.games;
 import com.jfoenix.controls.JFXButton;
 import controller.ApplicationStart;
 import dictionary.Word;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -24,15 +26,15 @@ import services.ImageViewSprite;
 import services.SpriteAnimation;
 
 import java.net.URL;
-import java.util.Objects;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
 public class Hangman extends GameAction implements Initializable {
-    private final int MAX_WRONG_GUESSES = 7;
     private String answer;
     private String guessed;
+    private final int MAX_WRONG_GUESSES = 7;
     private int wrongGuesses = 0;
     private boolean isNewGame = false;
     private Word answerWord;
@@ -40,6 +42,7 @@ public class Hangman extends GameAction implements Initializable {
     private JFXButton playButton;
     @FXML
     private GridPane letterPane;
+    private boolean[] isClicked;
     @FXML
     private HBox healthBar;
     @FXML
@@ -98,6 +101,15 @@ public class Hangman extends GameAction implements Initializable {
     @FXML
     private ImageView explosionView;
     private Image explosionImage;
+    @FXML
+    private ImageView earthView;
+    private Image earthImage;
+    private ImageViewSprite earthViewSprite;
+    @FXML
+    private ImageView welcomeHomeView;
+    private Timeline timeline;
+    private boolean isReady;
+    private PauseTransition delay;
 
     public void setAnswer(String answer) {
         this.answer = answer;
@@ -108,15 +120,15 @@ public class Hangman extends GameAction implements Initializable {
     }
 
     public void updateGuessed(char c) {
-        StringBuilder newGuessed = new StringBuilder();
+        String newGuessed = "";
         for (int i = 0; i < guessed.length(); i++) {
             if (answer.toUpperCase().charAt(i) == c) {
-                newGuessed.append(c);
+                newGuessed += c;
             } else {
-                newGuessed.append(guessed.charAt(i));
+                newGuessed += guessed.charAt(i);
             }
         }
-        setGuessed(newGuessed.toString());
+        setGuessed(newGuessed);
     }
 
     public boolean checkGuess(char c) {
@@ -130,126 +142,159 @@ public class Hangman extends GameAction implements Initializable {
 
     @FXML
     void letterChoose(ActionEvent event) {
-        if (isNewGame) {
-            wrongGuesses = 0;
-            isNewGame = false;
-        }
         JFXButton button = (JFXButton) event.getSource();
-        asteroidView.setVisible(true);
-        asteroidMovement = new TranslateTransition(Duration.millis(500), asteroidView);
-        asteroidMovement.setByY(160);
-        asteroidMovement.play();
-        if (!checkGuess(button.getText().charAt(0)) && !guessed.equals(answer.toUpperCase())) {
-            if (wrongGuesses < MAX_WRONG_GUESSES) {
-                wrongGuesses++;
-                button.setStyle("-fx-background-color: lightsalmon; -fx-background-radius: 10px; " +
+        if (isReady && !isClicked[(int) button.getText().charAt(0) - 65]) {
+            isReady = false;
+            isClicked[(int) button.getText().charAt(0) - 65] = true;
+            delay.play();
+            if (isNewGame) {
+                wrongGuesses = 0;
+                isNewGame = false;
+            }
+            asteroidView.setVisible(true);
+            asteroidMovement = new TranslateTransition(Duration.millis(500), asteroidView);
+            asteroidMovement.setByY(160);
+            asteroidMovement.play();
+            if (!checkGuess(button.getText().charAt(0)) && !guessed.equals(answer.toUpperCase())) {
+                if (wrongGuesses < MAX_WRONG_GUESSES) {
+                    wrongGuesses++;
+                    button.setStyle("-fx-background-color: lightsalmon; -fx-background-radius: 10px; " +
+                            "-fx-text-fill: black; -fx-border-radius: 10px; -fx-border-width: 2px;");
+
+                    //asteroids.add(newAsteroid);
+
+                    ObservableBooleanValue colliding = Bindings.createBooleanBinding(new Callable<Boolean>() {
+
+                        @Override
+                        public Boolean call() throws Exception {
+                            return asteroidView.getBoundsInParent().intersects(shipCollisionPosition.getBoundsInParent());
+                        }
+
+                    }, asteroidView.boundsInParentProperty(), shipCollisionPosition.boundsInParentProperty());
+
+                    colliding.addListener(new ChangeListener<Boolean>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Boolean> obs,
+                                            Boolean oldValue, Boolean newValue) {
+                            if (newValue) {
+                                System.out.println("Colliding");
+
+                                healthBar.getChildren().get(MAX_WRONG_GUESSES - wrongGuesses).setStyle("-fx-fill: transparent");
+                                String healthColor = "";
+                                switch (wrongGuesses) {
+                                    case 0:
+                                    case 1:
+                                        healthColor = "#0fc618";
+                                        shipView.setImage(shipFullHealth);
+                                        break;
+                                    case 2:
+                                    case 3:
+                                        healthColor = "#edf500";
+                                        shipView.setImage(shipSlightDamaged);
+                                        break;
+                                    case 4:
+                                    case 5:
+                                        healthColor = "#ff7b00";
+                                        shipView.setImage(shipDamaged);
+                                        break;
+                                    case 6:
+                                        healthColor = "red";
+                                        shipView.setImage(shipVeryDamaged);
+                                        break;
+                                }
+                                for (int i = 0; i < MAX_WRONG_GUESSES - wrongGuesses; i++) {
+                                    healthBar.getChildren().get(i).setStyle("-fx-fill: " + healthColor);
+                                }
+                                asteroidMovement.stop();
+                                asteroidView.setVisible(false);
+                                asteroidMovement = new TranslateTransition(Duration.millis(1), asteroidView);
+                                asteroidMovement.setByY(-160);
+                                asteroidMovement.play();
+                                shipCollision.setVisible(true);
+                                shipCollisionAnimation.play();
+                                if (wrongGuesses == MAX_WRONG_GUESSES) {
+                                    shipView.setVisible(false);
+                                    engineView.setVisible(false);
+                                    explosionView.setVisible(true);
+                                    explosionAnimation.play();
+                                    explosionAnimation.setOnFinished(event -> {
+                                        explosionView.setVisible(false);
+                                    });
+
+                                    resultLabel.setText("YOU LOSE !\n" + "The answer is " + answer.toUpperCase() + "\nMeaning : " + answerWord.getWord_explain());
+                                    resultPane.setDisable(false);
+                                    resultPane.setVisible(true);
+                                    letterPane.setDisable(true);
+                                    letterPane.setVisible(false);
+                                }
+                            } else {
+                                System.out.println("Not colliding");
+                            }
+                        }
+                    });
+
+                }
+
+            } else if (checkGuess(button.getText().charAt(0))) {
+                button.setStyle("-fx-background-color: mediumspringgreen; -fx-background-radius: 10px; " +
                         "-fx-text-fill: black; -fx-border-radius: 10px; -fx-border-width: 2px;");
+                updateGuessed(button.getText().charAt(0));
+                wordLabel.setText(guessed);
+                shieldView.setVisible(true);
+                ObservableBooleanValue colliding = Bindings.createBooleanBinding(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        return asteroidView.getBoundsInParent().intersects(shieldCollisionPosition.getBoundsInParent());
+                    }
+                }, asteroidView.boundsInParentProperty(), shieldCollisionPosition.boundsInParentProperty());
 
-                //asteroids.add(newAsteroid);
-
-                ObservableBooleanValue colliding = Bindings.createBooleanBinding(() -> asteroidView.getBoundsInParent().intersects(shipCollisionPosition.getBoundsInParent()), asteroidView.boundsInParentProperty(), shipCollisionPosition.boundsInParentProperty());
-
-                colliding.addListener((obs, oldValue, newValue) -> {
-                    if (newValue) {
-                        System.out.println("Colliding");
-
-                        healthBar.getChildren().get(MAX_WRONG_GUESSES - wrongGuesses).setStyle("-fx-fill: transparent");
-                        String healthColor = "";
-                        switch (wrongGuesses) {
-                            case 0:
-                            case 1:
-                                healthColor = "#0fc618";
-                                shipView.setImage(shipFullHealth);
-                                break;
-                            case 2:
-                            case 3:
-                                healthColor = "#edf500";
-                                shipView.setImage(shipSlightDamaged);
-                                break;
-                            case 4:
-                            case 5:
-                                healthColor = "#ff7b00";
-                                shipView.setImage(shipDamaged);
-                                break;
-                            case 6:
-                                healthColor = "red";
-                                shipView.setImage(shipVeryDamaged);
-                                break;
+                colliding.addListener(new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> obs,
+                                        Boolean oldValue, Boolean newValue) {
+                        if (newValue) {
+                            if (shieldView.isVisible()) {
+                                System.out.println("Colliding");
+                                asteroidMovement.stop();
+                                asteroidView.setVisible(false);
+                                asteroidMovement = new TranslateTransition(Duration.millis(1), asteroidView);
+                                asteroidMovement.setByY(-121);
+                                asteroidMovement.play();
+                                shieldCollision.setVisible(true);
+                                shieldCollisionAnimation.play();
+                                shieldCollisionAnimation.setOnFinished(event1 -> {
+                                    shieldView.setVisible(false);
+                                    if (guessed.equals(answer.toUpperCase())) {
+                                        resultLabel.setText("YOU WIN !\n" + "The answer is " + answer.toUpperCase() + "\nMeaning : " + answerWord.getWord_explain());
+                                        resultPane.setDisable(false);
+                                        resultPane.setVisible(true);
+                                        letterPane.setDisable(true);
+                                        letterPane.setVisible(false);
+                                        earthView.setVisible(true);
+                                        welcomeHomeView.setVisible(true);
+                                        //timeline.play();
+                                    }
+                                });
+                            }
+                        } else {
+                            System.out.println("Not colliding");
                         }
-                        for (int i = 0; i < MAX_WRONG_GUESSES - wrongGuesses; i++) {
-                            healthBar.getChildren().get(i).setStyle("-fx-fill: " + healthColor);
-                        }
-                        asteroidMovement.stop();
-                        asteroidView.setVisible(false);
-                        asteroidMovement = new TranslateTransition(Duration.millis(1), asteroidView);
-                        asteroidMovement.setByY(-160);
-                        asteroidMovement.play();
-                        shipCollision.setVisible(true);
-                        shipCollisionAnimation.play();
-                        if (wrongGuesses == MAX_WRONG_GUESSES) {
-                            shipView.setVisible(false);
-                            engineView.setVisible(false);
-                            explosionView.setVisible(true);
-                            explosionAnimation.play();
-                            explosionAnimation.setOnFinished(event12 -> explosionView.setVisible(false));
-
-                            resultLabel.setText("YOU LOSE !\n" + "The answer is " + answer.toUpperCase() + "\nMeaning : " + answerWord.getWord_explain());
-                            resultPane.setDisable(false);
-                            resultPane.setVisible(true);
-                            letterPane.setDisable(true);
-                            letterPane.setVisible(false);
-                        }
-                    } else {
-                        System.out.println("Not colliding");
                     }
                 });
-
             }
-
-        } else if (checkGuess(button.getText().charAt(0))) {
-            button.setStyle("-fx-background-color: mediumspringgreen; -fx-background-radius: 10px; " +
-                    "-fx-text-fill: black; -fx-border-radius: 10px; -fx-border-width: 2px;");
-            updateGuessed(button.getText().charAt(0));
-            wordLabel.setText(guessed);
-            shieldView.setVisible(true);
-            ObservableBooleanValue colliding = Bindings.createBooleanBinding(() -> asteroidView.getBoundsInParent().intersects(shieldCollisionPosition.getBoundsInParent()), asteroidView.boundsInParentProperty(), shieldCollisionPosition.boundsInParentProperty());
-
-            colliding.addListener((obs, oldValue, newValue) -> {
-                if (newValue) {
-                    if (shieldView.isVisible()) {
-                        System.out.println("Colliding");
-                        asteroidMovement.stop();
-                        asteroidView.setVisible(false);
-                        asteroidMovement = new TranslateTransition(Duration.millis(1), asteroidView);
-                        asteroidMovement.setByY(-121);
-                        asteroidMovement.play();
-                        shieldCollision.setVisible(true);
-                        shieldCollisionAnimation.play();
-                        shieldCollisionAnimation.setOnFinished(event1 -> {
-                            shieldView.setVisible(false);
-                            if (guessed.equals(answer.toUpperCase())) {
-                                resultLabel.setText("YOU WIN !\n" + "The answer is " + answer.toUpperCase() + "\nMeaning : " + answerWord.getWord_explain());
-                                resultPane.setDisable(false);
-                                resultPane.setVisible(true);
-                                letterPane.setDisable(true);
-                                letterPane.setVisible(false);
-                            }
-                        });
-                    }
-                } else {
-                    System.out.println("Not colliding");
-                }
-            });
-
         }
     }
 
     @FXML
     void play(ActionEvent event) {
+        isClicked = new boolean[26];
         instruction.setDisable(true);
         instruction.setVisible(false);
         instructionButton.setDisable(false);
         instructionButton.setVisible(true);
+        earthView.setVisible(false);
+        welcomeHomeView.setVisible(false);
+
         isNewGame = true;
         wordLabel.setVisible(true);
         shipView.setImage(shipFullHealth);
@@ -298,9 +343,9 @@ public class Hangman extends GameAction implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        backgroundLayer1 = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/background_layer1.png")));
-        backgroundLayer2 = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/background_layer2.png")));
-        backgroundLayer3 = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/background_layer3.png")));
+        backgroundLayer1 = new Image(this.getClass().getResourceAsStream("/images/background_layer1.png"));
+        backgroundLayer2 = new Image(this.getClass().getResourceAsStream("/images/background_layer2.png"));
+        backgroundLayer3 = new Image(this.getClass().getResourceAsStream("/images/background_layer3.png"));
 
         backgroundViewSprite1 = new ImageViewSprite(backgroundView1, backgroundLayer1,
                 9, 1, 9, 640, 360, 10);
@@ -312,22 +357,22 @@ public class Hangman extends GameAction implements Initializable {
         backgroundViewSprite2.start();
         backgroundViewSprite3.start();
 
-        shipFullHealth = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/ship_full_health.png")));
-        shipSlightDamaged = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/ship_slight_damaged.png")));
-        shipDamaged = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/ship_damaged.png")));
-        shipVeryDamaged = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/ship_very_damaged.png")));
+        shipFullHealth = new Image(this.getClass().getResourceAsStream("/images/ship_full_health.png"));
+        shipSlightDamaged = new Image(this.getClass().getResourceAsStream("/images/ship_slight_damaged.png"));
+        shipDamaged = new Image(this.getClass().getResourceAsStream("/images/ship_damaged.png"));
+        shipVeryDamaged = new Image(this.getClass().getResourceAsStream("/images/ship_very_damaged.png"));
 
-        engineImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/engine.png")));
+        engineImage = new Image(this.getClass().getResourceAsStream("/images/engine.png"));
         engineViewSprite = new ImageViewSprite(engineView, engineImage,
                 4, 1, 4, 48, 48, 10);
         engineViewSprite.start();
 
-        shieldImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/shield.png")));
+        shieldImage = new Image(this.getClass().getResourceAsStream("/images/shield.png"));
         shieldViewSprite = new ImageViewSprite(shieldView, shieldImage,
                 12, 1, 12, 64, 64, 50);
         shieldViewSprite.start();
 
-        asteroidImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/asteroid.png")));
+        asteroidImage = new Image(this.getClass().getResourceAsStream("/images/asteroid.png"));
 
         asteroidView.setImage(asteroidImage);
         asteroidView.setViewport(new Rectangle2D(0, 0, 96, 96));
@@ -348,13 +393,26 @@ public class Hangman extends GameAction implements Initializable {
                 8, 8, 0, 0, 96, 96);
         shieldCollisionAnimation.setCycleCount(1);
 
-        explosionImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/explosion.png")));
+        explosionImage = new Image(this.getClass().getResourceAsStream("/images/explosion.png"));
         explosionView.setImage(explosionImage);
         explosionView.setViewport(new Rectangle2D(0, 0, 96, 96));
         explosionView.setVisible(false);
         explosionAnimation = new SpriteAnimation(explosionView, Duration.millis(2000),
                 12, 12, 0, 0, 96, 96);
         explosionAnimation.setCycleCount(1);
+
+        earthImage = new Image(this.getClass().getResourceAsStream("/images/earths.png"));
+        earthViewSprite = new ImageViewSprite(earthView, earthImage,
+                77, 1, 77, 96, 96, 30);
+        earthViewSprite.start();
+
+        isReady = true;
+        delay = new PauseTransition(Duration.millis(1200));
+        delay.setOnFinished(event -> {
+            isReady = true;
+        });
+
+        isClicked = new boolean[26];
 
         wordLabel.setVisible(false);
     }
