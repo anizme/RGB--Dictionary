@@ -102,7 +102,7 @@ public class GameController extends ActionController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("chaoticword.fxml"));
             chaoticWord = fxmlLoader.load();
             chaoticWordController = fxmlLoader.getController();
-            chaoticWordController.initGameControllerContainer(this);
+            chaoticWordController.setContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

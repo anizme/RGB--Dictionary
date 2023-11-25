@@ -2,6 +2,7 @@ package controller.panes.games;
 
 import algorithms.Sort;
 import com.jfoenix.controls.JFXButton;
+import controller.panes.GameController;
 import dictionary.Word;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -32,7 +33,7 @@ class Pair {
     }
 }
 
-public class ChaoticWord extends GameAction implements Initializable {
+public class ChaoticWord extends GameController implements Initializable {
     @FXML
     private AnchorPane downAnchorPane;
 

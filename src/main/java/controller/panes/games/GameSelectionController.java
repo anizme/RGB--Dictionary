@@ -21,7 +21,7 @@ public class GameSelectionController extends GameController implements Initializ
 
     @FXML
     void btGame3(ActionEvent event) {
-        gameControllerContainer.showChaoticWord();
+        ((GameController) container).showChaoticWord();
     }
 
     @Override
