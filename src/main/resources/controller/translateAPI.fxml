@@ -31,7 +31,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langFromThird" minWidth="44.0" mnemonicParsing="false" onAction="#vie" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
+                  <Button fx:id="langFromSecond" minWidth="44.0" mnemonicParsing="false" onAction="#vie" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -39,7 +39,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langFromSecond" minWidth="44.0" mnemonicParsing="false" onAction="#eng" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="English">
+                  <Button fx:id="langFromThird" minWidth="44.0" mnemonicParsing="false" onAction="#eng" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="English">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

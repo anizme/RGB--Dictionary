@@ -106,7 +106,7 @@ public class TranslateAPIController extends ActionController implements Initiali
     @FXML
     void vie(ActionEvent event) {
         resetStyleLangFrom();
-        langFromThird.getStyleClass().add("active");
+        langFromSecond.getStyleClass().add("active");
         tfSrcLang.setText("Vietnamese");
         languageFrom = "vi";
         nameFrom = "Chi";
@@ -116,7 +116,7 @@ public class TranslateAPIController extends ActionController implements Initiali
     @FXML
     void eng(ActionEvent event) {
         resetStyleLangFrom();
-        langFromSecond.getStyleClass().add("active");
+        langFromThird.getStyleClass().add("active");
         languageFrom = "en";
         tfSrcLang.setText("English");
         nameFrom = "Linda";
@@ -134,9 +134,9 @@ public class TranslateAPIController extends ActionController implements Initiali
     }
 
     @FXML
-    void rus(ActionEvent event) throws Exception {
+    void rus(ActionEvent event) {
         resetStyleLangFrom();
-        langToFourth.getStyleClass().add("active");
+        langFromFifth.getStyleClass().add("active");
         tfDesLang.setText("Russian");
         languageFrom = "ru";
         nameFrom = "Marina";
@@ -144,9 +144,9 @@ public class TranslateAPIController extends ActionController implements Initiali
     }
 
     @FXML
-    void chinese(ActionEvent event) throws Exception {
+    void chinese(ActionEvent event) {
         resetStyleLangFrom();
-        langToFifth.getStyleClass().add("active");
+        langFromSixth.getStyleClass().add("active");
         languageFrom = "zh";
         tfDesLang.setText("Chinese");
         nameFrom = "Luli";
