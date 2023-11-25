@@ -1,5 +1,6 @@
 package controller.panes;
 
+import algorithms.AutoCorrect;
 import com.jfoenix.controls.JFXButton;
 import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
@@ -13,9 +14,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
+import javafx.scene.control.Label;
 import services.API.VoiceRSS;
 
 import java.net.URL;
@@ -30,6 +33,12 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     private ImageView backgroundView;
+
+    @FXML
+    private AnchorPane correctPane;
+
+    @FXML
+    private Label correctWord;
 
     @FXML
     private ListView<String> lvSearchWordsList;
@@ -118,6 +127,7 @@ public class SearchController extends ActionController implements Initializable 
         wordText = wordText.toLowerCase();
         historyDB.removeHistoryWord(wordText);
         if (dictionaryDB.isInDictionary(wordText)) {
+            correctPane.setVisible(false);
             historyDB.insertHistory(wordText);
             if (favoriteDB.isWordInFavorite(wordText)) {
                 noStared.setVisible(false);
@@ -129,7 +139,21 @@ public class SearchController extends ActionController implements Initializable 
                 noStared.setVisible(true);
                 stared.setVisible(false);
             }
+        } else {
+            handleCorrect();
         }
+    }
+
+    private void handleCorrect() throws SQLException {
+        correctWord.setText(AutoCorrect.findNearestWord(tfSearchWord.getText().trim()));
+        correctPane.setVisible(true);
+    }
+
+    @FXML
+    void setCorrectWord(MouseEvent event) throws SQLException {
+        tfSearchWord.setText(correctWord.getText());
+        correctPane.setVisible(false);
+        lookup(null);
     }
 
     @FXML
@@ -253,6 +277,7 @@ public class SearchController extends ActionController implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        correctPane.setVisible(false);
         wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>");
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
@@ -260,6 +285,13 @@ public class SearchController extends ActionController implements Initializable 
                 String searchWord = tfSearchWord.getText();
                 if (!searchWord.isEmpty()) {
                     lvSearchWordsList.getItems().addAll(dictionaryDB.getListWordTargets(searchWord));
+                    if (lvSearchWordsList.getItems().isEmpty()) {
+                        try {
+                            handleCorrect();
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
                 } else {
                     List<String> tmp = historyDB.getHistory();
                     Collections.reverse(tmp);

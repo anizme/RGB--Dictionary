@@ -318,7 +318,7 @@ public class CrossWord extends ActionController implements Initializable {
     @FXML
     void getAns(ActionEvent event) {
         if (isTimelineRunning) {
-            System.out.println("Fuck");
+            //System.out.println("Fuck");
             return;
         }
         YES.setVisible(false);
