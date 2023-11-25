@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import services.API.GoogleTranslateAPIUtils;
+import services.API.GoogleTranslateAPI;
 import services.API.VoiceRSS;
 
 import java.net.URL;
@@ -15,8 +15,9 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TranslateAPIController extends ActionController implements Initializable {
-    String resJsonFile = "";
-    String translatedText = "";
+
+    private GoogleTranslateAPI googleTranslateAPI = new GoogleTranslateAPI();
+
     String languageFrom = "auto";
     String languageTo = "vi";
     String nameFrom;
@@ -90,32 +91,18 @@ public class TranslateAPIController extends ActionController implements Initiali
         langToFifth.getStyleClass().removeAll("active");
     }
 
-    void detect() throws Exception {
+    /*
+     * LANG TO BE TRANSLATED
+     */
+
+    @FXML
+    void setAuto(ActionEvent event) {
         resetStyleLangFrom();
         langFromFirst.getStyleClass().add("active");
         languageFrom = "auto";
         tfSrcLang.setText("Auto detect");
         nameFrom = "Linda";
         speakFrom = "en-gb";
-        if (!Objects.equals(taTextToTrans.getText(), "")) {
-            handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
-            taTransText.setText(translatedText);
-            tfSrcLang.setText(GoogleTranslateAPIUtils.getDetectLang(resJsonFile));
-        }
-    }
-
-    @FXML
-    void chinese(ActionEvent event) throws Exception {
-        resetStyleLangTo();
-        langToFifth.getStyleClass().add("active");
-        languageTo = "zh";
-        tfDesLang.setText("Chinese");
-        nameTo = "Luli";
-        speakTo = "zh-cn";
-        if (!Objects.equals(taTextToTrans.getText(), "")) {
-            handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
-            taTransText.setText(translatedText);
-        }
     }
 
     @FXML
@@ -129,17 +116,13 @@ public class TranslateAPIController extends ActionController implements Initiali
     }
 
     @FXML
-    void eng2(ActionEvent event) throws Exception {
-        resetStyleLangTo();
-        langToSecond.getStyleClass().add("active");
-        tfDesLang.setText("English");
-        languageTo = "en";
-        nameTo = "Linda";
-        speakTo = "en-gb";
-        if (!Objects.equals(taTextToTrans.getText(), "")) {
-            handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
-            taTransText.setText(translatedText);
-        }
+    void vie(ActionEvent event) {
+        resetStyleLangFrom();
+        langFromThird.getStyleClass().add("active");
+        tfSrcLang.setText("Vietnamese");
+        languageFrom = "vi";
+        nameFrom = "Chi";
+        speakFrom = "vi-vn";
     }
 
     @FXML
@@ -152,6 +135,38 @@ public class TranslateAPIController extends ActionController implements Initiali
         speakFrom = "ko-kr";
     }
 
+
+    /*
+     * TRANSLATED LANGUAGE
+     */
+    @FXML
+    void vie2(ActionEvent event) throws Exception {
+        resetStyleLangTo();
+        langToFirst.getStyleClass().add("active");
+        tfDesLang.setText("Vietnamese");
+        languageTo = "vi";
+        nameTo = "Chi";
+        speakTo = "vi-vn";
+        if (!Objects.equals(taTextToTrans.getText(), "")) {
+            handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
+            taTransText.setText(googleTranslateAPI.getTransLang());
+        }
+    }
+
+    @FXML
+    void eng2(ActionEvent event) throws Exception {
+        resetStyleLangTo();
+        langToSecond.getStyleClass().add("active");
+        tfDesLang.setText("English");
+        languageTo = "en";
+        nameTo = "Linda";
+        speakTo = "en-gb";
+        if (!Objects.equals(taTextToTrans.getText(), "")) {
+            handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
+            taTransText.setText(googleTranslateAPI.getTransLang());
+        }
+    }
+
     @FXML
     void korea2(ActionEvent event) throws Exception {
         resetStyleLangTo();
@@ -162,7 +177,7 @@ public class TranslateAPIController extends ActionController implements Initiali
         speakTo = "ko-kr";
         if (!Objects.equals(taTextToTrans.getText(), "")) {
             handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
-            taTransText.setText(translatedText);
+            taTransText.setText(googleTranslateAPI.getTransLang());
         }
     }
 
@@ -176,16 +191,34 @@ public class TranslateAPIController extends ActionController implements Initiali
         speakTo = "ru-ru";
         if (!Objects.equals(taTextToTrans.getText(), "")) {
             handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
-            taTransText.setText(translatedText);
+            taTransText.setText(googleTranslateAPI.getTransLang());
         }
     }
+
+    @FXML
+    void chinese(ActionEvent event) throws Exception {
+        resetStyleLangTo();
+        langToFifth.getStyleClass().add("active");
+        languageTo = "zh";
+        tfDesLang.setText("Chinese");
+        nameTo = "Luli";
+        speakTo = "zh-cn";
+        if (!Objects.equals(taTextToTrans.getText(), "")) {
+            handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
+            taTransText.setText(googleTranslateAPI.getTransLang());
+        }
+    }
+
+    /*
+     * SPEAK
+     */
 
     @FXML
     void speak1(ActionEvent event) throws Exception {
         VoiceRSS.Name = nameFrom;
         VoiceRSS.language = speakFrom;
         if (!Objects.equals(taTextToTrans.getText(), "")) {
-            VoiceRSS.speakWord(translatedText);
+            VoiceRSS.speakWord(googleTranslateAPI.getTransLang());
         }
     }
 
@@ -194,7 +227,7 @@ public class TranslateAPIController extends ActionController implements Initiali
         VoiceRSS.Name = nameTo;
         VoiceRSS.language = speakTo;
         if (!Objects.equals(taTransText.getText(), "")) {
-            VoiceRSS.speakWord(translatedText);
+            VoiceRSS.speakWord(googleTranslateAPI.getTransLang());
         }
     }
 
@@ -202,43 +235,35 @@ public class TranslateAPIController extends ActionController implements Initiali
     void translate(ActionEvent event) throws Exception {
         if (!Objects.equals(taTextToTrans.getText(), "")) {
             handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
-            taTransText.setText(translatedText);
+            taTransText.setText(googleTranslateAPI.getTransLang());
             if (languageFrom.equals("auto")) {
                 detect();
+            }
+        } else {
+            taTransText.setText("");
+            if (languageFrom.equals("auto")) {
+                tfSrcLang.setText(googleTranslateAPI.getDetectLang());
             }
         }
     }
 
-    @FXML
-    void vie1(ActionEvent event) {
-        resetStyleLangFrom();
-        langFromThird.getStyleClass().add("active");
-        tfSrcLang.setText("Vietnamese");
-        languageFrom = "vi";
-        nameFrom = "Chi";
-        speakFrom = "vi-vn";
+    private void handleTranslate(String langFrom, String langTo, String text) throws Exception {
+        googleTranslateAPI.handleTranslate(langFrom, langTo, text);
     }
 
-    @FXML
-    void vie2(ActionEvent event) throws Exception {
-        resetStyleLangTo();
-        langToFirst.getStyleClass().add("active");
-        tfDesLang.setText("Vietnamese");
-        languageTo = "vi";
-        nameTo = "Chi";
-        speakTo = "vi-vn";
+    void detect() throws Exception {
+        resetStyleLangFrom();
+        langFromFirst.getStyleClass().add("active");
+        languageFrom = "auto";
+        tfSrcLang.setText("Auto detect");
+        nameFrom = "Linda";
+        speakFrom = "en-gb";
         if (!Objects.equals(taTextToTrans.getText(), "")) {
             handleTranslate(languageFrom, languageTo, taTextToTrans.getText());
-            taTransText.setText(translatedText);
+            taTransText.setText(googleTranslateAPI.getTransLang());
+            tfSrcLang.setText(googleTranslateAPI.getDetectLang());
         }
     }
-
-    private void handleTranslate(String langFrom, String langTo, String text) throws Exception {
-        resJsonFile = GoogleTranslateAPIUtils.ggTransToJSON(langFrom, langTo, text);
-        translatedText = GoogleTranslateAPIUtils.getTransLang(resJsonFile);
-    }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
