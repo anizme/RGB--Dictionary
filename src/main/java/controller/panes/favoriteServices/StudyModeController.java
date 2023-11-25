@@ -95,6 +95,7 @@ public class StudyModeController extends ActionController implements Initializab
             try {
                 showSelection();
                 blur.setVisible(false);
+                modePane.setVisible(false);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -104,6 +105,7 @@ public class StudyModeController extends ActionController implements Initializab
             try {
                 showWriting();
                 blur.setVisible(false);
+                modePane.setVisible(false);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
