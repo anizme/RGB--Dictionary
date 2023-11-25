@@ -4,7 +4,6 @@ import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
 import controller.Alert.NoOptionAlert;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -12,15 +11,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
-import services.DatabaseConnect;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static controller.ApplicationStart.dictionaryDB;
 
 public class AddController extends ActionController implements Initializable {
 
@@ -68,49 +65,35 @@ public class AddController extends ActionController implements Initializable {
         return lvSearchWordsList;
     }
 
-    public boolean isSearch() {
-        return isSearch;
-    }
+//    public boolean isSearch() {
+//        return isSearch;
+//    }
 
     public boolean isAddWord() {
         return isAddWord;
     }
 
     @FXML
-    void addAction(ActionEvent event) throws SQLException {
-        if (!lvSearchWordsList.getItems().isEmpty()) {
+    void addAction(ActionEvent event) {
+        String addWord = tfAddWord.getText().toLowerCase();
+        if (dictionaryDB.isInDictionary(addWord)) {
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "This word has already exists", "Error");
             alert.alertAction();
-        } else if (htmlAddMeaning.getHtmlText().equals("")) {
+        } else if (htmlAddMeaning.getHtmlText().isEmpty()) {
             System.out.println("add");
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Missing meaning of word", "Error");
             alert.alertAction();
         } else {
             ConfirmationAlert alert = new ConfirmationAlert("Confirm to add new word", "Confirm?");
             if (alert.alertAction()) {
-                DatabaseConnect.insertWord(tfAddWord.getText(), htmlAddMeaning.getHtmlText());
+                dictionaryDB.insertWord(addWord, htmlAddMeaning.getHtmlText());
             }
         }
-//        Alert addAlert = new Alert(Alert.AlertType.NONE);
-//        if (taNewWord.getText().isEmpty() || taWordMeaning.getText().isEmpty()) {
-//            addAlert.setAlertType(Alert.AlertType.ERROR);
-//            addAlert.setHeaderText("ERROR when adding");
-//            addAlert.setContentText("Nothing to add");
-//            addAlert.showAndWait();
-//        }
-//        boolean isExist = !dictionaryManagement.dictionaryLookup(taNewWord.getText()).equals("NO INFORMATION");
-//        addAlert.setAlertType(Alert.AlertType.INFORMATION);
-//        addAlert.setHeaderText("Notification");
-//        if (dictionaryManagement.dictionaryConditionalAdd(taNewWord.getText(), taWordMeaning.getText(), isExist)) {
-//           addAlert.setContentText("Added " + taNewWord.getText() + " with meaning " + taWordMeaning.getText());
-//           addAlert.showAndWait();
-//           taWordMeaning.clear();
-//           taNewWord.clear();
-//        } else {
-//            addAlert.setContentText("Fail to add \"" + taNewWord.getText() + "\" with meaning \""
-//                    + taWordMeaning.getText() + "\"");
-//            addAlert.showAndWait();
-//        }
+    }
+
+    public void reset() {
+        tfAddWord.clear();
+        htmlAddMeaning.setHtmlText("");
     }
 
     @Override
@@ -121,51 +104,35 @@ public class AddController extends ActionController implements Initializable {
             if (tfAddWord.getText() != null) {
                 String searchWord = tfAddWord.getText();
                 if (!searchWord.isEmpty()) {
-                    try {
-                        lvSearchWordsList.getItems().addAll(DatabaseConnect.getListWordTargets(searchWord));
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    lvSearchWordsList.getItems().addAll(dictionaryDB.getListWordTargets(searchWord));
                 }
             }
         });
 
-        lvSearchWordsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
-                    isSearch = true;
-                    tfAddWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
-                    try {
-                        if (ContainerController.isLightMode) {
-                            htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>"
-                                    + DatabaseConnect.getMeaning(tfAddWord.getText()));
-                        } else {
-                            htmlAddMeaning.setHtmlText("<body style='background-color: #2f4f4f; color: white;'/>"
-                                    + DatabaseConnect.getMeaning(tfAddWord.getText()));
-                        }
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+        lvSearchWordsList.setOnMouseClicked(mouseEvent -> {
+            if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
+                isSearch = true;
+                tfAddWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
+                if (ContainerController.isLightMode) {
+                    htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>"
+                            + dictionaryDB.getMeaning(tfAddWord.getText()));
+                } else {
+                    htmlAddMeaning.setHtmlText("<body style='background-color: #2f4f4f; color: white;'/>"
+                            + dictionaryDB.getMeaning(tfAddWord.getText()));
                 }
-//                else {
-//                    isSearch = false;
-//                }
             }
         });
 
-        tfAddWord.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ENTER) {
-                    isAddWord = true;
-                    if (!tfAddWord.getText().isEmpty()) {
-                        htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>" +
-                                String.format(defaultText, tfAddWord.getText()));
-                    } else {
-                        htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>" + defaultText);
-                    }
-
+        tfAddWord.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                isAddWord = true;
+                if (!tfAddWord.getText().isEmpty()) {
+                    htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>" +
+                            String.format(defaultText, tfAddWord.getText()));
+                } else {
+                    htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>" + defaultText);
                 }
+
             }
         });
 

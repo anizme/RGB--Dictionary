@@ -14,6 +14,8 @@ module controller.dictionary {
     exports controller.panes;
     exports controller.panes.games;
     exports controller.panes.favoriteServices;
+    exports dictionary;
+    exports services.database;
 
     opens controller.panes to javafx.fxml;
     opens controller.panes.games to javafx.fxml;

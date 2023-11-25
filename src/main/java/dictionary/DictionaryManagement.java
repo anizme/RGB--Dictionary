@@ -4,7 +4,6 @@ import algorithms.Sort;
 import algorithms.Search;
 import controller.Alert.ConfirmationAlert;
 import controller.Alert.DetailAlert;
-import controller.panes.games.Game1;
 import javafx.scene.control.Alert;
 
 import java.io.*;
@@ -198,28 +197,28 @@ public class DictionaryManagement {
 
     /* first game - fit the blank  */
     public void dictionaryLearningWord() {
-        Game1 game1 = new Game1();
-        game1.setSize(8);
-        game1.initBoard(dictionary.getListOfWords());
-        game1.showBoard();
-        List<Word> answer = game1.getAns();
-        Scanner sc = new Scanner(System.in);
-        int numAnswer = answer.size();
-        int count = 0;
-        System.out.println("There are " + numAnswer + " in this board!");
-        System.out.println("Your ans: ");
-        while (count < numAnswer) {
-            System.out.println("The " + count + "th word: ");
-            String ans = sc.next();
-            int pos = Search.findPositionInWordListByString(ans, answer);
-            if (pos == -1) {    //if there is no word_target in current dictionary
-                System.out.println("Your answer is false");
-            } else {
-                System.out.println("Your answer is correct!");
-                System.out.println("This word mean: " + answer.get(pos).getWord_explain());
-            }
-            System.out.println("Your ans: ");
-            count++;
-        }
+//        Game1 game1 = new Game1();
+//        game1.setSize(8);
+//        game1.initBoard(dictionary.getListOfWords());
+//        game1.showBoard();
+//        List<Word> answer = game1.getAns();
+//        Scanner sc = new Scanner(System.in);
+//        int numAnswer = answer.size();
+//        int count = 0;
+//        System.out.println("There are " + numAnswer + " in this board!");
+//        System.out.println("Your ans: ");
+//        while (count < numAnswer) {
+//            System.out.println("The " + count + "th word: ");
+//            String ans = sc.next();
+//            int pos = Search.findPositionInWordListByString(ans, answer);
+//            if (pos == -1) {    //if there is no word_target in current dictionary
+//                System.out.println("Your answer is false");
+//            } else {
+//                System.out.println("Your answer is correct!");
+//                System.out.println("This word mean: " + answer.get(pos).getWord_explain());
+//            }
+//            System.out.println("Your ans: ");
+//            count++;
+//        }
     }
 }
