@@ -16,7 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
-import services.VoiceRSS;
+import services.API.VoiceRSS;
 
 import java.net.URL;
 import java.sql.SQLException;

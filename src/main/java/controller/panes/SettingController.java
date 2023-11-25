@@ -8,7 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import services.VoiceRSS;
+import services.API.VoiceRSS;
 
 import java.net.URL;
 import java.util.Locale;
