@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.ChaoticWord">
+   <children>
+      <ImageView fitHeight="555.0" fitWidth="872.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/background_chaoticword-01.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="playButton" layoutX="403.0" layoutY="494.0" onAction="#initGame" style="-fx-background-color: white;" text="PLAY" />
+      <AnchorPane fx:id="upAnchorPane" layoutX="252.0" layoutY="150.0" prefHeight="54.0" prefWidth="350.0">
+         <children>
+            <Rectangle fx:id="upRectangle" arcHeight="5.0" arcWidth="5.0" fill="#73ffc0" height="60.0" stroke="#fadcdc00" strokeType="INSIDE" width="350.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="downAnchorPane" layoutX="252.0" layoutY="328.0" prefHeight="60.0" prefWidth="350.0">
+         <children>
+            <Rectangle fx:id="downRectangle" arcHeight="5.0" arcWidth="5.0" fill="#73ffc0" height="60.0" layoutY="-1.0" stroke="#fadcdc00" strokeType="INSIDE" width="350.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

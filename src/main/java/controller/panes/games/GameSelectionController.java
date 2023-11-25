@@ -53,7 +53,7 @@ public class GameSelectionController extends GameAction implements Initializable
 
     @FXML
     void btGame3(ActionEvent event) {
-
+        gameControllerContainer.showChaoticWord();
     }
 
     @Override

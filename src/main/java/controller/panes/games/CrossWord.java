@@ -355,11 +355,13 @@ public class CrossWord extends GameAction implements Initializable {
         heart1.setVisible(false);
         heart2.setVisible(false);
         heart3.setVisible(false);
+        isTimelineRunning = false;
     }
 
     @FXML
     void getAns(ActionEvent event) throws Exception {
         if (isTimelineRunning) {
+            System.out.println("Fuck");
             return;
         }
         YES.setVisible(false);

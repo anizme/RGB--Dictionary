@@ -1,6 +1,7 @@
 package controller.panes;
 
 import com.jfoenix.controls.JFXButton;
+import controller.panes.games.ChaoticWord;
 import controller.panes.games.Hangman;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -47,6 +48,10 @@ public class GameController extends ActionController implements Initializable {
     protected AnchorPane hangmanPane;
     protected Hangman hangmanController;
 
+    protected AnchorPane chaoticWord;
+    protected ChaoticWord chaoticWordController;
+
+
     @FXML
     void gameMenu(ActionEvent event) {
         showGamePane();
@@ -68,6 +73,10 @@ public class GameController extends ActionController implements Initializable {
 
     public void showHangman() {
         this.setGamePane(hangmanPane);
+    }
+
+    public void showChaoticWord() {
+        this.setGamePane(chaoticWord);
     }
 
     @Override
@@ -96,6 +105,15 @@ public class GameController extends ActionController implements Initializable {
             hangmanPane = fxmlLoader.load();
             hangmanController = fxmlLoader.getController();
             hangmanController.initGameControllerContainer(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("chaoticword.fxml"));
+            chaoticWord = fxmlLoader.load();
+            chaoticWordController = fxmlLoader.getController();
+            chaoticWordController.initGameControllerContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
