@@ -61,25 +61,7 @@ public class GameController extends ActionController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("gameSelect.fxml"));
             selectGame = fxmlLoader.load();
             gameSelectionController = fxmlLoader.getController();
-            gameSelectionController.initGameControllerContainer(this);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("crossword.fxml"));
-            crossWordPane = fxmlLoader.load();
-            crossWordController = fxmlLoader.getController();
-            crossWordController.initGameControllerContainer(this);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("hangman.fxml"));
-            hangmanPane = fxmlLoader.load();
-            hangmanController = fxmlLoader.getController();
-            hangmanController.initGameControllerContainer(this);
+            gameSelectionController.setContainer(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
