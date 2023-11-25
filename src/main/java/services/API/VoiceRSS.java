@@ -1,4 +1,4 @@
-package services;
+package services.API;
 
 import com.voicerss.tts.AudioFormat;
 import com.voicerss.tts.VoiceParameters;
@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 
-public class VoiceRSS {
+public class VoiceRSS implements APIbase {
     private static final String API_KEY = "ee1a861047db41e3aed6cca75554a826";
     private static final String AUDIO_PATH = "src/main/resources/data/audio.wav";
 
@@ -41,9 +41,5 @@ public class VoiceRSS {
         Clip clip = AudioSystem.getClip();
         clip.open(audio);
         clip.start();
-    }
-
-    public static void main(String[] args) throws Exception {
-        speakWord("hello");
     }
 }

@@ -38,7 +38,6 @@ public class AddController extends ActionController implements Initializable {
     @FXML
     private TextField tfAddWord;
 
-    private boolean isSearch = false;
     private boolean isAddWord = false;
 
     public ImageView getBackgroundView() {
@@ -64,10 +63,6 @@ public class AddController extends ActionController implements Initializable {
     public ListView<String> getListView() {
         return lvSearchWordsList;
     }
-
-//    public boolean isSearch() {
-//        return isSearch;
-//    }
 
     public boolean isAddWord() {
         return isAddWord;
@@ -111,7 +106,6 @@ public class AddController extends ActionController implements Initializable {
 
         lvSearchWordsList.setOnMouseClicked(mouseEvent -> {
             if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
-                isSearch = true;
                 tfAddWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
                 if (ContainerController.isLightMode) {
                     htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>"
