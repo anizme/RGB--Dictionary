@@ -15,7 +15,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
+<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
    <children>
       <ImageView fx:id="backgroundView" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
@@ -44,10 +44,6 @@
          <children>
             <HBox prefHeight="45.0" prefWidth="169.0">
                <children>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="22.0" text="US" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font></Label>
                   <Button mnemonicParsing="false" onAction="#usSpeak" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
@@ -60,14 +56,10 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </Button>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="22.0" text="UK" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets left="20.0" right="2.0" />
-                     </HBox.margin>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="30.0" text="US" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
+                     </font></Label>
                   <Button mnemonicParsing="false" onAction="#ukSpeak" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
@@ -76,10 +68,21 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Button>
+                  <Label alignment="CENTER" prefHeight="45.0" prefWidth="33.0" text="UK" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
-            <HBox layoutX="200.0" prefHeight="45.0" prefWidth="158.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="0.0">
+            <HBox layoutX="196.0" prefHeight="45.0" prefWidth="153.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="btSave" mnemonicParsing="false" onAction="#updateAction" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
                      <HBox.margin>
@@ -116,7 +119,7 @@
                   </Button>
                </children>
             </HBox>
-            <JFXButton fx:id="noStared" layoutX="371.0" layoutY="7.0" onAction="#addFavorite" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT" visible="false">
+            <JFXButton fx:id="noStared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="365.0" onAction="#addFavorite" prefHeight="45.0" prefWidth="50.0" style="-fx-background-color: lightblue;" textFill="TRANSPARENT" visible="false">
                <font>
                   <Font size="1.0" />
                </font>
@@ -128,7 +131,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="stared" layoutX="371.0" layoutY="7.0" onAction="#removeFavorite" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" textFill="TRANSPARENT" visible="false">
+            <JFXButton fx:id="stared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="371.0" layoutY="7.0" onAction="#removeFavorite" prefHeight="45.0" prefWidth="50.0" style="-fx-background-color: #def3f6;" textFill="TRANSPARENT" visible="false">
                <font>
                   <Font size="1.0" />
                </font>
@@ -141,8 +144,8 @@
                </graphic>
             </JFXButton>
             <WebView fx:id="wvMeaning" layoutY="186.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <AnchorPane layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="409.0" style="-fx-background-color: transparent;" styleClass="meaning-pane" />
             <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <AnchorPane disable="true" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="421.0" style="-fx-background-color: transparent;" styleClass="meaning-pane" />
          </children>
       </AnchorPane>
    </children>

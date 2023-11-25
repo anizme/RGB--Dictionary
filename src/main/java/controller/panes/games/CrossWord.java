@@ -2,7 +2,6 @@ package controller.panes.games;
 
 import algorithms.Sort;
 import com.jfoenix.controls.JFXButton;
-import controller.panes.GameController;
 import dictionary.Word;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -15,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -62,16 +60,10 @@ public class CrossWord extends GameAction implements Initializable {
     private ImageView fireBall;
 
     @FXML
+    private ImageView congratulation;
+
+    @FXML
     private ImageView fireWork;
-
-    @FXML
-    private ImageView heart1;
-
-    @FXML
-    private ImageView heart2;
-
-    @FXML
-    private ImageView heart3;
 
     @FXML
     private TextField meaning;
@@ -88,45 +80,31 @@ public class CrossWord extends GameAction implements Initializable {
     @FXML
     private Rectangle bgButtonGrid;
 
-    @FXML
-    private ImageView guideCrossWord;
-
-    @FXML
-    private ImageView winner;
-
-    @FXML
-    private ImageView loser;
-
-    @FXML
-    private Rectangle flash;
-
-    private List<Word> wordList;
+    private final List<Word> wordList;
     private List<Word> wordPlay;
     private List<List<Character>> charBoard;
     private List<String> playerAnswer;
     private List<List<Integer>> posXY;
     private List<Integer> tmpPos;
-    private int numsWord = 3;
-    private int row = 10;
-    private int col = 10;
+    private final int numsWord = 3;
+    private final int row = 10;
+    private final int col = 10;
     private int count = 0;
-    private double xDefault = 64.0;
-    private double yDefault = 455.0;
-    private double xPlanet1 = 43.0;
-    private double yPlanet1 = 251.0;
-    private double xPlanet2 = 109.0;
-    private double yPlanet2 = 107.0;
-    private double xPlanet3 = 54.0;
-    private double yPlanet3 = 0.0;
+    private final double xDefault = 64.0;
+    private final double yDefault = 455.0;
+    private final double xPlanet1 = 43.0;
+    private final double yPlanet1 = 251.0;
+    private final double xPlanet2 = 109.0;
+    private final double yPlanet2 = 107.0;
+    private final double xPlanet3 = 54.0;
+    private final double yPlanet3 = 0.0;
     private double yFireBall;
     private int noPlanet = 0;
-    private int noWrongAns = 0;
-    private String gocolor = "-fx-background-color: #ff9130;";
-    private String cocolor = "-fx-background-color: #85E6C5;";
-    private String wrcolor = "-fx-background-color: #FF6969;";
-    private String dfcolor = "-fx-background-color: #FAFEFF;";
+    private final  String gocolor = "-fx-background-color: #ff9130;";
+    private final String cocolor = "-fx-background-color: #85E6C5;";
+    private final String wrcolor = "-fx-background-color: #FF6969;";
+    private final String dfcolor = "-fx-background-color: #FAFEFF;";
     private boolean isRunning = false;
-    private boolean isTimelineRunning = false;
     private URL url;
     private ResourceBundle resourceBundle;
 
@@ -184,22 +162,12 @@ public class CrossWord extends GameAction implements Initializable {
                     }
                 }
             }
-        } else if (HoV == 2) {
+        } else {
             if (posY + sizeWord - 1 >= row) {
                 return false;
             } else {
                 for (int i = posY; i < posY + sizeWord; i++) {
                     if (charBoard.get(i).get(posX) != '_') {
-                        return false;
-                    }
-                }
-            }
-        } else {
-            if (posX + sizeWord - 1 >= row || posY + sizeWord - 1 >= col) {
-                return false;
-            } else {
-                for (int i = 0; i < sizeWord; i++) {
-                    if (charBoard.get(posY + i).get(posX + i) != '_') {
                         return false;
                     }
                 }
@@ -239,7 +207,7 @@ public class CrossWord extends GameAction implements Initializable {
     }
 
     @FXML
-    void setInitBoard(ActionEvent event) throws Exception {
+    void setInitBoard(ActionEvent event) {
         YES.setVisible(false);
         NO.setVisible(false);
         initWordPlay();
@@ -252,10 +220,6 @@ public class CrossWord extends GameAction implements Initializable {
         isRunning = true;
         PLAY.setVisible(false);
         PLAYAGAIN.setVisible(true);
-        guideCrossWord.setVisible(false);
-        heart1.setVisible(true);
-        heart2.setVisible(true);
-        heart3.setVisible(true);
         Random rand = new Random();
         ObservableList<Node> panelList = initBoard.getChildren();
         for (Node x : panelList) {
@@ -271,7 +235,7 @@ public class CrossWord extends GameAction implements Initializable {
             System.out.println(tmp);
             int posX = rand.nextInt(row);
             int posY = rand.nextInt(col);
-            int randHorV = rand.nextInt(3) + 1;
+            int randHorV = rand.nextInt(2) + 1;
             if (randHorV == 1) {
                 while (!checkValid(posX, posY, randHorV, tmp.length())) {
                     posX = rand.nextInt(row);
@@ -283,7 +247,7 @@ public class CrossWord extends GameAction implements Initializable {
                     charBoard.get(posY).set(j, letter);
                     k++;
                 }
-            } else if (randHorV == 2) {
+            } else {
                 while (!checkValid(posX, posY, randHorV, tmp.length())) {
                     posX = rand.nextInt(row);
                     posY = rand.nextInt(col);
@@ -292,17 +256,6 @@ public class CrossWord extends GameAction implements Initializable {
                 for (int j = posY; j < posY + tmp.length(); j++) {
                     char letter = tmp.charAt(k);
                     charBoard.get(j).set(posX, letter);
-                    k++;
-                }
-            } else {
-                while (!checkValid(posX, posY, randHorV, tmp.length())) {
-                    posX = rand.nextInt(row);
-                    posY = rand.nextInt(col);
-                }
-                int k = 0;
-                for (int j = 0; j < tmp.length(); j++) {
-                    char letter = tmp.charAt(k);
-                    charBoard.get(posY + j).set(posX + j, letter);
                     k++;
                 }
             }
@@ -318,8 +271,7 @@ public class CrossWord extends GameAction implements Initializable {
         }
         int x = 0, y = 0;
         for (Node tmp : panelList) {
-            if (tmp instanceof Button) {
-                Button button = (Button) tmp;
+            if (tmp instanceof Button button) {
                 button.setText(Character.toString(charBoard.get(y).get(x)));
                 if (x < row - 1) {
                     x++;
@@ -332,7 +284,7 @@ public class CrossWord extends GameAction implements Initializable {
     }
 
     @FXML
-    void replay(ActionEvent event) throws Exception {
+    void replay(ActionEvent event) {
         isRunning = false;
         PLAYAGAIN.setVisible(false);
         answer.setVisible(false);
@@ -345,27 +297,19 @@ public class CrossWord extends GameAction implements Initializable {
         noPlanet = 0;
         spaceShipGo();
         count = 0;
-        noWrongAns = 0;
         initBoard.setVisible(true);
-        winner.setVisible(false);
-        loser.setVisible(false);
+        congratulation.setVisible(false);
+        fireWork.setVisible(false);
         fireBall.setVisible(true);
         bgButtonGrid.setVisible(true);
-        guideCrossWord.setVisible(true);
-        heart1.setVisible(false);
-        heart2.setVisible(false);
-        heart3.setVisible(false);
     }
 
     @FXML
-    void getAns(ActionEvent event) throws Exception {
-        if (isTimelineRunning) {
-            return;
-        }
+    void getAns(ActionEvent event) {
         YES.setVisible(false);
         NO.setVisible(false);
         Button button = (Button) event.getSource();
-        int x = 0, y = 0;
+        int x, y;
         if (GridPane.getColumnIndex(button) != null && GridPane.getRowIndex(button) != null) {
             x = GridPane.getColumnIndex(button);
             y = GridPane.getRowIndex(button);
@@ -399,23 +343,16 @@ public class CrossWord extends GameAction implements Initializable {
             int y1 = tmpPos.get(1);
             int x2 = tmpPos.get(2);
             int y2 = tmpPos.get(3);
-            String yourWord = "";
+            StringBuilder yourWord = new StringBuilder();
             if (x1 == x2) {
                 for (int i = y1; i <= y2; i++) {
                     Button button1 = (Button) listNode.get(i * col + x1);
-                    yourWord += button1.getText();
+                    yourWord.append(button1.getText());
                 }
             } else if (y1 == y2) {
                 for (int i = x1; i <= x2; i++) {
                     Button button1 = (Button) listNode.get(y1 * col + i);
-                    yourWord += button1.getText();
-                }
-            } else if (y2 - y1 == x2 - x1) {
-                int j = y1;
-                for (int i = x1; i <= x2; i++) {
-                    Button button1 = (Button) listNode.get(j * col + i);
-                    yourWord += button1.getText();
-                    j++;
+                    yourWord.append(button1.getText());
                 }
             }
             for (Node node : listNode) {
@@ -427,11 +364,9 @@ public class CrossWord extends GameAction implements Initializable {
                 addHoverEffect(button1);
             }
             System.out.println("Your word: " + yourWord);
-            if (yourWord != null) {
-                playerAnswer.add(yourWord);
-                answer.setText(yourWord);
-                checkAns(yourWord, tmpPos);
-            }
+            playerAnswer.add(yourWord.toString());
+            answer.setText(yourWord.toString());
+            checkAns(yourWord.toString(), tmpPos);
             tmpPos = new ArrayList<>();
         }
     }
@@ -440,7 +375,6 @@ public class CrossWord extends GameAction implements Initializable {
         double x, y;
         x = spaceShip.getLayoutX();
         y = spaceShip.getLayoutY();
-        isTimelineRunning = true;
         if (noPlanet == 1) {
             TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
             translateTransition.setToX(xPlanet1 - x);
@@ -457,7 +391,6 @@ public class CrossWord extends GameAction implements Initializable {
 
             timeline.getKeyFrames().add(slideIn);
             timeline.setOnFinished(e -> {
-                isTimelineRunning = false;
                 fireBall.setTranslateX(0);
                 fireBall.setTranslateY(0);
                 fireBall.setOpacity(1);
@@ -482,7 +415,6 @@ public class CrossWord extends GameAction implements Initializable {
 
             timeline.getKeyFrames().add(slideIn);
             timeline.setOnFinished(e -> {
-                isTimelineRunning = false;
                 fireBall.setTranslateX(0);
                 fireBall.setTranslateY(0);
                 fireBall.setOpacity(1);
@@ -507,16 +439,22 @@ public class CrossWord extends GameAction implements Initializable {
 
             timeline.getKeyFrames().add(slideIn);
             timeline.setOnFinished(e -> {
-                isTimelineRunning = false;
                 fireBall.setTranslateX(0);
                 fireBall.setTranslateY(0);
                 fireBall.setOpacity(1);
                 initBoard.setVisible(false);
                 bgButtonGrid.setVisible(false);
                 fireBall.setVisible(false);
-                initBoard.setVisible(false);
-                bgButtonGrid.setVisible(false);
-                winner.setVisible(true);
+                congratulation.setVisible(true);
+                fireWork.setVisible(true);
+                fireWork.setTranslateY(-500);
+                Timeline timeline2 = new Timeline();
+
+                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(2),
+                        new KeyValue(fireWork.translateYProperty(), 700));
+
+                timeline2.getKeyFrames().add(slideIn2);
+                timeline2.play();
             });
 
             timeline.play();
@@ -533,147 +471,13 @@ public class CrossWord extends GameAction implements Initializable {
         }
     }
 
-    void spaceShipStop() {
-        double x, y;
-        x = spaceShip.getLayoutX();
-        y = spaceShip.getLayoutY();
-        isTimelineRunning = true;
-        if (noPlanet == 0) {
-            fireBall.setOpacity(1);
-            fireBall.setTranslateX(0);
-            Timeline timeline = new Timeline();
-
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
-                    new KeyValue(fireBall.translateXProperty(), xDefault - fireBall.getLayoutX()),
-                    new KeyValue(fireBall.translateYProperty(), yDefault - fireBall.getLayoutY()));
-
-            timeline.getKeyFrames().add(slideIn);
-            timeline.setOnFinished(e -> {
-                flash.setVisible(true);
-                flash.setOpacity(1);
-                fireBall.setTranslateX(0);
-                fireBall.setTranslateY(0);
-                fireBall.setOpacity(1);
-                Timeline timeline2 = new Timeline();
-
-                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(1),
-                        new KeyValue(flash.opacityProperty(), 0));
-
-                timeline2.getKeyFrames().add(slideIn2);
-                timeline2.setOnFinished(event -> {
-                    isTimelineRunning = false;
-                    flash.setVisible(false);
-                    if (noWrongAns == 1) {
-                        heart3.setVisible(false);
-                    } else if (noWrongAns == 2) {
-                        heart2.setVisible(false);
-                    } else if (noWrongAns == 3) {
-                        heart1.setVisible(false);
-                        initBoard.setVisible(false);
-                        bgButtonGrid.setVisible(false);
-                        fireBall.setVisible(false);
-                        loser.setVisible(true);
-                    }
-                });
-                timeline2.play();
-            });
-
-            timeline.play();
-        }
-        else if (noPlanet == 1) {
-            fireBall.setOpacity(1);
-            fireBall.setTranslateX(0);
-            fireBall.setRotate(22.0);
-            Timeline timeline = new Timeline();
-
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
-                    new KeyValue(fireBall.translateXProperty(), xPlanet1 - fireBall.getLayoutX()),
-                    new KeyValue(fireBall.translateYProperty(), yPlanet1 - fireBall.getLayoutY()));
-
-            timeline.getKeyFrames().add(slideIn);
-            timeline.setOnFinished(e -> {
-                flash.setVisible(true);
-                flash.setOpacity(1);
-                fireBall.setTranslateX(0);
-                fireBall.setTranslateY(0);
-                fireBall.setOpacity(1);
-                Timeline timeline2 = new Timeline();
-
-                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(1),
-                        new KeyValue(flash.opacityProperty(), 0));
-
-                timeline2.getKeyFrames().add(slideIn2);
-                timeline2.setOnFinished(event -> {
-                    isTimelineRunning = false;
-                    flash.setVisible(false);
-                    if (noWrongAns == 1) {
-                        heart3.setVisible(false);
-                    } else if (noWrongAns == 2) {
-                        heart2.setVisible(false);
-                    } else if (noWrongAns == 3) {
-                        heart1.setVisible(false);
-                        initBoard.setVisible(false);
-                        bgButtonGrid.setVisible(false);
-                        fireBall.setVisible(false);
-                        loser.setVisible(true);
-                    }
-                });
-                timeline2.play();
-            });
-
-            timeline.play();
-        } else if (noPlanet == 2) {
-            fireBall.setOpacity(1);
-            fireBall.setTranslateX(0);
-            fireBall.setRotate(53.0);
-            Timeline timeline = new Timeline();
-
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
-                    new KeyValue(fireBall.translateXProperty(), xPlanet2 - fireBall.getLayoutX()),
-                    new KeyValue(fireBall.translateYProperty(), yPlanet2 - fireBall.getLayoutY()));
-
-            timeline.getKeyFrames().add(slideIn);
-            timeline.setOnFinished(e -> {
-                flash.setVisible(true);
-                flash.setOpacity(1);
-                fireBall.setTranslateX(0);
-                fireBall.setTranslateY(0);
-                fireBall.setOpacity(1);
-                Timeline timeline2 = new Timeline();
-
-                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(1),
-                        new KeyValue(flash.opacityProperty(), 0));
-
-                timeline2.getKeyFrames().add(slideIn2);
-                timeline2.setOnFinished(event -> {
-                    isTimelineRunning = false;
-                    flash.setVisible(false);
-                    if (noWrongAns == 1) {
-                        heart3.setVisible(false);
-                    } else if (noWrongAns == 2) {
-                        heart2.setVisible(false);
-                    } else if (noWrongAns == 3) {
-                        heart1.setVisible(false);
-                        initBoard.setVisible(false);
-                        bgButtonGrid.setVisible(false);
-                        fireBall.setVisible(false);
-                        loser.setVisible(true);
-                    }
-                });
-                timeline2.play();
-            });
-
-            timeline.play();
-        }
-    }
-
     void checkAns(String yourWord, List<Integer> tmpPos) {
         ObservableList<Node> listNode = initBoard.getChildren();
         int x1 = tmpPos.get(0);
         int y1 = tmpPos.get(1);
         int x2 = tmpPos.get(2);
         int y2 = tmpPos.get(3);
-        for (int i = 0; i < wordPlay.size(); i++) {
+        for (int i = 0; i < numsWord; i++) {
             String tmp = wordPlay.get(i).getWord_target();
             tmp = tmp.toUpperCase();
             if (tmp.equals(yourWord)) {
@@ -682,8 +486,6 @@ public class CrossWord extends GameAction implements Initializable {
                 NO.setVisible(false);
                 meaning.setText(wordPlay.get(i).getWord_explain());
                 noPlanet++;
-                wordPlay.remove(i);
-                i--;
                 spaceShipGo();
                 if (x1 == x2) {
                     for (int k = y1; k <= y2; k++) {
@@ -697,22 +499,12 @@ public class CrossWord extends GameAction implements Initializable {
                         button1.setStyle(cocolor);
                         addHoverEffect(button1);
                     }
-                } else if (y2 - y1 == x2 - x1) {
-                    int h = y1;
-                    for (int k = x1; k <= x2; k++) {
-                        Button button1 = (Button) listNode.get(h * col + k);
-                        button1.setStyle(cocolor);
-                        addHoverEffect(button1);
-                        h++;
-                    }
                 }
                 return;
             }
         }
         NO.setVisible(true);
         YES.setVisible(false);
-        noWrongAns++;
-        spaceShipStop();
         if (x1 == x2) {
             for (int k = y1; k <= y2; k++) {
                 Button button1 = (Button) listNode.get(k * col + x1);
@@ -722,13 +514,6 @@ public class CrossWord extends GameAction implements Initializable {
             for (int k = x1; k <= x2; k++) {
                 Button button1 = (Button) listNode.get(y1 * col + k);
                 button1.setStyle(wrcolor);
-            }
-        } else if (y2 - y1 == x2 - x1) {
-            int h = y1;
-            for (int k = x1; k <= x2; k++) {
-                Button button1 = (Button) listNode.get(h * col + k);
-                button1.setStyle(wrcolor);
-                h++;
             }
         }
         Timeline timeline = new Timeline();
@@ -746,15 +531,6 @@ public class CrossWord extends GameAction implements Initializable {
                 KeyValue keyValue = new KeyValue(button1.styleProperty(), dfcolor);
                 KeyFrame keyFrame = new KeyFrame(duration, keyValue);
                 timeline.getKeyFrames().add(keyFrame);
-            }
-        } else if (y2 - y1 == x2 - x1) {
-            int h = y1;
-            for (int k = x1; k <= x2; k++) {
-                Button button1 = (Button) listNode.get(h * col + k);
-                KeyValue keyValue = new KeyValue(button1.styleProperty(), dfcolor);
-                KeyFrame keyFrame = new KeyFrame(duration, keyValue);
-                timeline.getKeyFrames().add(keyFrame);
-                h++;
             }
         }
         timeline.play();
