@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.Hangman">
+<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.Hangman">
    <children>
       <ImageView fx:id="backgroundView1" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
@@ -197,7 +197,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXButton fx:id="replayButton" layoutX="160.0" layoutY="225.0" onAction="#play" prefHeight="51.0" prefWidth="108.0" style="-fx-background-color: white;" text="REPLAY" />
+            <JFXButton layoutX="160.0" layoutY="225.0" onAction="#play" prefHeight="51.0" prefWidth="108.0" style="-fx-background-color: white;" text="REPLAY" />
          </children>
       </AnchorPane>
       <HBox fx:id="healthBar" layoutX="111.0" layoutY="368.0" prefHeight="17.0" prefWidth="212.0" style="-fx-border-color: white;">

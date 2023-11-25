@@ -17,7 +17,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameController extends ActionController implements Initializable {
-
     protected AnchorPane selectGame;
     protected GameSelectionController gameSelectionController;
     protected AnchorPane crossWordPane;
@@ -56,7 +55,6 @@ public class GameController extends ActionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("gameSelect.fxml"));
             selectGame = fxmlLoader.load();
@@ -66,11 +64,31 @@ public class GameController extends ActionController implements Initializable {
             throw new RuntimeException(e);
         }
 
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("crossword.fxml"));
+            crossWordPane = fxmlLoader.load();
+            crossWordController = fxmlLoader.getController();
+            crossWordController.setContainer(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("hangman.fxml"));
+            hangmanPane = fxmlLoader.load();
+            hangmanController = fxmlLoader.getController();
+            hangmanController.setContainer(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
         gameMenuBackground.setOnMouseClicked(mouseEvent -> {
             showGamePane();
             gameMenuBackground.setVisible(false);
+            gameMenuBackground.setImage(null);
+            gameMenuBackground = null;
+            System.gc();
         });
-
-
     }
 }
