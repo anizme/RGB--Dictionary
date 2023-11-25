@@ -9,10 +9,10 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class GoogleTranslateAPI implements TranslateAPI {
+    private static final String API_URL_BASE = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=";
+    private String jsonResponse = "";
     private String detectLang = "";
     private String transLang = "";
-
-    private static final String API_URL_BASE = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=";
 
     public GoogleTranslateAPI() {
 
@@ -30,7 +30,7 @@ public class GoogleTranslateAPI implements TranslateAPI {
 
     //Handle query
     public void handleTranslate(String langFrom, String langTo, String text) throws Exception {
-        String jsonResponse = transToJson(langFrom, langTo, text);
+        jsonResponse = transToJson(langFrom, langTo, text);
         transLang = getTranslatedText(jsonResponse);
         detectLang = getDetectedLang(jsonResponse);
     }
@@ -87,5 +87,4 @@ public class GoogleTranslateAPI implements TranslateAPI {
             default -> "Nothing";
         };
     }
-
 }

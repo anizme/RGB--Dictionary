@@ -9,7 +9,6 @@
     -fx-background-color: #a2d2df;
 }
 
-
 .button-double-arrow {
     -fx-pref-width: 60;
     -fx-pref-height: 40;
@@ -48,6 +47,10 @@
     -fx-background-radius: 10px;
 }
 
+.active {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
 /* ========================= TextField ========================= */
 
 .text-field {
