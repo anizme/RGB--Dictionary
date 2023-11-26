@@ -99,7 +99,7 @@ public class SelectionMode extends ActionController implements Initializable {
 
     void getNextQuestion() throws SQLException {
         taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
-        currentAns = FavoriteUtils.getFavoriteShortMeaningAt(curQuestion);
+        currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);
         genOptions();
     }
 

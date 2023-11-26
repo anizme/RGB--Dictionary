@@ -71,7 +71,10 @@ public class AddController extends ActionController implements Initializable {
     @FXML
     void addAction(ActionEvent event) {
         String addWord = tfAddWord.getText().toLowerCase();
-        if (dictionaryDB.isInDictionary(addWord)) {
+        if (addWord.isEmpty()) {
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Nothing to add", "Error");
+            alert.alertAction();
+        } else if (dictionaryDB.isInDictionary(addWord)) {
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "This word has already exists", "Error");
             alert.alertAction();
         } else if (htmlAddMeaning.getHtmlText().isEmpty()) {

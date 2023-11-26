@@ -31,7 +31,7 @@ public class FavoriteDB extends FavoriteDatabase {
         } catch (SQLException e) {
             handleSQLException(e);
         }
-        updateFavoriteOrder(getFavorite().size());
+        //updateFavoriteOrder(getFavorite().size());
     }
 
     private void updateFavoriteOrder(int stt) throws SQLException {

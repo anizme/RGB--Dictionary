@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.WritingMode">
+<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.WritingMode">
    <children>
       <ImageView fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
             <Image url="@../images/writing.png" />
          </image>
       </ImageView>
-      <Label layoutX="222.0" layoutY="274.0" prefHeight="30.0" prefWidth="406.0" text="Type the word that has the above meaning :">
+      <Label layoutX="209.0" layoutY="324.0" prefHeight="30.0" prefWidth="406.0" text="Type the word that has the above meaning :">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <JFXButton layoutX="670.0" layoutY="504.0" onAction="#writingSubmit" prefHeight="33.0" prefWidth="94.0" text="Submit" textFill="WHITE">
+      <JFXButton layoutX="707.0" layoutY="487.0" onAction="#writingSubmit" prefHeight="33.0" prefWidth="94.0" text="Submit" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="549.0" layoutY="504.0" onAction="#reStart" prefHeight="33.0" prefWidth="94.0" text="Restart" textFill="WHITE">
+      <JFXButton layoutX="47.0" layoutY="487.0" onAction="#reStart" prefHeight="33.0" prefWidth="94.0" text="Restart" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -36,10 +36,13 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextArea fx:id="taAnswerWord" layoutX="235.0" layoutY="337.0" prefHeight="25.0" prefWidth="365.0" />
+      <TextArea fx:id="taAnswerWord" layoutX="209.0" layoutY="367.0" prefHeight="38.0" prefWidth="379.0" />
       <TextArea fx:id="taMeaning" editable="false" layoutX="264.0" layoutY="84.0" prefHeight="147.0" prefWidth="379.0" />
-      <Label fx:id="curQ" layoutX="69.0" layoutY="257.0" prefHeight="18.0" prefWidth="57.0" textFill="WHITE" />
-      <Label fx:id="lbTrue" layoutX="516.0" layoutY="310.0" prefHeight="54.0" prefWidth="254.0" text="Correct! You are great" textFill="#19ae21" visible="false" wrapText="true">
+      <Label fx:id="curQ" layoutX="264.0" layoutY="241.0" prefHeight="18.0" prefWidth="57.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label fx:id="lbTrue" layoutX="406.0" layoutY="250.0" prefHeight="54.0" prefWidth="254.0" text="Correct! You are great" textFill="#19ae21" wrapText="true">
          <graphic>
             <ImageView fitHeight="47.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -51,7 +54,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lbFalse" layoutX="522.0" layoutY="310.0" prefHeight="54.0" prefWidth="248.0" text="Wrong! Study carefully" textFill="#c91818" visible="false" wrapText="true">
+      <Label fx:id="lbFalse" layoutX="412.0" layoutY="250.0" prefHeight="54.0" prefWidth="248.0" text="Wrong! Study carefully" textFill="#c91818" wrapText="true">
          <graphic>
             <ImageView fitHeight="37.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                <image>

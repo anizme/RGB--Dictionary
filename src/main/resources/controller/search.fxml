@@ -15,143 +15,122 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;"
-            stylesheets="@search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.panes.SearchController">
+<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
    <ImageView fx:id="backgroundView" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
       <viewport>
-         <Rectangle2D height="538.0" width="800.0"/>
+         <Rectangle2D height="538.0" width="800.0" />
       </viewport>
-      <Image url="@../images/light_to_dark_animation.png"/>
+      <Image url="@../images/light_to_dark_animation.png" />
    </ImageView>
-   <AnchorPane layoutX="45.0" layoutY="70.0" prefHeight="460.0" prefWidth="315.0" AnchorPane.bottomAnchor="25.0"
-               AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="70.0">
-      <TextField fx:id="tfSearchWord" opacity="0.9" prefHeight="45.0" prefWidth="236.0"
-                 promptText="Enter word to search" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0"
-                 AnchorPane.topAnchor="0.0"/>
-      <Button layoutX="248.0" layoutY="1.0" mnemonicParsing="false" onAction="#lookup" opacity="0.9"
-              prefHeight="45.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <AnchorPane layoutX="45.0" layoutY="70.0" prefHeight="460.0" prefWidth="315.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="70.0">
+      <TextField fx:id="tfSearchWord" opacity="0.9" prefHeight="45.0" prefWidth="236.0" promptText="Enter word to search" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0" />
+      <Button layoutX="248.0" layoutY="1.0" mnemonicParsing="false" onAction="#lookup" opacity="0.9" prefHeight="45.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../images/search-interface-symbol.png"/>
+               <Image url="@../images/search-interface-symbol.png" />
             </ImageView>
          </graphic>
       </Button>
-      <ListView fx:id="lvSearchWordsList" opacity="0.9" prefHeight="406.0" prefWidth="315.0"
-                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+      <ListView fx:id="lvSearchWordsList" opacity="0.9" prefHeight="406.0" prefWidth="315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </AnchorPane>
-   <AnchorPane layoutX="384.0" layoutY="70.0" prefHeight="460.0" prefWidth="400.0" AnchorPane.bottomAnchor="25.0"
-               AnchorPane.rightAnchor="40.0">
+   <AnchorPane layoutX="384.0" layoutY="70.0" prefHeight="460.0" prefWidth="400.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="40.0">
       <HBox prefHeight="45.0" prefWidth="169.0">
          <Button mnemonicParsing="false" onAction="#usSpeak" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
             <graphic>
                <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/speak.png"/>
+                  <Image url="@../images/speak.png" />
                </ImageView>
             </graphic>
             <HBox.margin>
-               <Insets right="2.0"/>
+               <Insets right="2.0" />
             </HBox.margin>
          </Button>
-         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="30.0" text="US"
-                textFill="WHITE">
+         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="30.0" text="US" textFill="WHITE">
             <font>
-               <Font name="System Bold" size="15.0"/>
+               <Font name="System Bold" size="15.0" />
             </font>
          </Label>
          <Button mnemonicParsing="false" onAction="#ukSpeak" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
             <graphic>
                <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/speak.png"/>
+                  <Image url="@../images/speak.png" />
                </ImageView>
             </graphic>
             <HBox.margin>
-               <Insets left="10.0"/>
+               <Insets left="10.0" />
             </HBox.margin>
          </Button>
          <Label alignment="CENTER" prefHeight="45.0" prefWidth="33.0" text="UK" textFill="WHITE">
             <HBox.margin>
-               <Insets/>
+               <Insets />
             </HBox.margin>
             <font>
-               <Font name="System Bold" size="15.0"/>
+               <Font name="System Bold" size="15.0" />
             </font>
          </Label>
       </HBox>
-      <HBox layoutX="196.0" prefHeight="45.0" prefWidth="153.0" AnchorPane.rightAnchor="60.0"
-            AnchorPane.topAnchor="0.0">
-         <Button fx:id="btSave" mnemonicParsing="false" onAction="#updateAction" opacity="0.9" prefHeight="45.0"
-                 prefWidth="50.0">
+      <HBox layoutX="217.0" prefHeight="45.0" prefWidth="153.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="0.0">
+         <Button fx:id="btSave" mnemonicParsing="false" onAction="#updateAction" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
             <HBox.margin>
-               <Insets right="5.0"/>
+               <Insets right="5.0" />
             </HBox.margin>
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/save.png"/>
+                  <Image url="@../images/save.png" />
                </ImageView>
             </graphic>
          </Button>
          <Button mnemonicParsing="false" onAction="#update" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
             <HBox.margin>
-               <Insets right="5.0"/>
+               <Insets right="5.0" />
             </HBox.margin>
             <graphic>
                <ImageView fitHeight="24.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/edit.png"/>
+                  <Image url="@../images/edit.png" />
                </ImageView>
             </graphic>
          </Button>
          <Button mnemonicParsing="false" onAction="#remove" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
             <graphic>
                <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/delete.png"/>
+                  <Image url="@../images/delete.png" />
                </ImageView>
             </graphic>
          </Button>
       </HBox>
-      <JFXButton fx:id="noStared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="365.0"
-                 onAction="#addFavorite" prefHeight="45.0" prefWidth="50.0" style="-fx-background-color: lightblue;"
-                 textFill="TRANSPARENT" visible="false">
+      <JFXButton fx:id="noStared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="365.0" onAction="#addFavorite" prefHeight="45.0" prefWidth="50.0" style="-fx-background-color: lightblue;" textFill="TRANSPARENT" visible="false" AnchorPane.rightAnchor="0.0">
          <font>
-            <Font size="1.0"/>
+            <Font size="1.0" />
          </font>
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../images/1.png"/>
+               <Image url="@../images/1.png" />
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="stared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="371.0" layoutY="7.0"
-                 onAction="#removeFavorite" prefHeight="45.0" prefWidth="50.0" style="-fx-background-color: #def3f6;"
-                 textFill="TRANSPARENT" visible="false">
+      <JFXButton fx:id="stared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="371.0" onAction="#removeFavorite" prefHeight="45.0" prefWidth="50.0" style="-fx-background-color: #def3f6;" textFill="TRANSPARENT" visible="false">
          <font>
-            <Font size="1.0"/>
+            <Font size="1.0" />
          </font>
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../images/2.png"/>
+               <Image url="@../images/2.png" />
             </ImageView>
          </graphic>
       </JFXButton>
-      <WebView fx:id="wvMeaning" layoutY="186.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0"
-               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
-      <HTMLEditor fx:id="htmlUpdateMeaning"
-                  htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;"
-                  layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0"
-                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
-      <AnchorPane disable="true" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="421.0"
-                  style="-fx-background-color: transparent;" styleClass="meaning-pane"/>
+      <WebView fx:id="wvMeaning" layoutY="186.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane disable="true" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="421.0" style="-fx-background-color: transparent;" styleClass="meaning-pane" />
    </AnchorPane>
-   <AnchorPane fx:id="correctPane" layoutX="40.0" layoutY="14.0" prefHeight="46.0" prefWidth="315.0">
+   <AnchorPane fx:id="correctPane" layoutX="40.0" layoutY="14.0" prefHeight="46.0" prefWidth="315.0" visible="false">
       <Label layoutY="17.0" text="You mean:" textFill="RED">
          <font>
-            <Font name="System Bold Italic" size="20.0"/>
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="correctWord" layoutX="108.0" layoutY="19.0" onMouseClicked="#setCorrectWord" prefHeight="30.0"
-             prefWidth="206.0" textFill="RED">
+      <Label fx:id="correctWord" layoutX="108.0" layoutY="19.0" onMouseClicked="#setCorrectWord" prefHeight="30.0" prefWidth="206.0" textFill="RED">
          <font>
-            <Font size="20.0"/>
+            <Font size="20.0" />
          </font>
       </Label>
    </AnchorPane>
