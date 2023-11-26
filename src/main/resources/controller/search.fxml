@@ -123,14 +123,14 @@
       <AnchorPane disable="true" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="421.0" style="-fx-background-color: transparent;" styleClass="meaning-pane" />
    </AnchorPane>
    <AnchorPane fx:id="correctPane" layoutX="40.0" layoutY="14.0" prefHeight="46.0" prefWidth="315.0" visible="false">
-      <Label layoutY="17.0" text="You mean:" textFill="RED">
+      <Label layoutY="17.0" text="You mean:" textFill="RED" AnchorPane.bottomAnchor="0.0">
          <font>
-            <Font name="System Bold Italic" size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="correctWord" layoutX="108.0" layoutY="19.0" onMouseClicked="#setCorrectWord" prefHeight="30.0" prefWidth="206.0" textFill="RED">
+      <Label fx:id="correctWord" layoutX="108.0" layoutY="19.0" onMouseClicked="#setCorrectWord" prefHeight="30.0" prefWidth="206.0" textFill="RED" underline="true" wrapText="true" AnchorPane.bottomAnchor="2.0" styleClass="correct">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
    </AnchorPane>

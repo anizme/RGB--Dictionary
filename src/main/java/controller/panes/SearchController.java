@@ -96,12 +96,22 @@ public class SearchController extends ActionController implements Initializable 
 
     @FXML
     void usSpeak(ActionEvent event) throws Exception {
+        if (tfSearchWord.getText().isEmpty()) {
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Nothing to speak", "Error");
+            alert.alertAction();
+            return;
+        }
         VoiceRSS.Name = VoiceRSS.voiceNameUS;
         speak("en-us");
     }
 
     @FXML
     void ukSpeak(ActionEvent event) throws Exception {
+        if (tfSearchWord.getText().isEmpty()) {
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Nothing to speak", "Error");
+            alert.alertAction();
+            return;
+        }
         VoiceRSS.Name = VoiceRSS.voiceNameUK;
         speak("en-gb");
     }
@@ -140,7 +150,9 @@ public class SearchController extends ActionController implements Initializable 
                 stared.setVisible(false);
             }
         } else {
-            handleCorrect();
+            if (!tfSearchWord.getText().isEmpty()) {
+                handleCorrect();
+            }
         }
     }
 
@@ -281,6 +293,8 @@ public class SearchController extends ActionController implements Initializable 
         wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>");
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
+            correctPane.setVisible(false);
+            wvMeaning.getEngine().loadContent("");
             if (tfSearchWord.getText() != null) {
                 String searchWord = tfSearchWord.getText();
                 if (!searchWord.isEmpty()) {
