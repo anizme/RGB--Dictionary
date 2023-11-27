@@ -41,6 +41,10 @@ public class Hangman extends ActionController implements Initializable {
     private GridPane letterPane;
     private boolean[] isClicked;
     @FXML
+    private HBox hintBox;
+    @FXML
+    private Label hintLabel;
+    @FXML
     private HBox healthBar;
     @FXML
     private Label wordLabel;
@@ -101,14 +105,22 @@ public class Hangman extends ActionController implements Initializable {
 
     public void updateGuessed(char c) {
         StringBuilder newGuessed = new StringBuilder();
-        for (int i = 0; i < guessed.length(); i++) {
+        for (int i = 0; i < answer.length(); i++) {
             if (answer.toUpperCase().charAt(i) == c) {
-                newGuessed.append(c);
+                newGuessed.append(c + " ");
             } else {
-                newGuessed.append(guessed.charAt(i));
+                newGuessed.append(guessed.charAt(2 * i) + " ");
             }
         }
         setGuessed(newGuessed.toString());
+    }
+
+    public boolean isAnswered(StringBuilder guessed) {
+        StringBuilder guessing = new StringBuilder();
+        for (int i = 0; i < guessed.length(); i += 2) {
+            guessing.append(guessed.charAt(i));
+        }
+        return guessing.toString().equals(answer.toUpperCase());
     }
 
     public boolean checkGuess(char c) {
@@ -123,6 +135,9 @@ public class Hangman extends ActionController implements Initializable {
     @FXML
     void letterChoose(ActionEvent event) {
         JFXButton button = (JFXButton) event.getSource();
+        if (hintBox.isVisible()) {
+            hintBox.setVisible(false);
+        }
         if (isReady && !isClicked[(int) button.getText().charAt(0) - 65]) {
             isReady = false;
             isClicked[(int) button.getText().charAt(0) - 65] = true;
@@ -135,13 +150,22 @@ public class Hangman extends ActionController implements Initializable {
             asteroidMovement = new TranslateTransition(Duration.millis(500), asteroidView);
             asteroidMovement.setByY(160);
             asteroidMovement.play();
-            if (!checkGuess(button.getText().charAt(0)) && !(String.valueOf(guessed)).equals(answer.toUpperCase())) {
+            if (!checkGuess(button.getText().charAt(0)) && !isAnswered(guessed)) {
                 if (wrongGuesses < MAX_WRONG_GUESSES) {
                     wrongGuesses++;
                     button.setStyle("-fx-background-color: lightsalmon; -fx-background-radius: 10px; " +
                             "-fx-text-fill: black; -fx-border-radius: 10px; -fx-border-width: 2px;");
-
-                    //asteroids.add(newAsteroid);
+                    if (wrongGuesses % 3  == 0) {
+                        StringBuilder hint = new StringBuilder();
+                        for (int i = 0; i < answer.length(); i++) {
+                            if (answer.toUpperCase().charAt(i) != guessed.charAt(2 * i)) {
+                                hint.append(answer.toUpperCase().charAt(i));
+                                break;
+                            }
+                        }
+                        hintLabel.setText("HINT : " + hint);
+                        hintBox.setVisible(true);
+                    }
 
                     ObservableBooleanValue colliding = Bindings.createBooleanBinding(() -> asteroidView.getBoundsInParent().intersects(shipCollisionPosition.getBoundsInParent()), asteroidView.boundsInParentProperty(), shipCollisionPosition.boundsInParentProperty());
 
@@ -223,7 +247,7 @@ public class Hangman extends ActionController implements Initializable {
                             shieldCollisionAnimation.play();
                             shieldCollisionAnimation.setOnFinished(event1 -> {
                                 shieldView.setVisible(false);
-                                if ((String.valueOf(guessed)).equals(answer.toUpperCase())) {
+                                if (isAnswered(guessed)) {
                                     resultLabel.setText("YOU WIN !\n" + "The answer is " + answer.toUpperCase() + "\nMeaning : " + answerWord.getWord_explain());
                                     resultPane.setDisable(false);
                                     resultPane.setVisible(true);
@@ -231,7 +255,6 @@ public class Hangman extends ActionController implements Initializable {
                                     letterPane.setVisible(false);
                                     earthView.setVisible(true);
                                     welcomeHomeView.setVisible(true);
-                                    //timeline.play();
                                 }
                             });
                         }
@@ -263,11 +286,13 @@ public class Hangman extends ActionController implements Initializable {
             healthBar.getChildren().get(i).setStyle("-fx-fill: #0fc618");
         }
         Random r = new Random();
-        answerWord = ApplicationStart.dictionaryManagement.getDictionary().getListOfWords()
-                .get(r.nextInt(ApplicationStart.dictionaryManagement.getDictionary().getListOfWords().size()));
+        do {
+            answerWord = ApplicationStart.dictionaryManagement.getDictionary().getListOfWords()
+                    .get(r.nextInt(ApplicationStart.dictionaryManagement.getDictionary().getListOfWords().size()));
+        } while (answerWord.getWord_target().length() < 5);
         setAnswer(answerWord.getWord_target());
         guessed = new StringBuilder();
-        guessed.append("_".repeat(answer.length()));
+        guessed.append("_ ".repeat(answer.length()));
         wordLabel.setText(String.valueOf(guessed));
 
         letterPane.setDisable(false);

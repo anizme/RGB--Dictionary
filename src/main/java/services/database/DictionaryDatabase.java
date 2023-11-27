@@ -1,9 +1,16 @@
 package services.database;
 
+import javax.swing.plaf.metal.MetalBorders;
 import java.sql.SQLException;
 import java.util.List;
 
 public abstract class DictionaryDatabase extends BaseDatabase {
+    /**
+     * @return all words in the dictionary
+     * @throws SQLException error with SQLite
+     */
+    public abstract List<String> getAllWords() throws SQLException;
+
     /**
      * insert a new word into the dictionary
      * @param word

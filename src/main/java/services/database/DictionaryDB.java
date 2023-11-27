@@ -13,6 +13,21 @@ public class DictionaryDB extends DictionaryDatabase {
     private static final String SELECT_LIST_WORD_QUERY = "SELECT word FROM av WHERE word LIKE ? ORDER BY word";
     private static final String UPDATE_WORD_QUERY = "UPDATE av SET html = ? WHERE word = ?";
     private static final String SELECT_SHORT_MEANING_QUERY = "SELECT * FROM av WHERE word LIKE ?";
+    private static final String SELECT_ALL_WORD = "SELECT word FROM av";
+
+    @Override
+    public List<String> getAllWords() {
+        List<String> listWord = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_WORD)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                listWord.add(resultSet.getString("word"));
+            }
+        } catch (SQLException e) {
+            handleSQLException(e);
+        }
+        return listWord;
+    }
 
     @Override
     public void insertWord(String word, String meaning) {

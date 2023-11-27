@@ -102,7 +102,7 @@ public class ChaoticWord extends GameController implements Initializable {
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             String[] words = line.split("\t");
-            System.out.println(words.length);
+            //System.out.println(words.length);
             Word newword = new Word(words[0], words[1]);
             listWord.add(newword);
         }

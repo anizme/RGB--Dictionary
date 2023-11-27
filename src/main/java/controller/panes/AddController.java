@@ -38,7 +38,6 @@ public class AddController extends ActionController implements Initializable {
     @FXML
     private TextField tfAddWord;
 
-    private boolean isSearch = false;
     private boolean isAddWord = false;
 
     public ImageView getBackgroundView() {
@@ -65,10 +64,6 @@ public class AddController extends ActionController implements Initializable {
         return lvSearchWordsList;
     }
 
-//    public boolean isSearch() {
-//        return isSearch;
-//    }
-
     public boolean isAddWord() {
         return isAddWord;
     }
@@ -76,7 +71,10 @@ public class AddController extends ActionController implements Initializable {
     @FXML
     void addAction(ActionEvent event) {
         String addWord = tfAddWord.getText().toLowerCase();
-        if (dictionaryDB.isInDictionary(addWord)) {
+        if (addWord.isEmpty()) {
+            DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "Nothing to add", "Error");
+            alert.alertAction();
+        } else if (dictionaryDB.isInDictionary(addWord)) {
             DetailAlert alert = new NoOptionAlert(Alert.AlertType.ERROR, "This word has already exists", "Error");
             alert.alertAction();
         } else if (htmlAddMeaning.getHtmlText().isEmpty()) {
@@ -111,7 +109,6 @@ public class AddController extends ActionController implements Initializable {
 
         lvSearchWordsList.setOnMouseClicked(mouseEvent -> {
             if (!lvSearchWordsList.getSelectionModel().isEmpty()) {
-                isSearch = true;
                 tfAddWord.setText(lvSearchWordsList.getSelectionModel().getSelectedItem());
                 if (ContainerController.isLightMode) {
                     htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>"

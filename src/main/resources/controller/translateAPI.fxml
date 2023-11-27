@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="translatePane" prefHeight="555.0" prefWidth="850.0" styleClass="content-pane" stylesheets="@translateAPI.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.TranslateAPIController">
+<AnchorPane fx:id="translatePane" prefHeight="555.0" prefWidth="850.0" styleClass="content-pane" stylesheets="@translateAPI.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.TranslateAPIController">
    <children>
       <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true">
          <image>
@@ -23,7 +23,7 @@
          <children>
             <HBox prefHeight="80.0" prefWidth="793.0" spacing="2.0">
                <children>
-                  <Button fx:id="langFromFirst" mnemonicParsing="false" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Auto detect">
+                  <Button fx:id="langFromFirst" mnemonicParsing="false" onAction="#setAuto" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Auto detect">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -31,19 +31,19 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langFromSecond" minWidth="44.0" mnemonicParsing="false" onAction="#eng" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="English">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/uk.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="langFromThird" minWidth="44.0" mnemonicParsing="false" onAction="#vie1" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
+                  <Button fx:id="langFromSecond" minWidth="44.0" mnemonicParsing="false" onAction="#vie" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Vietnamese">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/vietnam.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="langFromThird" minWidth="44.0" mnemonicParsing="false" onAction="#eng" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="English">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/uk.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -55,7 +55,25 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#speak1" opacity="0.9" prefHeight="35.0" prefWidth="35.0" styleClass="button-speak">
+                  <Button fx:id="langFromFifth" minWidth="44.0" mnemonicParsing="false" onAction="#rus" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Russian">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/russia.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="langFromSixth" minWidth="44.0" mnemonicParsing="false" onAction="#chinese" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Chinese">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/china.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#speak1" opacity="0.9" prefHeight="40.0" prefWidth="40.0" styleClass="button-speak">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -123,7 +141,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langToFourth" minWidth="44.0" mnemonicParsing="false" onAction="#rus" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Russian">
+                  <Button fx:id="langToFourth" minWidth="44.0" mnemonicParsing="false" onAction="#rus2" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Russian">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -131,7 +149,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="langToFifth" minWidth="44.0" mnemonicParsing="false" onAction="#chinese" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Chinese">
+                  <Button fx:id="langToFifth" minWidth="44.0" mnemonicParsing="false" onAction="#chinese2" opacity="0.9" prefHeight="40.0" prefWidth="120.0" styleClass="button-lang" text="Chinese">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -139,7 +157,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#speak2" opacity="0.9" prefHeight="35.0" prefWidth="35.0" styleClass="button-speak">
+                  <Button mnemonicParsing="false" onAction="#speak2" opacity="0.9" prefHeight="40.0" prefWidth="40.0" styleClass="button-speak">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
