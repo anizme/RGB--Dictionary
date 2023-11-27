@@ -15,19 +15,24 @@
          </image>
       </ImageView>
       <JFXButton fx:id="playButton" layoutX="388.0" layoutY="480.0" onAction="#initGame" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: white;" text="PLAY" />
-      <AnchorPane fx:id="upAnchorPane" layoutX="252.0" layoutY="126.0" prefHeight="54.0" prefWidth="350.0">
+      <AnchorPane fx:id="upAnchorPane" layoutX="252.0" layoutY="126.0" prefHeight="64.0" prefWidth="350.0">
          <children>
-            <Rectangle fx:id="upRectangle" arcHeight="5.0" arcWidth="5.0" fill="#a625f7" height="60.0" stroke="#fadcdc00" strokeType="INSIDE" width="350.0" />
+            <Rectangle fx:id="upRectangle" arcHeight="5.0" arcWidth="5.0" fill="#a625f7" height="64.0" stroke="#fadcdc00" strokeType="INSIDE" width="350.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="downAnchorPane" layoutX="252.0" layoutY="291.0" prefHeight="60.0" prefWidth="350.0">
+      <AnchorPane fx:id="downAnchorPane" layoutX="252.0" layoutY="318.0" prefHeight="64.0" prefWidth="350.0">
          <children>
-            <Rectangle fx:id="downRectangle" arcHeight="5.0" arcWidth="5.0" fill="#a625f7" height="60.0" layoutY="-1.0" stroke="#fadcdc00" strokeType="INSIDE" width="350.0" />
+            <Rectangle fx:id="downRectangle" arcHeight="5.0" arcWidth="5.0" fill="#a625f7" height="64.0" layoutY="-1.0" stroke="#fadcdc00" strokeType="INSIDE" width="350.0" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="submitButton" layoutX="252.0" layoutY="480.0" onAction="#submit" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: white;" text="SUBMIT" visible="false" />
-      <JFXButton fx:id="replayButton" layoutX="527.0" layoutY="480.0" onAction="#replay" prefHeight="48.0" prefWidth="74.0" style="-fx-background-color: white;" text="REPLAY" visible="false" />
-      <TextField fx:id="meaningTextField" editable="false" layoutX="339.0" layoutY="396.0" prefHeight="38.0" prefWidth="263.0" visible="false" />
-      <TextField fx:id="meaningLabel" alignment="CENTER" editable="false" layoutX="252.0" layoutY="396.0" prefHeight="38.0" prefWidth="83.0" text="MEANING:" visible="false" />
+      <JFXButton fx:id="submitButton" layoutX="252.0" layoutY="480.0" onAction="#submit" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: white;" text="SUBMIT" visible="false" />
+      <JFXButton fx:id="replayButton" layoutX="538.0" layoutY="480.0" onAction="#replay" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: white;" text="REPLAY" visible="false" />
+      <TextField fx:id="meaningTextField" editable="false" layoutX="339.0" layoutY="411.0" prefHeight="38.0" prefWidth="263.0" visible="false" />
+      <TextField fx:id="meaningLabel" alignment="CENTER" editable="false" layoutX="252.0" layoutY="411.0" prefHeight="38.0" prefWidth="83.0" text="MEANING:" visible="false" />
+      <ImageView fx:id="resultImageView" fitHeight="150.0" fitWidth="200.0" layoutX="327.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/correctgame3.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

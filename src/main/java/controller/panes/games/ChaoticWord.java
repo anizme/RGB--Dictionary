@@ -10,10 +10,13 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import javafx.event.ActionEvent;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
 import javafx.scene.shape.Rectangle;
@@ -67,12 +70,24 @@ public class ChaoticWord extends GameController implements Initializable {
     @FXML
     private TextField meaningTextField;
 
+    @FXML
+    private ImageView resultImageView;
+
+    private Image correct;
+    private Image wrong;
+
     private int numsOfLetter = 0;
+    private final String wrongImage = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\images\\wronggame3.png";
+    private final String correctImage = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\images\\correctgame3.png";
+    private final String buttonColor = "-fx-background-color: #ef85ff;";
+    private final String correctRectangle = "#35A29F";
+    private final String defaultRectangle = "#a625f7";
+    private final String wrongRectangle = "#D21312";
     private final double weighD = 350;
     private final double heightD = 60;
     private final int sizeCardX = 50;
     private final int sizeCardY = 50;
-    private final int padding = 5;
+    private final int padding = 7;
     private List<Pair> position;
     private List<Word> listWord;
     private List<Integer> upCheckIndex;
@@ -108,6 +123,8 @@ public class ChaoticWord extends GameController implements Initializable {
         }
         Sort.sortDictionaryInAlphabeticalOrder(listWord);
         sc.close();
+        correct = new Image(correctImage);
+        wrong = new Image(wrongImage);
     }
 
     public void initGame() {
@@ -169,8 +186,8 @@ public class ChaoticWord extends GameController implements Initializable {
             downAnchorPane.getChildren().add(button1);
             button1.setLayoutX(position.get(i).x);
             button1.setLayoutY(position.get(i).y);
-            button.setStyle("-fx-background-color: #ef85ff;");
-            button1.setStyle("-fx-background-color: #ef85ff;");
+            button.setStyle(buttonColor);
+            button1.setStyle(buttonColor);
             allButton.add(button1);
             allButton.add(button);
             memoryPosition.put(button1, i);
@@ -178,6 +195,8 @@ public class ChaoticWord extends GameController implements Initializable {
     }
 
     public void replay(ActionEvent event) throws Exception {
+        playButton.setVisible(true);
+        resultImageView.setVisible(false);
         checkExists = new HashSet<>();
         position = new ArrayList<>();
         upCheckIndex = new ArrayList<>();
@@ -229,17 +248,41 @@ public class ChaoticWord extends GameController implements Initializable {
                 playerAns += rawAns.get(i);
             }
             if (playerAns.equals(wordTarget)) {
-                System.out.println(playerAns);
-                System.out.println(wordTarget);
+                resultImageView.setImage(correct);
+                resultImageView.setVisible(true);
                 meaningTextField.setText(wordMeaning);
+                upRectangle.setFill(Paint.valueOf(correctRectangle));
+                Timeline timeline = new Timeline();
+
+                KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5),
+                        new KeyValue(playButton.translateYProperty(), playButton.getLayoutY()));
+                timeline.getKeyFrames().add(keyFrame);
+                timeline.setOnFinished(e -> {
+                    isTimelineRunning = false;
+                    upRectangle.setFill(Paint.valueOf(defaultRectangle));
+                });
+                timeline.play();
             } else {
-                meaningTextField.setText("Sai rùi má ơi!");
+                resultImageView.setImage(wrong);
+                resultImageView.setVisible(true);
+                upRectangle.setFill(Paint.valueOf(wrongRectangle));
+                Timeline timeline = new Timeline();
+
+                KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5),
+                        new KeyValue(playButton.translateYProperty(), playButton.getLayoutY()));
+                timeline.getKeyFrames().add(keyFrame);
+                timeline.setOnFinished(e -> {
+                    isTimelineRunning = false;
+                    upRectangle.setFill(Paint.valueOf(defaultRectangle));
+                });
+                timeline.play();
             }
         }
     }
 
     @FXML
     public void play(ActionEvent event) throws Exception {
+        resultImageView.setVisible(false);
         if (isTimelineRunning) {
             return;
         }
