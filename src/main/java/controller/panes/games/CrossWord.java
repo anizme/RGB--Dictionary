@@ -385,7 +385,9 @@ public class CrossWord extends ActionController implements Initializable {
                 button1.setStyle(dfcolor);
                 addHoverEffect(button1);
             }
-            System.out.println("Your word: " + yourWord);
+            if (yourWord.length() == 1) {
+                return;
+            }
             answer.setText(yourWord.toString());
             checkAns(yourWord.toString(), tmpPos);
             tmpPos = new ArrayList<>();
