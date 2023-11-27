@@ -2,7 +2,6 @@
 
 ![image](https://github.com/anizme/RGB--Dictionary/assets/124845105/249410ed-579c-4c3a-b950-90f78a5c2a01)
 
-
 ## Overview
 
 Chào mừng đến với app từ điển của chúng mình. Đây là một app từ điển hướng tới mục tiêu thân thiện với người dùng (đặc biệt là giới trẻ), cùng với rất nhiều tính năng hữu ích phù hợp với những ai đang tìm một công cụ để rèn luyện tiếng Anh. App của chúng mình có các tính năng chính sau:
