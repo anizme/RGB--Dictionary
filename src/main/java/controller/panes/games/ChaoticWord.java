@@ -7,26 +7,21 @@ import dictionary.Word;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-
-import javafx.event.ActionEvent;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import javafx.scene.shape.Rectangle;
-
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.*;
-import java.util.List;
 
 class Pair {
     public int x;
@@ -39,46 +34,7 @@ class Pair {
 }
 
 public class ChaoticWord extends GameController implements Initializable {
-    @FXML
-    private AnchorPane downAnchorPane;
-
-    @FXML
-    private AnchorPane upAnchorPane;
-
-    @FXML
-    private AnchorPane defaultAnchorpane;
-
-
-    @FXML
-    private Rectangle downRectangle;
-
-    @FXML
-    private Rectangle upRectangle;
-
-    @FXML
-    private JFXButton playButton;
-
-    @FXML
-    private JFXButton replayButton;
-
-    @FXML
-    private JFXButton submitButton;
-
-    @FXML
-    private TextField meaningLabel;
-
-    @FXML
-    private TextField meaningTextField;
-
-    @FXML
-    private ImageView resultImageView;
-
-    private Image correct;
-    private Image wrong;
-
-    private int numsOfLetter = 0;
-    private final String wrongImage = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\images\\wronggame3.png";
-    private final String correctImage = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\images\\correctgame3.png";
+    private static final String PRJ_PATH = System.getProperty("user.dir");
     private final String buttonColor = "-fx-background-color: #ef85ff;";
     private final String correctRectangle = "#35A29F";
     private final String defaultRectangle = "#a625f7";
@@ -88,8 +44,33 @@ public class ChaoticWord extends GameController implements Initializable {
     private final int sizeCardX = 50;
     private final int sizeCardY = 50;
     private final int padding = 7;
+    @FXML
+    private AnchorPane downAnchorPane;
+    @FXML
+    private AnchorPane upAnchorPane;
+    @FXML
+    private AnchorPane defaultAnchorpane;
+    @FXML
+    private Rectangle downRectangle;
+    @FXML
+    private Rectangle upRectangle;
+    @FXML
+    private JFXButton playButton;
+    @FXML
+    private JFXButton replayButton;
+    @FXML
+    private JFXButton submitButton;
+    @FXML
+    private TextField meaningLabel;
+    @FXML
+    private TextField meaningTextField;
+    @FXML
+    private ImageView resultImageView;
+    private final Image correct;
+    private final Image wrong;
+    private int numsOfLetter = 0;
     private List<Pair> position;
-    private List<Word> listWord;
+    private final List<Word> listWord;
     private List<Integer> upCheckIndex;
     private List<Integer> downCheckIndex;
     private List<String> rawAns;
@@ -100,7 +81,6 @@ public class ChaoticWord extends GameController implements Initializable {
     private String wordMeaning;
     private String wordPlay;
     private String playerAns = "";
-    private int sizeOfHBox;
     private boolean isTimelineRunning = false;
 
     public ChaoticWord() throws FileNotFoundException {
@@ -123,7 +103,9 @@ public class ChaoticWord extends GameController implements Initializable {
         }
         Sort.sortDictionaryInAlphabeticalOrder(listWord);
         sc.close();
+        String correctImage = PRJ_PATH + "/src/main/resources/images/correctgame3.png";
         correct = new Image(correctImage);
+        String wrongImage = PRJ_PATH + "/src/main/resources/images/wronggame3.png";
         wrong = new Image(wrongImage);
     }
 
@@ -194,7 +176,7 @@ public class ChaoticWord extends GameController implements Initializable {
         }
     }
 
-    public void replay(ActionEvent event) throws Exception {
+    public void replay(ActionEvent event) {
         playButton.setVisible(true);
         resultImageView.setVisible(false);
         checkExists = new HashSet<>();
@@ -208,9 +190,7 @@ public class ChaoticWord extends GameController implements Initializable {
         submitButton.setVisible(false);
         meaningLabel.setVisible(false);
         meaningTextField.setVisible(false);
-        int size = allButton.size();
-        for (int i = 0; i < size; i++) {
-            JFXButton button = allButton.get(i);
+        for (JFXButton button : allButton) {
             if (isButtonInNamedACPane(button, "defaultAnchorpane")) {
                 defaultAnchorpane.getChildren().remove(button);
             } else if (isButtonInNamedACPane(button, "upAnchorPane")) {
@@ -234,7 +214,7 @@ public class ChaoticWord extends GameController implements Initializable {
         allButton = new ArrayList<>();
     }
 
-    public void submit(ActionEvent event) throws Exception {
+    public void submit(ActionEvent event) {
         playerAns = "";
         int upFirstEmpty = -1;
         for (int i = 0; i < numsOfLetter; i++) {
@@ -354,6 +334,6 @@ public class ChaoticWord extends GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ;
+
     }
 }
