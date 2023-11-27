@@ -3,10 +3,6 @@
     -fx-background-color: white;
 }
 
-.controlBar {
-    -fx-background-color: #0c4a6e;
-}
-
 .controlBar:hover {
     -fx-background-color:  #3F5EFB;
 }
