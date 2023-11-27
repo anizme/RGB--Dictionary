@@ -195,7 +195,6 @@ public class ChaoticWord extends GameController implements Initializable {
     }
 
     public void replay(ActionEvent event) throws Exception {
-        playButton.setVisible(true);
         resultImageView.setVisible(false);
         checkExists = new HashSet<>();
         position = new ArrayList<>();
@@ -232,6 +231,7 @@ public class ChaoticWord extends GameController implements Initializable {
         upAnchorPane.setPrefWidth(weighD);
         upAnchorPane.setPrefHeight(heightD);
         allButton = new ArrayList<>();
+        playButton.setVisible(true);
     }
 
     public void submit(ActionEvent event) throws Exception {
@@ -255,7 +255,7 @@ public class ChaoticWord extends GameController implements Initializable {
                 Timeline timeline = new Timeline();
 
                 KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5),
-                        new KeyValue(playButton.translateYProperty(), playButton.getLayoutY()));
+                        new KeyValue(playButton.translateYProperty(), playButton.getTranslateX()));
                 timeline.getKeyFrames().add(keyFrame);
                 timeline.setOnFinished(e -> {
                     isTimelineRunning = false;
