@@ -1,13 +1,8 @@
 package controller.panes;
 
 import com.jfoenix.controls.JFXButton;
-import controller.panes.games.ChaoticWord;
-import controller.panes.games.Hangman;
-import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
-
-import com.jfoenix.controls.JFXButton;
 import controller.ApplicationStart;
+import controller.panes.games.ChaoticWord;
 import controller.panes.games.CrossWord;
 import controller.panes.games.GameSelectionController;
 import controller.panes.games.Hangman;
@@ -31,16 +26,14 @@ public class GameController extends ActionController implements Initializable {
 
     protected AnchorPane hangmanPane;
     protected Hangman hangmanController;
+    protected AnchorPane chaoticWord;
+    protected ChaoticWord chaoticWordController;
     @FXML
     private ImageView gameMenuBackground;
     @FXML
     private JFXButton btBack;
     @FXML
     private AnchorPane contentPane;
-
-    protected AnchorPane chaoticWord;
-    protected ChaoticWord chaoticWordController;
-
 
     @FXML
     void gameMenu(ActionEvent event) {
