@@ -1,6 +1,6 @@
 # Dictionary Project Readme
 
-
+![image](https://github.com/anizme/RGB--Dictionary/assets/124845105/249410ed-579c-4c3a-b950-90f78a5c2a01)
 
 
 ## Overview
