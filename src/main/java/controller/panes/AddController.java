@@ -89,10 +89,16 @@ public class AddController extends ActionController implements Initializable {
         }
     }
 
-    public void reset() {
-        tfAddWord.clear();
-        htmlAddMeaning.setHtmlText("");
-    }
+//    public void reset() {
+//        tfAddWord.clear();
+//        if (ContainerController.isLightMode) {
+//            htmlAddMeaning.setHtmlText("<body style='background-color: #def3f6; color: black;'/>"
+//                    + dictionaryDB.getMeaning(tfAddWord.getText()));
+//        } else {
+//            htmlAddMeaning.setHtmlText("<body style='background-color: #2f4f4f; color: white;'/>"
+//                    + dictionaryDB.getMeaning(tfAddWord.getText()));
+//        }
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -28,8 +28,7 @@
 }
 
 .correct:hover {
-    -fx-background-radius: 7;
-    -fx-background-color: whitesmoke;
+    -fx-text-fill: black;
 }
 
 .correct:pressed {

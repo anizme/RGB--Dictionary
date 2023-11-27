@@ -15,7 +15,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
+<AnchorPane fx:id="searchPane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" stylesheets="@search.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.SearchController">
    <ImageView fx:id="backgroundView" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
       <viewport>
          <Rectangle2D height="538.0" width="800.0" />
@@ -122,13 +122,13 @@
       <HTMLEditor fx:id="htmlUpdateMeaning" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <AnchorPane disable="true" layoutY="54.0" opacity="0.9" prefHeight="406.0" prefWidth="421.0" style="-fx-background-color: transparent;" styleClass="meaning-pane" />
    </AnchorPane>
-   <AnchorPane fx:id="correctPane" layoutX="40.0" layoutY="14.0" prefHeight="46.0" prefWidth="315.0" visible="false">
-      <Label layoutY="17.0" text="You mean:" textFill="RED" AnchorPane.bottomAnchor="0.0">
+   <AnchorPane fx:id="correctPane" layoutX="40.0" layoutY="14.0" prefHeight="46.0" prefWidth="315.0">
+      <Label layoutY="8.0" prefHeight="45.0" prefWidth="112.0" text="You mean : " textFill="#f6ff00" AnchorPane.bottomAnchor="0.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="correctWord" layoutX="108.0" layoutY="19.0" onMouseClicked="#setCorrectWord" prefHeight="30.0" prefWidth="206.0" textFill="RED" underline="true" wrapText="true" AnchorPane.bottomAnchor="2.0" styleClass="correct">
+      <Label fx:id="correctWord" layoutX="114.0" layoutY="1.0" onMouseClicked="#setCorrectWord" prefHeight="45.0" prefWidth="201.0" styleClass="correct" textFill="#f6ff00" underline="true" wrapText="true" AnchorPane.bottomAnchor="0.0">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>

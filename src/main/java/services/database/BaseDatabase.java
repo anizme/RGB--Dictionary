@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public abstract class BaseDatabase {
     private static final String DB_PATH = "src\\\\main\\\\resources\\\\data\\\\dict_hh.db";
-    private static final String PRJ_PATH = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\";
+    private static final String PRJ_PATH = "D:\\HA\\RGB-_-Dictionary\\";
 
     //private static final String PRJ_PATH = prj_path.replace("\\", "\\\\")
     private static final String SQL_URL = "jdbc:sqlite:" + PRJ_PATH + DB_PATH;

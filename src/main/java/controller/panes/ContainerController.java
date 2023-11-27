@@ -8,6 +8,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +37,8 @@ import java.util.ResourceBundle;
 import static controller.ApplicationStart.dictionaryDB;
 
 public class ContainerController extends ActionController implements Initializable {
+    @FXML
+    private AnchorPane introductionPane;
     static boolean isLightMode;
     private AnchorPane searchPane = null;
     private SearchController searchController;
@@ -172,7 +175,7 @@ public class ContainerController extends ActionController implements Initializab
         isTranslate = false;
         resetNavButton();
         showAddPane();
-        addController.reset();
+        //addController.reset();
     }
 
     @FXML
@@ -663,6 +666,10 @@ public class ContainerController extends ActionController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        introductionPane.setOnMouseClicked(mouseEvent -> {
+            introductionPane.setDisable(true);
+            introductionPane.setVisible(false);
+        });
         navBar.setOnMouseExited(mouseEvent -> {
             menuLabel.setDisable(true);
             menuLabel.setVisible(false);
@@ -674,7 +681,7 @@ public class ContainerController extends ActionController implements Initializab
             timeline.setCycleCount(1);
             timeline.play();
         });
-        menuPane.setVisible(false);
+        menuPane.setVisible(true);
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("search.fxml"));

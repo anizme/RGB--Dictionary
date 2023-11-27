@@ -28,6 +28,15 @@
     -fx-border-width: 2;
 }
 
+.correct:hover {
+    -fx-text-fill: #30cccc;
+}
+
+.correct:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
 .html-editor
 {
     -fx-font: 12 cambria;
