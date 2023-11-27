@@ -256,7 +256,7 @@ public class ChaoticWord extends GameController implements Initializable {
                 Timeline timeline = new Timeline();
 
                 KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5),
-                        new KeyValue(playButton.translateYProperty(), playButton.getTranslateX()));
+                        new KeyValue(playButton.translateYProperty(), playButton.getTranslateY()));
                 timeline.getKeyFrames().add(keyFrame);
                 timeline.setOnFinished(e -> {
                     isTimelineRunning = false;
@@ -270,7 +270,7 @@ public class ChaoticWord extends GameController implements Initializable {
                 Timeline timeline = new Timeline();
 
                 KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5),
-                        new KeyValue(playButton.translateYProperty(), playButton.getLayoutY()));
+                        new KeyValue(playButton.translateYProperty(), playButton.getTranslateY()));
                 timeline.getKeyFrames().add(keyFrame);
                 timeline.setOnFinished(e -> {
                     isTimelineRunning = false;
