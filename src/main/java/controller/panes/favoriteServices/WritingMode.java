@@ -112,6 +112,8 @@ public class WritingMode extends ActionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        lbTrue.setVisible(false);
+        lbFalse.setVisible(false);
         try {
             reStart(new ActionEvent());
         } catch (SQLException e) {
