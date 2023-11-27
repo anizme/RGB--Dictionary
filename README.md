@@ -71,4 +71,6 @@ Chào mừng đến với app từ điển của chúng mình. Đây là một a
 - Chúng mình có 2 loại giao diện là darkmode và lightmode cùng với hiệu ứng chuyển cảnh vô cùng thú vị
 - Và nhiều cài đặt mang tính cá nhân tạo chất riêng khác nữa
 ![image](https://github.com/anizme/Dictionary--prj/assets/124845105/06968a32-6f39-4767-b2f1-47bfe24cd179)
+![image](https://github.com/anizme/RGB--Dictionary/assets/124845105/ee47e835-38cf-4d2c-942a-6ec96e5967f2)
+
 
