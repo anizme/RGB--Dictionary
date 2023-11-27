@@ -21,6 +21,8 @@ Chào mừng đến với app từ điển của chúng mình. Đây là một a
 
 1. Tra từ:
 - Dễ dàng tra từ mình cần với tính năng đề xuất từ muốn tra. Không chỉ vậy chúng mình còn có tính năng tự động sửa chính tả cho những từ bị gõ sai.
+![image](https://github.com/anizme/RGB--Dictionary/assets/124845105/9e88588a-b960-42fa-9030-a8f531e13061)
+
 - Dễ dàng tra cứu lại lịch sử tra từ với dung lượng lịch sử là vô tận. Có thể thêm từ yêu thích trực tiếp ngay tại màn hình tra.
 - Dễ dàng sửa/xóa lỗi nghĩa của từ
 - Phát âm dễ thương và vô cùng chuẩn xác với hai giọng Anh Anh và Anh Mỹ
