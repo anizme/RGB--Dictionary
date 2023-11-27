@@ -77,8 +77,9 @@ public class ChaoticWord extends GameController implements Initializable {
     private Image wrong;
 
     private int numsOfLetter = 0;
-    private final String wrongImage = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\images\\wronggame3.png";
-    private final String correctImage = "C:\\Users\\ADMIN\\IdeaProjects\\Clone4\\src\\main\\resources\\images\\correctgame3.png";
+    private static final String PRJ_PATH = System.getProperty("user.dir");
+    private static final String correctImage = PRJ_PATH + "/src/main/resources/images/correctgame3.png";
+    private static final String wrongImage = PRJ_PATH + "/src/main/resources/images/wronggame3.png";
     private final String buttonColor = "-fx-background-color: #ef85ff;";
     private final String correctRectangle = "#35A29F";
     private final String defaultRectangle = "#a625f7";
