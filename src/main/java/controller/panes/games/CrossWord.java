@@ -389,7 +389,7 @@ public class CrossWord extends GameController implements Initializable {
         y = spaceShip.getLayoutY();
         isTimelineRunning = true;
         if (noPlanet == 1) {
-            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), spaceShip);
             translateTransition.setToX(xPlanet1 - x);
             translateTransition.setToY(yPlanet1 - y);
             translateTransition.play();
@@ -398,7 +398,7 @@ public class CrossWord extends GameController implements Initializable {
             fireBall.setTranslateX(0);
             Timeline timeline = new Timeline();
 
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(1),
                     new KeyValue(fireBall.translateXProperty(), xDefault - 200 - fireBall.getLayoutX()),
                     new KeyValue(fireBall.translateYProperty(), yDefault + 50 - fireBall.getLayoutY()));
 
@@ -413,7 +413,7 @@ public class CrossWord extends GameController implements Initializable {
             timeline.play();
             starWay1.setVisible(false);
         } else if (noPlanet == 2) {
-            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), spaceShip);
             translateTransition.setToX(xPlanet2 - x);
             translateTransition.setToY(yPlanet2 - y);
             translateTransition.play();
@@ -423,7 +423,7 @@ public class CrossWord extends GameController implements Initializable {
             fireBall.setRotate(22.0);
             Timeline timeline = new Timeline();
 
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(1),
                     new KeyValue(fireBall.translateXProperty(), xPlanet1 - 200 - fireBall.getLayoutX()),
                     new KeyValue(fireBall.translateYProperty(), yPlanet1 + 50 - fireBall.getLayoutY()));
 
@@ -438,7 +438,7 @@ public class CrossWord extends GameController implements Initializable {
             timeline.play();
             starWay2.setVisible(false);
         } else if (noPlanet == 3) {
-            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), spaceShip);
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), spaceShip);
             double xPlanet3 = 54.0;
             translateTransition.setToX(xPlanet3 - x);
             double yPlanet3 = 0.0;
@@ -450,7 +450,7 @@ public class CrossWord extends GameController implements Initializable {
             fireBall.setRotate(53.0);
             Timeline timeline = new Timeline();
 
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(1),
                     new KeyValue(fireBall.translateXProperty(), xPlanet2 - 250 - fireBall.getLayoutX()),
                     new KeyValue(fireBall.translateYProperty(), yPlanet2 + 10 - fireBall.getLayoutY()));
 
@@ -489,7 +489,7 @@ public class CrossWord extends GameController implements Initializable {
             fireBall.setTranslateX(0);
             Timeline timeline = new Timeline();
 
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(1),
                     new KeyValue(fireBall.translateXProperty(), xDefault - fireBall.getLayoutX()),
                     new KeyValue(fireBall.translateYProperty(), yDefault - fireBall.getLayoutY()));
 
@@ -502,7 +502,7 @@ public class CrossWord extends GameController implements Initializable {
                 fireBall.setOpacity(1);
                 Timeline timeline2 = new Timeline();
 
-                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(1),
+                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(0.5),
                         new KeyValue(flash.opacityProperty(), 0));
 
                 timeline2.getKeyFrames().add(slideIn2);
@@ -531,7 +531,7 @@ public class CrossWord extends GameController implements Initializable {
             fireBall.setRotate(22.0);
             Timeline timeline = new Timeline();
 
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(1),
                     new KeyValue(fireBall.translateXProperty(), xPlanet1 - fireBall.getLayoutX()),
                     new KeyValue(fireBall.translateYProperty(), yPlanet1 - fireBall.getLayoutY()));
 
@@ -544,7 +544,7 @@ public class CrossWord extends GameController implements Initializable {
                 fireBall.setOpacity(1);
                 Timeline timeline2 = new Timeline();
 
-                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(1),
+                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(0.5),
                         new KeyValue(flash.opacityProperty(), 0));
 
                 timeline2.getKeyFrames().add(slideIn2);
@@ -573,7 +573,7 @@ public class CrossWord extends GameController implements Initializable {
             fireBall.setRotate(53.0);
             Timeline timeline = new Timeline();
 
-            KeyFrame slideIn = new KeyFrame(Duration.seconds(2),
+            KeyFrame slideIn = new KeyFrame(Duration.seconds(1),
                     new KeyValue(fireBall.translateXProperty(), xPlanet2 - fireBall.getLayoutX()),
                     new KeyValue(fireBall.translateYProperty(), yPlanet2 - fireBall.getLayoutY()));
 
@@ -586,7 +586,7 @@ public class CrossWord extends GameController implements Initializable {
                 fireBall.setOpacity(1);
                 Timeline timeline2 = new Timeline();
 
-                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(1),
+                KeyFrame slideIn2 = new KeyFrame(Duration.seconds(0.5),
                         new KeyValue(flash.opacityProperty(), 0));
 
                 timeline2.getKeyFrames().add(slideIn2);
