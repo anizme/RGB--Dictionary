@@ -318,7 +318,6 @@ public class CrossWord extends ActionController implements Initializable {
     @FXML
     void getAns(ActionEvent event) {
         if (isTimelineRunning) {
-            //System.out.println("Fuck");
             return;
         }
         YES.setVisible(false);
@@ -359,7 +358,13 @@ public class CrossWord extends ActionController implements Initializable {
             int x2 = tmpPos.get(2);
             int y2 = tmpPos.get(3);
             StringBuilder yourWord = new StringBuilder();
-            if (x1 == x2) {
+            if (x1 == x2 && y1 == y2) {
+                Button button1 = (Button) listNode.get(y1 * col + x1);
+                button1.setStyle(dfcolor);
+                addHoverEffect(button1);
+                tmpPos = new ArrayList<>();
+                return;
+            } else if (x1 == x2) {
                 for (int i = y1; i <= y2; i++) {
                     Button button1 = (Button) listNode.get(i * col + x1);
                     yourWord.append(button1.getText());
@@ -385,7 +390,6 @@ public class CrossWord extends ActionController implements Initializable {
                 button1.setStyle(dfcolor);
                 addHoverEffect(button1);
             }
-            System.out.println("Your word: " + yourWord);
             answer.setText(yourWord.toString());
             checkAns(yourWord.toString(), tmpPos);
             tmpPos = new ArrayList<>();
@@ -630,6 +634,7 @@ public class CrossWord extends ActionController implements Initializable {
         for (int i = 0; i < wordPlay.size(); i++) {
             String tmp = wordPlay.get(i).getWord_target();
             tmp = tmp.toUpperCase();
+            System.out.println(yourWord);
             if (tmp.equals(yourWord)) {
                 System.out.println(wordPlay.get(i).getWord_target());
                 YES.setVisible(true);

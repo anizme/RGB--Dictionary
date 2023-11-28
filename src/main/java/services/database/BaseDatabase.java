@@ -5,19 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- * TODO: change PRJ_PATH to run
- * Anizme: C:\Users\hiren\Documents\UET subjects\OOP\INT2204-23_OOP\Dictionary-RGB\
- * chuquangcan: C:\Users\ADMIN\IdeaProjects\Clone4\
- * HAnguyen-119: D:\HA\RGB-_-Dictionary\
- */
-
 public abstract class BaseDatabase {
-    private static final String DB_PATH = "src\\\\main\\\\resources\\\\data\\\\dict_hh.db";
-    private static final String PRJ_PATH = "D:\\HA\\RGB-_-Dictionary\\";
-
-    //private static final String PRJ_PATH = prj_path.replace("\\", "\\\\")
-    private static final String SQL_URL = "jdbc:sqlite:" + PRJ_PATH + DB_PATH;
+    private static final String DB_PATH = "src/main/resources/data/dict_hh.db";
+    private static final String PRJ_PATH = System.getProperty("user.dir");
+    private static final String SQL_URL = "jdbc:sqlite:" + PRJ_PATH + "/" + DB_PATH;
 
     protected static Connection connection;
 

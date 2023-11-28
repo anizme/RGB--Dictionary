@@ -1,7 +1,5 @@
 package services.database;
 
-import controller.ApplicationStart;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,8 +19,9 @@ public class FavoriteDB extends FavoriteDatabase {
     private static final String SELECT_WORD_TARGETS = "SELECT word FROM favorite WHERE word = ?";
     private static final String SELECT_STT_BY_WORD = "SELECT stt FROM favorite WHERE word LIKE ?";
     private static final String DELETE_ALL_RECORDS = "DELETE FROM favorite; VACUUM";
+
     @Override
-    public void insertFavorite(String word) throws SQLException {
+    public void insertFavorite(String word) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_WORD_QUERY)) {
             connection.setAutoCommit(false);
             preparedStatement.setString(1, word);
@@ -34,7 +33,7 @@ public class FavoriteDB extends FavoriteDatabase {
         //updateFavoriteOrder(getFavorite().size());
     }
 
-    private void updateFavoriteOrder(int stt) throws SQLException {
+    private void updateFavoriteOrder(int stt) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ORDER_QUERY)) {
             preparedStatement.setInt(1, stt);
             executeUpdateWithTransaction(preparedStatement);
@@ -44,7 +43,7 @@ public class FavoriteDB extends FavoriteDatabase {
     }
 
     @Override
-    public List<String> getFavoriteWord() throws SQLException {
+    public List<String> getFavoriteWord() {
         List<String> favoriteWords = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_WORD_QUERY)) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -88,7 +87,7 @@ public class FavoriteDB extends FavoriteDatabase {
     }
 
     @Override
-    public List<String> getFullCardProperties(String word) throws SQLException {
+    public List<String> getFullCardProperties(String word) {
         List<String> res = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_FULL_CARD_PROPERTIES)) {
             preparedStatement.setString(1, word);
@@ -128,7 +127,7 @@ public class FavoriteDB extends FavoriteDatabase {
         updateFavoriteOrder(rowDelete);
     }
 
-    private int getSttByWord(String word) throws SQLException {
+    private int getSttByWord(String word) {
         int rowDelete = 0;
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_STT_BY_WORD)) {
             preparedStatement.setString(1, word);
@@ -144,7 +143,7 @@ public class FavoriteDB extends FavoriteDatabase {
     }
 
     @Override
-    public void clearFavorite() throws SQLException {
+    public void clearFavorite() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ALL_RECORDS)) {
             executeUpdateWithTransaction(preparedStatement);
         } catch (SQLException e) {
