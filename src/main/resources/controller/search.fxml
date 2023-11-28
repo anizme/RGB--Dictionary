@@ -26,7 +26,7 @@
       <TextField fx:id="tfSearchWord" opacity="0.9" prefHeight="45.0" prefWidth="236.0" promptText="Enter word to search" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0" />
       <Button layoutX="248.0" layoutY="1.0" mnemonicParsing="false" onAction="#lookup" opacity="0.9" prefHeight="45.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <graphic>
-            <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../images/search-interface-symbol.png" />
             </ImageView>
          </graphic>
@@ -37,8 +37,8 @@
       <HBox prefHeight="45.0" prefWidth="169.0">
          <Button mnemonicParsing="false" onAction="#usSpeak" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
             <graphic>
-               <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/speak.png" />
+               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/volume.png" />
                </ImageView>
             </graphic>
             <HBox.margin>
@@ -52,8 +52,8 @@
          </Label>
          <Button mnemonicParsing="false" onAction="#ukSpeak" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
             <graphic>
-               <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/speak.png" />
+               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/volume.png" />
                </ImageView>
             </graphic>
             <HBox.margin>
@@ -75,7 +75,7 @@
                <Insets right="5.0" />
             </HBox.margin>
             <graphic>
-               <ImageView fitHeight="25.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/save.png" />
                </ImageView>
             </graphic>
@@ -85,20 +85,20 @@
                <Insets right="5.0" />
             </HBox.margin>
             <graphic>
-               <ImageView fitHeight="24.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/edit.png" />
                </ImageView>
             </graphic>
          </Button>
          <Button mnemonicParsing="false" onAction="#remove" opacity="0.9" prefHeight="45.0" prefWidth="50.0">
             <graphic>
-               <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/delete.png" />
                </ImageView>
             </graphic>
          </Button>
       </HBox>
-      <JFXButton fx:id="noStared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="365.0" onAction="#addFavorite" prefHeight="45.0" prefWidth="50.0" style="-fx-background-color: lightblue;" textFill="TRANSPARENT" visible="false" AnchorPane.rightAnchor="0.0">
+      <JFXButton fx:id="noStared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="365.0" onAction="#addFavorite" opacity="0.9" prefHeight="45.0" prefWidth="50.0" textFill="TRANSPARENT" visible="false" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="1.0" />
          </font>
@@ -108,7 +108,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="stared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="371.0" onAction="#removeFavorite" prefHeight="45.0" prefWidth="50.0" style="-fx-background-color: #def3f6;" textFill="TRANSPARENT" visible="false">
+      <JFXButton fx:id="stared" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="371.0" onAction="#removeFavorite" opacity="0.9" prefHeight="45.0" prefWidth="50.0" textFill="TRANSPARENT" visible="false">
          <font>
             <Font size="1.0" />
          </font>

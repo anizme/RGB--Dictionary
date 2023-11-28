@@ -1,12 +1,13 @@
 
 .button-lang {
-    -fx-background-color: #6495ed;
+    -fx-background-color: #30cccc;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
     -fx-background-radius: 10px;
 }
 
 .button-lang:hover {
-    -fx-background-color: #30cccc;
+    -fx-background-color: #6495ed;
 }
 
 
@@ -40,12 +41,12 @@
 }
 
 .button-speak {
-    -fx-background-color: #6495ed;
+    -fx-background-color: #30cccc;
     -fx-background-radius: 10px;
 }
 
 .button-speak:hover {
-    -fx-background-color: #30cccc;
+    -fx-background-color: #6495ed;
     -fx-background-radius: 10px;
 }
 

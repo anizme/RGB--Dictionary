@@ -485,7 +485,7 @@ public class ContainerController extends ActionController implements Initializab
                 removeAll(Objects.requireNonNull(this.getClass().getResource("/controller/favorite_dark.css")).toString());
         favoriteController.getFavoritePane().getStylesheets().
                 add(Objects.requireNonNull(this.getClass().getResource("/controller/favorite.css")).toString());
-        favoriteController.getBackgroundView().setImage(lightBackground);
+        favoriteController.getBackgroundView().setImage(darkBackground);
         favoriteController.getBackgroundView().setViewport(new Rectangle2D(0, 0, 800, 538));
         favoriteController.getListView().setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override

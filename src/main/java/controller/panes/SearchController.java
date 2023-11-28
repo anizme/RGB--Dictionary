@@ -313,7 +313,13 @@ public class SearchController extends ActionController implements Initializable 
         tfSearchWord.textProperty().addListener(e -> {
             lvSearchWordsList.getItems().clear();
             correctPane.setVisible(false);
-            wvMeaning.getEngine().loadContent("");
+            if (ContainerController.isLightMode) {
+                wvMeaning.getEngine().loadContent("<body style='background-color: #def3f6; color: black;'/>"
+                        + dictionaryDB.getMeaning(tfSearchWord.getText()));
+            } else {
+                wvMeaning.getEngine().loadContent("<body style='background-color: #2f4f4f; color: white;'/>"
+                        + dictionaryDB.getMeaning(tfSearchWord.getText()));
+            }
             if (tfSearchWord.getText() != null) {
                 String searchWord = tfSearchWord.getText();
                 if (!searchWord.isEmpty()) {

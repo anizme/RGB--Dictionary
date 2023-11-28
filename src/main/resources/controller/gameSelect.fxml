@@ -23,18 +23,6 @@
             <Font name="Segoe UI Bold" size="12.0" />
          </font>
       </JFXButton>
-      <ImageView fx:id="defaultGame" disable="true" fitHeight="388.0" fitWidth="297.0" layoutX="473.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/timeGame.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="crossWordGame" disable="true" fitHeight="412.0" fitWidth="322.0" layoutX="449.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/cossWordGame.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="GAME2" disable="true" fitHeight="456.0" fitWidth="322.0" layoutX="449.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-      <ImageView fx:id="GAME3" disable="true" fitHeight="456.0" fitWidth="322.0" layoutX="449.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" visible="false" />
       <JFXButton fx:id="crossWord" layoutX="171.0" layoutY="190.0" onAction="#btCrossWord" prefHeight="55.0" prefWidth="177.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CROSSWORD" textFill="#d14af0">
          <font>
             <Font name="Segoe UI Bold" size="12.0" />

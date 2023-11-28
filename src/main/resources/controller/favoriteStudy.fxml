@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.StudyModeController">
+<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.StudyModeController">
    <children>
       <ImageView fitHeight="555.0" fitWidth="857.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -24,13 +23,11 @@
                   <Image url="@../images/Picture1.png" />
                </image>
             </ImageView>
-            <ChoiceBox fx:id="cbMode" disable="true" layoutX="25.0" layoutY="72.0" prefWidth="150.0" visible="false" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="76.0" prefHeight="78.0" prefWidth="348.0" text="CHOOSE YOUR STUDY MODE" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="44.0" layoutY="76.0" prefHeight="78.0" prefWidth="348.0" text="CHOOSE YOUR STUDY MODE" textFill="WHITE">
                <font>
-                  <Font size="22.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <JFXButton disable="true" layoutX="84.0" layoutY="115.0" onAction="#modeOK" text="OK" visible="false" />
             <JFXButton fx:id="selectionButton" layoutX="117.0" layoutY="170.0" prefHeight="72.0" prefWidth="201.0" style="-fx-border-color: white; -fx-border-radius: 12; -fx-border-width: 4; -fx-background-color: transparent;" text="MULTIPLE CHOICES" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -43,7 +40,7 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <JFXButton layoutX="770.0" layoutY="21.0" minWidth="42.0" onAction="#mode" prefHeight="38.0" prefWidth="42.0" textFill="WHITE">
+      <JFXButton layoutX="795.0" layoutY="10.0" minWidth="42.0" onAction="#mode" prefHeight="38.0" prefWidth="42.0" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
                <image>

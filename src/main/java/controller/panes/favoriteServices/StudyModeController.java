@@ -23,18 +23,15 @@ public class StudyModeController extends ActionController implements Initializab
     protected SelectionMode selectionModeController;
     protected AnchorPane writingPane;
     protected WritingMode writingModeController;
-    @FXML
-    private ChoiceBox<String> cbMode;
+
     @FXML
     private AnchorPane blur;
     @FXML
     private AnchorPane contentPane;
     @FXML
     private AnchorPane modePane;
-
     @FXML
     private JFXButton selectionButton;
-
     @FXML
     private JFXButton writingButton;
 
@@ -57,17 +54,6 @@ public class StudyModeController extends ActionController implements Initializab
             modePane.setVisible(true);
             blur.setVisible(true);
         }
-    }
-
-    @FXML
-    void modeOK(ActionEvent event) throws SQLException {
-        if (cbMode.getSelectionModel().getSelectedItem().equals("Selection")) {
-            showSelection();
-        } else {
-            showWriting();
-        }
-        modePane.setVisible(false);
-        blur.setVisible(false);
     }
 
     @Override
@@ -110,8 +96,5 @@ public class StudyModeController extends ActionController implements Initializab
                 e.printStackTrace();
             }
         });
-
-        cbMode.getItems().add("Writing");
-        cbMode.getItems().add("Selection");
     }
 }

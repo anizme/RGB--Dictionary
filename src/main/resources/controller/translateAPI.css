@@ -1,7 +1,8 @@
 
 .button-lang {
-    -fx-background-color: lightgrey;
+    -fx-background-color: #def3f6;
     -fx-text-fill: black;
+    -fx-font-weight: bold;
     -fx-background-radius: 10px;
 }
 
@@ -38,7 +39,7 @@
 }
 
 .button-speak {
-    -fx-background-color: lightgrey;
+    -fx-background-color: #def3f6;
     -fx-background-radius: 10px;
 }
 

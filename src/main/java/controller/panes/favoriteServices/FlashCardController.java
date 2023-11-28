@@ -8,11 +8,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static controller.ApplicationStart.favoriteDB;
@@ -21,6 +24,13 @@ public class FlashCardController extends ActionController implements Initializab
 
     @FXML
     private Label cards;
+
+    @FXML
+    private ImageView flashCardView;
+
+    private Image frontCard;
+    private Image backCard;
+    private boolean isFront;
 
     @FXML
     private Label sttLabel;
@@ -40,6 +50,9 @@ public class FlashCardController extends ActionController implements Initializab
         check = 0;
         cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(check, stt));
         sttLabel.setText(Integer.toString(stt));
+        flashCardView.setImage(frontCard);
+        isFront = true;
+        cards.setStyle("-fx-font-size: 30; -fx-font-weight: bold");
     }
 
     @FXML
@@ -51,6 +64,9 @@ public class FlashCardController extends ActionController implements Initializab
         check = 0;
         cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(check, stt));
         sttLabel.setText(Integer.toString(stt));
+        flashCardView.setImage(frontCard);
+        isFront = true;
+        cards.setStyle("-fx-font-size: 30; -fx-font-weight: bold");
     }
 
     private void leftSlide(Label textField) {
@@ -83,6 +99,9 @@ public class FlashCardController extends ActionController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        isFront = true;
+        frontCard = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/flashCard1.png")));
+        backCard = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/flashCard2.png")));
         try {
             cards.setText(FavoriteUtils.getFavoriteSpecificPropertyAt(check, stt));
         } catch (SQLException e) {
@@ -90,6 +109,7 @@ public class FlashCardController extends ActionController implements Initializab
         }
         check = 0;
         cards.setOnMouseClicked(e -> {
+
             Rotate rotate = new Rotate();
             rotate.setAxis(Rotate.Y_AXIS);
             double duration = 0.4;
@@ -97,11 +117,15 @@ public class FlashCardController extends ActionController implements Initializab
             // Flip from 0 to 180 degrees
             KeyValue keyValue1 = new KeyValue(rotate.angleProperty(), 0);
             KeyValue keyValue2 = new KeyValue(rotate.angleProperty(), 180);
+            KeyValue keyValue3 = new KeyValue(flashCardView.imageProperty(), isFront ? backCard : frontCard);
+            KeyValue keyValue4 = new KeyValue(cards.styleProperty(), isFront ? "-fx-font-size: 15; -fx-font-weight: bold" : "-fx-font-size: 30; -fx-font-weight: bold");
 
             // Create a Timeline for the flip animation
             KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(duration / 2), keyValue1);
             KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(duration), keyValue2);
-            Timeline timeline = new Timeline(keyFrame1, keyFrame2);
+            KeyFrame keyFrame3 = new KeyFrame(Duration.seconds(duration), keyValue3);
+            KeyFrame keyFrame4 = new KeyFrame(Duration.seconds(duration), keyValue4);
+            Timeline timeline = new Timeline(keyFrame1, keyFrame2, keyFrame3, keyFrame4);
 
             // Set up the rotation axis
             rotate.setPivotX(cards.getWidth() / 2);
@@ -127,6 +151,12 @@ public class FlashCardController extends ActionController implements Initializab
             });
             // Play the animation
             timeline.play();
+            if (isFront) {
+                isFront = false;
+                //cards.setStyle("-fx-font-size: 15; -fx-font-weight: bold");
+            } else {
+                isFront = true;
+            }
         });
     }
 }
