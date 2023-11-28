@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="translatePane" prefHeight="555.0" prefWidth="850.0" styleClass="content-pane" stylesheets="@translateAPI.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.TranslateAPIController">
+<AnchorPane fx:id="translatePane" prefHeight="555.0" prefWidth="850.0" styleClass="content-pane" stylesheets="@translateAPI.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.TranslateAPIController">
    <children>
       <ImageView fx:id="backgroundView" fitHeight="572.0" fitWidth="850.0" pickOnBounds="true">
          <image>
@@ -107,7 +107,7 @@
       </VBox>
       <HBox alignment="CENTER" layoutX="29.0" layoutY="237.0" prefHeight="65.0" prefWidth="743.0" AnchorPane.bottomAnchor="298.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="237.0">
          <children>
-            <TextField fx:id="tfSrcLang" opacity="0.9" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
+            <TextField fx:id="tfSrcLang" editable="false" opacity="0.9" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
             <AnchorPane prefHeight="37.0" prefWidth="40.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="86.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
@@ -117,7 +117,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <TextField fx:id="tfDesLang" opacity="0.9" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
+            <TextField fx:id="tfDesLang" editable="false" opacity="0.9" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
             <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="191.0">
                <children>
                   <Button alignment="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#translate" opacity="0.9" prefHeight="37.0" prefWidth="142.0" styleClass="button-translate-submit" text="Translate">

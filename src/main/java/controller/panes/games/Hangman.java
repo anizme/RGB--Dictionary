@@ -2,7 +2,6 @@ package controller.panes.games;
 
 import com.jfoenix.controls.JFXButton;
 import controller.ApplicationStart;
-import controller.panes.ActionController;
 import controller.panes.GameController;
 import dictionary.Word;
 import javafx.animation.PauseTransition;
@@ -108,9 +107,9 @@ public class Hangman extends GameController implements Initializable {
         StringBuilder newGuessed = new StringBuilder();
         for (int i = 0; i < answer.length(); i++) {
             if (answer.toUpperCase().charAt(i) == c) {
-                newGuessed.append(c + " ");
+                newGuessed.append(c).append(" ");
             } else {
-                newGuessed.append(guessed.charAt(2 * i) + " ");
+                newGuessed.append(guessed.charAt(2 * i)).append(" ");
             }
         }
         setGuessed(newGuessed.toString());
@@ -156,7 +155,7 @@ public class Hangman extends GameController implements Initializable {
                     wrongGuesses++;
                     button.setStyle("-fx-background-color: lightsalmon; -fx-background-radius: 10px; " +
                             "-fx-text-fill: black; -fx-border-radius: 10px; -fx-border-width: 2px;");
-                    if (wrongGuesses % 3  == 0) {
+                    if (wrongGuesses % 3 == 0) {
                         StringBuilder hint = new StringBuilder();
                         for (int i = 0; i < answer.length(); i++) {
                             if (answer.toUpperCase().charAt(i) != guessed.charAt(2 * i)) {
