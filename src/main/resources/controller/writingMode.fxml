@@ -9,84 +9,104 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.WritingMode">
+<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.favoriteServices.WritingMode">
    <children>
       <ImageView fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
             <Image url="@../images/writing.png" />
          </image>
       </ImageView>
-      <Label layoutX="209.0" layoutY="324.0" prefHeight="30.0" prefWidth="406.0" text="Type the word that has the above meaning :">
+      <Label layoutX="209.0" layoutY="324.0" prefHeight="30.0" prefWidth="419.0" text="Type the word that has the above meaning :">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXButton layoutX="707.0" layoutY="487.0" onAction="#writingSubmit" prefHeight="33.0" prefWidth="94.0" text="Submit" textFill="WHITE">
+      <JFXButton layoutX="454.0" layoutY="477.0" onAction="#writingSubmit" prefHeight="54.0" prefWidth="119.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2;" text="SUBMIT">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="47.0" layoutY="487.0" onAction="#reStart" prefHeight="33.0" prefWidth="94.0" text="Restart" textFill="WHITE">
+      <JFXButton layoutX="262.0" layoutY="477.0" onAction="#reStart" prefHeight="54.0" prefWidth="119.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2;" text="RESTART">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <Label layoutX="264.0" layoutY="23.0" text="Meaning:">
+      <Label layoutX="264.0" layoutY="23.0" prefHeight="45.0" prefWidth="142.0" text="Meaning:">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <TextArea fx:id="taAnswerWord" layoutX="209.0" layoutY="367.0" prefHeight="38.0" prefWidth="379.0" />
-      <TextArea fx:id="taMeaning" editable="false" layoutX="264.0" layoutY="84.0" prefHeight="147.0" prefWidth="379.0" />
+      <TextArea fx:id="taAnswerWord" layoutX="209.0" layoutY="367.0" prefHeight="38.0" prefWidth="379.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></TextArea>
+      <TextArea fx:id="taMeaning" editable="false" layoutX="264.0" layoutY="84.0" prefHeight="147.0" prefWidth="379.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></TextArea>
       <Label fx:id="curQ" layoutX="264.0" layoutY="241.0" prefHeight="18.0" prefWidth="57.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="lbTrue" layoutX="406.0" layoutY="250.0" prefHeight="54.0" prefWidth="254.0" text="Correct! You are great" textFill="#19ae21" wrapText="true">
+      <Label fx:id="lbTrue" layoutX="313.0" layoutY="251.0" prefHeight="54.0" prefWidth="245.0" text="Correct! You are great!" textFill="#19ae21" visible="false" wrapText="true">
          <graphic>
-            <ImageView fitHeight="47.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/smile.png" />
+                  <Image url="@../images/in-love.png" />
                </image>
             </ImageView>
          </graphic>
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lbFalse" layoutX="412.0" layoutY="250.0" prefHeight="54.0" prefWidth="248.0" text="Wrong! Study carefully" textFill="#c91818" wrapText="true">
+      <Label fx:id="lbFalse" layoutX="313.0" layoutY="251.0" prefHeight="54.0" prefWidth="245.0" text="Wrong! Study carefully!" textFill="#c91818" visible="false" wrapText="true">
          <graphic>
-            <ImageView fitHeight="37.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/cry.png" />
+                  <Image url="@../images/suspicious.png" />
                </image>
             </ImageView>
          </graphic>
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <AnchorPane fx:id="blurPane" opacity="0.7" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #000000;" visible="false" />
-      <Pane fx:id="resPane" focusTraversable="true" layoutX="301.0" layoutY="150.0" prefHeight="248.0" prefWidth="232.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="150.0">
+      <Pane fx:id="resPane" focusTraversable="true" layoutX="322.0" layoutY="143.0" prefHeight="269.0" prefWidth="245.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="322.0" AnchorPane.topAnchor="143.0">
          <children>
-            <Label layoutX="76.0" layoutY="28.0" prefHeight="34.0" prefWidth="80.0" text="RESULT">
+            <ImageView fitHeight="269.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/result.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="61.0" layoutY="63.0" prefHeight="35.0" prefWidth="88.0" text="RESULT" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="95.0" prefHeight="18.0" prefWidth="57.0" text="Correct:">
+            <Label alignment="CENTER" layoutX="61.0" layoutY="110.0" prefHeight="30.0" prefWidth="73.0" text="Correct:" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="136.0" prefHeight="18.0" prefWidth="57.0" text="Wrong:">
+            <Label alignment="CENTER" layoutX="69.0" layoutY="148.0" prefHeight="30.0" prefWidth="73.0" text="Wrong:" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbCorrect" layoutX="116.0" layoutY="95.0" prefHeight="20.0" prefWidth="94.0" />
-            <Label fx:id="lbWrong" layoutX="116.0" layoutY="136.0" prefHeight="20.0" prefWidth="94.0" />
-            <JFXButton layoutX="90.0" layoutY="191.0" onAction="#reStart" text="Restart" />
+            <Label fx:id="lbCorrect" layoutX="128.0" layoutY="110.0" prefHeight="30.0" prefWidth="30.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="lbWrong" layoutX="134.0" layoutY="148.0" prefHeight="30.0" prefWidth="30.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <JFXButton layoutX="79.0" layoutY="201.0" onAction="#reStart" prefHeight="38.0" prefWidth="88.0" style="-fx-border-color: WHITE; -fx-border-width: 2; -fx-border-radius: 10;" text="RESTART" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></JFXButton>
          </children>
       </Pane>
    </children>

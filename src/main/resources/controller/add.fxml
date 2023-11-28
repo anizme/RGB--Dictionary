@@ -28,7 +28,7 @@
                   <ListView fx:id="lvSearchWordsList" layoutY="58.0" opacity="0.9" prefHeight="379.0" prefWidth="316.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="48.0" />
                   <Button layoutX="264.0" mnemonicParsing="false" onAction="#addAction" opacity="0.9" prefHeight="46.0" prefWidth="52.0">
                      <graphic>
-                        <ImageView fitHeight="80.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/add.png" />
                            </image>

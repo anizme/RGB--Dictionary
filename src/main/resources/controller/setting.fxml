@@ -37,7 +37,7 @@
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/speak.png" />
+                        <Image url="@../images/volume.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -47,7 +47,7 @@
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/speak.png" />
+                        <Image url="@../images/volume.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -59,7 +59,7 @@
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/speak.png" />
+                        <Image url="@../images/volume.png" />
                      </image>
                   </ImageView>
                </graphic>

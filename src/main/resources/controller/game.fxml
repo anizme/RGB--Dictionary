@@ -8,7 +8,14 @@
 <AnchorPane fx:id="gameContainer" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.GameController">
    <children>
       <AnchorPane fx:id="contentPane" prefHeight="555.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <JFXButton fx:id="btBack" layoutX="32.0" layoutY="470.0" onAction="#gameMenu" prefHeight="40.0" prefWidth="104.0" text="BACK" textFill="WHITE" />
+      <JFXButton fx:id="btBack" contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="505.0" onAction="#gameMenu" prefHeight="40.0" prefWidth="40.0" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
       <ImageView fx:id="gameMenuBackground" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
             <Image url="@../images/gameMenuBackground.png" />
