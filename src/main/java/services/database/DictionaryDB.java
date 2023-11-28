@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DictionaryDB extends DictionaryDatabase {
+    private static final String INSERT_SHORT_MEANING_QUERY = "UPDATE av SET (description, pronounce) = (?, ?) WHERE word = ?";
     private static final String INSERT_WORD_QUERY = "INSERT INTO av (word, html) VALUES (?, ?)";
     private static final String DELETE_WORD_QUERY = "DELETE FROM av WHERE word = ?";
     private static final String SELECT_MEANING_QUERY = "SELECT html FROM av WHERE word LIKE ?";
@@ -93,6 +94,9 @@ public class DictionaryDB extends DictionaryDatabase {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SHORT_MEANING_QUERY)) {
             preparedStatement.setString(1, word);
             ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.getString(4) == null) {
+                return null;
+            }
             if (resultSet.next()) {
                 return "/" + resultSet.getString(5) + "/\n" + resultSet.getString(4);
             }
@@ -100,6 +104,18 @@ public class DictionaryDB extends DictionaryDatabase {
             handleSQLException(e);
         }
         return "";
+    }
+
+    @Override
+    public void insertShortMeaning(String shortMeaning, String pro, String word) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SHORT_MEANING_QUERY)) {
+            preparedStatement.setString(1, shortMeaning);
+            preparedStatement.setString(2, pro);
+            preparedStatement.setString(3, word);
+            executeUpdateWithTransaction(preparedStatement);
+        } catch (SQLException e) {
+            handleSQLException(e);
+        }
     }
 
     public boolean isInDictionary(String word) {

@@ -20,9 +20,12 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 import javafx.scene.control.Label;
 import services.API.VoiceRSS;
+import services.database.DictionaryDB;
+import services.database.DictionaryDatabase;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -92,6 +95,15 @@ public class SearchController extends ActionController implements Initializable 
 
     public HTMLEditor getHtmlEditor() {
         return htmlUpdateMeaning;
+    }
+
+    List<String> convertToText(String tmp) {
+        List<String> res = new ArrayList<>();
+        String[] listString = tmp.split("/");
+        for (int i = 1; i < listString.length; i++) {
+            res.add(listString[i]);
+        }
+        return res;
     }
 
     @FXML
@@ -263,6 +275,13 @@ public class SearchController extends ActionController implements Initializable 
 
     public void addFavorite(ActionEvent event) throws Exception {
         String word = tfSearchWord.getText();
+
+        DictionaryDB dictionaryDB1 = new DictionaryDB();
+        System.out.println(word);
+        if (dictionaryDB1.getShortMeaning(word) == null) {
+            System.out.println(convertToText((String) wvMeaning.getEngine().executeScript("document.body.textContent")));
+            dictionaryDB1.insertShortMeaning(convertToText((String) wvMeaning.getEngine().executeScript("document.body.textContent")).get(1), convertToText((String) wvMeaning.getEngine().executeScript("document.body.textContent")).get(0), word);
+        }
         if (!favoriteDB.isWordInFavorite(word)) {
             favoriteDB.insertFavorite(word);
         }

@@ -24,6 +24,14 @@ public abstract class DictionaryDatabase extends BaseDatabase {
      * @param word
      * @throws SQLException
      */
+
+    public abstract void insertShortMeaning(String shortMeaning, String pro, String word) throws SQLException;
+
+    /**
+     * delete the word from dictionary (av table)
+     * @param word
+     * @throws SQLException
+     */
     public abstract void deleteWord(String word) throws SQLException;
 
     /**
