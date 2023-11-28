@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 import static controller.ApplicationStart.favoriteDB;
 
-public class WritingMode extends ActionController implements Initializable {
+public class WritingMode extends ActionController implements StudyMode, Initializable {
     private int numOfQuestions = 0;
     private int curQuestion = 0;
     private int correctQ = 0;
@@ -81,15 +81,21 @@ public class WritingMode extends ActionController implements Initializable {
         taAnswerWord.clear();
     }
 
-    void showResult() {
+    @Override
+    public void showResult() {
         taAnswerWord.clear();
         blurPane.setVisible(true);
         resPane.setVisible(true);
     }
 
-    void getNextQuestion() throws SQLException {
+    public void getNextQuestion() throws SQLException {
         taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
         currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);
+    }
+
+    @Override
+    public void reStart() {
+
     }
 
     @FXML

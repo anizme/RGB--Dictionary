@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 import static controller.ApplicationStart.favoriteDB;
 
-public class SelectionMode extends ActionController implements Initializable {
+public class SelectionMode extends ActionController implements StudyMode, Initializable {
 
     List<JFXButton> options = new ArrayList<>();
     private int numOfQuestions = 0;
@@ -92,15 +92,34 @@ public class SelectionMode extends ActionController implements Initializable {
         }
     }
 
-    void showResult() {
+    @Override
+    public void showResult() {
         blurPane.setVisible(true);
         resPane.setVisible(true);
     }
 
-    void getNextQuestion() throws SQLException {
+    @Override
+    public void getNextQuestion() throws SQLException {
         taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
         currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);
         genOptions();
+    }
+
+    @Override
+    public void reStart() {
+        numOfQuestions = favoriteDB.getFavoriteWord().size();
+        curQuestion = 0;
+        correctQ = 0;
+        wrongQ = 0;
+        blurPane.setVisible(false);
+        resPane.setVisible(false);
+        curQ.setText(curQuestion + "/" + numOfQuestions);
+        try {
+            taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
+            currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     void genOptions() throws SQLException {
@@ -133,19 +152,7 @@ public class SelectionMode extends ActionController implements Initializable {
 
     @FXML
     void reStart(ActionEvent event) throws SQLException {
-        numOfQuestions = favoriteDB.getFavoriteWord().size();
-        curQuestion = 0;
-        correctQ = 0;
-        wrongQ = 0;
-        blurPane.setVisible(false);
-        resPane.setVisible(false);
-        curQ.setText(curQuestion + "/" + numOfQuestions);
-        try {
-            taMeaning.setText(FavoriteUtils.getFavoriteShortMeaningAt(curQuestion));
-            currentAns = FavoriteUtils.getFavoriteWordAt(curQuestion);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        reStart();
         genOptions();
     }
 
