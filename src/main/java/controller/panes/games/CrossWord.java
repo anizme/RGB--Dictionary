@@ -3,6 +3,7 @@ package controller.panes.games;
 import algorithms.Sort;
 import com.jfoenix.controls.JFXButton;
 import controller.panes.ActionController;
+import controller.panes.GameController;
 import dictionary.Word;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -24,7 +25,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.*;
 
-public class CrossWord extends ActionController implements Initializable {
+public class CrossWord extends GameController implements Initializable {
 
     private final List<Word> wordList;
     private final int numsWord = 3;

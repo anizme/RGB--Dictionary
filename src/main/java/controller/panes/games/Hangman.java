@@ -3,6 +3,7 @@ package controller.panes.games;
 import com.jfoenix.controls.JFXButton;
 import controller.ApplicationStart;
 import controller.panes.ActionController;
+import controller.panes.GameController;
 import dictionary.Word;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
@@ -28,7 +29,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class Hangman extends ActionController implements Initializable {
+public class Hangman extends GameController implements Initializable {
     private final int MAX_WRONG_GUESSES = 7;
     private String answer;
     private StringBuilder guessed;
