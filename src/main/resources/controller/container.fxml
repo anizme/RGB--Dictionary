@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
    <children>
       <AnchorPane fx:id="menuPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #222222;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
       <AnchorPane fx:id="contentPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #222222;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
@@ -115,7 +115,7 @@
       </VBox>
       <AnchorPane fx:id="headPane" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="50.0" prefWidth="930.0" style="-fx-background-color: #0c4a6e;" styleClass="head-pane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#menu" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="controlBar" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#menu" prefHeight="50.0" prefWidth="80.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -124,7 +124,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="877.0" layoutY="7.0" onAction="#exit" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="controlBar" textAlignment="CENTER" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="877.0" layoutY="7.0" onAction="#exit" prefHeight="50.0" prefWidth="50.0" styleClass="controlBar" textAlignment="CENTER" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,7 +133,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="833.0" layoutY="9.0" onAction="#handleMinimizeButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="controlBar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="833.0" layoutY="9.0" onAction="#handleMinimizeButton" prefHeight="50.0" prefWidth="50.0" styleClass="controlBar" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
