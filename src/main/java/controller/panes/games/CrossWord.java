@@ -2,7 +2,6 @@ package controller.panes.games;
 
 import algorithms.Sort;
 import com.jfoenix.controls.JFXButton;
-import controller.panes.ActionController;
 import controller.panes.GameController;
 import dictionary.Word;
 import javafx.animation.KeyFrame;
@@ -116,19 +115,6 @@ public class CrossWord extends GameController implements Initializable {
         button.setOnMouseEntered(event -> button.setStyle(gocolor));
         button.setOnMouseExited(event -> button.setStyle(dfcolor));
     }
-
-//    public List<Integer> posButtonGo(Button button) {
-//        List<Integer> res = new ArrayList<>();
-//        button.setOnMouseEntered(event -> {
-//            res.add(GridPane.getColumnIndex(button));
-//            res.add(GridPane.getRowIndex(button));
-//        });
-//        button.setOnMouseExited(event -> {
-//            res.remove(1);
-//            res.remove(0);
-//        });
-//        return res;
-//    }
 
     /**
      * Check valid panel.
@@ -643,7 +629,7 @@ public class CrossWord extends GameController implements Initializable {
                 meaning.setText(wordPlay.get(i).getWord_explain());
                 noPlanet++;
                 wordPlay.remove(i);
-                i--;
+                //i--;
                 spaceShipGo();
                 if (x1 == x2) {
                     for (int k = y1; k <= y2; k++) {
