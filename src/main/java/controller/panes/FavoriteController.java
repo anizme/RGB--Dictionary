@@ -89,6 +89,7 @@ public class FavoriteController extends ActionController implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        BACK.setVisible(false);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStart.class.getResource("flashCard.fxml"));
             flashCardPane = fxmlLoader.load();
