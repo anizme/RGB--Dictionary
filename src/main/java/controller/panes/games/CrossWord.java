@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -41,6 +42,8 @@ public class CrossWord extends GameController implements Initializable {
     private final String dfcolor = "-fx-background-color: #FAFEFF;";
     @FXML
     private GridPane initBoard;
+    @FXML
+    private Pane blurPane;
     @FXML
     private JFXButton PLAY;
     @FXML
@@ -309,11 +312,16 @@ public class CrossWord extends GameController implements Initializable {
 
     @FXML
     void showInstruction(ActionEvent event) throws Exception {
+        if (isRunning == false) {
+            return;
+        }
         if (checkGuide == 1) {
             guideCrossWord.setVisible(true);
+            blurPane.setVisible(true);
             checkGuide = 0;
         } else {
             guideCrossWord.setVisible(false);
+            blurPane.setVisible(false);
             checkGuide = 1;
         }
     }

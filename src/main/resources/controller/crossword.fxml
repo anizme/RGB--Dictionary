@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -202,11 +203,6 @@
             <Image url="@../images/lose.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="guideCrossWord" fitHeight="363.0" fitWidth="363.0" layoutX="254.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/guideCrossWord.png" />
-         </image>
-      </ImageView>
       <Rectangle fx:id="flash" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="555.0" layoutX="-4.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="854.0" />
       <ImageView fx:id="heart1" fitHeight="31.0" fitWidth="33.0" layoutX="667.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
@@ -223,6 +219,7 @@
             <Image url="@../images/heart.png" />
          </image>
       </ImageView>
+      <Pane fx:id="blurPane" layoutX="-3.0" layoutY="-1.0" opacity="0.5" prefHeight="555.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" visible="false" />
       <JFXButton contentDisplay="CENTER" layoutX="773.0" layoutY="30.0" onAction="#showInstruction" prefHeight="46.0" prefWidth="41.0" textAlignment="CENTER" textFill="TRANSPARENT">
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
@@ -232,5 +229,10 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <ImageView fx:id="guideCrossWord" fitHeight="363.0" fitWidth="363.0" layoutX="254.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/guideCrossWord.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
