@@ -7,7 +7,7 @@
 }
 
 .button-lang:hover {
-    -fx-background-color: #a2d2df;
+    -fx-background-color: #6cdeeb;
 }
 
 .button-double-arrow {
@@ -44,12 +44,12 @@
 }
 
 .button-speak:hover {
-    -fx-background-color: #a2d2df;
+    -fx-background-color: #6cdeeb;
     -fx-background-radius: 10px;
 }
 
 .active {
-    -fx-background-color: white;
+    -fx-background-color: #6cdeeb;
     -fx-background-radius: 10px;
 }
 

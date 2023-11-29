@@ -14,9 +14,9 @@
             <Image url="@../images/chooseGameBackground.png" />
          </image>
       </ImageView>
-      <VBox layoutX="184.0" layoutY="161.0" prefHeight="312.0" prefWidth="161.0" spacing="20.0">
+      <VBox layoutX="179.0" layoutY="159.0" prefHeight="331.0" prefWidth="170.0" spacing="20.0">
          <children>
-            <JFXButton fx:id="crossWord" alignment="CENTER" contentDisplay="TOP" onAction="#btCrossWord" prefHeight="91.0" prefWidth="159.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CROSSWORD" textAlignment="CENTER" textFill="#d14af0">
+            <JFXButton fx:id="crossWord" alignment="CENTER" contentDisplay="TOP" onAction="#btCrossWord" prefHeight="97.0" prefWidth="170.0" style="-fx-background-color: #D4EAFF; -fx-border-color: #d14af0; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="rounded-button" stylesheets="@game.css" text="CROSSWORD" textAlignment="CENTER" textFill="#d14af0">
                <font>
                   <Font name="Segoe UI Bold" size="15.0" />
                </font>
@@ -28,7 +28,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="game2" alignment="CENTER" contentDisplay="TOP" onAction="#btGame2" prefHeight="91.0" prefWidth="159.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="HANGMAN" textAlignment="CENTER" textFill="#d14af0">
+            <JFXButton fx:id="game2" alignment="CENTER" contentDisplay="TOP" onAction="#btGame2" prefHeight="97.0" prefWidth="170.0" style="-fx-background-color: #D4EAFF; -fx-border-color: #d14af0; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="rounded-button" stylesheets="@game.css" text="HANGMAN" textAlignment="CENTER" textFill="#d14af0">
                <font>
                   <Font name="Segoe UI Bold" size="15.0" />
                </font>
@@ -40,7 +40,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="game3" alignment="CENTER" contentDisplay="TOP" onAction="#btGame3" prefHeight="91.0" prefWidth="159.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CHAOTIC WORD" textAlignment="CENTER" textFill="#d14af0" wrapText="true">
+            <JFXButton fx:id="game3" alignment="CENTER" contentDisplay="TOP" onAction="#btGame3" prefHeight="97.0" prefWidth="170.0" style="-fx-background-color: #D4EAFF; -fx-border-color: #d14af0; -fx-border-radius: 10; -fx-border-width: 3;" styleClass="rounded-button" stylesheets="@game.css" text="CHAOTIC WORD" textAlignment="CENTER" textFill="#d14af0" wrapText="true">
                <font>
                   <Font name="Segoe UI Bold" size="15.0" />
                </font>
