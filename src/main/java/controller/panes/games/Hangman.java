@@ -388,7 +388,7 @@ public class Hangman extends GameController implements Initializable {
         earthViewSprite.start();
 
         isReady = true;
-        delay = new PauseTransition(Duration.millis(1200));
+        delay = new PauseTransition(Duration.millis(1400));
         delay.setOnFinished(event -> isReady = true);
 
         isClicked = new boolean[26];
