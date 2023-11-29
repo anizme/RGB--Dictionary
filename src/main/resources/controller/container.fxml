@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="930.0" style="-fx-background-color: #def3f6;" stylesheets="@container.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.ContainerController">
    <children>
       <AnchorPane fx:id="menuPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #222222;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
       <AnchorPane fx:id="contentPane" layoutX="80.0" layoutY="48.0" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #222222;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
@@ -119,7 +119,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/manual-book.png" />
+                        <Image url="@../images/RGB.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -142,7 +142,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <ImageView fitHeight="42.0" fitWidth="212.0" layoutX="348.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="24.0" fitWidth="556.0" layoutX="310.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/banner.png" />
                </image>

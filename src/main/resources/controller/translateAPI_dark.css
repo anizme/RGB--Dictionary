@@ -50,6 +50,11 @@
     -fx-background-radius: 10px;
 }
 
+.active {
+    -fx-background-color: #6495ed;
+    -fx-background-radius: 10px;
+}
+
 /* ========================= TextField ========================= */
 
 .text-field {
