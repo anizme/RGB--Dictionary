@@ -111,8 +111,6 @@ public class ChaoticWord extends GameController implements Initializable {
         playButton.setVisible(false);
         replayButton.setVisible(true);
         submitButton.setVisible(true);
-        meaningLabel.setVisible(true);
-        meaningTextField.setVisible(true);
         isRunning = true;
         Random random = new Random();
         int randomIndex = random.nextInt(listWord.size());
@@ -248,6 +246,8 @@ public class ChaoticWord extends GameController implements Initializable {
                 playerAns.append(rawAns.get(i));
             }
             if (playerAns.toString().equals(wordTarget)) {
+                meaningLabel.setVisible(true);
+                meaningTextField.setVisible(true);
                 resultImageView.setImage(correct);
                 resultImageView.setVisible(true);
                 meaningTextField.setText(wordMeaning);

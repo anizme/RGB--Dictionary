@@ -26,8 +26,8 @@
             <Rectangle fx:id="downRectangle" arcHeight="5.0" arcWidth="5.0" fill="#a625f7" height="64.0" layoutY="-1.0" stroke="#fadcdc00" strokeType="INSIDE" width="350.0" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="submitButton" layoutX="252.0" layoutY="480.0" onAction="#submit" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: white;" text="SUBMIT" visible="false" />
-      <JFXButton fx:id="replayButton" layoutX="538.0" layoutY="480.0" onAction="#replay" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: white;" text="REPLAY" visible="false" />
+      <JFXButton fx:id="submitButton" layoutX="538.0" layoutY="480.0" onAction="#submit" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: white;" text="SUBMIT" visible="false" />
+      <JFXButton fx:id="replayButton" layoutX="252.0" layoutY="480.0" onAction="#replay" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: white;" text="REPLAY" visible="false" />
       <TextField fx:id="meaningTextField" editable="false" layoutX="339.0" layoutY="411.0" prefHeight="38.0" prefWidth="263.0" visible="false" />
       <TextField fx:id="meaningLabel" alignment="CENTER" editable="false" layoutX="252.0" layoutY="411.0" prefHeight="38.0" prefWidth="83.0" text="MEANING:" visible="false" />
       <ImageView fx:id="resultImageView" fitHeight="150.0" fitWidth="200.0" layoutX="327.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" visible="false">
