@@ -39,5 +39,14 @@
             <Image url="@../images/GUIDECHAOTICWORD.png" />
          </image>
       </ImageView>
+      <JFXButton contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#showInstruction" prefHeight="32.0" prefWidth="34.0" textAlignment="CENTER" textFill="TRANSPARENT">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/information.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

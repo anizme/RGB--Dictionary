@@ -223,5 +223,14 @@
             <Image url="@../images/heart.png" />
          </image>
       </ImageView>
+      <JFXButton contentDisplay="CENTER" layoutX="773.0" layoutY="30.0" onAction="#showInstruction" prefHeight="46.0" prefWidth="41.0" textAlignment="CENTER" textFill="TRANSPARENT">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/information.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

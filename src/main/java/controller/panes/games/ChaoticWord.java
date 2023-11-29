@@ -77,6 +77,7 @@ public class ChaoticWord extends GameController implements Initializable {
     private String wordTarget;
     private String wordMeaning;
     private boolean isTimelineRunning = false;
+    private int checkGuide = 1;
 
     public ChaoticWord() throws FileNotFoundException {
         listWord = new ArrayList<>();
@@ -167,6 +168,17 @@ public class ChaoticWord extends GameController implements Initializable {
             allButton.add(button1);
             allButton.add(button);
             memoryPosition.put(button1, i);
+        }
+    }
+
+    @FXML
+    void showInstruction(ActionEvent event) throws Exception {
+        if (checkGuide == 1) {
+            guideImage.setVisible(true);
+            checkGuide = 0;
+        } else {
+            guideImage.setVisible(false);
+            checkGuide = 1;
         }
     }
 

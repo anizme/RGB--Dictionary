@@ -93,6 +93,7 @@ public class CrossWord extends GameController implements Initializable {
     private int noWrongAns = 0;
     private boolean isRunning = false;
     private boolean isTimelineRunning = false;
+    private int checkGuide = 1;
 
     public CrossWord() throws Exception {
         checkCorrect = new HashSet<>();
@@ -304,6 +305,17 @@ public class CrossWord extends GameController implements Initializable {
         heart2.setVisible(false);
         heart3.setVisible(false);
         isTimelineRunning = false;
+    }
+
+    @FXML
+    void showInstruction(ActionEvent event) throws Exception {
+        if (checkGuide == 1) {
+            guideCrossWord.setVisible(true);
+            checkGuide = 0;
+        } else {
+            guideCrossWord.setVisible(false);
+            checkGuide = 1;
+        }
     }
 
     @FXML
