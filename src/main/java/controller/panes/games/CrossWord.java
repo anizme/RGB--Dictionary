@@ -86,6 +86,8 @@ public class CrossWord extends GameController implements Initializable {
     private ImageView loser;
     @FXML
     private Rectangle flash;
+    @FXML
+    private JFXButton btInstruction;
     private List<Word> wordPlay;
     private List<List<Character>> charBoard;
     private Set<Button> checkCorrect;
@@ -191,6 +193,7 @@ public class CrossWord extends GameController implements Initializable {
 
     @FXML
     void setInitBoard(ActionEvent event) {
+        btInstruction.setVisible(true);
         YES.setVisible(false);
         NO.setVisible(false);
         initWordPlay();
@@ -283,6 +286,7 @@ public class CrossWord extends GameController implements Initializable {
 
     @FXML
     void replay(ActionEvent event) {
+        btInstruction.setVisible(false);
         meaning.setText("");
         checkCorrect = new HashSet<>();
         isRunning = false;
@@ -754,5 +758,6 @@ public class CrossWord extends GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btInstruction.setVisible(false);
     }
 }

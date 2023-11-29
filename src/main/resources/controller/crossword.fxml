@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gamePane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.CrossWord">
+<AnchorPane fx:id="gamePane" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #def3f6;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.CrossWord">
    <children>
       <ImageView fitHeight="555.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -219,8 +219,8 @@
             <Image url="@../images/heart.png" />
          </image>
       </ImageView>
-      <Pane fx:id="blurPane" layoutX="-3.0" layoutY="-1.0" opacity="0.5" prefHeight="555.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" visible="false" />
-      <JFXButton contentDisplay="CENTER" layoutX="773.0" layoutY="30.0" onAction="#showInstruction" prefHeight="46.0" prefWidth="41.0" textAlignment="CENTER" textFill="TRANSPARENT">
+      <Pane fx:id="blurPane" layoutX="-3.0" layoutY="-1.0" opacity="0.7" prefHeight="555.0" prefWidth="854.0" style="-fx-background-color: #000000;" visible="false" />
+      <JFXButton fx:id="btInstruction" contentDisplay="CENTER" layoutX="773.0" layoutY="30.0" onAction="#showInstruction" prefHeight="46.0" prefWidth="41.0" textAlignment="CENTER" textFill="TRANSPARENT">
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                <image>

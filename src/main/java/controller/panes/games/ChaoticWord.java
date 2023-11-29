@@ -63,6 +63,8 @@ public class ChaoticWord extends GameController implements Initializable {
     @FXML
     private JFXButton submitButton;
     @FXML
+    private JFXButton btInstruction;
+    @FXML
     private TextField meaningLabel;
     @FXML
     private TextField meaningTextField;
@@ -107,6 +109,7 @@ public class ChaoticWord extends GameController implements Initializable {
     }
 
     public void initGame() {
+        btInstruction.setVisible(true);
         guideImage.setVisible(false);
         playButton.setVisible(false);
         replayButton.setVisible(true);
@@ -193,6 +196,7 @@ public class ChaoticWord extends GameController implements Initializable {
     }
 
     public void replay(ActionEvent event) {
+        btInstruction.setVisible(false);
         isRunning = false;
         guideImage.setVisible(true);
         meaningTextField.setText("");
@@ -356,6 +360,6 @@ public class ChaoticWord extends GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        btInstruction.setVisible(false);
     }
 }

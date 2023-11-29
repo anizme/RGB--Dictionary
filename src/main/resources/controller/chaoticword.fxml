@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane fx:id="defaultAnchorpane" prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.ChaoticWord">
+<AnchorPane fx:id="defaultAnchorpane" prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.ChaoticWord">
    <children>
       <ImageView fitHeight="555.0" fitWidth="872.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -35,13 +35,13 @@
             <Image url="@../images/correctgame3.png" />
          </image>
       </ImageView>
-      <Pane fx:id="blurPane" opacity="0.45" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #ffffff;" visible="false" />
+      <Pane fx:id="blurPane" opacity="0.7" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #000000;" visible="false" />
       <ImageView fx:id="guideImage" fitHeight="382.0" fitWidth="382.0" layoutX="239.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/GUIDECHAOTICWORD.png" />
          </image>
       </ImageView>
-      <JFXButton contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#showInstruction" prefHeight="32.0" prefWidth="34.0" textAlignment="CENTER" textFill="TRANSPARENT">
+      <JFXButton fx:id="btInstruction" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#showInstruction" prefHeight="32.0" prefWidth="34.0" textAlignment="CENTER" textFill="TRANSPARENT">
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
