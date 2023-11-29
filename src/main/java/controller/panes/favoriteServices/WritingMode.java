@@ -95,15 +95,12 @@ public class WritingMode extends ActionController implements StudyMode, Initiali
 
     @Override
     public void reStart() {
-
-    }
-
-    @FXML
-    void reStart(ActionEvent event) throws SQLException {
         numOfQuestions = favoriteDB.getFavoriteWord().size();
         curQuestion = 0;
         correctQ = 0;
         wrongQ = 0;
+        lbCorrect.setText(String.valueOf(wrongQ));
+        lbWrong.setText(String.valueOf(correctQ));
         blurPane.setVisible(false);
         resPane.setVisible(false);
         taAnswerWord.clear();
@@ -114,6 +111,11 @@ public class WritingMode extends ActionController implements StudyMode, Initiali
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    void reStart(ActionEvent event) throws SQLException {
+        reStart();
     }
 
     @Override
