@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="gameContainer" prefHeight="555.0" prefWidth="850.0" style="-fx-background-color: #AFD3E2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.GameSelectionController">
@@ -13,20 +14,45 @@
             <Image url="@../images/chooseGameBackground.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="game3" layoutX="171.0" layoutY="360.0" onAction="#btGame3" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CHAOTIC WORD" textFill="#d14af0">
-         <font>
-            <Font name="Segoe UI Bold" size="12.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="game2" layoutX="171.0" layoutY="276.0" onAction="#btGame2" prefHeight="55.0" prefWidth="177.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="HANGMAN" textFill="#d14af0">
-         <font>
-            <Font name="Segoe UI Bold" size="12.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="crossWord" layoutX="171.0" layoutY="190.0" onAction="#btCrossWord" prefHeight="55.0" prefWidth="177.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CROSSWORD" textFill="#d14af0">
-         <font>
-            <Font name="Segoe UI Bold" size="12.0" />
-         </font>
-      </JFXButton>
+      <VBox layoutX="184.0" layoutY="161.0" prefHeight="312.0" prefWidth="161.0" spacing="20.0">
+         <children>
+            <JFXButton fx:id="crossWord" alignment="CENTER" contentDisplay="TOP" onAction="#btCrossWord" prefHeight="91.0" prefWidth="159.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CROSSWORD" textAlignment="CENTER" textFill="#d14af0">
+               <font>
+                  <Font name="Segoe UI Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/crossword.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="game2" alignment="CENTER" contentDisplay="TOP" onAction="#btGame2" prefHeight="91.0" prefWidth="159.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="HANGMAN" textAlignment="CENTER" textFill="#d14af0">
+               <font>
+                  <Font name="Segoe UI Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="48.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/hangman.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="game3" alignment="CENTER" contentDisplay="TOP" onAction="#btGame3" prefHeight="91.0" prefWidth="159.0" style="-fx-background-color: #D4EAFF;" styleClass="rounded-button" stylesheets="@game.css" text="CHAOTIC WORD" textAlignment="CENTER" textFill="#d14af0" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/alphabet.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
