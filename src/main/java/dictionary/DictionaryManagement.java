@@ -136,7 +136,7 @@ public class DictionaryManagement {
     public String dictionaryLookup(String word_target) {
         int pos = Search.findPositionInWordListByString(word_target, dictionary.getListOfWords());
         if (pos == -1) {    //if there is no word_target in current dictionary
-            return "NO INFORMATION";
+            return "...";
         } else {
             return dictionary.getListOfWords().get(pos).getWord_explain();
         }

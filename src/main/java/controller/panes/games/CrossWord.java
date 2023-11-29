@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -24,6 +24,9 @@ import javafx.util.Duration;
 import java.io.File;
 import java.net.URL;
 import java.util.*;
+
+import static controller.ApplicationStart.dictionaryDB;
+import static controller.ApplicationStart.dictionaryManagement;
 
 public class CrossWord extends GameController implements Initializable {
 
@@ -49,7 +52,7 @@ public class CrossWord extends GameController implements Initializable {
     @FXML
     private JFXButton PLAYAGAIN;
     @FXML
-    private TextField answer;
+    private Label answer;
     @FXML
     private ImageView YES;
     @FXML
@@ -71,11 +74,11 @@ public class CrossWord extends GameController implements Initializable {
     @FXML
     private ImageView heart3;
     @FXML
-    private TextField meaning;
+    private Label meaning;
     @FXML
-    private TextField label1;
+    private Label label1;
     @FXML
-    private TextField label2;
+    private Label label2;
     @FXML
     private Rectangle bgButtonGrid;
     @FXML
@@ -172,7 +175,6 @@ public class CrossWord extends GameController implements Initializable {
         wordPlay = new ArrayList<>();
         charBoard = new ArrayList<>();
         int lengthListWord = wordList.size();
-        System.out.println(lengthListWord);
         Random rand = new Random();
         while (wordPlay.size() < numsWord) {
             int ranNum = rand.nextInt(lengthListWord - 1) + 1;
@@ -315,8 +317,8 @@ public class CrossWord extends GameController implements Initializable {
     }
 
     @FXML
-    void showInstruction(ActionEvent event) throws Exception {
-        if (isRunning == false) {
+    void showInstruction(ActionEvent event) {
+        if (!isRunning) {
             return;
         }
         if (checkGuide == 1) {
@@ -641,6 +643,7 @@ public class CrossWord extends GameController implements Initializable {
     }
 
     void checkAns(String yourWord, List<Integer> tmpPos) {
+        meaning.setText("");
         ObservableList<Node> listNode = initBoard.getChildren();
         int x1 = tmpPos.get(0);
         int y1 = tmpPos.get(1);
@@ -649,7 +652,6 @@ public class CrossWord extends GameController implements Initializable {
         for (int i = 0; i < wordPlay.size(); i++) {
             String tmp = wordPlay.get(i).getWord_target();
             tmp = tmp.toUpperCase();
-            System.out.println(yourWord);
             if (tmp.equals(yourWord)) {
                 System.out.println(wordPlay.get(i).getWord_target());
                 YES.setVisible(true);
@@ -657,7 +659,7 @@ public class CrossWord extends GameController implements Initializable {
                 meaning.setText(wordPlay.get(i).getWord_explain());
                 noPlanet++;
                 wordPlay.remove(i);
-                //i--;
+                i--;
                 spaceShipGo();
                 if (x1 == x2) {
                     for (int k = y1; k <= y2; k++) {
@@ -685,6 +687,38 @@ public class CrossWord extends GameController implements Initializable {
                 }
                 return;
             }
+        }
+        if (dictionaryDB.getShortMeaning(yourWord) != null) {
+            YES.setVisible(true);
+            NO.setVisible(false);
+            meaning.setText(dictionaryManagement.dictionaryLookup(yourWord));
+            noPlanet++;
+            spaceShipGo();
+            if (x1 == x2) {
+                for (int k = y1; k <= y2; k++) {
+                    Button button1 = (Button) listNode.get(k * col + x1);
+                    button1.setStyle(cocolor);
+                    addHoverEffect(button1);
+                    checkCorrect.add(button1);
+                }
+            } else if (y1 == y2) {
+                for (int k = x1; k <= x2; k++) {
+                    Button button1 = (Button) listNode.get(y1 * col + k);
+                    button1.setStyle(cocolor);
+                    addHoverEffect(button1);
+                    checkCorrect.add(button1);
+                }
+            } else if (y2 - y1 == x2 - x1) {
+                int h = y1;
+                for (int k = x1; k <= x2; k++) {
+                    Button button1 = (Button) listNode.get(h * col + k);
+                    button1.setStyle(cocolor);
+                    addHoverEffect(button1);
+                    checkCorrect.add(button1);
+                    h++;
+                }
+            }
+            return;
         }
         NO.setVisible(true);
         YES.setVisible(false);
@@ -758,6 +792,7 @@ public class CrossWord extends GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        PLAYAGAIN.setVisible(false);
         btInstruction.setVisible(false);
     }
 }

@@ -10,7 +10,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +23,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.*;
+
+import static controller.ApplicationStart.dictionaryDB;
+import static controller.ApplicationStart.dictionaryManagement;
 
 class Pair {
     public int x;
@@ -65,9 +68,9 @@ public class ChaoticWord extends GameController implements Initializable {
     @FXML
     private JFXButton btInstruction;
     @FXML
-    private TextField meaningLabel;
+    private Label meaningLabel;
     @FXML
-    private TextField meaningTextField;
+    private Label meaningTextField;
     @FXML
     private ImageView resultImageView;
     @FXML
@@ -119,10 +122,11 @@ public class ChaoticWord extends GameController implements Initializable {
         int randomIndex = random.nextInt(listWord.size());
         wordTarget = listWord.get(randomIndex).getWord_target();
         wordMeaning = listWord.get(randomIndex).getWord_explain();
+        System.out.println(wordTarget);
         StringBuilder wordPlay = new StringBuilder();
         numsOfLetter = wordTarget.length();
         int randomChar = random.nextInt(wordTarget.length());
-        System.out.println("T1");
+
         upAnchorPane.setPrefWidth(wordTarget.length() * (sizeCardX + padding) + padding);
         int sizeCardY = 50;
         upAnchorPane.setPrefHeight(sizeCardY + padding * 2);
@@ -130,13 +134,13 @@ public class ChaoticWord extends GameController implements Initializable {
         upRectangle.setHeight(sizeCardY + padding * 2);
         upAnchorPane.setLayoutX((double) 850 / 2 - upAnchorPane.getPrefWidth() / 2);
 
-        System.out.println("T2");
+
         downAnchorPane.setPrefWidth(wordTarget.length() * (sizeCardX + padding) + padding);
         downAnchorPane.setPrefHeight(sizeCardY + padding * 2);
         downRectangle.setWidth(wordTarget.length() * (sizeCardX + padding) + padding);
         downRectangle.setHeight(sizeCardY + padding * 2);
         downAnchorPane.setLayoutX((double) 850 / 2 - upAnchorPane.getPrefWidth() / 2);
-        System.out.println("T3");
+
         for (int i = 0; i < wordTarget.length(); i++) {
             while (checkExists.contains(randomChar)) {
                 randomChar = random.nextInt(wordTarget.length());
@@ -178,8 +182,8 @@ public class ChaoticWord extends GameController implements Initializable {
     }
 
     @FXML
-    void showInstruction(ActionEvent event) throws Exception {
-        if (isRunning == false) {
+    void showInstruction(ActionEvent event) {
+        if (!isRunning) {
             return;
         }
         if (checkGuide == 1) {
@@ -267,6 +271,24 @@ public class ChaoticWord extends GameController implements Initializable {
                     upRectangle.setFill(Paint.valueOf(defaultRectangle));
                 });
                 timeline.play();
+            } else if (!dictionaryDB.getShortMeaning(playerAns.toString()).isEmpty()) {
+                meaningLabel.setVisible(true);
+                meaningTextField.setVisible(true);
+                resultImageView.setImage(correct);
+                resultImageView.setVisible(true);
+                meaningTextField.setText(dictionaryManagement.dictionaryLookup(playerAns.toString()));
+                String correctRectangle = "#35A29F";
+                upRectangle.setFill(Paint.valueOf(correctRectangle));
+                Timeline timeline = new Timeline();
+
+                KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5),
+                        new KeyValue(playButton.translateYProperty(), playButton.getTranslateY()));
+                timeline.getKeyFrames().add(keyFrame);
+                timeline.setOnFinished(e -> {
+                    isTimelineRunning = false;
+                    upRectangle.setFill(Paint.valueOf(defaultRectangle));
+                });
+                timeline.play();
             } else {
                 resultImageView.setImage(wrong);
                 resultImageView.setVisible(true);
@@ -305,9 +327,7 @@ public class ChaoticWord extends GameController implements Initializable {
             int indexdownACPane = memoryPosition.get(button);
             double x = button.getLayoutX();
             double y = button.getLayoutY();
-            System.out.println(x);
             final int k = (int) ((x - upAnchorPane.getLayoutX() - padding) / (sizeCardX + padding));
-            System.out.println(k);
             Timeline timeline = new Timeline();
 
             KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5),
@@ -333,7 +353,6 @@ public class ChaoticWord extends GameController implements Initializable {
             button.setLayoutX(x);
             button.setLayoutY(y);
             final int k = upFirstEmpty;
-            System.out.println(k);
             Timeline timeline = new Timeline();
 
             KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5),
