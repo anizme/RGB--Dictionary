@@ -34,5 +34,10 @@
             <Image url="@../images/correctgame3.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="guideImage" fitHeight="382.0" fitWidth="382.0" layoutX="239.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GUIDECHAOTICWORD.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

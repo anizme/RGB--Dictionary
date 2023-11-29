@@ -85,6 +85,7 @@ public class CrossWord extends GameController implements Initializable {
     private Rectangle flash;
     private List<Word> wordPlay;
     private List<List<Character>> charBoard;
+    private Set<Button> checkCorrect;
     //    private List<List<Integer>> posXY;
     private List<Integer> tmpPos;
     private int count = 0;
@@ -94,6 +95,7 @@ public class CrossWord extends GameController implements Initializable {
     private boolean isTimelineRunning = false;
 
     public CrossWord() throws Exception {
+        checkCorrect = new HashSet<>();
         wordList = new ArrayList<>();
         tmpPos = new ArrayList<>();
         File dictionaryFile = new File("src/main/resources/data/dictionaries.txt");
@@ -277,6 +279,8 @@ public class CrossWord extends GameController implements Initializable {
 
     @FXML
     void replay(ActionEvent event) {
+        meaning.setText("");
+        checkCorrect = new HashSet<>();
         isRunning = false;
         PLAYAGAIN.setVisible(false);
         answer.setVisible(false);
@@ -636,12 +640,14 @@ public class CrossWord extends GameController implements Initializable {
                         Button button1 = (Button) listNode.get(k * col + x1);
                         button1.setStyle(cocolor);
                         addHoverEffect(button1);
+                        checkCorrect.add(button1);
                     }
                 } else if (y1 == y2) {
                     for (int k = x1; k <= x2; k++) {
                         Button button1 = (Button) listNode.get(y1 * col + k);
                         button1.setStyle(cocolor);
                         addHoverEffect(button1);
+                        checkCorrect.add(button1);
                     }
                 } else if (y2 - y1 == x2 - x1) {
                     int h = y1;
@@ -649,6 +655,7 @@ public class CrossWord extends GameController implements Initializable {
                         Button button1 = (Button) listNode.get(h * col + k);
                         button1.setStyle(cocolor);
                         addHoverEffect(button1);
+                        checkCorrect.add(button1);
                         h++;
                     }
                 }
@@ -683,24 +690,42 @@ public class CrossWord extends GameController implements Initializable {
         if (x1 == x2) {
             for (int k = y1; k <= y2; k++) {
                 Button button1 = (Button) listNode.get(k * col + x1);
-                KeyValue keyValue = new KeyValue(button1.styleProperty(), dfcolor);
-                KeyFrame keyFrame = new KeyFrame(duration, keyValue);
-                timeline.getKeyFrames().add(keyFrame);
+                if (checkCorrect.contains(button1)) {
+                    KeyValue keyValue = new KeyValue(button1.styleProperty(), cocolor);
+                    KeyFrame keyFrame = new KeyFrame(duration, keyValue);
+                    timeline.getKeyFrames().add(keyFrame);
+                } else {
+                    KeyValue keyValue = new KeyValue(button1.styleProperty(), dfcolor);
+                    KeyFrame keyFrame = new KeyFrame(duration, keyValue);
+                    timeline.getKeyFrames().add(keyFrame);
+                }
             }
         } else if (y1 == y2) {
             for (int k = x1; k <= x2; k++) {
                 Button button1 = (Button) listNode.get(y1 * col + k);
-                KeyValue keyValue = new KeyValue(button1.styleProperty(), dfcolor);
-                KeyFrame keyFrame = new KeyFrame(duration, keyValue);
-                timeline.getKeyFrames().add(keyFrame);
+                if (checkCorrect.contains(button1)) {
+                    KeyValue keyValue = new KeyValue(button1.styleProperty(), cocolor);
+                    KeyFrame keyFrame = new KeyFrame(duration, keyValue);
+                    timeline.getKeyFrames().add(keyFrame);
+                } else {
+                    KeyValue keyValue = new KeyValue(button1.styleProperty(), dfcolor);
+                    KeyFrame keyFrame = new KeyFrame(duration, keyValue);
+                    timeline.getKeyFrames().add(keyFrame);
+                }
             }
         } else if (y2 - y1 == x2 - x1) {
             int h = y1;
             for (int k = x1; k <= x2; k++) {
                 Button button1 = (Button) listNode.get(h * col + k);
-                KeyValue keyValue = new KeyValue(button1.styleProperty(), dfcolor);
-                KeyFrame keyFrame = new KeyFrame(duration, keyValue);
-                timeline.getKeyFrames().add(keyFrame);
+                if (checkCorrect.contains(button1)) {
+                    KeyValue keyValue = new KeyValue(button1.styleProperty(), cocolor);
+                    KeyFrame keyFrame = new KeyFrame(duration, keyValue);
+                    timeline.getKeyFrames().add(keyFrame);
+                } else {
+                    KeyValue keyValue = new KeyValue(button1.styleProperty(), dfcolor);
+                    KeyFrame keyFrame = new KeyFrame(duration, keyValue);
+                    timeline.getKeyFrames().add(keyFrame);
+                }
                 h++;
             }
         }

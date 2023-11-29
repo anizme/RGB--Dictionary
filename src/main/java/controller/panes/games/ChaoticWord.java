@@ -65,6 +65,8 @@ public class ChaoticWord extends GameController implements Initializable {
     private TextField meaningTextField;
     @FXML
     private ImageView resultImageView;
+    @FXML
+    private ImageView guideImage;
     private int numsOfLetter = 0;
     private List<Pair> position;
     private List<Integer> upCheckIndex;
@@ -100,6 +102,7 @@ public class ChaoticWord extends GameController implements Initializable {
     }
 
     public void initGame() {
+        guideImage.setVisible(false);
         playButton.setVisible(false);
         replayButton.setVisible(true);
         submitButton.setVisible(true);
@@ -168,6 +171,8 @@ public class ChaoticWord extends GameController implements Initializable {
     }
 
     public void replay(ActionEvent event) {
+        guideImage.setVisible(true);
+        meaningTextField.setText("");
         resultImageView.setVisible(false);
         checkExists = new HashSet<>();
         position = new ArrayList<>();
