@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -50,6 +51,8 @@ public class ChaoticWord extends GameController implements Initializable {
     @FXML
     private AnchorPane defaultAnchorpane;
     @FXML
+    private Pane blurPane;
+    @FXML
     private Rectangle downRectangle;
     @FXML
     private Rectangle upRectangle;
@@ -78,6 +81,7 @@ public class ChaoticWord extends GameController implements Initializable {
     private String wordMeaning;
     private boolean isTimelineRunning = false;
     private int checkGuide = 1;
+    private boolean isRunning = false;
 
     public ChaoticWord() throws FileNotFoundException {
         listWord = new ArrayList<>();
@@ -109,6 +113,7 @@ public class ChaoticWord extends GameController implements Initializable {
         submitButton.setVisible(true);
         meaningLabel.setVisible(true);
         meaningTextField.setVisible(true);
+        isRunning = true;
         Random random = new Random();
         int randomIndex = random.nextInt(listWord.size());
         wordTarget = listWord.get(randomIndex).getWord_target();
@@ -173,16 +178,22 @@ public class ChaoticWord extends GameController implements Initializable {
 
     @FXML
     void showInstruction(ActionEvent event) throws Exception {
+        if (isRunning == false) {
+            return;
+        }
         if (checkGuide == 1) {
             guideImage.setVisible(true);
+            blurPane.setVisible(true);
             checkGuide = 0;
         } else {
             guideImage.setVisible(false);
+            blurPane.setVisible(false);
             checkGuide = 1;
         }
     }
 
     public void replay(ActionEvent event) {
+        isRunning = false;
         guideImage.setVisible(true);
         meaningTextField.setText("");
         resultImageView.setVisible(false);
