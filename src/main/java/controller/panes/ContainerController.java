@@ -888,10 +888,5 @@ public class ContainerController extends ActionController implements Initializab
             btTranslateView.setImage(translateImage);
             btTranslateView.setViewport(new Rectangle2D(0, 0, 68, 68));
         });
-        try {
-            search(null);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
