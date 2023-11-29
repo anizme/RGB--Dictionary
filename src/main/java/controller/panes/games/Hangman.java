@@ -171,7 +171,6 @@ public class Hangman extends GameController implements Initializable {
 
                     colliding.addListener((obs, oldValue, newValue) -> {
                         if (newValue) {
-                            System.out.println("Colliding");
 
                             healthBar.getChildren().get(MAX_WRONG_GUESSES - wrongGuesses).setStyle("-fx-fill: transparent");
                             String healthColor = "";
@@ -220,7 +219,6 @@ public class Hangman extends GameController implements Initializable {
                                 letterPane.setVisible(false);
                             }
                         } else {
-                            System.out.println("Not colliding");
                         }
                     });
 
@@ -237,7 +235,6 @@ public class Hangman extends GameController implements Initializable {
                 colliding.addListener((obs, oldValue, newValue) -> {
                     if (newValue) {
                         if (shieldView.isVisible()) {
-                            System.out.println("Colliding");
                             asteroidMovement.stop();
                             asteroidView.setVisible(false);
                             asteroidMovement = new TranslateTransition(Duration.millis(1), asteroidView);
@@ -259,7 +256,6 @@ public class Hangman extends GameController implements Initializable {
                             });
                         }
                     } else {
-                        System.out.println("Not colliding");
                     }
                 });
             }
@@ -291,6 +287,7 @@ public class Hangman extends GameController implements Initializable {
                     .get(r.nextInt(ApplicationStart.dictionaryManagement.getDictionary().getListOfWords().size()));
         } while (answerWord.getWord_target().length() < 5);
         setAnswer(answerWord.getWord_target());
+        System.out.println(answerWord.getWord_target());
         guessed = new StringBuilder();
         guessed.append("_ ".repeat(answer.length()));
         wordLabel.setText(String.valueOf(guessed));
