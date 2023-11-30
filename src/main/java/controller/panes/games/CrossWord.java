@@ -31,6 +31,7 @@ import static controller.ApplicationStart.dictionaryManagement;
 public class CrossWord extends GameController implements Initializable {
 
     private final List<Word> wordList;
+    private final List<String> otherWord;
     private final int numsWord = 3;
     private final int row = 10;
     private final int col = 10;
@@ -104,6 +105,7 @@ public class CrossWord extends GameController implements Initializable {
     private int checkGuide = 1;
 
     public CrossWord() throws Exception {
+        otherWord = new ArrayList<>();
         checkCorrect = new HashSet<>();
         wordList = new ArrayList<>();
         tmpPos = new ArrayList<>();
@@ -288,6 +290,7 @@ public class CrossWord extends GameController implements Initializable {
 
     @FXML
     void replay(ActionEvent event) {
+        otherWord.clear();
         btInstruction.setVisible(false);
         meaning.setText("");
         checkCorrect = new HashSet<>();
@@ -653,6 +656,7 @@ public class CrossWord extends GameController implements Initializable {
             String tmp = wordPlay.get(i).getWord_target();
             tmp = tmp.toUpperCase();
             if (tmp.equals(yourWord)) {
+                otherWord.add(yourWord);
                 System.out.println(wordPlay.get(i).getWord_target());
                 YES.setVisible(true);
                 NO.setVisible(false);
@@ -688,7 +692,8 @@ public class CrossWord extends GameController implements Initializable {
                 return;
             }
         }
-        if (dictionaryDB.getShortMeaning(yourWord) != null) {
+        if (!otherWord.contains(yourWord) && dictionaryDB.getShortMeaning(yourWord) != null) {
+            otherWord.add(yourWord);
             YES.setVisible(true);
             NO.setVisible(false);
             meaning.setText(dictionaryManagement.dictionaryLookup(yourWord));

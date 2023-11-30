@@ -271,7 +271,7 @@ public class ChaoticWord extends GameController implements Initializable {
                     upRectangle.setFill(Paint.valueOf(defaultRectangle));
                 });
                 timeline.play();
-            } else if (!dictionaryDB.getShortMeaning(playerAns.toString()).isEmpty()) {
+            } else if (dictionaryDB.getShortMeaning(playerAns.toString()) != null) {
                 meaningLabel.setVisible(true);
                 meaningTextField.setVisible(true);
                 resultImageView.setImage(correct);
