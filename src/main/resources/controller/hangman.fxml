@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.Hangman">
+<AnchorPane prefHeight="555.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panes.games.Hangman">
    <children>
       <ImageView fx:id="backgroundView1" fitHeight="555.0" fitWidth="850.0" pickOnBounds="true">
          <image>
@@ -301,7 +301,7 @@
                <font>
                   <Font name="System Bold" size="30.0" />
                </font></Label>
-            <JFXTextArea focusColor="WHITE" layoutX="45.0" layoutY="67.0" prefHeight="262.0" prefWidth="646.0" text="- HELP THE SPACESHIP BACK TO EARTH BY GUESSING THE HIDDEN WORD !&#10;&#10;- CLICK ON THE LETTER YOU WANT TO GUESS, IF THE SECRET WORD CONTAINS THAT LETTER, THE SHIP WILL BE SAVE, OTHERWISE IT WILL BE HIT BY AN ASTEROID AND LOST A HEALTH POINT.&#10;&#10;- YOU HAVE 7 HEALTH POINTS TOTAL, TRY TO GUESS THE SECRET WORD WITH NO MORE THAN 6 WRONG GUESSES OR THE SHIP WILL EXPLODE.&#10;&#10;- A HINT WILL APPEAR EVERY 3 WRONG GUESSES YOU MADE.&#10;&#10;" unFocusColor="WHITE">
+            <JFXTextArea editable="false" focusColor="WHITE" layoutX="45.0" layoutY="67.0" prefHeight="262.0" prefWidth="646.0" text="- HELP THE SPACESHIP BACK TO EARTH BY GUESSING THE HIDDEN WORD !&#10;&#10;- CLICK ON THE LETTER YOU WANT TO GUESS, IF THE SECRET WORD CONTAINS THAT LETTER, THE SHIP WILL BE SAVE, OTHERWISE IT WILL BE HIT BY AN ASTEROID AND LOST A HEALTH POINT.&#10;&#10;- YOU HAVE 7 HEALTH POINTS TOTAL, TRY TO GUESS THE SECRET WORD WITH NO MORE THAN 6 WRONG GUESSES OR THE SHIP WILL EXPLODE.&#10;&#10;- A HINT WILL APPEAR EVERY 3 WRONG GUESSES YOU MADE.&#10;&#10;" unFocusColor="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></JFXTextArea>
